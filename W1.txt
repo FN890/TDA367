@@ -1,0 +1,5 @@
+Came up with the idea to create a 2D racing-type game. Where you race against
+your friends. Multiplayer/Singleplayer.
+
+Started creating Epics/User Stories, which will be divided into tasks.
+We also got familiar with a Java Game Engine libGDX.
