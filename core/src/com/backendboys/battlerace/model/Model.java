@@ -1,2 +1,4 @@
-package com.backendboys.battlerace.model;public class Model {
+package com.backendboys.battlerace.model;
+
+public class Model {
 }
