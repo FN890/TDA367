@@ -1,55 +1,86 @@
 package com.backendboys.battlerace.view.screens;
 
 
-import com.backendboys.battlerace.BattleRace;
-import com.backendboys.battlerace.view.IRender;
+
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.OrthographicCamera;
+
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.viewport.Viewport;
+
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class OptionsMenu extends AbstractScreen implements Screen, IRender {
-
+public class OptionsMenu extends AbstractScreen implements Screen{
+    private final Game game;
     private SpriteBatch batch;
-    private BattleRace battleRace;
     private Stage stage;
-    private Map <String, Sprite> spriteMap = new HashMap<>();
     private TextureAtlas textureAtlas;
-    public OptionsMenu(BattleRace battleRace) {
-        this.battleRace = battleRace;
+
+    private Map<String, Sprite> sprites = new HashMap<>();
+
+    public OptionsMenu(Game game) {
+        this.game = game;
+
         batch = new SpriteBatch();
-        stage = new Stage(super.getViewport(),batch);
-        textureAtlas = new TextureAtlas();
-        addSprites();
     }
 
     private void addSprites() {
         Array<TextureAtlas.AtlasRegion> regions = textureAtlas.getRegions();
         for(TextureAtlas.AtlasRegion region : regions){
             Sprite sprite = textureAtlas.createSprite(region.name);
-            spriteMap.put(region.name,sprite);
+            sprites.put(region.name,sprite);
         }
     }
 
     @Override
     public void show() {
         super.show();
+        stage = new Stage(getViewport(),batch);
+
+        Gdx.input.setInputProcessor(stage);
+
+        Table mainTable = new Table();
+        mainTable.setFillParent(true);
+        mainTable.center();
+
+        TextButton.TextButtonStyle buttonStyle = new TextButton.TextButtonStyle();
+        buttonStyle.font = new BitmapFont();
+
+        TextButton soundOnButton = new TextButton("Sound ON!",buttonStyle);
+        TextButton soundOffButton = new TextButton("Sound OFF!",buttonStyle);
+        TextButton backToMainMenuButton = new TextButton("Back to main menu!",buttonStyle);
+
+        backToMainMenuButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) { backToMainMenuPressed();
+            }
+        });
+
+        mainTable.add(soundOnButton).row();
+        mainTable.add(soundOffButton).row();
+        mainTable.add(backToMainMenuButton).row();
+
+
+        stage.addActor(mainTable);
     }
 
     @Override
     public void render(float delta) {
         super.render(delta);
+        stage.act();
+        stage.draw();
         batch.begin();
-
         batch.end();
     }
 
@@ -75,17 +106,12 @@ public class OptionsMenu extends AbstractScreen implements Screen, IRender {
     }
 
     @Override
-    public void init() {
-
-    }
-
-    @Override
-    public void render() {
-
-    }
-
-    @Override
     public void dispose() {
+        textureAtlas.dispose();
+        sprites.clear();
 
+    }
+    private void backToMainMenuPressed(){
+        game.setScreen(new MainMenu(game));
     }
 }
