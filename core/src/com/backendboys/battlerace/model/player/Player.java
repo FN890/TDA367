@@ -1,28 +1,56 @@
 package com.backendboys.battlerace.model.player;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
 public class Player extends Sprite implements InputProcessor {
 
-    //Rörelsehastigheten samt gravitation
+    //The speed at which the player moves, and the gravity strength
     private Vector2 velocity = new Vector2();
     private float speed = 120;
-    private float gravity = 60*1.8f;
+    private float gravity = 60 * 1.8f;
 
     public Player(Sprite sprite) {
         super(sprite);
+    }
+
+    public void draw(SpriteBatch spriteBatch) {
+        update(Gdx.graphics.getDeltaTime());
+        super.draw(spriteBatch);
+    }
+
+    private void update(float delta) {
+        //Applies gravity
+        //velocity.y -= gravity * delta;
+
+        //Increases fall speed with 'speed' as max velocity
+      /*  if (velocity.y > speed) {
+            velocity.y = speed;
+        }
+        else if (velocity.y < speed) {
+            velocity.y = -speed;
+        }
+        */
+        //Moves the player
+        setX(getX() + velocity.x * delta);
+        setY(getY() + velocity.y * delta);
     }
 
     @Override
     public boolean keyDown(int keycode) {
         switch (keycode) {
             case Input.Keys.W:
+                velocity.y = speed;
                 break;
             case Input.Keys.A:
                 velocity.x = -speed;
+                break;
+            case Input.Keys.S:
+                velocity.y = -speed;
                 break;
             case Input.Keys.D:
                 velocity.x = speed;
@@ -37,6 +65,11 @@ public class Player extends Sprite implements InputProcessor {
             case Input.Keys.A:
             case Input.Keys.D:
                 velocity.x = 0;
+                break;
+            case Input.Keys.W:
+            case Input.Keys.S:
+                velocity.y = 0;
+                break;
         }
         return true;
     }
