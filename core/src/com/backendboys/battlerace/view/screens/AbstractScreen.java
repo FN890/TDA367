@@ -48,4 +48,12 @@ public abstract class AbstractScreen implements Screen {
     public void dispose() {
 
     }
+
+    protected OrthographicCamera getCamera() {
+        return this.camera;
+    }
+
+    protected Viewport getViewport() {
+        return this.viewport;
+    }
 }
