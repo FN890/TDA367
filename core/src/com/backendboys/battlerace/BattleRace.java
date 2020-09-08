@@ -18,7 +18,7 @@ public class BattleRace extends Game {
         music.play();
         music.setLooping(true);
         this.game = this;
-        setScreen(new MainMenu());
+        setScreen(new MainMenu(this));
     }
 
     @Override
