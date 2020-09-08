@@ -2,10 +2,10 @@ package com.backendboys.battlerace.view;
 
 public interface IRender {
 
-    public void init();
+    void init();
 
-    public void render();
+    void render();
 
-    public void dispose();
+    void dispose();
 
 }
