@@ -1,12 +1,13 @@
 package com.backendboys.battlerace.view.render;
 
+import com.backendboys.battlerace.view.IModelListener;
 import com.backendboys.battlerace.view.IRender;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class GameRender implements IRender {
+public class GameRender implements IRender, IModelListener {
 
     SpriteBatch batch;
     Texture img;
@@ -32,4 +33,8 @@ public class GameRender implements IRender {
         img.dispose();
     }
 
+    @Override
+    public void update() {
+
+    }
 }
