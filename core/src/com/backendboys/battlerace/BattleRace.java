@@ -5,6 +5,7 @@ import com.backendboys.battlerace.controller.MenuController;
 import com.backendboys.battlerace.view.screens.MainMenu;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.audio.Music;
 
 public class BattleRace extends Game {
@@ -12,6 +13,7 @@ public class BattleRace extends Game {
     private Game game;
     private GameController gameController;
     private MenuController menuController;
+
     @Override
     public void create() {
         this.game = this;
@@ -19,6 +21,7 @@ public class BattleRace extends Game {
         gameController = new GameController();
         menuController = new MenuController(game);
 
+        Gdx.input.setInputProcessor(gameController);
     }
 
     @Override

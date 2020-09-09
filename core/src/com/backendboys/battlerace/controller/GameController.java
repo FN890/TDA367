@@ -1,6 +1,7 @@
 package com.backendboys.battlerace.controller;
 
 import com.backendboys.battlerace.model.GameModel;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 
 public class GameController implements InputProcessor {
@@ -15,16 +16,19 @@ public class GameController implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
-        return false;
+        gameModel.keyDown(keycode);
+        return true;
     }
 
     @Override
     public boolean keyUp(int keycode) {
+        gameModel.keyUp(keycode);
         return false;
     }
 
     @Override
     public boolean keyTyped(char character) {
+        gameModel.keyTyped(character);
         return false;
     }
 
