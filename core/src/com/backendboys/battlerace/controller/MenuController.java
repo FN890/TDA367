@@ -18,6 +18,14 @@ public class MenuController {
 
     }
 
+    public void multiPlayerPressed() {
+
+    }
+
+    public void exitPressed() {
+        System.exit(0);
+    }
+
     public void optionsPressed() {
         game.setScreen(optionsMenu);
     }
