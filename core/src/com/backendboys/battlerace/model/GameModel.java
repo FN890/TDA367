@@ -1,7 +1,5 @@
 package com.backendboys.battlerace.model;
 
-import com.backendboys.battlerace.view.IModelListener;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -20,7 +20,7 @@ import com.badlogic.gdx.utils.Array;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainMenu extends AbstractScreen implements Screen {
+public class MainMenu extends AbstractScreen {
 
     private final MenuController menuController;
     private SpriteBatch batch;

@@ -21,7 +21,7 @@ import com.badlogic.gdx.utils.Array;
 import java.util.HashMap;
 import java.util.Map;
 
-public class OptionsMenu extends AbstractScreen implements Screen {
+public class OptionsMenu extends AbstractScreen {
     private final MenuController menuController;
     private SpriteBatch batch;
     private Stage stage;
