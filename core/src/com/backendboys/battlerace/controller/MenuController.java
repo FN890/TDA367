@@ -20,7 +20,7 @@ public class MenuController {
     }
 
     public void playPressed() {
-
+        music.stop();
     }
 
     public void multiPlayerPressed() {
