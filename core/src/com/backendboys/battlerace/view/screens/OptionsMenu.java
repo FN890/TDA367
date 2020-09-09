@@ -1,7 +1,7 @@
 package com.backendboys.battlerace.view.screens;
 
 
-
+import com.backendboys.battlerace.controller.MenuController;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -21,32 +21,32 @@ import com.badlogic.gdx.utils.Array;
 import java.util.HashMap;
 import java.util.Map;
 
-public class OptionsMenu extends AbstractScreen implements Screen{
-    private final Game game;
+public class OptionsMenu extends AbstractScreen implements Screen {
+    private final MenuController menuController;
     private SpriteBatch batch;
     private Stage stage;
     private TextureAtlas textureAtlas;
 
     private Map<String, Sprite> sprites = new HashMap<>();
 
-    public OptionsMenu(Game game) {
-        this.game = game;
+    public OptionsMenu(MenuController menuController) {
+        this.menuController = menuController;
 
         batch = new SpriteBatch();
     }
 
     private void addSprites() {
         Array<TextureAtlas.AtlasRegion> regions = textureAtlas.getRegions();
-        for(TextureAtlas.AtlasRegion region : regions){
+        for (TextureAtlas.AtlasRegion region : regions) {
             Sprite sprite = textureAtlas.createSprite(region.name);
-            sprites.put(region.name,sprite);
+            sprites.put(region.name, sprite);
         }
     }
 
     @Override
     public void show() {
         super.show();
-        stage = new Stage(getViewport(),batch);
+        stage = new Stage(getViewport(), batch);
 
         Gdx.input.setInputProcessor(stage);
 
@@ -57,13 +57,14 @@ public class OptionsMenu extends AbstractScreen implements Screen{
         TextButton.TextButtonStyle buttonStyle = new TextButton.TextButtonStyle();
         buttonStyle.font = new BitmapFont();
 
-        TextButton soundOnButton = new TextButton("Sound ON!",buttonStyle);
-        TextButton soundOffButton = new TextButton("Sound OFF!",buttonStyle);
-        TextButton backToMainMenuButton = new TextButton("Back to main menu!",buttonStyle);
+        TextButton soundOnButton = new TextButton("Sound ON!", buttonStyle);
+        TextButton soundOffButton = new TextButton("Sound OFF!", buttonStyle);
+        TextButton backToMainMenuButton = new TextButton("Back to main menu!", buttonStyle);
 
         backToMainMenuButton.addListener(new ClickListener() {
             @Override
-            public void clicked(InputEvent event, float x, float y) { backToMainMenuPressed();
+            public void clicked(InputEvent event, float x, float y) {
+                menuController.backToMainMenuPressed();
             }
         });
 
@@ -86,7 +87,7 @@ public class OptionsMenu extends AbstractScreen implements Screen{
 
     @Override
     public void resize(int width, int height) {
-        super.resize(width,height);
+        super.resize(width, height);
         batch.setProjectionMatrix(super.getCamera().combined);
     }
 
@@ -111,7 +112,6 @@ public class OptionsMenu extends AbstractScreen implements Screen{
         sprites.clear();
 
     }
-    private void backToMainMenuPressed(){
-        game.setScreen(new MainMenu(game));
-    }
+
+
 }

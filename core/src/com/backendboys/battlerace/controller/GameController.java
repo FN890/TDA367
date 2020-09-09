@@ -4,7 +4,7 @@ public class GameController {
 
     //Get inputs from views and do changes in model
 
-    public GameController(){
+    public GameController() {
 
     }
 }

@@ -1,6 +1,7 @@
 package com.backendboys.battlerace.view.screens;
 
 import com.backendboys.battlerace.controller.GameController;
+import com.backendboys.battlerace.controller.MenuController;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -20,16 +21,15 @@ import java.util.Map;
 
 public class MainMenu extends AbstractScreen implements Screen {
 
-    private final Game game;
-
+    private final MenuController menuController;
     private SpriteBatch batch;
     private Stage stage;
     private TextureAtlas textureAtlas;
 
     private Map<String, Sprite> sprites = new HashMap<>();
 
-    public MainMenu(Game game) {
-        this.game = game;
+    public MainMenu(MenuController menuController) {
+        this.menuController = menuController;
 
         batch = new SpriteBatch();
     }
@@ -59,7 +59,7 @@ public class MainMenu extends AbstractScreen implements Screen {
         singlePlayerBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                singlePlayerPressed();
+                menuController.playPressed();
             }
         });
 
@@ -73,7 +73,7 @@ public class MainMenu extends AbstractScreen implements Screen {
         optionsBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                optionsPressed();
+                menuController.optionsPressed();
             }
         });
 
@@ -118,7 +118,6 @@ public class MainMenu extends AbstractScreen implements Screen {
     }
 
     private void exitPressed() {
-
 
 
     }
