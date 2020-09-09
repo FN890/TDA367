@@ -2,6 +2,7 @@ package com.backendboys.battlerace.view.screens;
 
 import com.backendboys.battlerace.controller.GameController;
 import com.backendboys.battlerace.controller.MenuController;
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -66,7 +67,7 @@ public class MainMenu extends AbstractScreen implements Screen {
         multiPlayerBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                multiPlayerPressed();
+                menuController.multiPlayerPressed();
             }
         });
 
@@ -80,7 +81,7 @@ public class MainMenu extends AbstractScreen implements Screen {
         exitBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                exitPressed();
+                menuController.exitPressed();
             }
         });
 
@@ -102,25 +103,6 @@ public class MainMenu extends AbstractScreen implements Screen {
         }
     }
 
-    private void singlePlayerPressed() {
-
-
-    }
-
-    private void multiPlayerPressed() {
-
-
-    }
-
-    private void optionsPressed() {
-
-
-    }
-
-    private void exitPressed() {
-
-
-    }
 
     @Override
     public void render(float delta) {
