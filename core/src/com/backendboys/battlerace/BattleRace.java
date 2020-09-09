@@ -18,9 +18,6 @@ public class BattleRace extends Game {
 
         gameController = new GameController();
         menuController = new MenuController(game);
-        Music music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
-        music.play();
-        music.setLooping(true);
 
     }
 
