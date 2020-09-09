@@ -1,39 +1,35 @@
 package com.backendboys.battlerace.view.screens;
 
 import com.backendboys.battlerace.model.IModelListener;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.backendboys.battlerace.model.world.GameWorld;
 
 public class GameScreen extends AbstractScreen implements IModelListener {
 
-    SpriteBatch batch;
-    Texture img;
+    private GameWorld gameWorld;
 
-
-    public void init() {
-        batch = new SpriteBatch();
-        img = new Texture("badlogic.jpg");
+    public GameScreen() {
+        gameWorld = new GameWorld();
     }
 
+    @Override
+    public void render(float delta) {
+        super.render(delta);
+        gameWorld.render();
+    }
 
-    public void render() {
-        Gdx.gl.glClearColor(1, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        batch.begin();
-        batch.draw(img, 0, 0);
-        batch.end();
+    @Override
+    public void resize(int width, int height) {
+        super.resize(width, height);
+        gameWorld.resize(width, height);
     }
 
     @Override
     public void dispose() {
-        batch.dispose();
-        img.dispose();
+        gameWorld.dispose();
     }
 
     @Override
     public void update() {
-
+        gameWorld.render();
     }
 }
