@@ -57,14 +57,28 @@ public class OptionsMenu extends AbstractScreen implements Screen {
         TextButton.TextButtonStyle buttonStyle = new TextButton.TextButtonStyle();
         buttonStyle.font = new BitmapFont();
 
-        TextButton soundOnButton = new TextButton("Sound ON!", buttonStyle);
-        TextButton soundOffButton = new TextButton("Sound OFF!", buttonStyle);
+        final TextButton soundOnButton = new TextButton("Sound ON!", buttonStyle);
+        final TextButton soundOffButton = new TextButton("Sound OFF!", buttonStyle);
         TextButton backToMainMenuButton = new TextButton("Back to main menu!", buttonStyle);
 
         backToMainMenuButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 menuController.backToMainMenuPressed();
+            }
+        });
+
+        soundOffButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                menuController.soundOffPressed();
+            }
+        });
+
+        soundOnButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                menuController.soundOnPressed();
             }
         });
 
