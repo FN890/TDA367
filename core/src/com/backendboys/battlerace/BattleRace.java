@@ -3,6 +3,7 @@ package com.backendboys.battlerace;
 import com.backendboys.battlerace.controller.GameController;
 import com.backendboys.battlerace.controller.MenuController;
 import com.backendboys.battlerace.view.screens.GameScreen;
+import com.backendboys.battlerace.view.screens.MainMenu;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
@@ -19,10 +20,9 @@ public class BattleRace extends Game {
         gameController = new GameController();
         menuController = new MenuController(game);
 
-
         Gdx.input.setInputProcessor(gameController);
 
-        game.setScreen(new GameScreen());
+        game.setScreen(new MainMenu(menuController));
     }
 
     @Override
