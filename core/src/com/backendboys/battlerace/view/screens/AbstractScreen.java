@@ -15,7 +15,7 @@ public abstract class AbstractScreen implements Screen {
     @Override
     public void show() {
         camera = new OrthographicCamera();
-        viewport = new ExtendViewport(800, 600, camera);
+        viewport = new ExtendViewport(1280, 800, camera);
     }
 
     @Override
