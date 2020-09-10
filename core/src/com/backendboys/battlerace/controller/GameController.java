@@ -7,6 +7,7 @@ import com.badlogic.gdx.InputProcessor;
 public class GameController implements InputProcessor {
 
     //Get inputs from views and do changes in model
+    //Comment
 
     private GameModel gameModel;
 
