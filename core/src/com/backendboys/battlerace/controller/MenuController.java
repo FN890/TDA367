@@ -1,5 +1,6 @@
 package com.backendboys.battlerace.controller;
 
+import com.backendboys.battlerace.view.screens.GameScreen;
 import com.backendboys.battlerace.view.screens.MainMenu;
 import com.backendboys.battlerace.view.screens.OptionsMenu;
 import com.badlogic.gdx.Game;
@@ -21,6 +22,7 @@ public class MenuController {
 
     public void playPressed() {
         music.stop();
+        game.setScreen(new GameScreen());
     }
 
     public void multiPlayerPressed() {
