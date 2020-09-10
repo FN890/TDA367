@@ -6,15 +6,15 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
 
 import java.util.HashMap;
@@ -23,9 +23,13 @@ import java.util.Map;
 public class MainMenu extends AbstractScreen {
 
     private final MenuController menuController;
+
     private SpriteBatch batch;
     private Stage stage;
+    private Table menuTable;
     private TextureAtlas textureAtlas;
+
+    private Texture backgroundTexture;
 
     private Map<String, Sprite> sprites = new HashMap<>();
 
@@ -38,24 +42,34 @@ public class MainMenu extends AbstractScreen {
     @Override
     public void show() {
         super.show();
+
+        backgroundTexture = new Texture("bg-100.jpg");
+
         stage = new Stage(getViewport(), batch);
 
         Gdx.input.setInputProcessor(stage);
 
-        // TODO: Set Table settings.
-        Table mainTable = new Table();
-        mainTable.setFillParent(true);
-        mainTable.center();
+        menuTable = createButtonsTable();
+        stage.addActor(menuTable);
+    }
 
-        //TODO: Create TextureAtlas for Buttons and asign to a skin.
-        TextButton.TextButtonStyle buttonStyle = new TextButton.TextButtonStyle();
-        buttonStyle.font = new BitmapFont();
+    private Table createButtonsTable() {
+
+        Table menuTable = new Table();
+        menuTable.setFillParent(true);
+        menuTable.center();
 
 
-        TextButton singlePlayerBtn = new TextButton("Singleplayer", buttonStyle);
-        TextButton multiPlayerBtn = new TextButton("Multiplayer", buttonStyle);
-        TextButton optionsBtn = new TextButton("Options", buttonStyle);
-        TextButton exitBtn = new TextButton("Exit", buttonStyle);
+
+        //TODO: Fix button images
+
+        TextureRegion region = new TextureRegion(new Texture("Singleplayer1.png"));
+        TextureRegionDrawable drawable = new TextureRegionDrawable(region);
+
+        ImageButton singlePlayerBtn = new ImageButton(drawable);
+        ImageButton multiPlayerBtn = new ImageButton(drawable);
+        ImageButton optionsBtn = new ImageButton(drawable);
+        ImageButton exitBtn = new ImageButton(drawable);
 
         singlePlayerBtn.addListener(new ClickListener() {
             @Override
@@ -85,12 +99,12 @@ public class MainMenu extends AbstractScreen {
             }
         });
 
-        mainTable.add(singlePlayerBtn).row();
-        mainTable.add(multiPlayerBtn).row();
-        mainTable.add(optionsBtn).row();
-        mainTable.add(exitBtn).row();
+        menuTable.add(singlePlayerBtn).row();
+        menuTable.add(multiPlayerBtn).row();
+        menuTable.add(optionsBtn).row();
+        menuTable.add(exitBtn).row();
 
-        stage.addActor(mainTable);
+        return menuTable;
     }
 
     private void addSprites() {
@@ -107,12 +121,13 @@ public class MainMenu extends AbstractScreen {
     @Override
     public void render(float delta) {
         super.render(delta);
-        stage.act();
-        stage.draw();
 
         batch.begin();
-
+        batch.draw(backgroundTexture, 0, 0, getViewport().getWorldWidth(), getViewport().getWorldHeight());
         batch.end();
+
+        stage.act();
+        stage.draw();
     }
 
     @Override

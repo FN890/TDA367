@@ -21,8 +21,6 @@ public class BattleRace extends Game {
         menuController = new MenuController(game);
 
         Gdx.input.setInputProcessor(gameController);
-
-        game.setScreen(new MainMenu(menuController));
     }
 
     @Override
