@@ -1,0 +1,36 @@
+﻿What we plan to do
+
+
+This week we plan to get a basic version of the game working. From our user stories we plan to make specific smart tasks that we will use in our scrum sprints. 
+
+
+We plan to have several meetings this week to get a good start on the project. 
+
+
+We also plan on using scrum as our working strategy. 
+
+
+We are going to discuss the use of version control and the workflow we are going to use in git.
+
+
+
+
+What we have done
+
+
+We started our first sprint.
+
+
+We have created a basic UML-diagram based on our user stories. Everyone participated and we had several discussions regarding different angles of object oriented programming. 
+
+
+Generated the framework for the project with the libGDX setup app. 
+
+
+Divided several user stories into tasks. We later began working on some tasks which resulted in a very early version of the game. We have currently not finished any tasks.
+
+
+We have also had several meetings both in person and online.  
+
+
+We have created guidelines regarding the use of git. Some of these are that we will only push working code and work on branches.
