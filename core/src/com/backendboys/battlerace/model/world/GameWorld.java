@@ -16,13 +16,12 @@ import java.util.HashMap;
 
 public class GameWorld {
 
-    private final HashMap<String, Sprite> sprites = new HashMap<String, Sprite>();
-
     private OrthographicCamera camera;
     private ExtendViewport viewport;
 
     private TextureAtlas textureAtlas;
     private SpriteBatch batch;
+    private final HashMap<String, Sprite> sprites = new HashMap<String, Sprite>();
 
     private World world;
     private GroundGenerator groundGenerator;
