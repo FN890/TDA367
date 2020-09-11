@@ -19,7 +19,6 @@ public class GroundGenerator {
         vertices = new ArrayList<>();
     }
 
-    // TODO: 2020-09-08  case i == vertices.length - 1
     public void generateGround(World world) {
         generateVertices();
 
@@ -46,7 +45,7 @@ public class GroundGenerator {
     private void generateVertices() {
         float xPos = 0, yPos = 0;
         for (int i = 0; i < numberVertices; i++) {
-            yPos = (10 * (float) Math.sin(xPos * 0.1)) + 1;
+            yPos = (10 * (float) Math.sin(xPos * 0.1)) + 10;
             xPos += step;
             vertices.add(new Vector2(xPos, yPos + 10));
         }
@@ -56,8 +55,7 @@ public class GroundGenerator {
         double value = (double) (vec2.y - vec.y) / (double) (vec2.x - vec.x);
         double aTan = Math.atan(value);
         double degrees = Math.toDegrees(aTan);
-        float rads = (float) (Math.toRadians(degrees));
-        return rads;
+        return (float) (Math.toRadians(degrees));
     }
 
     public int getNumberVertices() {

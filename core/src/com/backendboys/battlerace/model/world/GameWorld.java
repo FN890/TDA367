@@ -44,6 +44,7 @@ public class GameWorld {
         batch = new SpriteBatch();
         world = new World(new Vector2(0, -10), true);
         groundGenerator = new GroundGenerator(10000, 1);
+        groundGenerator.generateGround(world);
 
         debugRenderer = new Box2DDebugRenderer();
 
@@ -62,7 +63,6 @@ public class GameWorld {
 
     public void resize(int width, int height) {
         viewport.update(width, height, true);
-        groundGenerator.generateGround(world);
         batch.setProjectionMatrix(camera.combined);
     }
 
