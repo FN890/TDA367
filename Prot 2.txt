@@ -1,0 +1,3 @@
+Discussion Items: The second meeting we discussed how we wanted to Plan out the project. Specifically how we we're gonna keep track of our domain/UML plan and our user stories.
+
+Outcome/Conclusion: We decided as a group that we are gonna use Trello for User Stories and LucidCharts for the UML/domain plan. We decided on these services because they are easy to use and free for all involved.
