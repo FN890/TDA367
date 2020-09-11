@@ -9,26 +9,27 @@ public class GroundGenerator {
 
     private int numberVertices;
     private double step;
+    private float friction;
     private final ArrayList<Vector2> vertices;
 
     public GroundGenerator(int numberVertices, double step) {
         this.numberVertices = numberVertices;
         this.step = step;
+        friction = 5;
         vertices = new ArrayList<>();
     }
 
-
-    // TODO: 2020-09-08  case i == vertices.length - 1 
+    // TODO: 2020-09-08  case i == vertices.length - 1
     public void generateGround(World world) {
         generateVertices();
 
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.type = BodyDef.BodyType.StaticBody;
+
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.friction = friction;
+
         for (int i = 0; i < vertices.size(); i++) {
-            BodyDef bodyDef = new BodyDef();
-            bodyDef.type = BodyDef.BodyType.StaticBody;
-
-            FixtureDef fixtureDef = new FixtureDef();
-            fixtureDef.friction = 5;
-
             PolygonShape shape = new PolygonShape();
             if (i + 1 < vertices.size()) {
                 shape.setAsBox(vertices.get(i + 1).x - vertices.get(i).x, (float) 1);
@@ -63,7 +64,27 @@ public class GroundGenerator {
         return numberVertices;
     }
 
+    public void setNumberVertices(int numberVertices) {
+        this.numberVertices = numberVertices;
+    }
+
     public double getStep() {
         return step;
+    }
+
+    public void setStep(double step) {
+        this.step = step;
+    }
+
+    public float getFriction() {
+        return friction;
+    }
+
+    public void setFriction(float friction) {
+        this.friction = friction;
+    }
+
+    public ArrayList<Vector2> getVertices() {
+        return vertices;
     }
 }
