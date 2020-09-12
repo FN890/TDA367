@@ -28,9 +28,8 @@ public class MainMenu extends AbstractScreen {
     private SpriteBatch batch;
     private Stage stage;
     private Table menuTable;
-    private TextureAtlas textureAtlas;
 
-    private Texture backgroundTexture;
+    private TextureAtlas textureAtlas;
 
     private Map<String, Sprite> sprites = new HashMap<>();
 
@@ -39,7 +38,6 @@ public class MainMenu extends AbstractScreen {
 
         batch = new SpriteBatch();
         textureAtlas = new TextureAtlas("menusprites.txt");
-        backgroundTexture = new Texture("bg-100.jpg");
         addSprites();
     }
 
@@ -130,7 +128,6 @@ public class MainMenu extends AbstractScreen {
         super.render(delta);
 
         batch.begin();
-        batch.draw(backgroundTexture, 0, 0, getViewport().getWorldWidth(), getViewport().getWorldHeight());
         batch.end();
 
         stage.act();

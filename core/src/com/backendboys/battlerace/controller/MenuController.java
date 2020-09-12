@@ -8,10 +8,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 
 public class MenuController {
-    private Game game;
-    final private MainMenu mainMenu = new MainMenu(this);
-    final private OptionsMenu optionsMenu = new OptionsMenu(this);
-    final private Music music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
+    private final Game game;
+    private final MainMenu mainMenu = new MainMenu(this);
+    private final OptionsMenu optionsMenu = new OptionsMenu(this);
+    private final Music music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
 
     public MenuController(Game game) {
         this.game = game;
