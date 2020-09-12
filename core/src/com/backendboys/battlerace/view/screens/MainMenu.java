@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -37,20 +38,20 @@ public class MainMenu extends AbstractScreen {
         this.menuController = menuController;
 
         batch = new SpriteBatch();
+        textureAtlas = new TextureAtlas("menusprites.txt");
+        backgroundTexture = new Texture("bg-100.jpg");
+        addSprites();
     }
 
     @Override
     public void show() {
         super.show();
-
-        backgroundTexture = new Texture("bg-100.jpg");
-
         stage = new Stage(getViewport(), batch);
-
-        Gdx.input.setInputProcessor(stage);
 
         menuTable = createButtonsTable();
         stage.addActor(menuTable);
+
+        Gdx.input.setInputProcessor(stage);
     }
 
     private Table createButtonsTable() {
@@ -59,17 +60,10 @@ public class MainMenu extends AbstractScreen {
         menuTable.setFillParent(true);
         menuTable.center();
 
-
-
-        //TODO: Fix button images
-
-        TextureRegion region = new TextureRegion(new Texture("Singleplayer1.png"));
-        TextureRegionDrawable drawable = new TextureRegionDrawable(region);
-
-        ImageButton singlePlayerBtn = new ImageButton(drawable);
-        ImageButton multiPlayerBtn = new ImageButton(drawable);
-        ImageButton optionsBtn = new ImageButton(drawable);
-        ImageButton exitBtn = new ImageButton(drawable);
+        ImageButton singlePlayerBtn = new ImageButton(getMenuButtonStyleForName("Singleplayer"));
+        ImageButton multiPlayerBtn = new ImageButton(getMenuButtonStyleForName("Multiplayer"));
+        ImageButton optionsBtn = new ImageButton(getMenuButtonStyleForName("Options"));
+        ImageButton exitBtn = new ImageButton(getMenuButtonStyleForName("Exit"));
 
         singlePlayerBtn.addListener(new ClickListener() {
             @Override
@@ -115,6 +109,19 @@ public class MainMenu extends AbstractScreen {
 
             sprites.put(region.name, sprite);
         }
+    }
+
+    private TextureRegionDrawable getTextureRegionDrawable(String name) {
+        return new TextureRegionDrawable(new TextureRegion(sprites.get(name)));
+    }
+
+    private ImageButton.ImageButtonStyle getMenuButtonStyleForName(String name) {
+        ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle();
+        style.imageUp = getTextureRegionDrawable(name + "1");
+        style.imageOver = getTextureRegionDrawable(name + "2");
+        style.imageDown = getTextureRegionDrawable(name + "3");
+
+        return style;
     }
 
 

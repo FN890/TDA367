@@ -9,18 +9,14 @@ import com.badlogic.gdx.Gdx;
 
 public class BattleRace extends Game {
 
-    private Game game;
-    private GameController gameController;
-    private MenuController menuController;
-
     @Override
     public void create() {
-        this.game = this;
 
-        gameController = new GameController();
-        menuController = new MenuController(game);
+        new GameController();
+        new MenuController(this);
 
-        Gdx.input.setInputProcessor(gameController);
+        // OBS: DO NOT PUT THIS HERE, THEN THE MENU INPUT WONT WORK! ONLY CHANGE WHEN IN-GAME!!
+        //Gdx.input.setInputProcessor(gameController);
     }
 
     @Override
