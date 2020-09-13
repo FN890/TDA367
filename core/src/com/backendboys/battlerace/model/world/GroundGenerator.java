@@ -31,7 +31,7 @@ public class GroundGenerator {
         for (int i = 0; i < vertices.size(); i++) {
             PolygonShape shape = new PolygonShape();
             if (i + 1 < vertices.size()) {
-                shape.setAsBox(vertices.get(i + 1).x - vertices.get(i).x, (float) 1);
+                shape.setAsBox(calculateDistance(vertices.get(i), vertices.get(i + 1)), (float) 1);
                 fixtureDef.shape = shape;
                 Body ground = world.createBody(bodyDef);
                 ground.createFixture(fixtureDef);
@@ -49,6 +49,10 @@ public class GroundGenerator {
             xPos += step;
             vertices.add(new Vector2(xPos, yPos + 10));
         }
+    }
+
+    private float calculateDistance(Vector2 vec, Vector2 vec2) {
+        return (float) (Math.sqrt(Math.pow((vec2.y - vec.y), 2) + Math.pow((vec2.x - vec.x), 2)));
     }
 
     private float calculateAngle(Vector2 vec, Vector2 vec2) {
