@@ -12,10 +12,10 @@ public class GroundGenerator {
     private float friction;
     private final ArrayList<Vector2> vertices;
 
-    public GroundGenerator(int numberVertices, double step) {
+    public GroundGenerator(int numberVertices, double step, int friction) {
         this.numberVertices = numberVertices;
         this.step = step;
-        friction = 5;
+        this.friction = friction;
         vertices = new ArrayList<>();
     }
 
@@ -60,30 +60,6 @@ public class GroundGenerator {
         double aTan = Math.atan(value);
         double degrees = Math.toDegrees(aTan);
         return (float) (Math.toRadians(degrees));
-    }
-
-    public int getNumberVertices() {
-        return numberVertices;
-    }
-
-    public void setNumberVertices(int numberVertices) {
-        this.numberVertices = numberVertices;
-    }
-
-    public double getStep() {
-        return step;
-    }
-
-    public void setStep(double step) {
-        this.step = step;
-    }
-
-    public float getFriction() {
-        return friction;
-    }
-
-    public void setFriction(float friction) {
-        this.friction = friction;
     }
 
     public ArrayList<Vector2> getVertices() {

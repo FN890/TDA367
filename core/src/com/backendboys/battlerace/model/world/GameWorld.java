@@ -18,7 +18,7 @@ public class GameWorld {
     public GameWorld() {
         Box2D.init();
         world = new World(new Vector2(0, -10), true);
-        groundGenerator = new GroundGenerator(10000, 1);
+        groundGenerator = new GroundGenerator(10000, 1, 1);
         groundGenerator.generateGround(world);
     }
 
