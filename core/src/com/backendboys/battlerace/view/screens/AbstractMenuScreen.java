@@ -1,5 +1,6 @@
 package com.backendboys.battlerace.view.screens;
 
+import com.backendboys.battlerace.controller.MenuController;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -11,13 +12,17 @@ import java.util.Map;
 
 abstract class AbstractMenuScreen extends AbstractScreen {
 
+    private final MenuController menuController;
+
     private final SpriteBatch batch;
     private final Texture background;
 
     private final TextureAtlas menuTextureAtlas;
     private final Map<String, Sprite> menuSprites = new HashMap<>();
 
-    protected AbstractMenuScreen() {
+    protected AbstractMenuScreen(MenuController menuController) {
+        this.menuController = menuController;
+
         batch = new SpriteBatch();
         background = new Texture("bg-100.jpg");
 
@@ -64,5 +69,9 @@ abstract class AbstractMenuScreen extends AbstractScreen {
 
     protected Sprite getMenuSprite(String name) {
         return menuSprites.get(name);
+    }
+
+    protected MenuController getMenuController() {
+        return menuController;
     }
 }

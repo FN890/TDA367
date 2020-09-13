@@ -1,35 +1,22 @@
 package com.backendboys.battlerace.view.screens;
 
-import com.backendboys.battlerace.controller.GameController;
 import com.backendboys.battlerace.controller.MenuController;
-import com.badlogic.gdx.Application;
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.Array;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class MainMenu extends AbstractMenuScreen {
-
-    private final MenuController menuController;
+class MainMenu extends AbstractMenuScreen implements IScreen {
 
     private SpriteBatch batch;
     private Stage stage;
 
-    public MainMenu(MenuController menuController) {
-        this.menuController = menuController;
+    MainMenu(MenuController menuController) {
+        super(menuController);
 
         batch = new SpriteBatch();
     }
@@ -58,28 +45,28 @@ public class MainMenu extends AbstractMenuScreen {
         singlePlayerBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                menuController.playPressed();
+                getMenuController().toSinglePlayer();
             }
         });
 
         multiPlayerBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                menuController.multiPlayerPressed();
+                getMenuController().toMultiPlayer();
             }
         });
 
         optionsBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                menuController.optionsPressed();
+                getMenuController().toOptions();
             }
         });
 
         exitBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                menuController.exitPressed();
+                getMenuController().exit();
             }
         });
 

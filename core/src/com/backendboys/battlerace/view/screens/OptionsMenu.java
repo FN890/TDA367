@@ -12,14 +12,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-public class OptionsMenu extends AbstractMenuScreen {
+class OptionsMenu extends AbstractMenuScreen implements IScreen {
 
-    private final MenuController menuController;
-    private SpriteBatch batch;
+    private final SpriteBatch batch;
     private Stage stage;
 
-    public OptionsMenu(MenuController menuController) {
-        this.menuController = menuController;
+    OptionsMenu(MenuController menuController) {
+        super(menuController);
 
         batch = new SpriteBatch();
     }
@@ -46,21 +45,21 @@ public class OptionsMenu extends AbstractMenuScreen {
         backToMainMenuButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                menuController.backToMainMenuPressed();
+                getMenuController().toMainMenu();
             }
         });
 
         soundOffButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                menuController.soundOffPressed();
+                getMenuController().playMenuMusic(false);
             }
         });
 
         soundOnButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                menuController.soundOnPressed();
+                getMenuController().playMenuMusic(true);
             }
         });
 
