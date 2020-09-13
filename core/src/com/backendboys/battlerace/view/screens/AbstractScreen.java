@@ -7,15 +7,19 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-public abstract class AbstractScreen implements Screen {
+abstract class AbstractScreen implements Screen {
 
     private Viewport viewport;
     private OrthographicCamera camera;
 
-    @Override
-    public void show() {
+    protected AbstractScreen() {
         camera = new OrthographicCamera();
         viewport = new ExtendViewport(1280, 800, camera);
+    }
+
+    @Override
+    public void show() {
+
     }
 
     @Override

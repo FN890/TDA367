@@ -21,33 +21,25 @@ import com.badlogic.gdx.utils.Array;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainMenu extends AbstractScreen {
+public class MainMenu extends AbstractMenuScreen {
 
     private final MenuController menuController;
 
     private SpriteBatch batch;
     private Stage stage;
-    private Table menuTable;
-
-    private TextureAtlas textureAtlas;
-
-    private Map<String, Sprite> sprites = new HashMap<>();
 
     public MainMenu(MenuController menuController) {
         this.menuController = menuController;
 
         batch = new SpriteBatch();
-        textureAtlas = new TextureAtlas("menusprites.txt");
-        addSprites();
     }
 
     @Override
     public void show() {
         super.show();
-        stage = new Stage(getViewport(), batch);
 
-        menuTable = createButtonsTable();
-        stage.addActor(menuTable);
+        stage = new Stage(getViewport(), batch);
+        stage.addActor(createButtonsTable());
 
         Gdx.input.setInputProcessor(stage);
     }
@@ -99,18 +91,8 @@ public class MainMenu extends AbstractScreen {
         return menuTable;
     }
 
-    private void addSprites() {
-        Array<TextureAtlas.AtlasRegion> regions = textureAtlas.getRegions();
-
-        for (TextureAtlas.AtlasRegion region : regions) {
-            Sprite sprite = textureAtlas.createSprite(region.name);
-
-            sprites.put(region.name, sprite);
-        }
-    }
-
     private TextureRegionDrawable getTextureRegionDrawable(String name) {
-        return new TextureRegionDrawable(new TextureRegion(sprites.get(name)));
+        return new TextureRegionDrawable(new TextureRegion(getMenuSprite(name)));
     }
 
     private ImageButton.ImageButtonStyle getMenuButtonStyleForName(String name) {
@@ -157,7 +139,6 @@ public class MainMenu extends AbstractScreen {
 
     @Override
     public void dispose() {
-        textureAtlas.dispose();
-        sprites.clear();
+        super.dispose();
     }
 }

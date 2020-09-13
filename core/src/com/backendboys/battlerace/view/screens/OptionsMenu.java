@@ -2,45 +2,26 @@ package com.backendboys.battlerace.view.screens;
 
 
 import com.backendboys.battlerace.controller.MenuController;
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.Array;
 
+public class OptionsMenu extends AbstractMenuScreen {
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class OptionsMenu extends AbstractScreen {
     private final MenuController menuController;
     private SpriteBatch batch;
     private Stage stage;
-    private TextureAtlas textureAtlas;
-
-    private Map<String, Sprite> sprites = new HashMap<>();
 
     public OptionsMenu(MenuController menuController) {
         this.menuController = menuController;
 
         batch = new SpriteBatch();
-    }
-
-    private void addSprites() {
-        Array<TextureAtlas.AtlasRegion> regions = textureAtlas.getRegions();
-        for (TextureAtlas.AtlasRegion region : regions) {
-            Sprite sprite = textureAtlas.createSprite(region.name);
-            sprites.put(region.name, sprite);
-        }
     }
 
     @Override
@@ -54,11 +35,12 @@ public class OptionsMenu extends AbstractScreen {
         mainTable.setFillParent(true);
         mainTable.center();
 
+        // TODO: Switch to ImageButtons and fix update sprites with more images.
         TextButton.TextButtonStyle buttonStyle = new TextButton.TextButtonStyle();
         buttonStyle.font = new BitmapFont();
 
-        final TextButton soundOnButton = new TextButton("Sound ON!", buttonStyle);
-        final TextButton soundOffButton = new TextButton("Sound OFF!", buttonStyle);
+        TextButton soundOnButton = new TextButton("Sound ON!", buttonStyle);
+        TextButton soundOffButton = new TextButton("Sound OFF!", buttonStyle);
         TextButton backToMainMenuButton = new TextButton("Back to main menu!", buttonStyle);
 
         backToMainMenuButton.addListener(new ClickListener() {
@@ -93,10 +75,11 @@ public class OptionsMenu extends AbstractScreen {
     @Override
     public void render(float delta) {
         super.render(delta);
-        stage.act();
-        stage.draw();
         batch.begin();
         batch.end();
+
+        stage.act();
+        stage.draw();
     }
 
     @Override
@@ -122,9 +105,7 @@ public class OptionsMenu extends AbstractScreen {
 
     @Override
     public void dispose() {
-        textureAtlas.dispose();
-        sprites.clear();
-
+        super.dispose();
     }
 
 
