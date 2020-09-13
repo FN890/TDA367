@@ -31,54 +31,20 @@ public class GameModel {
         }
     }
 
-    public void keyDown(int keycode){
-        switch (keycode) {
-            case Input.Keys.W:
-
-                break;
-            case Input.Keys.A:
-
-                break;
-            case Input.Keys.S:
-
-                break;
-            case Input.Keys.D:
-
-                break;
-        }
+    // Increase vehicle velocity, if touching ground
+    public void gas() {
     }
 
-    public void keyUp(int keycode){
-        switch (keycode) {
-            case Input.Keys.W:
-
-                break;
-            case Input.Keys.A:
-
-                break;
-            case Input.Keys.S:
-
-                break;
-            case Input.Keys.D:
-
-                break;
-        }
+    // Rotate vehicle left/backwards
+    public void rotateLeft() {
     }
 
-    public void keyTyped(int keycode){
-        switch (keycode) {
-            case Input.Keys.W:
-
-                break;
-            case Input.Keys.A:
-
-                break;
-            case Input.Keys.S:
-
-                break;
-            case Input.Keys.D:
-
-                break;
-        }
+    // Decrease vehicle velocity, if touching ground
+    public void brake() {
     }
+
+    // Rotate vehicle right/forward
+    public void rotateRight() {
+    }
+
 }

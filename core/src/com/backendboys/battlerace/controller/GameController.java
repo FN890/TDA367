@@ -17,19 +17,58 @@ public class GameController implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
-        gameModel.keyDown(keycode);
+        switch (keycode) {
+            case Input.Keys.W:
+                gameModel.gas();
+                break;
+            case Input.Keys.A:
+                gameModel.rotateLeft();
+                break;
+            case Input.Keys.S:
+                gameModel.brake();
+                break;
+            case Input.Keys.D:
+                gameModel.rotateRight();
+                break;
+        }
         return true;
     }
 
     @Override
     public boolean keyUp(int keycode) {
-        gameModel.keyUp(keycode);
+        switch (keycode) {
+            case Input.Keys.W:
+
+                break;
+            case Input.Keys.A:
+
+                break;
+            case Input.Keys.S:
+
+                break;
+            case Input.Keys.D:
+
+                break;
+        }
         return false;
     }
 
     @Override
     public boolean keyTyped(char character) {
-        gameModel.keyTyped(character);
+        switch (character) {
+            case 'w':
+
+                break;
+            case 'a':
+
+                break;
+            case 's':
+
+                break;
+            case 'd':
+
+                break;
+        }
         return false;
     }
 
