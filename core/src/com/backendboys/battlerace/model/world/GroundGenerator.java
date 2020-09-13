@@ -52,7 +52,7 @@ public class GroundGenerator {
     }
 
     private float calculateDistance(Vector2 vec, Vector2 vec2) {
-        return (float) (Math.sqrt(Math.pow((vec2.y - vec.y), 2) + Math.pow((vec2.x - vec.x), 2)));
+        return (float) (Math.sqrt(Math.pow(((vec2.y - vec.y) / 2), 2) + Math.pow(((vec2.x - vec.x) / 2), 2)));
     }
 
     private float calculateAngle(Vector2 vec, Vector2 vec2) {
