@@ -21,7 +21,7 @@ public class GameModel {
         modelListeners.add(modelListener);
     }
 
-    public void removeListerner(IModelListener modelListener){
+    public void removeListener(IModelListener modelListener){
         modelListeners.remove(modelListener);
     }
 
