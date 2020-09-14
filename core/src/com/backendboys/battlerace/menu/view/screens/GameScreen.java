@@ -1,8 +1,8 @@
-package com.backendboys.battlerace.view.screens;
+package com.backendboys.battlerace.menu.view.screens;
 
-import com.backendboys.battlerace.model.IModelListener;
-import com.backendboys.battlerace.model.world.GameWorld;
-import com.backendboys.battlerace.view.game.BackgroundGenerator;
+import com.backendboys.battlerace.game.model.IModelListener;
+import com.backendboys.battlerace.game.model.world.GameWorld;
+import com.backendboys.battlerace.game.view.BackgroundGenerator;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;

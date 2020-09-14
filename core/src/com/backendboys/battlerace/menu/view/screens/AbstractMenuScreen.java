@@ -1,7 +1,6 @@
-package com.backendboys.battlerace.view.screens;
+package com.backendboys.battlerace.menu.view.screens;
 
-import com.backendboys.battlerace.controller.MenuController;
-import com.badlogic.gdx.graphics.Color;
+import com.backendboys.battlerace.menu.controller.MenuController;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

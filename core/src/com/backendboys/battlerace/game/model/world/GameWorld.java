@@ -1,4 +1,4 @@
-package com.backendboys.battlerace.model.world;
+package com.backendboys.battlerace.game.model.world;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;

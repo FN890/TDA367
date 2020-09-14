@@ -1,6 +1,6 @@
-package com.backendboys.battlerace.view.screens;
+package com.backendboys.battlerace.menu.view.screens;
 
-import com.backendboys.battlerace.controller.MenuController;
+import com.backendboys.battlerace.menu.controller.MenuController;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -8,7 +8,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 class MainMenu extends AbstractMenuScreen implements IScreen {
 

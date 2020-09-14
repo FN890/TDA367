@@ -1,6 +1,4 @@
-package com.backendboys.battlerace.model;
-
-import com.badlogic.gdx.Input;
+package com.backendboys.battlerace.game.model;
 
 import java.util.ArrayList;
 import java.util.List;

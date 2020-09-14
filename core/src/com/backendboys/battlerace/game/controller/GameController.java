@@ -1,6 +1,6 @@
-package com.backendboys.battlerace.controller;
+package com.backendboys.battlerace.game.controller;
 
-import com.backendboys.battlerace.model.GameModel;
+import com.backendboys.battlerace.game.model.GameModel;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 

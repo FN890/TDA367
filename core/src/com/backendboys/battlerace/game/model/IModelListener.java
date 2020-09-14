@@ -1,4 +1,4 @@
-package com.backendboys.battlerace.model;
+package com.backendboys.battlerace.game.model;
 
 public interface IModelListener {
 

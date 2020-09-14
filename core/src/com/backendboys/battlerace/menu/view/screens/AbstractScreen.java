@@ -1,4 +1,4 @@
-package com.backendboys.battlerace.view.screens;
+package com.backendboys.battlerace.menu.view.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;

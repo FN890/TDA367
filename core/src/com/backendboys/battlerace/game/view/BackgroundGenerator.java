@@ -1,4 +1,4 @@
-package com.backendboys.battlerace.view.game;
+package com.backendboys.battlerace.game.view;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;

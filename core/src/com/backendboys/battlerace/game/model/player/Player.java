@@ -1,4 +1,4 @@
-package com.backendboys.battlerace.model.player;
+package com.backendboys.battlerace.game.model.player;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;

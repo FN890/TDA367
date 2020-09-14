@@ -1,6 +1,7 @@
-package com.backendboys.battlerace.controller;
+package com.backendboys.battlerace.menu.controller;
 
-import com.backendboys.battlerace.view.screens.ScreenFactory;
+import com.backendboys.battlerace.game.controller.GameController;
+import com.backendboys.battlerace.menu.view.screens.ScreenFactory;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
@@ -20,6 +21,9 @@ public class MenuController {
 
     public void toSinglePlayer() {
         music.stop();
+
+        GameController gameController = new GameController();
+        Gdx.input.setInputProcessor(gameController);
         game.setScreen(ScreenFactory.createGameScreen());
     }
 
