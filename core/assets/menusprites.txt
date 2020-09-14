@@ -1,4 +1,4 @@
-MenuTPK.png
+menusprites.png
 size: 917, 428
 format: RGBA8888
 filter: Linear,Linear
