@@ -15,12 +15,13 @@ public class GameModel {
 
     public GameModel() {
         this.gameWorld = new GameWorld();
-        car = new Car(gameWorld.getWorld(), 10, 100);
 
-        //new Thread(new GameThread()).start();
+        car = new Car(gameWorld.getWorld(), 10, 100);
     }
 
-    private void update() {
+    // TODO: We dont need this. Updates can be made to model in the controller gameRendered();
+    // TODO: ModelListeners will be used for things like: gameended(); gamestarted();
+    public void update() {
         gameWorld.stepWorld();
         notifyListeners();
     }
@@ -39,36 +40,24 @@ public class GameModel {
         }
     }
 
-    // Increase vehicle velocity, if touching ground
     public void gas() {
         car.gas();
     }
 
-    // Rotate vehicle left/backwards
     public void rotateLeft() {
+        car.rotateLeft();
     }
 
-    // Decrease vehicle velocity, if touching ground
     public void brake() {
         car.brake();
     }
 
-    // Rotate vehicle right/forward
     public void rotateRight() {
+        car.rotateRight();
     }
 
     public GameWorld getGameWorld() {
         return gameWorld;
-    }
-
-    private class GameThread implements Runnable {
-
-        @Override
-        public void run() {
-            while (true) {
-                update();
-            }
-        }
     }
 
 }

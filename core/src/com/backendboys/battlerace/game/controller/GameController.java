@@ -5,54 +5,56 @@ import com.backendboys.battlerace.game.model.world.GameWorld;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class GameController implements InputProcessor {
 
     private final GameModel gameModel;
 
+    private final List<Integer> keysDown;
+
     public GameController() {
         gameModel = new GameModel();
+
+        keysDown = new ArrayList<>();
     }
 
     public void gameRendered() {
         gameModel.getGameWorld().stepWorld();
+        handleKeyPresses();
+    }
+
+    private void handleKeyPresses() {
+        for (int keycode : keysDown) {
+            switch (keycode) {
+                case Input.Keys.W:
+                    gameModel.gas();
+                    break;
+                case Input.Keys.A:
+                    gameModel.rotateLeft();
+                    break;
+                case Input.Keys.S:
+                    gameModel.brake();
+                    break;
+                case Input.Keys.D:
+                    gameModel.rotateRight();
+                    break;
+            }
+        }
     }
 
     @Override
     public boolean keyDown(int keycode) {
-        switch (keycode) {
-            case Input.Keys.W:
-                gameModel.gas();
-                break;
-            case Input.Keys.A:
-                gameModel.rotateLeft();
-                break;
-            case Input.Keys.S:
-                gameModel.brake();
-                break;
-            case Input.Keys.D:
-                gameModel.rotateRight();
-                break;
-        }
+        keysDown.add(keycode);
         return true;
     }
 
     @Override
     public boolean keyUp(int keycode) {
-        switch (keycode) {
-            case Input.Keys.W:
-
-                break;
-            case Input.Keys.A:
-
-                break;
-            case Input.Keys.S:
-
-                break;
-            case Input.Keys.D:
-
-                break;
-        }
-        return false;
+        keysDown.removeAll(Arrays.asList(keycode));
+        return true;
     }
 
     @Override
