@@ -1,6 +1,5 @@
 package com.backendboys.battlerace.game.model;
 
-import com.backendboys.battlerace.game.model.vehicle.Car;
 import com.backendboys.battlerace.game.model.world.GameWorld;
 
 import java.util.ArrayList;
@@ -11,12 +10,12 @@ public class GameModel {
     private final GameWorld gameWorld;
     private final List<IModelListener> modelListeners = new ArrayList<>();
 
-    private Car car;
+    // TODO: Create Factory for Car.
+    //private Car car;
 
     public GameModel() {
         this.gameWorld = new GameWorld();
 
-        car = new Car(gameWorld.getWorld(), 10, 100);
     }
 
     // TODO: We dont need this. Updates can be made to model in the controller gameRendered();
@@ -41,19 +40,19 @@ public class GameModel {
     }
 
     public void gas() {
-        car.gas();
+        //car.gas();
     }
 
     public void rotateLeft() {
-        car.rotateLeft();
+        //car.rotateLeft();
     }
 
     public void brake() {
-        car.brake();
+        //car.brake();
     }
 
     public void rotateRight() {
-        car.rotateRight();
+        //car.rotateRight();
     }
 
     public GameWorld getGameWorld() {

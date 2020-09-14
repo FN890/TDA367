@@ -77,11 +77,11 @@ abstract class AbstractVehicle {
         body.applyTorque(torque, true);
     }
 
-    public Vector2 getPos() {
+    public Vector2 getPosition() {
         return new Vector2(body.getPosition());
     }
 
-    public void setPos(Vector2 pos) {
+    public void setPosition(Vector2 pos) {
         body.getPosition().set(pos);
     }
 
