@@ -15,6 +15,7 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
 
     private final SpriteBatch batch;
     private Stage stage;
+    boolean musicPlaying = true;
 
     OptionsMenu(MenuController menuController) {
         super(menuController);
@@ -38,10 +39,8 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
         optionsTable.setFillParent(true);
         optionsTable.center();
 
-
         // TODO:add images for sound on/off.
-        ImageButton soundOnButton = new ImageButton(getButtonStyleFromName("Back"));
-        ImageButton soundOffButton = new ImageButton(getButtonStyleFromName("Back"));
+        final ImageButton soundButton = new ImageButton(getButtonStyleFromName("Soundon"));
         ImageButton backToMainMenuButton = new ImageButton(getButtonStyleFromName("Back"));
 
         backToMainMenuButton.addListener(new ClickListener() {
@@ -51,22 +50,23 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
             }
         });
 
-        soundOffButton.addListener(new ClickListener() {
+        soundButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                getMenuController().playMenuMusic(false);
+                if (musicPlaying) {
+                    getMenuController().playMenuMusic(false);
+                    soundButton.setStyle(getButtonStyleFromName("Soundoff"));
+
+                } else {
+                    getMenuController().playMenuMusic(true);
+                    soundButton.setStyle(getButtonStyleFromName("Soundon"));
+                }
+                musicPlaying = !musicPlaying;
+
             }
         });
 
-        soundOnButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                getMenuController().playMenuMusic(true);
-            }
-        });
-
-        optionsTable.add(soundOnButton).row();
-        optionsTable.add(soundOffButton).row();
+        optionsTable.add(soundButton).row();
         optionsTable.add(backToMainMenuButton).row();
 
         return optionsTable;
