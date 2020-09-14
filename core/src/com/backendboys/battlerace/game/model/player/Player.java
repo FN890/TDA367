@@ -1,5 +1,7 @@
 package com.backendboys.battlerace.game.model.player;
 
+import com.backendboys.battlerace.game.model.powerups.AbstractPowerUp;
+
 import java.util.ArrayList;
 
 public class Player {
