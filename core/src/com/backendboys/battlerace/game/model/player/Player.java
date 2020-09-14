@@ -3,17 +3,18 @@ package com.backendboys.battlerace.game.model.player;
 import com.backendboys.battlerace.game.model.powerups.AbstractPowerUp;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Player {
 
-    private int playerId;
+    private UUID playerId;
     private String name;
     private AbstractVehicle vehicle;
     private ArrayList<AbstractPowerUp> listPowersUp = new ArrayList<>();
 
     public Player(String name, int playerId){
         this.name = name;
-        this.playerId = playerId;
+        this.playerId = UUID.randomUUID();
     }
 
     public void addPowerUp(AbstractPowerUp powerUp){
