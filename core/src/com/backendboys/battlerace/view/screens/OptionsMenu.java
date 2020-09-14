@@ -23,7 +23,7 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
     OptionsMenu(MenuController menuController) {
         super(menuController);
 
-        batch = new SpriteBatch();
+       batch = new SpriteBatch();
     }
 
     @Override
@@ -36,16 +36,17 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
         Gdx.input.setInputProcessor(stage);
 
     }
+
     private Table CreateOptionsTable(){
         Table optionsTable = new Table();
         optionsTable.setFillParent(true);
         optionsTable.center();
 
-        // TODO: fix update sprites with more images add images for sound on/off.
 
-        ImageButton soundOnButton = new ImageButton(getOptionsButtonStyleFromName("Back"));
-        ImageButton soundOffButton = new ImageButton(getOptionsButtonStyleFromName("Back"));
-        ImageButton backToMainMenuButton = new ImageButton(getOptionsButtonStyleFromName("Back"));
+        // TODO:add images for sound on/off.
+        ImageButton soundOnButton = new ImageButton(GetButtonStyleFromName("Back"));
+        ImageButton soundOffButton = new ImageButton(GetButtonStyleFromName("Back"));
+        ImageButton backToMainMenuButton = new ImageButton(GetButtonStyleFromName("Back"));
 
         backToMainMenuButton.addListener(new ClickListener() {
             @Override
@@ -74,16 +75,7 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
 
         return  optionsTable;
     }
-    private TextureRegionDrawable getTextureRegionDrawable(String name) {
-        return new TextureRegionDrawable(new TextureRegion(getMenuSprite(name)));
-    }
-    private ImageButton.ImageButtonStyle getOptionsButtonStyleFromName(String name){
-        ImageButton.ImageButtonStyle imageButtonStyle = new ImageButton.ImageButtonStyle();
-        imageButtonStyle.imageUp = getTextureRegionDrawable(name+"1");
-        imageButtonStyle.imageDown = getTextureRegionDrawable(name+"2");
-        imageButtonStyle.imageOver = getTextureRegionDrawable(name+"3");
-        return imageButtonStyle;
-    }
+
     @Override
     public void render(float delta) {
         super.render(delta);

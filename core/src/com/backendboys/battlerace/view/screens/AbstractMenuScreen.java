@@ -6,6 +6,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
 
 import java.util.HashMap;
@@ -29,6 +32,18 @@ abstract class AbstractMenuScreen extends AbstractScreen {
 
         menuTextureAtlas = new TextureAtlas("menusprites.txt");
         loadSprites();
+    }
+
+    private TextureRegionDrawable GetTextureRegionDrawable(String name) {
+        return new TextureRegionDrawable(new TextureRegion(getMenuSprite(name)));
+    }
+
+    protected ImageButton.ImageButtonStyle GetButtonStyleFromName(String name){
+        ImageButton.ImageButtonStyle imageButtonStyle = new ImageButton.ImageButtonStyle();
+        imageButtonStyle.imageUp = GetTextureRegionDrawable(name + "1");
+        imageButtonStyle.imageDown = GetTextureRegionDrawable(name + "2");
+        imageButtonStyle.imageOver = GetTextureRegionDrawable(name + "3");
+        return imageButtonStyle;
     }
 
     private void loadSprites() {
