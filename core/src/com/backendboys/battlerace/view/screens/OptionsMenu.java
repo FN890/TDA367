@@ -31,12 +31,49 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
         super.show();
 
         stage = new Stage(getViewport(), batch);
-        //stage.addActor(CreateOptionsTable());
+        stage.addActor(CreateOptionsTable());
 
         Gdx.input.setInputProcessor(stage);
 
     }
+    private Table CreateOptionsTable(){
+        Table optionsTable = new Table();
+        optionsTable.setFillParent(true);
+        optionsTable.center();
 
+        // TODO: fix update sprites with more images add images for sound on/off.
+
+        ImageButton soundOnButton = new ImageButton(getOptionsButtonStyleFromName("Back"));
+        ImageButton soundOffButton = new ImageButton(getOptionsButtonStyleFromName("Back"));
+        ImageButton backToMainMenuButton = new ImageButton(getOptionsButtonStyleFromName("Back"));
+
+        backToMainMenuButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                getMenuController().toMainMenu();
+            }
+        });
+
+        soundOffButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                getMenuController().playMenuMusic(false);
+            }
+        });
+
+        soundOnButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                getMenuController().playMenuMusic(true);
+            }
+        });
+
+        optionsTable.add(soundOnButton).row();
+        optionsTable.add(soundOffButton).row();
+        optionsTable.add(backToMainMenuButton).row();
+
+        return  optionsTable;
+    }
     private TextureRegionDrawable getTextureRegionDrawable(String name) {
         return new TextureRegionDrawable(new TextureRegion(getMenuSprite(name)));
     }
