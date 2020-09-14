@@ -2,6 +2,7 @@ package com.backendboys.battlerace.view.screens;
 
 import com.backendboys.battlerace.model.IModelListener;
 import com.backendboys.battlerace.model.world.GameWorld;
+import com.backendboys.battlerace.view.screens.game.BackgroundGenerator;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -15,11 +16,12 @@ import java.util.HashMap;
 
 public class GameScreen extends AbstractScreen implements IModelListener {
 
-    private GameWorld gameWorld;
+    private final GameWorld gameWorld;
+    private final BackgroundGenerator backgroundGenerator;
 
-    private OrthographicCamera camera;
-    private ExtendViewport viewport;
-    private Box2DDebugRenderer debugRenderer;
+    private final OrthographicCamera camera;
+    private final ExtendViewport viewport;
+    private final Box2DDebugRenderer debugRenderer;
 
     private TextureAtlas textureAtlas;
     private SpriteBatch batch;
@@ -31,6 +33,7 @@ public class GameScreen extends AbstractScreen implements IModelListener {
         viewport = new ExtendViewport(200, 50, camera);
         batch = new SpriteBatch();
         debugRenderer = new Box2DDebugRenderer();
+        backgroundGenerator = new BackgroundGenerator(camera, gameWorld.getGroundVertices());
     }
 
     @Override
@@ -42,6 +45,7 @@ public class GameScreen extends AbstractScreen implements IModelListener {
         batch.begin();
         batch.end();
         debugRenderer.render(gameWorld.getWorld(), camera.combined);
+        backgroundGenerator.renderBackground();
     }
 
     @Override
@@ -57,6 +61,7 @@ public class GameScreen extends AbstractScreen implements IModelListener {
         sprites.clear();
         gameWorld.dispose();
         debugRenderer.dispose();
+        backgroundGenerator.dispose();
     }
 
     @Override

@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
+import java.util.ArrayList;
+
 public class GameWorld {
 
     private World world;
@@ -41,6 +43,10 @@ public class GameWorld {
 
     public World getWorld() {
         return world;
+    }
+
+    public ArrayList<Vector2> getGroundVertices() {
+        return groundGenerator.getVertices();
     }
 
 }

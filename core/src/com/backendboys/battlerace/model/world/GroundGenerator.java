@@ -7,10 +7,11 @@ import java.util.ArrayList;
 
 public class GroundGenerator {
 
-    private int numberVertices;
-    private double step;
-    private float friction;
+    private final int numberVertices;
+    private final double step;
+    private final float friction;
     private final ArrayList<Vector2> vertices;
+    private final static float SHAPE_HEIGHT = 0.5f;
 
     public GroundGenerator(int numberVertices, double step, int friction) {
         this.numberVertices = numberVertices;
@@ -31,7 +32,7 @@ public class GroundGenerator {
         for (int i = 0; i < vertices.size(); i++) {
             PolygonShape shape = new PolygonShape();
             if (i + 1 < vertices.size()) {
-                shape.setAsBox(calculateDistance(vertices.get(i), vertices.get(i + 1)), (float) 1);
+                shape.setAsBox(calculateDistance(vertices.get(i), vertices.get(i + 1)), SHAPE_HEIGHT);
                 fixtureDef.shape = shape;
                 Body ground = world.createBody(bodyDef);
                 ground.createFixture(fixtureDef);
