@@ -1,6 +1,5 @@
 package com.backendboys.battlerace.controller;
 
-import com.backendboys.battlerace.view.screens.GameScreen;
 import com.backendboys.battlerace.view.screens.ScreenFactory;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -13,7 +12,7 @@ public class MenuController {
 
     public MenuController(Game game) {
         this.game = game;
-        game.setScreen(ScreenFactory.CreateMainMenu(this));
+        game.setScreen(ScreenFactory.createMainMenu(this));
 
         music.play();
         music.setLooping(true);
@@ -21,7 +20,7 @@ public class MenuController {
 
     public void toSinglePlayer() {
         music.stop();
-        game.setScreen(new GameScreen());
+        game.setScreen(ScreenFactory.createGameScreen());
     }
 
     public void toMultiPlayer() {
@@ -33,11 +32,11 @@ public class MenuController {
     }
 
     public void toOptions() {
-        game.setScreen(ScreenFactory.CreateOptionsMenu(this));
+        game.setScreen(ScreenFactory.createOptionsMenu(this));
     }
 
     public void toMainMenu() {
-        game.setScreen(ScreenFactory.CreateMainMenu(this));
+        game.setScreen(ScreenFactory.createMainMenu(this));
     }
 
     public void playMenuMusic(boolean play) {
