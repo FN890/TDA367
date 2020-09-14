@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 abstract class AbstractScreen implements Screen {
@@ -14,7 +14,7 @@ abstract class AbstractScreen implements Screen {
 
     protected AbstractScreen() {
         camera = new OrthographicCamera();
-        viewport = new ExtendViewport(1280, 800, camera);
+        viewport = new FillViewport(1280, 800, camera);
     }
 
     @Override
