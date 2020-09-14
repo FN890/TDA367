@@ -31,21 +31,22 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
         super.show();
 
         stage = new Stage(getViewport(), batch);
-        stage.addActor(CreateOptionsTable());
+        stage.addActor(createOptionsTable());
 
         Gdx.input.setInputProcessor(stage);
 
     }
-    private Table CreateOptionsTable(){
+
+    private Table createOptionsTable() {
         Table optionsTable = new Table();
         optionsTable.setFillParent(true);
         optionsTable.center();
 
-        // TODO: fix update sprites with more images add images for sound on/off.
 
-        ImageButton soundOnButton = new ImageButton(getOptionsButtonStyleFromName("Back"));
-        ImageButton soundOffButton = new ImageButton(getOptionsButtonStyleFromName("Back"));
-        ImageButton backToMainMenuButton = new ImageButton(getOptionsButtonStyleFromName("Back"));
+        // TODO:add images for sound on/off.
+        ImageButton soundOnButton = new ImageButton(getButtonStyleFromName("Back"));
+        ImageButton soundOffButton = new ImageButton(getButtonStyleFromName("Back"));
+        ImageButton backToMainMenuButton = new ImageButton(getButtonStyleFromName("Back"));
 
         backToMainMenuButton.addListener(new ClickListener() {
             @Override
@@ -72,18 +73,9 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
         optionsTable.add(soundOffButton).row();
         optionsTable.add(backToMainMenuButton).row();
 
-        return  optionsTable;
+        return optionsTable;
     }
-    private TextureRegionDrawable getTextureRegionDrawable(String name) {
-        return new TextureRegionDrawable(new TextureRegion(getMenuSprite(name)));
-    }
-    private ImageButton.ImageButtonStyle getOptionsButtonStyleFromName(String name){
-        ImageButton.ImageButtonStyle imageButtonStyle = new ImageButton.ImageButtonStyle();
-        imageButtonStyle.imageUp = getTextureRegionDrawable(name+"1");
-        imageButtonStyle.imageDown = getTextureRegionDrawable(name+"2");
-        imageButtonStyle.imageOver = getTextureRegionDrawable(name+"3");
-        return imageButtonStyle;
-    }
+
     @Override
     public void render(float delta) {
         super.render(delta);
