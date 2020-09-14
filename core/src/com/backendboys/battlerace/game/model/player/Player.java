@@ -10,9 +10,9 @@ import com.badlogic.gdx.math.Vector2;
 public class Player extends Sprite implements InputProcessor {
 
     //The speed at which the player moves, and the gravity strength
-    private Vector2 velocity = new Vector2();
-    private float speed = 120;
-    private float gravity = 60 * 1.8f;
+    private final Vector2 velocity = new Vector2();
+    private final float speed = 120;
+    private final float gravity = 60 * 1.8f;
 
     public Player(Sprite sprite) {
         super(sprite);
