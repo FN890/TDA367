@@ -11,6 +11,7 @@ public class GameModel {
 
     private void update(){
 
+
         //Do logic changes
         notifyListeners();
     }

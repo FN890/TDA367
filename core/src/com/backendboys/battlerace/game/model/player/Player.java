@@ -1,106 +1,45 @@
 package com.backendboys.battlerace.game.model.player;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
+import com.backendboys.battlerace.game.model.powerups.AbstractPowerUp;
 
-public class Player extends Sprite implements InputProcessor {
+import java.util.ArrayList;
 
-    //The speed at which the player moves, and the gravity strength
-    private final Vector2 velocity = new Vector2();
-    private final float speed = 120;
-    private final float gravity = 60 * 1.8f;
+public class Player {
 
-    public Player(Sprite sprite) {
-        super(sprite);
+    private int playerId;
+    private String name;
+    private AbstractVehicle vehicle;
+    private ArrayList<AbstractPowerUp> listPowersUp = new ArrayList<>();
+
+    public Player(String name, int playerId){
+        this.name = name;
+        this.playerId = playerId;
     }
 
-    public void draw(SpriteBatch spriteBatch) {
-        update(Gdx.graphics.getDeltaTime());
-        super.draw(spriteBatch);
+    public void addPowerUp(AbstractPowerUp powerUp){
+        listPowersUp.add(powerUp);
     }
 
-    private void update(float delta) {
-        //Applies gravity
-        //velocity.y -= gravity * delta;
+    // Do something with vehicle or shoot a enemy, maybe change sprite
+    public void usePowerUp(){
 
-        //Increases fall speed with 'speed' as max velocity
-      /*  if (velocity.y > speed) {
-            velocity.y = speed;
-        }
-        else if (velocity.y < speed) {
-            velocity.y = -speed;
-        }
-        */
-        //Moves the player
-        setX(getX() + velocity.x * delta);
-        setY(getY() + velocity.y * delta);
     }
 
-    @Override
-    public boolean keyDown(int keycode) {
-        switch (keycode) {
-            case Input.Keys.W:
-                velocity.y = speed;
-                break;
-            case Input.Keys.A:
-                velocity.x = -speed;
-                break;
-            case Input.Keys.S:
-                velocity.y = -speed;
-                break;
-            case Input.Keys.D:
-                velocity.x = speed;
-                break;
-        }
-        return true;
+    public void gas(){
+        vehicle.gas();
     }
 
-    @Override
-    public boolean keyUp(int keycode) {
-        switch (keycode) {
-            case Input.Keys.A:
-            case Input.Keys.D:
-                velocity.x = 0;
-                break;
-            case Input.Keys.W:
-            case Input.Keys.S:
-                velocity.y = 0;
-                break;
-        }
-        return true;
+    public void brake(){
+        vehicle.brake();
     }
 
-    @Override
-    public boolean keyTyped(char character) {
-        return false;
+    public void rotateLeft(){
+        vehicle.rotateLeft();
     }
 
-    @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        return false;
+    public void rotateRight(){
+        vehicle.rotateRight();
     }
 
-    @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        return false;
-    }
 
-    @Override
-    public boolean touchDragged(int screenX, int screenY, int pointer) {
-        return false;
-    }
-
-    @Override
-    public boolean mouseMoved(int screenX, int screenY) {
-        return false;
-    }
-
-    @Override
-    public boolean scrolled(int amount) {
-        return false;
-    }
 }
