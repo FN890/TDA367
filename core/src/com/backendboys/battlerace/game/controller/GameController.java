@@ -9,7 +9,7 @@ public class GameController implements InputProcessor {
     //Get inputs from views and do changes in model
     //Comment
 
-    private GameModel gameModel;
+    private final GameModel gameModel;
 
     public GameController() {
         gameModel = new GameModel();
