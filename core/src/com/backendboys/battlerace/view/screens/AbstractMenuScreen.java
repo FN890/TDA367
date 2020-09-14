@@ -1,6 +1,7 @@
 package com.backendboys.battlerace.view.screens;
 
 import com.backendboys.battlerace.controller.MenuController;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -49,7 +50,7 @@ abstract class AbstractMenuScreen extends AbstractScreen {
     public void render(float delta) {
         super.render(delta);
         batch.begin();
-        batch.draw(background, 0, 0, getViewport().getWorldWidth(), getViewport().getWorldHeight());
+        batch.draw(background, 0, 0, 1280, 800);
         batch.end();
     }
 

@@ -6,11 +6,14 @@ import com.badlogic.gdx.Gdx;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 class OptionsMenu extends AbstractMenuScreen implements IScreen {
 
@@ -26,21 +29,23 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
     @Override
     public void show() {
         super.show();
+
         stage = new Stage(getViewport(), batch);
+        stage.addActor(CreateOptionsTable());
 
         Gdx.input.setInputProcessor(stage);
 
-        Table mainTable = new Table();
-        mainTable.setFillParent(true);
-        mainTable.center();
+    }
+    private Table CreateOptionsTable(){
+        Table optionsTable = new Table();
+        optionsTable.setFillParent(true);
+        optionsTable.center();
 
-        // TODO: Switch to ImageButtons and fix update sprites with more images.
-        TextButton.TextButtonStyle buttonStyle = new TextButton.TextButtonStyle();
-        buttonStyle.font = new BitmapFont();
+        // TODO: fix update sprites with more images add images for sound on/off.
 
-        TextButton soundOnButton = new TextButton("Sound ON!", buttonStyle);
-        TextButton soundOffButton = new TextButton("Sound OFF!", buttonStyle);
-        TextButton backToMainMenuButton = new TextButton("Back to main menu!", buttonStyle);
+        ImageButton soundOnButton = new ImageButton(getOptionsButtonStyleFromName("Back"));
+        ImageButton soundOffButton = new ImageButton(getOptionsButtonStyleFromName("Back"));
+        ImageButton backToMainMenuButton = new ImageButton(getOptionsButtonStyleFromName("Back"));
 
         backToMainMenuButton.addListener(new ClickListener() {
             @Override
@@ -63,14 +68,22 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
             }
         });
 
-        mainTable.add(soundOnButton).row();
-        mainTable.add(soundOffButton).row();
-        mainTable.add(backToMainMenuButton).row();
+        optionsTable.add(soundOnButton).row();
+        optionsTable.add(soundOffButton).row();
+        optionsTable.add(backToMainMenuButton).row();
 
-
-        stage.addActor(mainTable);
+        return  optionsTable;
     }
-
+    private TextureRegionDrawable getTextureRegionDrawable(String name) {
+        return new TextureRegionDrawable(new TextureRegion(getMenuSprite(name)));
+    }
+    private ImageButton.ImageButtonStyle getOptionsButtonStyleFromName(String name){
+        ImageButton.ImageButtonStyle imageButtonStyle = new ImageButton.ImageButtonStyle();
+        imageButtonStyle.imageUp = getTextureRegionDrawable(name+"1");
+        imageButtonStyle.imageDown = getTextureRegionDrawable(name+"2");
+        imageButtonStyle.imageOver = getTextureRegionDrawable(name+"3");
+        return imageButtonStyle;
+    }
     @Override
     public void render(float delta) {
         super.render(delta);
