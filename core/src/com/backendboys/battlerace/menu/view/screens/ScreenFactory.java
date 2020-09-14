@@ -1,5 +1,6 @@
 package com.backendboys.battlerace.menu.view.screens;
 
+import com.backendboys.battlerace.game.controller.GameController;
 import com.backendboys.battlerace.menu.controller.MenuController;
 
 public class ScreenFactory {
@@ -12,8 +13,8 @@ public class ScreenFactory {
         return new OptionsMenu(menuController);
     }
 
-    public static IScreen createGameScreen() {
-        return new GameScreen();
+    public static IScreen createGameScreen(GameController gameController) {
+        return new GameScreen(gameController);
     }
 
 }

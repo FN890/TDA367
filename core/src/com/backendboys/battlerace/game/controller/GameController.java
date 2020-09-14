@@ -1,18 +1,20 @@
 package com.backendboys.battlerace.game.controller;
 
 import com.backendboys.battlerace.game.model.GameModel;
+import com.backendboys.battlerace.game.model.world.GameWorld;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 
 public class GameController implements InputProcessor {
 
-    //Get inputs from views and do changes in model
-    //Comment
-
     private final GameModel gameModel;
 
     public GameController() {
         gameModel = new GameModel();
+    }
+
+    public void gameRendered() {
+        gameModel.getGameWorld().stepWorld();
     }
 
     @Override
@@ -70,6 +72,10 @@ public class GameController implements InputProcessor {
                 break;
         }
         return false;
+    }
+
+    public GameWorld getGameWorld() {
+        return gameModel.getGameWorld();
     }
 
     @Override

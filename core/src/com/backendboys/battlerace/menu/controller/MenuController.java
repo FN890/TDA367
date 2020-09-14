@@ -1,6 +1,7 @@
 package com.backendboys.battlerace.menu.controller;
 
 import com.backendboys.battlerace.game.controller.GameController;
+import com.backendboys.battlerace.menu.view.screens.IScreen;
 import com.backendboys.battlerace.menu.view.screens.ScreenFactory;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -24,7 +25,8 @@ public class MenuController {
 
         GameController gameController = new GameController();
         Gdx.input.setInputProcessor(gameController);
-        game.setScreen(ScreenFactory.createGameScreen());
+        IScreen gameScreen = ScreenFactory.createGameScreen(gameController);
+        game.setScreen(gameScreen);
     }
 
     public void toMultiPlayer() {

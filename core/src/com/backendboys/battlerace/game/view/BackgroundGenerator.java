@@ -20,7 +20,7 @@ public class BackgroundGenerator {
     }
 
     public void renderBackground() {
-        generateSky();
+        //generateSky();
         generateGround();
         generateDirt();
 
