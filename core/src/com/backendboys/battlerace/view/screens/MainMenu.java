@@ -37,10 +37,10 @@ class MainMenu extends AbstractMenuScreen implements IScreen {
         menuTable.setFillParent(true);
         menuTable.center();
 
-        ImageButton singlePlayerBtn = new ImageButton(getMenuButtonStyleForName("Singleplayer"));
-        ImageButton multiPlayerBtn = new ImageButton(getMenuButtonStyleForName("Multiplayer"));
-        ImageButton optionsBtn = new ImageButton(getMenuButtonStyleForName("Options"));
-        ImageButton exitBtn = new ImageButton(getMenuButtonStyleForName("Exit"));
+        ImageButton singlePlayerBtn = new ImageButton(getButtonStyleFromName("Singleplayer"));
+        ImageButton multiPlayerBtn = new ImageButton(getButtonStyleFromName("Multiplayer"));
+        ImageButton optionsBtn = new ImageButton(getButtonStyleFromName("Options"));
+        ImageButton exitBtn = new ImageButton(getButtonStyleFromName("Exit"));
 
         singlePlayerBtn.addListener(new ClickListener() {
             @Override
@@ -76,19 +76,6 @@ class MainMenu extends AbstractMenuScreen implements IScreen {
         menuTable.add(exitBtn).row();
 
         return menuTable;
-    }
-
-    private TextureRegionDrawable getTextureRegionDrawable(String name) {
-        return new TextureRegionDrawable(new TextureRegion(getMenuSprite(name)));
-    }
-
-    private ImageButton.ImageButtonStyle getMenuButtonStyleForName(String name) {
-        ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle();
-        style.imageUp = getTextureRegionDrawable(name + "1");
-        style.imageOver = getTextureRegionDrawable(name + "2");
-        style.imageDown = getTextureRegionDrawable(name + "3");
-
-        return style;
     }
 
 

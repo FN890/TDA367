@@ -23,7 +23,7 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
     OptionsMenu(MenuController menuController) {
         super(menuController);
 
-       batch = new SpriteBatch();
+        batch = new SpriteBatch();
     }
 
     @Override
@@ -31,22 +31,22 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
         super.show();
 
         stage = new Stage(getViewport(), batch);
-        stage.addActor(CreateOptionsTable());
+        stage.addActor(createOptionsTable());
 
         Gdx.input.setInputProcessor(stage);
 
     }
 
-    private Table CreateOptionsTable(){
+    private Table createOptionsTable() {
         Table optionsTable = new Table();
         optionsTable.setFillParent(true);
         optionsTable.center();
 
 
         // TODO:add images for sound on/off.
-        ImageButton soundOnButton = new ImageButton(GetButtonStyleFromName("Back"));
-        ImageButton soundOffButton = new ImageButton(GetButtonStyleFromName("Back"));
-        ImageButton backToMainMenuButton = new ImageButton(GetButtonStyleFromName("Back"));
+        ImageButton soundOnButton = new ImageButton(getButtonStyleFromName("Back"));
+        ImageButton soundOffButton = new ImageButton(getButtonStyleFromName("Back"));
+        ImageButton backToMainMenuButton = new ImageButton(getButtonStyleFromName("Back"));
 
         backToMainMenuButton.addListener(new ClickListener() {
             @Override
@@ -73,7 +73,7 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
         optionsTable.add(soundOffButton).row();
         optionsTable.add(backToMainMenuButton).row();
 
-        return  optionsTable;
+        return optionsTable;
     }
 
     @Override

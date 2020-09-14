@@ -34,15 +34,15 @@ abstract class AbstractMenuScreen extends AbstractScreen {
         loadSprites();
     }
 
-    private TextureRegionDrawable GetTextureRegionDrawable(String name) {
+    private TextureRegionDrawable getTextureRegionDrawable(String name) {
         return new TextureRegionDrawable(new TextureRegion(getMenuSprite(name)));
     }
 
-    protected ImageButton.ImageButtonStyle GetButtonStyleFromName(String name){
+    protected ImageButton.ImageButtonStyle getButtonStyleFromName(String name) {
         ImageButton.ImageButtonStyle imageButtonStyle = new ImageButton.ImageButtonStyle();
-        imageButtonStyle.imageUp = GetTextureRegionDrawable(name + "1");
-        imageButtonStyle.imageDown = GetTextureRegionDrawable(name + "2");
-        imageButtonStyle.imageOver = GetTextureRegionDrawable(name + "3");
+        imageButtonStyle.imageUp = getTextureRegionDrawable(name + "1");
+        imageButtonStyle.imageDown = getTextureRegionDrawable(name + "2");
+        imageButtonStyle.imageOver = getTextureRegionDrawable(name + "3");
         return imageButtonStyle;
     }
 
