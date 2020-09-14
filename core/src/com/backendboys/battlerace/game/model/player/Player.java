@@ -9,7 +9,7 @@ public class Player {
 
     private UUID playerId;
     private String name;
-    private AbstractVehicle vehicle;
+    //private AbstractVehicle vehicle;
     private ArrayList<AbstractPowerUp> listPowersUp = new ArrayList<>();
 
     public Player(String name, int playerId){
@@ -27,19 +27,19 @@ public class Player {
     }
 
     public void gas(){
-        vehicle.gas();
+        //vehicle.gas();
     }
 
     public void brake(){
-        vehicle.brake();
+        //vehicle.brake();
     }
 
     public void rotateLeft(){
-        vehicle.rotateLeft();
+        //vehicle.rotateLeft();
     }
 
     public void rotateRight(){
-        vehicle.rotateRight();
+        //vehicle.rotateRight();
     }
 
 
