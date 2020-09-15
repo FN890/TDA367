@@ -2,6 +2,7 @@ package com.backendboys.battlerace.model.vehicle;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.physics.box2d.joints.PrismaticJointDef;
 
 abstract class AbstractVehicle {
 
@@ -20,6 +21,7 @@ abstract class AbstractVehicle {
         this.angularAcceleration = angularAcceleration;
 
         instantiateBody(world, mass, posX, posY);
+        initJoints(body, world);
     }
 
     private void instantiateBody(World world, float mass, float posX, float posY) {
@@ -33,7 +35,7 @@ abstract class AbstractVehicle {
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = createVehicleShape();
-        fixtureDef.density = (float) (mass/(Math.pow(2, shape.getRadius())*Math.PI));
+        fixtureDef.density = (mass/(vehicleArea()));
         fixtureDef.friction = FRICTION;
         fixtureDef.restitution = RESTITUTION;
 
@@ -44,6 +46,8 @@ abstract class AbstractVehicle {
     }
 
     protected abstract Shape createVehicleShape();
+    protected abstract float vehicleArea();
+    protected abstract void initJoints(Body main, World world);
 
     public void gas() {
         if (body.getLinearVelocity().x > topSpeed) {
@@ -75,6 +79,10 @@ abstract class AbstractVehicle {
         }
         float torque = angularAcceleration * body.getMassData().I;
         body.applyTorque(torque, true);
+    }
+
+    public Vector2 getWorldCenter() {
+        return new Vector2(body.getWorldCenter());
     }
 
     public Vector2 getPosition() {
