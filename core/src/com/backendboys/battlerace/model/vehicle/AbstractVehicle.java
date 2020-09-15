@@ -4,24 +4,37 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.physics.box2d.joints.PrismaticJointDef;
 
+import java.util.ArrayList;
+import java.util.List;
+
 abstract class AbstractVehicle {
 
     private static final float FRICTION = 0.5f;
     private static final float RESTITUTION = 0.6f;
 
+    private final float mass;
+    private final float spawnPosX;
+    private final float spawnPosY;
+
     private Body body;
+    private List<Body> parts;
 
     private final float topSpeed;
     private final float acceleration;
     private final float angularAcceleration;
 
-    protected AbstractVehicle(World world, float mass, float posX, float posY, float topSpeed, float acceleration, float angularAcceleration) {
+    protected AbstractVehicle(float mass, float spawnPosX, float spawnPosY, float topSpeed, float acceleration, float angularAcceleration) {
+        this.mass = mass;
+        this.spawnPosX = spawnPosX;
+        this.spawnPosY = spawnPosY;
         this.topSpeed = topSpeed;
         this.acceleration = acceleration;
         this.angularAcceleration = angularAcceleration;
+    }
 
-        instantiateBody(world, mass, posX, posY);
-        initJoints(body, world);
+    protected void build(World world) {
+        instantiateBody(world, mass, spawnPosX, spawnPosY);
+        parts = initParts(body, world);
     }
 
     private void instantiateBody(World world, float mass, float posX, float posY) {
@@ -47,7 +60,7 @@ abstract class AbstractVehicle {
 
     protected abstract Shape createVehicleShape();
     protected abstract float vehicleArea();
-    protected abstract void initJoints(Body main, World world);
+    protected abstract List<Body> initParts(Body main, World world);
 
     public void gas() {
         if (body.getLinearVelocity().x > topSpeed) {
