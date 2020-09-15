@@ -24,7 +24,7 @@ public class GameWorld {
 
     public GameWorld() {
         Box2D.init();
-        world = new World(new Vector2(0, -10), true);
+        world = new World(new Vector2(0, -100), true);
         groundGenerator = new GroundGenerator(10000, 1, 1);
         groundGenerator.generateGround(world);
       //  generatePowerups(10);
