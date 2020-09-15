@@ -1,7 +1,7 @@
-package com.backendboys.battlerace.menu.view.screens;
+package com.backendboys.battlerace.view.screens;
 
-import com.backendboys.battlerace.game.controller.GameController;
-import com.backendboys.battlerace.menu.controller.MenuController;
+import com.backendboys.battlerace.controller.GameController;
+import com.backendboys.battlerace.controller.MenuController;
 
 public class ScreenFactory {
 

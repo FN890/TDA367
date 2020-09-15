@@ -1,6 +1,6 @@
-package com.backendboys.battlerace.game.model;
+package com.backendboys.battlerace.model;
 
-import com.backendboys.battlerace.game.model.world.GameWorld;
+import com.backendboys.battlerace.model.world.GameWorld;
 
 import java.util.ArrayList;
 import java.util.List;

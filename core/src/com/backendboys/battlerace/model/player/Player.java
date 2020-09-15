@@ -1,6 +1,6 @@
-package com.backendboys.battlerace.game.model.player;
+package com.backendboys.battlerace.model.player;
 
-import com.backendboys.battlerace.game.model.powerups.AbstractPowerUp;
+import com.backendboys.battlerace.model.powerups.AbstractPowerUp;
 
 import java.util.ArrayList;
 import java.util.UUID;

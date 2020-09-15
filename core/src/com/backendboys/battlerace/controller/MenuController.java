@@ -1,8 +1,7 @@
-package com.backendboys.battlerace.menu.controller;
+package com.backendboys.battlerace.controller;
 
-import com.backendboys.battlerace.game.controller.GameController;
-import com.backendboys.battlerace.menu.view.screens.IScreen;
-import com.backendboys.battlerace.menu.view.screens.ScreenFactory;
+import com.backendboys.battlerace.view.screens.IScreen;
+import com.backendboys.battlerace.view.screens.ScreenFactory;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
