@@ -46,22 +46,6 @@ public class GroundGenerator {
             }
             shape.dispose();
         }
-        generatePowerups(15);
-    }
-
-    private void generatePowerups(int numberPowerups) {
-        GameWorld gameWorld = new GameModel().getGameWorld();
-
-        AbstractPowerUp[] powerUps = new AbstractPowerUp[]{
-                new NitroPowerUp(new BodyDef(), new FixtureDef()), new MissilePowerUp(new BodyDef(), new FixtureDef())};
-        Random random = new Random();
-        int lastPos = 0;
-        for (int i = 0; i < numberPowerups; i++) {
-            AbstractPowerUp powerUp = powerUps[random.nextInt(powerUps.length)];
-            gameWorld.addBody(powerUp.getBodyDef(), powerUp.getFixtureDef());
-            int pos = random.nextInt(300) + lastPos;
-            lastPos += pos;
-        }
     }
 
     private void generateVertices() {

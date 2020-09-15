@@ -1,10 +1,15 @@
 package com.backendboys.battlerace.model.world;
 
+import com.backendboys.battlerace.model.GameModel;
+import com.backendboys.battlerace.model.powerups.AbstractPowerUp;
+import com.backendboys.battlerace.model.powerups.MissilePowerUp;
+import com.backendboys.battlerace.model.powerups.NitroPowerUp;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GameWorld {
 
@@ -22,6 +27,7 @@ public class GameWorld {
         world = new World(new Vector2(0, -10), true);
         groundGenerator = new GroundGenerator(10000, 1, 1);
         groundGenerator.generateGround(world);
+      //  generatePowerups(10);
     }
 
     public void stepWorld() {
@@ -36,6 +42,12 @@ public class GameWorld {
     public void addBody(BodyDef bodyDef, FixtureDef fixtureDef) {
         Body body = world.createBody(bodyDef);
         body.createFixture(fixtureDef);
+    }
+
+    private void generatePowerups(int numberPowerups) {
+        NitroPowerUp nitroPowerUp = new NitroPowerUp(new BodyDef(), new FixtureDef());
+        this.addBody(nitroPowerUp.getBodyDef(), nitroPowerUp.getFixtureDef());
+        nitroPowerUp.getBodyDef().position.set(100,100);
     }
 
     public void dispose() {
