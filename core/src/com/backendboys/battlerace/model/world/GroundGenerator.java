@@ -1,9 +1,14 @@
 package com.backendboys.battlerace.model.world;
 
+import com.backendboys.battlerace.model.GameModel;
+import com.backendboys.battlerace.model.powerups.AbstractPowerUp;
+import com.backendboys.battlerace.model.powerups.MissilePowerUp;
+import com.backendboys.battlerace.model.powerups.NitroPowerUp;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GroundGenerator {
 
@@ -40,6 +45,22 @@ public class GroundGenerator {
                 ground.setTransform(vertices.get(i).x, vertices.get(i).y, rads);
             }
             shape.dispose();
+        }
+        generatePowerups(15);
+    }
+
+    private void generatePowerups(int numberPowerups) {
+        GameWorld gameWorld = new GameModel().getGameWorld();
+
+        AbstractPowerUp[] powerUps = new AbstractPowerUp[]{
+                new NitroPowerUp(new BodyDef(), new FixtureDef()), new MissilePowerUp(new BodyDef(), new FixtureDef())};
+        Random random = new Random();
+        int lastPos = 0;
+        for (int i = 0; i < numberPowerups; i++) {
+            AbstractPowerUp powerUp = powerUps[random.nextInt(powerUps.length)];
+            gameWorld.addBody(powerUp.getBodyDef(), powerUp.getFixtureDef());
+            int pos = random.nextInt(300) + lastPos;
+            lastPos += pos;
         }
     }
 
