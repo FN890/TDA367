@@ -1,7 +1,10 @@
 package com.backendboys.battlerace.controller;
 
+import com.backendboys.battlerace.BattleRace;
 import com.backendboys.battlerace.model.GameModel;
 import com.backendboys.battlerace.model.world.GameWorld;
+import com.backendboys.battlerace.view.screens.ScreenFactory;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 
@@ -12,11 +15,17 @@ import java.util.List;
 public class GameController implements InputProcessor {
 
     private final GameModel gameModel;
+    private final BattleRace game;
 
     private final List<Integer> keysDown;
 
-    public GameController() {
+    /**
+     * @param game Created GameModel and set GameScreen.
+     */
+    public GameController(BattleRace game) {
         gameModel = new GameModel();
+        this.game = game;
+        game.setScreen(ScreenFactory.createGameScreen(this));
 
         keysDown = new ArrayList<>();
     }
@@ -41,8 +50,15 @@ public class GameController implements InputProcessor {
                 case Input.Keys.D:
                     gameModel.rotateRight();
                     break;
+                case Input.Keys.ESCAPE:
+                    toggleMenu();
+                    break;
             }
         }
+    }
+
+    private void toggleMenu() {
+        game.startMenu();
     }
 
     @Override

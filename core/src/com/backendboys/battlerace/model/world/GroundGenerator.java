@@ -71,4 +71,8 @@ public class GroundGenerator {
     public ArrayList<Vector2> getVertices() {
         return vertices;
     }
+
+    public int getNumberVertices() {
+        return numberVertices;
+    }
 }
