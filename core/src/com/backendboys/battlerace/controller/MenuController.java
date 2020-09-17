@@ -1,5 +1,6 @@
 package com.backendboys.battlerace.controller;
 
+import com.backendboys.battlerace.BattleRace;
 import com.backendboys.battlerace.view.screens.IScreen;
 import com.backendboys.battlerace.view.screens.ScreenFactory;
 import com.badlogic.gdx.Game;
@@ -8,10 +9,14 @@ import com.badlogic.gdx.audio.Music;
 
 public class MenuController {
 
-    private final Game game;
+    private final BattleRace game;
     private final Music music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
 
-    public MenuController(Game game) {
+
+    /**
+     * @param game Set Menu screen for game
+     */
+    public MenuController(BattleRace game) {
         this.game = game;
         game.setScreen(ScreenFactory.createMainMenu(this));
 
@@ -22,14 +27,11 @@ public class MenuController {
     public void toSinglePlayer() {
         music.stop();
 
-        GameController gameController = new GameController();
-        Gdx.input.setInputProcessor(gameController);
-        IScreen gameScreen = ScreenFactory.createGameScreen(gameController);
-        game.setScreen(gameScreen);
+        game.startSinglePlayer();
     }
 
     public void toMultiPlayer() {
-
+        game.startMultiplayer();
     }
 
     public void exit() {
