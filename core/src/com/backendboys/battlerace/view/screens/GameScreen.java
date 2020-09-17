@@ -31,7 +31,7 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
     GameScreen(GameController gameController) {
         this.gameController = gameController;
         camera = new OrthographicCamera();
-        viewport = new ExtendViewport(200, 50, camera);
+        viewport = new ExtendViewport(600, 50, camera);
         batch = new SpriteBatch();
         debugRenderer = new Box2DDebugRenderer();
         backgroundGenerator = new BackgroundGenerator(camera, gameController.getGameWorld().getGroundVertices());
