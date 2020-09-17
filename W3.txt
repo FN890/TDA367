@@ -1,0 +1,23 @@
+What we plan to do
+
+This week we plan to get a "box-car" version of the game done.
+
+We will create and work on the Vehicle that the Player will control.
+
+We plan to work on the physics and learn and understand how they work in LibGDX.
+
+We also want to make a base-version of powerups.
+
+There is also a plan to clean some of the code we currently have.
+
+--------------------------------------------------------------------------------
+
+What we have done
+
+We have created a very "box-car"-like version of the game.
+
+The first version of the Vehicle is done although some problems with joints but still learning.
+
+Powerups now spawn in the world although they currently do nothing but act as a static body in the world.
+
+Some code has been cleaned and packages have been moved around.
