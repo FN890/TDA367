@@ -2,10 +2,7 @@ package com.backendboys.battlerace.model.vehicle;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
-import com.badlogic.gdx.physics.box2d.joints.PrismaticJoint;
-import com.badlogic.gdx.physics.box2d.joints.PrismaticJointDef;
-import com.badlogic.gdx.physics.box2d.joints.RevoluteJoint;
-import com.badlogic.gdx.physics.box2d.joints.RevoluteJointDef;
+import com.badlogic.gdx.physics.box2d.joints.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,8 +15,8 @@ abstract class AbstractCar extends AbstractVehicle {
 
     private RevoluteJoint rearWheelRevJoint;
     private RevoluteJoint frontWheelRevJoint;
-    private PrismaticJoint rearAxlePrisJoint;
-    private PrismaticJoint frontAxlePrisJoint;
+    private RevoluteJoint rearAxlePrisJoint;
+    private RevoluteJoint frontAxlePrisJoint;
 
     private Body rearWheel;
     private Body frontWheel;
@@ -34,39 +31,33 @@ abstract class AbstractCar extends AbstractVehicle {
         build(world);
     }
 
-    private void createJoints(Body main, World world, Body rearAxle, Body frontAxle, Body rearWheel, Body frontWheel) {
+    private void createJoints(Body main, World world, Body rearWheel, Body frontWheel) {
 
         // Revolute Joints for Wheels and Axles -----------------
 
         // Rear
         RevoluteJointDef rearWheelRevoluteJointDef = new RevoluteJointDef();
-        rearWheelRevoluteJointDef.initialize(rearWheel, rearAxle, rearWheel.getWorldCenter());
+        rearWheelRevoluteJointDef.bodyA = main;
+        rearWheelRevoluteJointDef.bodyB = rearWheel;
         rearWheelRevoluteJointDef.enableMotor = true;
         rearWheelRevoluteJointDef.maxMotorTorque = 30000;
-        rearWheelRevJoint = (RevoluteJoint) world.createJoint(rearWheelRevoluteJointDef);
+        rearWheelRevoluteJointDef.localAnchorA.set(-9,0);
+        world.createJoint(rearWheelRevoluteJointDef);
 
         // Front
         RevoluteJointDef frontWheelRevoluteJointDef = new RevoluteJointDef();
-        frontWheelRevoluteJointDef.initialize(frontWheel, frontAxle, frontWheel.getWorldCenter());
+        frontWheelRevoluteJointDef.bodyA = main;
+        frontWheelRevoluteJointDef.bodyB = frontWheel;
         frontWheelRevoluteJointDef.enableMotor = true;
         frontWheelRevoluteJointDef.maxMotorTorque = 30000;
-        frontWheelRevJoint = (RevoluteJoint) world.createJoint(frontWheelRevoluteJointDef);
+        frontWheelRevoluteJointDef.localAnchorA.set(9,0);
+        world.createJoint(frontWheelRevoluteJointDef);
 
 
         // Prismatic Joint for Axles and Main Body ------------------
-        PrismaticJointDef axlePrismaticJointDef = new PrismaticJointDef();
-        axlePrismaticJointDef.lowerTranslation = 0;
-        axlePrismaticJointDef.upperTranslation = 0;
-        axlePrismaticJointDef.enableLimit = true;
-        axlePrismaticJointDef.enableMotor = true;
+        //RevoluteJointDef rDef = new RevoluteJointDef();
 
-        // Front
-        axlePrismaticJointDef.initialize(main, frontAxle, frontAxle.getWorldCenter(), new Vector2(0,1));
-        frontAxlePrisJoint = (PrismaticJoint) world.createJoint(axlePrismaticJointDef);
 
-        // Rear
-        axlePrismaticJointDef.initialize(main, rearAxle, rearAxle.getWorldCenter(), new Vector2(0,1));
-        rearAxlePrisJoint = (PrismaticJoint) world.createJoint(axlePrismaticJointDef);
 
     }
 
@@ -92,32 +83,7 @@ abstract class AbstractCar extends AbstractVehicle {
         float width = chassi.getWidth();
         float height = chassi.getHeight();
 
-        // Creating Axles Shape ------------------------
-        PolygonShape axle = new PolygonShape();
-        axle.setAsBox(width * 0.1f, height * 0.3f);
 
-        // Axles FixtureDef
-        FixtureDef axleFixture = new FixtureDef();
-        axleFixture.density = 0.5f;
-        axleFixture.friction = 3;
-        axleFixture.restitution = 0.3f;
-        axleFixture.filter.groupIndex = -1;
-        axleFixture.shape = axle;
-
-        // Axles BodyDef
-        BodyDef axleBodyDef = new BodyDef();
-        axleBodyDef.type = BodyDef.BodyType.DynamicBody;
-        axleBodyDef.position.set(getWorldCenter().x - (width), getWorldCenter().y - (height));
-
-        // Rear Axle Body
-        Body rearAxle = world.createBody(axleBodyDef);
-        rearAxle.createFixture(axleFixture);
-
-        axleBodyDef.position.set(getWorldCenter().x + (width), getWorldCenter().y - (height));
-
-        // Front Axle Body
-        Body frontAxle = world.createBody(axleBodyDef);
-        frontAxle.createFixture(axleFixture);
 
         // Creating Wheels Shape -------------------
         CircleShape wheelShape = new CircleShape();
@@ -146,25 +112,26 @@ abstract class AbstractCar extends AbstractVehicle {
         Body frontWheel = world.createBody(wheelBodyDef);
         frontWheel.createFixture(wheelFixture);
 
-        createJoints(main, world, rearAxle, frontAxle, rearWheel, frontWheel);
+        createJoints(main, world, rearWheel, frontWheel);
 
         this.frontWheel = frontWheel;
         this.rearWheel = rearWheel;
 
-        return Arrays.asList(rearAxle, frontAxle, rearWheel, frontWheel);
+        return Arrays.asList(rearWheel, frontWheel);
     }
 
 
 
     @Override
     public void gas() {
-        frontWheel.applyForce(-5000f, 0f, 0f, 0, true);
-        rearWheel.applyForce(-5000f, 0f, 0f, 0, true);
+        frontWheel.applyForce(2*-12500f, 0f, 0f, 0, true);
+        rearWheel.applyForce(2*-12500f, 0f, 0f, 0, true);
     }
 
     @Override
     public void brake() {
-        super.brake();
+        frontWheel.applyForce(2*12500f, 0f, 0f, 0, true);
+        rearWheel.applyForce(2*12500f, 0f, 0f, 0, true);
     }
 
 }
