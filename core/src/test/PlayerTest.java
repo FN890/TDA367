@@ -7,7 +7,17 @@ import static org.junit.jupiter.api.Assertions.*;
 class PlayerTest {
 
     @Test
-    public void PlayerTest(){
+    public void PlayerCreated(){
         assertNotNull(new Player("name", 0));
+    }
+
+    @Test
+    public void PlayerCheckName(){
+        Player player = new Player("Player1", 0);
+    }
+
+    @Test
+    public void PlayerAddPowerUp(){
+        Player player = new Player("name", 0);
     }
 }
