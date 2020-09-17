@@ -4,9 +4,6 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
-import java.awt.*;
-import java.awt.geom.RectangularShape;
-
 public abstract class AbstractPowerUp {
     BodyDef bodyDef;
     FixtureDef fixtureDef;
@@ -17,8 +14,10 @@ public abstract class AbstractPowerUp {
 
         bodyDef.type = BodyDef.BodyType.StaticBody;
         PolygonShape boxShape = new PolygonShape();
-        boxShape.setAsBox(0.5f, 0.5f);
+        boxShape.setAsBox(2f, 2f);
         fixtureDef.shape = boxShape;
+
+        boxShape.dispose();
     }
 
     public BodyDef getBodyDef() {

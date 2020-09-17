@@ -5,7 +5,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 
 public class MissilePowerUp extends AbstractPowerUp {
 
-    public MissilePowerUp(BodyDef bodyDef, FixtureDef fixtureDef) {
-        super(bodyDef, fixtureDef);
+    public MissilePowerUp() {
+        super(new BodyDef(), new FixtureDef());
     }
 }

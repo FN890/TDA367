@@ -27,7 +27,7 @@ public class GameWorld {
         world = new World(new Vector2(0, -100), true);
         groundGenerator = new GroundGenerator(10000, 1, 1);
         groundGenerator.generateGround(world);
-      //  generatePowerups(10);
+        generatePowerups(10);
     }
 
     public void stepWorld() {
@@ -45,9 +45,9 @@ public class GameWorld {
     }
 
     private void generatePowerups(int numberPowerups) {
-        NitroPowerUp nitroPowerUp = new NitroPowerUp(new BodyDef(), new FixtureDef());
-        this.addBody(nitroPowerUp.getBodyDef(), nitroPowerUp.getFixtureDef());
+        NitroPowerUp nitroPowerUp = new NitroPowerUp();
         nitroPowerUp.getBodyDef().position.set(100,100);
+        this.addBody(nitroPowerUp.getBodyDef(), nitroPowerUp.getFixtureDef());
     }
 
     public void dispose() {
