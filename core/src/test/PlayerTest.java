@@ -8,16 +8,16 @@ class PlayerTest {
 
     @Test
     public void PlayerCreated(){
-        assertNotNull(new Player("name", 0));
+        assertNotNull(new Player("name"));
     }
 
     @Test
     public void PlayerCheckName(){
-        Player player = new Player("Player1", 0);
+        Player player = new Player("Player1");
     }
 
     @Test
     public void PlayerAddPowerUp(){
-        Player player = new Player("name", 0);
+        Player player = new Player("name");
     }
 }
