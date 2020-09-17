@@ -1,0 +1,3 @@
+Discussion items: We planned and discussed about the coupling in our program and how everything is supposed to relate ot each other.
+
+Outcome: We decided to use MVC and implemented a base version of it in our code.
