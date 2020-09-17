@@ -1,7 +1,5 @@
 package com.backendboys.battlerace.model.world;
 
-import com.backendboys.battlerace.model.GameModel;
-import com.backendboys.battlerace.model.powerups.AbstractPowerUp;
 import com.backendboys.battlerace.model.powerups.MissilePowerUp;
 import com.backendboys.battlerace.model.powerups.NitroPowerUp;
 import com.badlogic.gdx.Gdx;
@@ -27,7 +25,7 @@ public class GameWorld {
         world = new World(new Vector2(0, -100), true);
         groundGenerator = new GroundGenerator(10000, 1, 1);
         groundGenerator.generateGround(world);
-        generatePowerups(10);
+        generatePowerups(30);
     }
 
     public void stepWorld() {
@@ -45,9 +43,27 @@ public class GameWorld {
     }
 
     private void generatePowerups(int numberPowerups) {
-        NitroPowerUp nitroPowerUp = new NitroPowerUp();
-        nitroPowerUp.getBodyDef().position.set(100,100);
-        this.addBody(nitroPowerUp.getBodyDef(), nitroPowerUp.getFixtureDef());
+        int space = groundGenerator.getNumberVertices() / numberPowerups;
+        int position = space;
+
+        Random random = new Random();
+
+        for (int i = 0; i < numberPowerups; i++) {
+
+            position -= random.nextInt(100);
+
+            if (random.nextInt(2) == 1) {
+                NitroPowerUp nitroPowerUp = new NitroPowerUp();
+                nitroPowerUp.getBodyDef().position.set(position, 35);
+                this.addBody(nitroPowerUp.getBodyDef(), nitroPowerUp.getFixtureDef());
+            } else {
+                MissilePowerUp missilePowerUp = new MissilePowerUp();
+                missilePowerUp.getBodyDef().position.set(position, 35);
+                this.addBody(missilePowerUp.getBodyDef(), missilePowerUp.getFixtureDef());
+            }
+            position += space;
+        }
+
     }
 
     public void dispose() {
