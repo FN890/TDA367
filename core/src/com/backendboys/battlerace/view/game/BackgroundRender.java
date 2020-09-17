@@ -1,4 +1,4 @@
-package com.backendboys.battlerace.view;
+package com.backendboys.battlerace.view.game;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -7,13 +7,13 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 
-public class BackgroundGenerator {
+public class BackgroundRender {
 
     private final OrthographicCamera orthographicCamera;
     private final ArrayList<Vector2> groundVertices;
     private final ShapeRenderer shapeRenderer;
 
-    public BackgroundGenerator(OrthographicCamera orthographicCamera, ArrayList<Vector2> groundVertices) {
+    public BackgroundRender(OrthographicCamera orthographicCamera, ArrayList<Vector2> groundVertices) {
         this.orthographicCamera = orthographicCamera;
         this.groundVertices = groundVertices;
         this.shapeRenderer = new ShapeRenderer();

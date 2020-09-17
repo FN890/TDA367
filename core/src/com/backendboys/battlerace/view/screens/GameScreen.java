@@ -2,7 +2,7 @@ package com.backendboys.battlerace.view.screens;
 
 import com.backendboys.battlerace.controller.GameController;
 import com.backendboys.battlerace.model.IModelListener;
-import com.backendboys.battlerace.view.BackgroundGenerator;
+import com.backendboys.battlerace.view.game.BackgroundRender;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -18,7 +18,7 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
 
     private final GameController gameController;
 
-    private final BackgroundGenerator backgroundGenerator;
+    private final BackgroundRender backgroundRender;
 
     private final OrthographicCamera camera;
     private final ExtendViewport viewport;
@@ -34,7 +34,7 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
         viewport = new ExtendViewport(200, 50, camera);
         batch = new SpriteBatch();
         debugRenderer = new Box2DDebugRenderer();
-        backgroundGenerator = new BackgroundGenerator(camera, gameController.getGameWorld().getGroundVertices());
+        backgroundRender = new BackgroundRender(camera, gameController.getGameWorld().getGroundVertices());
     }
 
     @Override
@@ -46,7 +46,7 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         batch.end();
-        backgroundGenerator.renderBackground();
+        backgroundRender.renderBackground();
         debugRenderer.render(gameController.getGameWorld().getWorld(), camera.combined);
     }
 
@@ -63,7 +63,7 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
         sprites.clear();
         gameController.getGameWorld().dispose();
         debugRenderer.dispose();
-        backgroundGenerator.dispose();
+        backgroundRender.dispose();
     }
 
     @Override
