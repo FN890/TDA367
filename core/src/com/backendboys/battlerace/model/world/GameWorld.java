@@ -25,7 +25,7 @@ public class GameWorld {
         world = new World(new Vector2(0, -100), true);
         groundGenerator = new GroundGenerator(10000, 1, 1);
         groundGenerator.generateGround(world);
-        generatePowerups(30);
+       // generatePowerups(30);
     }
 
     public void stepWorld() {
