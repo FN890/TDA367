@@ -18,7 +18,8 @@ public class GameModel {
     public GameModel() {
         this.gameWorld = new GameWorld();
 
-        car = new SportsCar(gameWorld.getWorld(), 100, 50);
+        Vector2 startPosition = gameWorld.getGroundVertices().get(50);
+        car = new SportsCar(gameWorld.getWorld(), startPosition.x, startPosition.y + 25);
     }
 
     // TODO: We dont need this. Updates can be made to model in the controller gameRendered();
