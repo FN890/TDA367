@@ -12,6 +12,7 @@ public class BackgroundRender {
     private final OrthographicCamera orthographicCamera;
     private final ArrayList<Vector2> groundVertices;
     private final ShapeRenderer shapeRenderer;
+    private final static int RECT_WIDTH = 5;
 
     public BackgroundRender(OrthographicCamera orthographicCamera, ArrayList<Vector2> groundVertices) {
         this.orthographicCamera = orthographicCamera;
@@ -37,7 +38,7 @@ public class BackgroundRender {
                     shapeRenderer.setProjectionMatrix(orthographicCamera.combined);
                     shapeRenderer.setColor(Color.GREEN);
                     shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-                    shapeRenderer.rectLine(groundVertices.get(i), groundVertices.get(i + 1), 3);
+                    shapeRenderer.rectLine(groundVertices.get(i), groundVertices.get(i + 1), RECT_WIDTH);
                     shapeRenderer.end();
                 }
             }
@@ -51,7 +52,7 @@ public class BackgroundRender {
                     shapeRenderer.setProjectionMatrix(orthographicCamera.combined);
                     shapeRenderer.setColor(Color.BROWN);
                     shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-                    shapeRenderer.box(groundVertices.get(i).x, groundVertices.get(i).y, 1, 1, -groundVertices.get(i).y, 1);
+                    shapeRenderer.box(groundVertices.get(i).x, groundVertices.get(i).y, 1, RECT_WIDTH, -groundVertices.get(i).y, 1);
                     shapeRenderer.end();
                 }
             }
@@ -65,7 +66,7 @@ public class BackgroundRender {
                     shapeRenderer.setProjectionMatrix(orthographicCamera.combined);
                     shapeRenderer.setColor(Color.SKY);
                     shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-                    shapeRenderer.box(groundVertices.get(i).x, groundVertices.get(i).y + 1, 1, 1, orthographicCamera.viewportHeight, 1);
+                    shapeRenderer.box(groundVertices.get(i).x, groundVertices.get(i).y + 1, 1, RECT_WIDTH, orthographicCamera.viewportHeight, 1);
                     shapeRenderer.end();
                 }
             }
@@ -73,8 +74,8 @@ public class BackgroundRender {
     }
 
     private boolean withinCameraView(Vector2 vec2) {
-        if (vec2.x > orthographicCamera.position.x - (orthographicCamera.viewportWidth / 2)) {
-            return vec2.x < orthographicCamera.position.x + (orthographicCamera.viewportWidth / 2);
+        if (vec2.x > orthographicCamera.position.x - orthographicCamera.viewportWidth) {
+            return vec2.x < orthographicCamera.position.x + orthographicCamera.viewportWidth;
         } else {
             return false;
         }
