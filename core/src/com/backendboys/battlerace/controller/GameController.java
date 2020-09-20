@@ -4,7 +4,6 @@ import com.backendboys.battlerace.BattleRace;
 import com.backendboys.battlerace.model.GameModel;
 import com.backendboys.battlerace.model.world.GameWorld;
 import com.backendboys.battlerace.view.screens.ScreenFactory;
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 
@@ -94,6 +93,10 @@ public class GameController implements InputProcessor {
 
     public GameWorld getGameWorld() {
         return gameModel.getGameWorld();
+    }
+
+    public GameModel getGameModel() {
+        return gameModel;
     }
 
     @Override

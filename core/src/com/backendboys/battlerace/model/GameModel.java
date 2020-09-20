@@ -2,6 +2,7 @@ package com.backendboys.battlerace.model;
 
 import com.backendboys.battlerace.model.vehicle.SportsCar;
 import com.backendboys.battlerace.model.world.GameWorld;
+import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,16 +28,16 @@ public class GameModel {
         notifyListeners();
     }
 
-    public void addListener(IModelListener modelListener){
+    public void addListener(IModelListener modelListener) {
         modelListeners.add(modelListener);
     }
 
-    public void removeListener(IModelListener modelListener){
+    public void removeListener(IModelListener modelListener) {
         modelListeners.remove(modelListener);
     }
 
     private void notifyListeners() {
-        for(IModelListener modelListener : modelListeners){
+        for (IModelListener modelListener : modelListeners) {
             modelListener.update();
         }
     }
@@ -59,6 +60,10 @@ public class GameModel {
 
     public GameWorld getGameWorld() {
         return gameWorld;
+    }
+
+    public Vector2 getPlayerPosition() {
+        return car.getPosition();
     }
 
 }

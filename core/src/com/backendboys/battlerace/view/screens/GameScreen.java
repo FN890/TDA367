@@ -6,13 +6,8 @@ import com.backendboys.battlerace.view.game.BackgroundRender;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
-
-import java.util.HashMap;
 
 class GameScreen extends AbstractScreen implements IScreen, IModelListener {
 
@@ -24,19 +19,15 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
     private final ExtendViewport viewport;
     private final Box2DDebugRenderer debugRenderer;
 
-    private TextureAtlas textureAtlas;
-    private SpriteBatch batch;
-    private final HashMap<String, Sprite> sprites = new HashMap<String, Sprite>();
-
     GameScreen(GameController gameController) {
         this.gameController = gameController;
         camera = new OrthographicCamera();
         viewport = new ExtendViewport(600, 50, camera);
-        batch = new SpriteBatch();
         debugRenderer = new Box2DDebugRenderer();
         backgroundRender = new BackgroundRender(camera, gameController.getGameWorld().getGroundVertices());
     }
 
+    // TODO: 2020-09-20 Decrease exposure of different class structures.
     @Override
     public void render(float delta) {
         super.render(delta);
@@ -44,8 +35,7 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        batch.begin();
-        batch.end();
+        updateCameraPosition(gameController.getGameModel().getPlayerPosition().x, gameController.getGameModel().getPlayerPosition().y);
         backgroundRender.renderBackground();
         debugRenderer.render(gameController.getGameWorld().getWorld(), camera.combined);
     }
@@ -54,13 +44,10 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
     public void resize(int width, int height) {
         super.resize(width, height);
         viewport.update(width, height, true);
-        batch.setProjectionMatrix(camera.combined);
     }
 
     @Override
     public void dispose() {
-        textureAtlas.dispose();
-        sprites.clear();
         gameController.getGameWorld().dispose();
         debugRenderer.dispose();
         backgroundRender.dispose();
@@ -70,5 +57,10 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
     public void update() {
     }
 
-
+    // TODO: 2020-09-20 Make camera follow y-axis properly
+    // TODO: 2020-09-20 Improve camera movement
+    private void updateCameraPosition(float x, float y) {
+        camera.position.set(x + 200, camera.position.y, camera.position.z);
+        camera.update();
+    }
 }
