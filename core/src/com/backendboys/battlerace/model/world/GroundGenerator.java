@@ -25,13 +25,13 @@ public class GroundGenerator {
         generateVertices();
         ArrayList<Vector2> tempVertices = new ArrayList<>(vertices);
 
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.type = BodyDef.BodyType.StaticBody;
+
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.friction = friction;
+
         while (!tempVertices.isEmpty()) {
-
-            BodyDef bodyDef = new BodyDef();
-            bodyDef.type = BodyDef.BodyType.StaticBody;
-
-            FixtureDef fixtureDef = new FixtureDef();
-            fixtureDef.friction = friction;
 
             ChainShape chainShape = new ChainShape();
             fixtureDef.shape = chainShape;
