@@ -1,6 +1,6 @@
 package server.protocol;
 
-class ProtocolException extends Exception {
+public class ProtocolException extends Exception {
 
     ProtocolError error;
 

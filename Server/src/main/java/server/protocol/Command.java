@@ -1,6 +1,6 @@
 package server.protocol;
 
-class Command {
+class Command implements ICommand {
 
     private final String cmd;
     private final String[] args;
@@ -10,11 +10,11 @@ class Command {
         this.args = args;
     }
 
-    String getCmd() {
+    public String getCmd() {
         return cmd;
     }
 
-    String[] getArgs() {
+    public String[] getArgs() {
         return args;
     }
 }

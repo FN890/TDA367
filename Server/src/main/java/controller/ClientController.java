@@ -1,5 +1,10 @@
 package controller;
 
+import server.protocol.ICommand;
+import server.protocol.IServerProtocol;
+import server.protocol.ProtocolException;
+import server.protocol.ServerProtocolFactory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -26,9 +31,17 @@ public class ClientController implements Runnable {
             this.reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.writer = new PrintWriter(socket.getOutputStream(), true);
 
+            IServerProtocol protocol = ServerProtocolFactory.getServerProtocol();
+
             String input;
             while ((input = reader.readLine()) != null) {
                 // Handle input
+
+                try {
+                    ICommand cmd = protocol.parseTCPMessage(input);
+                } catch (ProtocolException e) {
+                    writer.println(e.getMessage());
+                }
 
             }
 

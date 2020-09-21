@@ -3,11 +3,11 @@ package server.protocol;
 import java.util.ArrayList;
 import java.util.List;
 
-class ServerProtocol {
+class ServerProtocolReader {
 
     private static final String[] VALID_COMMANDS = {"create", "join"};
 
-    static synchronized Command parseTCPMessage(String msg) throws ProtocolException {
+    Command parseTCPMessage(String msg) throws ProtocolException {
         String trimmed = msg.trim().toLowerCase();
         StringBuilder sb = new StringBuilder();
 
@@ -44,7 +44,7 @@ class ServerProtocol {
         return new Command(command, args);
     }
 
-    static synchronized Command parseTCPCommand(Command cmd) throws ProtocolException {
+    Command parseTCPCommand(Command cmd) throws ProtocolException {
 
         for (String s : VALID_COMMANDS) {
             if (cmd.getCmd().equalsIgnoreCase(s)) {
