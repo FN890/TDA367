@@ -12,6 +12,9 @@ public class MenuController {
     private final BattleRace game;
     private final Music music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
 
+    public boolean getMusicPlaying() {
+        return music.isPlaying();
+    }
 
     /**
      * @param game Set Menu screen for game

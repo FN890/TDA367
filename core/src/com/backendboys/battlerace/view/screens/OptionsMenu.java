@@ -15,7 +15,7 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
 
     private final SpriteBatch batch;
     private Stage stage;
-    boolean musicPlaying = true;
+
 
     OptionsMenu(MenuController menuController) {
         super(menuController);
@@ -39,8 +39,13 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
         optionsTable.setFillParent(true);
         optionsTable.center();
 
-        // TODO:add images for sound on/off.
         final ImageButton soundButton = new ImageButton(getButtonStyleFromName("Soundon"));
+        if (getMenuController().getMusicPlaying()) {
+            soundButton.setStyle(getButtonStyleFromName("Soundon"));
+        } else {
+            soundButton.setStyle(getButtonStyleFromName("Soundoff"));
+        }
+
         ImageButton backToMainMenuButton = new ImageButton(getButtonStyleFromName("Back"));
 
         backToMainMenuButton.addListener(new ClickListener() {
@@ -53,7 +58,7 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
         soundButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (musicPlaying) {
+                if (getMenuController().getMusicPlaying()) {
                     getMenuController().playMenuMusic(false);
                     soundButton.setStyle(getButtonStyleFromName("Soundoff"));
 
@@ -61,7 +66,7 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
                     getMenuController().playMenuMusic(true);
                     soundButton.setStyle(getButtonStyleFromName("Soundon"));
                 }
-                musicPlaying = !musicPlaying;
+
 
             }
         });
