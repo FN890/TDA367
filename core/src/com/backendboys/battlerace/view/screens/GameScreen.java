@@ -1,7 +1,7 @@
 package com.backendboys.battlerace.view.screens;
 
 import com.backendboys.battlerace.controller.GameController;
-import com.backendboys.battlerace.model.IModelListener;
+import com.backendboys.battlerace.model.gamemodel.IModelListener;
 import com.backendboys.battlerace.view.game.BackgroundRender;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;

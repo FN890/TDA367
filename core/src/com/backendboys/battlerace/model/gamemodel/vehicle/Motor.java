@@ -1,4 +1,4 @@
-package com.backendboys.battlerace.model.vehicle;
+package com.backendboys.battlerace.model.gamemodel.vehicle;
 
 class Motor {
 

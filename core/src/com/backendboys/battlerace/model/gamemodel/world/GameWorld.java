@@ -1,7 +1,7 @@
-package com.backendboys.battlerace.model.world;
+package com.backendboys.battlerace.model.gamemodel.world;
 
-import com.backendboys.battlerace.model.powerups.MissilePowerUp;
-import com.backendboys.battlerace.model.powerups.NitroPowerUp;
+import com.backendboys.battlerace.model.gamemodel.powerups.MissilePowerUp;
+import com.backendboys.battlerace.model.gamemodel.powerups.NitroPowerUp;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;

@@ -1,5 +1,5 @@
 
-import com.backendboys.battlerace.model.player.Player;
+import com.backendboys.battlerace.model.gamemodel.player.Player;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

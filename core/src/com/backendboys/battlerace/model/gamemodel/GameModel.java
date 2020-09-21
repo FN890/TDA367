@@ -1,7 +1,7 @@
-package com.backendboys.battlerace.model;
+package com.backendboys.battlerace.model.gamemodel;
 
-import com.backendboys.battlerace.model.vehicle.SportsCar;
-import com.backendboys.battlerace.model.world.GameWorld;
+import com.backendboys.battlerace.model.gamemodel.vehicle.SportsCar;
+import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
 import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
