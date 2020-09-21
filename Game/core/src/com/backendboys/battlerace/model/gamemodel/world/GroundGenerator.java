@@ -60,9 +60,9 @@ public class GroundGenerator {
 
     private void generateVertices() {
         float xPos = 0, yPos = 0;
-        Random r = new Random();
+
         for (int i = 0; i < numberVertices; i++) {
-            yPos = (30 * (float) Math.sin(xPos * 0.01)) + (float) (r.nextInt(20)*Math.sin(xPos * 0.1)) + 30;
+            yPos = 30 * (float) Math.sin(xPos * 0.01) + 30;
             xPos += step;
             vertices.add(new Vector2(xPos, yPos + 10));
         }
