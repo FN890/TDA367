@@ -1,2 +1,0 @@
-com/backendboys/battlerace/desktop/DesktopLauncher.java
- com.backendboys.battlerace.desktop.DesktopLauncher
