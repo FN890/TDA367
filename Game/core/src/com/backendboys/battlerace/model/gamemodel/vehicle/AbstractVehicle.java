@@ -5,7 +5,7 @@ import com.badlogic.gdx.physics.box2d.*;
 
 import java.util.List;
 
-abstract class AbstractVehicle {
+abstract class AbstractVehicle implements IVehicle{
 
     private static final float FRICTION = 0.5f;
     private static final float RESTITUTION = 0.6f;

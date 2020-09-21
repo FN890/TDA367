@@ -119,8 +119,6 @@ abstract class AbstractCar extends AbstractVehicle {
         return Arrays.asList(rearWheel, frontWheel);
     }
 
-
-
     @Override
     public void gas() {
         frontWheel.applyForce(2*-12500f, 0f, 0f, 0, true);

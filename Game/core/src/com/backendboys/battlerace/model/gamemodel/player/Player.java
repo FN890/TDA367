@@ -1,6 +1,10 @@
 package com.backendboys.battlerace.model.gamemodel.player;
 
 import com.backendboys.battlerace.model.gamemodel.powerups.AbstractPowerUp;
+import com.backendboys.battlerace.model.gamemodel.vehicle.IVehicle;
+import com.backendboys.battlerace.model.gamemodel.vehicle.VehicleFactory;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.World;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +16,15 @@ public class Player {
     private String name;
     private ArrayList<AbstractPowerUp> listPowersUp = new ArrayList<>();
 
+    private IVehicle vehicle;
+
     public Player(String name){
         this.name = name;
         this.playerId = UUID.randomUUID();
+    }
+
+    public void addVehicle(World world, float xPos, float yPos){
+        this.vehicle = VehicleFactory.createSportsCar(world, xPos, yPos);
     }
 
     public String getName(){
@@ -39,20 +49,22 @@ public class Player {
     }
 
     public void gas(){
-        //vehicle.gas();
+        vehicle.gas();
     }
 
     public void brake(){
-        //vehicle.brake();
+        vehicle.brake();
     }
 
     public void rotateLeft(){
-        //vehicle.rotateLeft();
+        vehicle.rotateLeft();
     }
 
     public void rotateRight(){
-        //vehicle.rotateRight();
+        vehicle.rotateRight();
     }
 
-
+    public Vector2 getPosition() {
+        return vehicle.getPosition();
+    }
 }

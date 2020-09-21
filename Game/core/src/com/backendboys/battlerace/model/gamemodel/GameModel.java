@@ -1,5 +1,6 @@
 package com.backendboys.battlerace.model.gamemodel;
 
+import com.backendboys.battlerace.model.gamemodel.player.Player;
 import com.backendboys.battlerace.model.gamemodel.vehicle.SportsCar;
 import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
 import com.badlogic.gdx.math.Vector2;
@@ -15,11 +16,14 @@ public class GameModel {
     // TODO: Create Factory for Car.
     private SportsCar car;
 
+    private Player player;
+
     public GameModel() {
         this.gameWorld = new GameWorld();
 
         Vector2 startPosition = gameWorld.getGroundVertices().get(50);
-        car = new SportsCar(gameWorld.getWorld(), startPosition.x, startPosition.y + 25);
+        player = new Player("Mad Max");
+        player.addVehicle(gameWorld.getWorld(), startPosition.x, startPosition.y + 25);
     }
 
     // TODO: We dont need this. Updates can be made to model in the controller gameRendered();
@@ -44,19 +48,19 @@ public class GameModel {
     }
 
     public void gas() {
-        car.gas();
+        player.gas();
     }
 
     public void rotateLeft() {
-        car.rotateLeft();
+        player.rotateLeft();
     }
 
     public void brake() {
-        car.brake();
+        player.brake();
     }
 
     public void rotateRight() {
-        car.rotateRight();
+        player.rotateRight();
     }
 
     public GameWorld getGameWorld() {
@@ -64,7 +68,7 @@ public class GameModel {
     }
 
     public Vector2 getPlayerPosition() {
-        return car.getPosition();
+        return player.getPosition();
     }
 
 }
