@@ -39,8 +39,10 @@ public class ClientController implements Runnable {
 
                 try {
                     ICommand cmd = protocol.parseTCPMessage(input);
+
+
                 } catch (ProtocolException e) {
-                    writer.println(e.getMessage());
+                    writer.println(protocol.writeError(e.getMessage()));
                 }
 
             }
