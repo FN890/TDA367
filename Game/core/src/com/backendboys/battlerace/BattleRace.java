@@ -14,7 +14,7 @@ public class BattleRace extends Game {
     }
     
     public void startMenu() {
-         new MenuController(this);
+        new MenuController(this);
     }
 
     public void startSinglePlayer(){

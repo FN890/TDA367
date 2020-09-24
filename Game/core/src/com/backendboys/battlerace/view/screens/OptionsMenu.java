@@ -40,7 +40,7 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
         optionsTable.center();
 
         final ImageButton soundButton = new ImageButton(getButtonStyleFromName("Soundon"));
-        if (getMenuController().getMusicPlaying()) {
+        if (getMenuController().isMusicPlaying()) {
             soundButton.setStyle(getButtonStyleFromName("Soundon"));
         } else {
             soundButton.setStyle(getButtonStyleFromName("Soundoff"));
@@ -58,7 +58,7 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
         soundButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (getMenuController().getMusicPlaying()) {
+                if (getMenuController().isMusicPlaying()) {
                     getMenuController().playMenuMusic(false);
                     soundButton.setStyle(getButtonStyleFromName("Soundoff"));
 
