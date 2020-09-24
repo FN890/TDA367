@@ -8,21 +8,17 @@ import com.badlogic.gdx.graphics.g2d.Gdx2DPixmap;
 
 public class BattleRace extends Game {
 
-    private MenuController menuController;
-    private GameController gameController;
-
     @Override
     public void create() {
-        menuController = new MenuController(this);
+        new MenuController(this);
     }
-
+    
     public void startMenu() {
-        menuController = new MenuController(this);
+         new MenuController(this);
     }
 
     public void startSinglePlayer(){
-        gameController = new GameController(this);
-        Gdx.input.setInputProcessor(gameController);
+        Gdx.input.setInputProcessor(new GameController(this));
     }
 
     public void startMultiplayer(){
