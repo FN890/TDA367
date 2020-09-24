@@ -44,24 +44,22 @@ public class GameWorld {
 
     private void generatePowerups(int numberPowerups) {
         int space = groundGenerator.getNumberVertices() / numberPowerups;
-        int position = space;
+        int positionX = space;
 
         Random random = new Random();
 
         for (int i = 0; i < numberPowerups; i++) {
 
-            position -= random.nextInt(100);
+            positionX -= random.nextInt(100);
 
             if (random.nextInt(2) == 1) {
                 NitroPowerUp nitroPowerUp = new NitroPowerUp();
-                nitroPowerUp.getBodyDef().position.set(position, 35);
-                this.addBody(nitroPowerUp.getBodyDef(), nitroPowerUp.getFixtureDef());
+                nitroPowerUp.InstantiateBody(world, positionX, 50);
             } else {
                 MissilePowerUp missilePowerUp = new MissilePowerUp();
-                missilePowerUp.getBodyDef().position.set(position, 35);
-                this.addBody(missilePowerUp.getBodyDef(), missilePowerUp.getFixtureDef());
+                missilePowerUp.InstantiateBody(world, positionX, 50);
             }
-            position += space;
+            positionX += space;
         }
 
     }
