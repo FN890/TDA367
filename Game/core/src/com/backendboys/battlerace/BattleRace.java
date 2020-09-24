@@ -10,16 +10,15 @@ public class BattleRace extends Game {
 
     @Override
     public void create() {
-        MenuController menuController = new MenuController(this);
+        new MenuController(this);
     }
     
     public void startMenu() {
-        MenuController menuController = new MenuController(this);
+         new MenuController(this);
     }
 
     public void startSinglePlayer(){
-        GameController gameController = new GameController(this);
-        Gdx.input.setInputProcessor(gameController);
+        Gdx.input.setInputProcessor(new GameController(this));
     }
 
     public void startMultiplayer(){
