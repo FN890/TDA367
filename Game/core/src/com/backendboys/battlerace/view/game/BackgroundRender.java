@@ -7,6 +7,9 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 
+/**
+ * Class used for rendering the game background.
+ */
 public class BackgroundRender {
 
     private final OrthographicCamera orthographicCamera;
@@ -14,12 +17,20 @@ public class BackgroundRender {
     private final ShapeRenderer shapeRenderer;
     private final static int RECT_WIDTH = 5;
 
+    /**
+     *
+     * @param orthographicCamera Used setting the projection matrix.
+     * @param groundVertices The ground vertices of the world that should be rendered.
+     */
     public BackgroundRender(OrthographicCamera orthographicCamera, ArrayList<Vector2> groundVertices) {
         this.orthographicCamera = orthographicCamera;
         this.groundVertices = groundVertices;
         this.shapeRenderer = new ShapeRenderer();
     }
 
+    /**
+     * Method that renders the background. Should be called on every render.
+     */
     public void renderBackground() {
         //generateSky();
         generateGround();

@@ -10,6 +10,9 @@ import com.badlogic.gdx.physics.box2d.*;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Class representing the game world.
+ */
 public class GameWorld {
 
     private final World world;
@@ -31,6 +34,9 @@ public class GameWorld {
         generatePowerups(30);
     }
 
+    /**
+     *  Take a time step. This performs collision detection, integration, and constraint solution.
+     */
     public void stepWorld() {
 
         float delta = Gdx.graphics.getDeltaTime();
