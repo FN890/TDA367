@@ -5,11 +5,15 @@ import controller.ClientController;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TCPServer {
 
-    private int port;
-    private ServerSocket serverSocket;
+    private final int port;
+    private final ServerSocket serverSocket;
+
+    private final List<ClientController> connections = new ArrayList<>();
 
     public TCPServer(int port) throws IOException {
         this.port = port;
@@ -24,9 +28,16 @@ public class TCPServer {
             Socket client = serverSocket.accept();
 
             System.out.println("Client connected to the Server: " + client.getInetAddress().getHostAddress());
-            new Thread(new ClientController(client)).start();
+            ClientController clientController = new ClientController(client);
+            connections.add(clientController);
+
+            new Thread(clientController).start();
         }
 
+    }
+
+    public List<ClientController> getConnections() {
+        return connections;
     }
 
 }
