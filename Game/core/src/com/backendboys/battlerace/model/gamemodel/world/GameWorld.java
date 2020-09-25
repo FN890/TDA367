@@ -35,7 +35,7 @@ public class GameWorld {
     }
 
     /**
-     *  Take a time step. This performs collision detection, integration, and constraint solution.
+     *  Step the world if enough time has passed since last step.
      */
     public void stepWorld() {
 
