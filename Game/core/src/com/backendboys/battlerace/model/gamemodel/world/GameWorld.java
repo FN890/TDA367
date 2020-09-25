@@ -47,12 +47,7 @@ public class GameWorld {
     private void checkCollision() {
 
     }
-
-    public void addBody(BodyDef bodyDef, FixtureDef fixtureDef) {
-        Body body = world.createBody(bodyDef);
-        body.createFixture(fixtureDef);
-    }
-
+    
     private void generatePowerups(int numberPowerups) {
         int space = groundGenerator.getNumberVertices() / numberPowerups;
         int positionX = space;
