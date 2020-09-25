@@ -1,7 +1,11 @@
 language: java
+jdk:
+  - oraclejdk8
+
+before_script:
+  - cd Game
 
 script:
-  - cd Game
   - npm install
   - npm test 
   - npm run build
