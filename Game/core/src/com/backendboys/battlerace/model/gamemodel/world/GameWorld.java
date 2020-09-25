@@ -12,9 +12,8 @@ import java.util.Random;
 
 public class GameWorld {
 
-    private World world;
-    private GroundGenerator groundGenerator;
-    private Box2DDebugRenderer debugRenderer;
+    private final World world;
+    private final GroundGenerator groundGenerator;
 
     private ArrayList<AbstractPowerUp> powerUps;
 
@@ -47,7 +46,7 @@ public class GameWorld {
     private void checkCollision() {
 
     }
-    
+
     private void generatePowerups(int numberPowerups) {
         int space = groundGenerator.getNumberVertices() / numberPowerups;
         int positionX = space;
