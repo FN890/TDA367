@@ -33,12 +33,14 @@ public class GameWorld {
     }
 
     public void stepWorld() {
+
         float delta = Gdx.graphics.getDeltaTime();
         accumulator += Math.min(delta, 0.25f);
         if (accumulator >= STEP_TIME) {
             accumulator -= STEP_TIME;
             world.step(STEP_TIME, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
         }
+        BodyRemover.removeBodies(world);
         checkCollision();
     }
 

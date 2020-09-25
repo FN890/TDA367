@@ -1,5 +1,6 @@
 package com.backendboys.battlerace.model.gamemodel;
 
+import com.backendboys.battlerace.model.gamemodel.particles.Explosion;
 import com.backendboys.battlerace.model.gamemodel.player.Player;
 import com.backendboys.battlerace.model.gamemodel.vehicle.SportsCar;
 import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
@@ -22,6 +23,8 @@ public class GameModel {
         this.gameWorld = new GameWorld();
 
         Vector2 startPosition = gameWorld.getGroundVertices().get(50);
+        Vector2 explosionPosition = new Vector2(startPosition.x,startPosition.y+15);
+        Explosion explosion = new Explosion(explosionPosition,60,gameWorld.getWorld());
         player = new Player("Mad Max");
         player.addVehicle(gameWorld.getWorld(), startPosition.x, startPosition.y + 25);
     }
