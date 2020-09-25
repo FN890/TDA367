@@ -2,3 +2,6 @@ language: java
 
 script:
   - cd Game
+  - npm install
+  - npm test 
+  - npm run build
