@@ -5,10 +5,7 @@ import com.badlogic.gdx.physics.box2d.*;
 
 public class ExplosionParticle {
     private int movementPower = 600000;
-
     private Body body;
-
-
 
     public ExplosionParticle(World world, Vector2 vector, Vector2 rayDir) {
         BodyDef bodyDef = new BodyDef();
@@ -37,6 +34,7 @@ public class ExplosionParticle {
         fixtureDef.filter.groupIndex = -1; // makes particles unable to collide with eachother
         body.createFixture(fixtureDef);
     }
+
     public Body getBody() {
         return body;
     }
