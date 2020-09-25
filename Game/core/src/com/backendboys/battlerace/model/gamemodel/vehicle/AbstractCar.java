@@ -39,17 +39,19 @@ abstract class AbstractCar extends AbstractVehicle {
         rearWheelRevoluteJointDef.bodyA = main;
         rearWheelRevoluteJointDef.bodyB = rearWheel;
         rearWheelRevoluteJointDef.enableMotor = true;
-        rearWheelRevoluteJointDef.maxMotorTorque = 30000;
-        rearWheelRevoluteJointDef.localAnchorA.set(-9,0);
+        rearWheelRevoluteJointDef.maxMotorTorque = 3000;
+        rearWheelRevoluteJointDef.motorSpeed = 10000;
+        rearWheelRevoluteJointDef.localAnchorA.set(-12,-9);
         world.createJoint(rearWheelRevoluteJointDef);
 
         // Front
         RevoluteJointDef frontWheelRevoluteJointDef = new RevoluteJointDef();
         frontWheelRevoluteJointDef.bodyA = main;
         frontWheelRevoluteJointDef.bodyB = frontWheel;
-        frontWheelRevoluteJointDef.enableMotor = true;
-        frontWheelRevoluteJointDef.maxMotorTorque = 30000;
-        frontWheelRevoluteJointDef.localAnchorA.set(9,0);
+        frontWheelRevoluteJointDef.enableMotor = false;
+        frontWheelRevoluteJointDef.maxMotorTorque = 3000;
+        rearWheelRevoluteJointDef.motorSpeed = 10000;
+        frontWheelRevoluteJointDef.localAnchorA.set(12,-9);
         world.createJoint(frontWheelRevoluteJointDef);
 
 
@@ -81,7 +83,6 @@ abstract class AbstractCar extends AbstractVehicle {
 
         float width = chassi.getWidth();
         float height = chassi.getHeight();
-
 
 
         // Creating Wheels Shape -------------------
@@ -121,14 +122,16 @@ abstract class AbstractCar extends AbstractVehicle {
 
     @Override
     public void gas() {
-        frontWheel.applyForce(2*-12500f, 0f, 0f, 0, true);
-        rearWheel.applyForce(2*-12500f, 0f, 0f, 0, true);
+        //frontWheel.applyForce(2*-12500f, 0f, 0f, 0, true);
+        //rearWheel.applyForce(2*-12500f, 0f, 0f, 0, true);
+        rearWheel.applyTorque(-10000*motor.getAcceleration(), true);
     }
 
     @Override
     public void brake() {
-        frontWheel.applyForce(2*12500f, 0f, 0f, 0, true);
-        rearWheel.applyForce(2*12500f, 0f, 0f, 0, true);
+        //frontWheel.applyForce(2*12500f, 0f, 0f, 0, true);
+        //rearWheel.applyForce(2*12500f, 0f, 0f, 0, true);
+        rearWheel.applyTorque(10000*motor.getAcceleration(), true);
     }
 
 }

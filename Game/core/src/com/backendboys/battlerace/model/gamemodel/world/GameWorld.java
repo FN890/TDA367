@@ -1,5 +1,6 @@
 package com.backendboys.battlerace.model.gamemodel.world;
 
+import com.backendboys.battlerace.model.gamemodel.powerups.AbstractPowerUp;
 import com.backendboys.battlerace.model.gamemodel.powerups.MissilePowerUp;
 import com.backendboys.battlerace.model.gamemodel.powerups.NitroPowerUp;
 import com.badlogic.gdx.Gdx;
@@ -15,6 +16,8 @@ public class GameWorld {
     private GroundGenerator groundGenerator;
     private Box2DDebugRenderer debugRenderer;
 
+    private ArrayList<AbstractPowerUp> powerUps;
+
     private float accumulator;
     private static final float STEP_TIME = 1f / 60f;
     private static final int VELOCITY_ITERATIONS = 6;
@@ -25,7 +28,8 @@ public class GameWorld {
         world = new World(new Vector2(0, -100), true);
         groundGenerator = new GroundGenerator(10000, 5, 1);
         groundGenerator.generateGround(world);
-       // generatePowerups(30);
+        powerUps = new ArrayList<>();
+        generatePowerups(30);
     }
 
     public void stepWorld() {
@@ -35,6 +39,11 @@ public class GameWorld {
             accumulator -= STEP_TIME;
             world.step(STEP_TIME, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
         }
+        checkCollision();
+    }
+
+    private void checkCollision() {
+
     }
 
     public void addBody(BodyDef bodyDef, FixtureDef fixtureDef) {
@@ -44,24 +53,27 @@ public class GameWorld {
 
     private void generatePowerups(int numberPowerups) {
         int space = groundGenerator.getNumberVertices() / numberPowerups;
-        int position = space;
+        int positionX = space;
 
         Random random = new Random();
 
         for (int i = 0; i < numberPowerups; i++) {
 
-            position -= random.nextInt(100);
+            positionX -= random.nextInt(100);
+            Vector2 tempVector = groundGenerator.getVertices().get(positionX / 5);
+            int positionY = (int) tempVector.y + 30;
 
             if (random.nextInt(2) == 1) {
                 NitroPowerUp nitroPowerUp = new NitroPowerUp();
-                nitroPowerUp.getBodyDef().position.set(position, 35);
-                this.addBody(nitroPowerUp.getBodyDef(), nitroPowerUp.getFixtureDef());
+                nitroPowerUp.InstantiateBody(world, positionX, positionY);
+                powerUps.add(nitroPowerUp);
+
             } else {
                 MissilePowerUp missilePowerUp = new MissilePowerUp();
-                missilePowerUp.getBodyDef().position.set(position, 35);
-                this.addBody(missilePowerUp.getBodyDef(), missilePowerUp.getFixtureDef());
+                missilePowerUp.InstantiateBody(world, positionX, positionY);
+                powerUps.add(missilePowerUp);
             }
-            position += space;
+            positionX += space;
         }
 
     }

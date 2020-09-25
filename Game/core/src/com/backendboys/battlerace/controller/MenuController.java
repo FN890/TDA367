@@ -12,10 +12,6 @@ public class MenuController {
     private final BattleRace game;
     private final Music music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
 
-    public boolean getMusicPlaying() {
-        return music.isPlaying();
-    }
-
     /**
      * @param game Set Menu screen for game
      */
@@ -23,7 +19,7 @@ public class MenuController {
         this.game = game;
         game.setScreen(ScreenFactory.createMainMenu(this));
 
-        music.play();
+        //music.play();
         music.setLooping(true);
     }
 
@@ -31,6 +27,10 @@ public class MenuController {
         music.stop();
 
         game.startSinglePlayer();
+    }
+
+    public boolean isMusicPlaying() {
+        return music.isPlaying();
     }
 
     public void toMultiPlayer() {
