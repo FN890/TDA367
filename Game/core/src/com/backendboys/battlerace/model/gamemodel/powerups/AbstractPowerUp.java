@@ -1,6 +1,5 @@
 package com.backendboys.battlerace.model.gamemodel.powerups;
 
-import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
 import com.badlogic.gdx.physics.box2d.*;
 
 public abstract class AbstractPowerUp {
