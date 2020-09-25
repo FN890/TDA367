@@ -1,4 +1,4 @@
-package com.backendboys.battlerace.model.gamemodel.powerups;
+package com.backendboys.battlerace.model.gamemodel.particles;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
@@ -16,7 +16,7 @@ public class ExplosionParticle {
         bodyDef.fixedRotation = true;
         bodyDef.bullet = true;
         bodyDef.linearDamping = 0.1f; //air resistance
-        bodyDef.gravityScale = 1;
+        bodyDef.gravityScale = 0;
         bodyDef.position.x = vector.x;
         bodyDef.position.y = vector.y;
         rayDir.scl(movementPower);
