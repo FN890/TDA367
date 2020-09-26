@@ -4,3 +4,7 @@ before_install: cd Game
 
 script:
     - ./gradlew test
+    - ./gradlew core:build
+    - ./gradlew desktop:build
+    - ./gradlew desktop:run
+
