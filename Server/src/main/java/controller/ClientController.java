@@ -13,7 +13,7 @@ import java.net.Socket;
 
 public class ClientController implements Runnable {
 
-    private Socket socket;
+    private final Socket socket;
 
     private BufferedReader reader;
     private PrintWriter writer;
