@@ -8,6 +8,8 @@ import java.util.List;
 
 public class Game implements Runnable {
 
+    private static final int UPDATE_RATE = 20;
+
     private final String id;
     private final Player host;
     private final List<Player> players = new ArrayList<>();
@@ -53,13 +55,25 @@ public class Game implements Runnable {
             }
         }
     }
-
-    //TODO: Fix so that the game sends out updates.
+    
     @Override
     public void run() {
 
+        long taskTime = 0;
+        long sleepTime = 1000/UPDATE_RATE;
+
         while (true) {
+            taskTime = System.currentTimeMillis();
             notifyUpdate();
+            taskTime = System.currentTimeMillis() - taskTime;
+
+            if (sleepTime - taskTime > 0) {
+                try {
+                    Thread.sleep(sleepTime - taskTime);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
     }
