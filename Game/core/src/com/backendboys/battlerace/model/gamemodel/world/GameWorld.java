@@ -3,6 +3,7 @@ package com.backendboys.battlerace.model.gamemodel.world;
 import com.backendboys.battlerace.model.gamemodel.powerups.AbstractPowerUp;
 import com.backendboys.battlerace.model.gamemodel.powerups.MissilePowerUp;
 import com.backendboys.battlerace.model.gamemodel.powerups.NitroPowerUp;
+import com.backendboys.battlerace.model.gamemodel.powerups.PowerUpGenerator;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
@@ -16,6 +17,7 @@ public class GameWorld {
     private GroundGenerator groundGenerator;
     private Box2DDebugRenderer debugRenderer;
 
+    //List with all powerups in world
     private ArrayList<AbstractPowerUp> powerUps;
 
     private float accumulator;
@@ -29,7 +31,9 @@ public class GameWorld {
         groundGenerator = new GroundGenerator(10000, 5, 1);
         groundGenerator.generateGround(world);
         powerUps = new ArrayList<>();
-        generatePowerups(30);
+
+        PowerUpGenerator powerUpGenerator = new PowerUpGenerator(groundGenerator.getVertices(), world);
+        powerUps = powerUpGenerator.generatePowerups(30);
     }
 
     public void stepWorld() {
@@ -42,8 +46,9 @@ public class GameWorld {
         checkCollision();
     }
 
+    //TODO Check collision between car and powerup in world
+    //TODO Remove powerup and give the powerup to the player
     private void checkCollision() {
-
     }
 
     public void addBody(BodyDef bodyDef, FixtureDef fixtureDef) {
@@ -51,32 +56,6 @@ public class GameWorld {
         body.createFixture(fixtureDef);
     }
 
-    private void generatePowerups(int numberPowerups) {
-        int space = groundGenerator.getNumberVertices() / numberPowerups;
-        int positionX = space;
-
-        Random random = new Random();
-
-        for (int i = 0; i < numberPowerups; i++) {
-
-            positionX -= random.nextInt(100);
-            Vector2 tempVector = groundGenerator.getVertices().get(positionX / 5);
-            int positionY = (int) tempVector.y + 30;
-
-            if (random.nextInt(2) == 1) {
-                NitroPowerUp nitroPowerUp = new NitroPowerUp();
-                nitroPowerUp.InstantiateBody(world, positionX, positionY);
-                powerUps.add(nitroPowerUp);
-
-            } else {
-                MissilePowerUp missilePowerUp = new MissilePowerUp();
-                missilePowerUp.InstantiateBody(world, positionX, positionY);
-                powerUps.add(missilePowerUp);
-            }
-            positionX += space;
-        }
-
-    }
 
     public void dispose() {
         world.dispose();

@@ -1,5 +1,6 @@
 package com.backendboys.battlerace.model.gamemodel.powerups;
 
+import com.backendboys.battlerace.model.gamemodel.player.Player;
 import com.badlogic.gdx.physics.box2d.*;
 
 public abstract class AbstractPowerUp {
@@ -14,7 +15,7 @@ public abstract class AbstractPowerUp {
     public void InstantiateBody(World world, float spawnPosx, float spawnPosy) {
         bodyDef.type = BodyDef.BodyType.StaticBody;
         PolygonShape boxShape = new PolygonShape();
-        boxShape.setAsBox(2f, 2f);
+        boxShape.setAsBox(4f, 4f);
         fixtureDef.shape = boxShape;
 
         bodyDef.position.set(spawnPosx, spawnPosy);
@@ -24,6 +25,8 @@ public abstract class AbstractPowerUp {
 
         boxShape.dispose();
     }
+
+    protected abstract void onPickup(Player player);
 
     public BodyDef getBodyDef() {
         return bodyDef;
