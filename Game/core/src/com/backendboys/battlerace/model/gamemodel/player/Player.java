@@ -45,7 +45,9 @@ public class Player {
 
     // Do something with vehicle or shoot a enemy, maybe change sprite
     public void usePowerUp(){
-
+        if (listPowersUp.size() > 0) {
+            listPowersUp.get(0).use(this);
+        }
     }
 
     public void gas(){

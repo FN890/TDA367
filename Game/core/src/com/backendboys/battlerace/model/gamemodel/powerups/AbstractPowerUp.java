@@ -45,6 +45,8 @@ public abstract class AbstractPowerUp {
         player.addPowerUp(this);
     }
 
+    public abstract void use(Player player);
+
     public BodyDef getBodyDef() {
         return bodyDef;
     }
