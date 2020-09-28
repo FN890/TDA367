@@ -6,7 +6,7 @@ import com.badlogic.gdx.physics.box2d.*;
 /**
  * A class that is used to create particles for explosions one instance is one particle
  */
-public class ExplosionParticle {
+ class ExplosionParticle {
 
     private int movementPower = 100;
     private Body body;

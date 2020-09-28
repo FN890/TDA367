@@ -16,7 +16,6 @@ public class GameModel {
 
     // TODO: Create Factory for Car.
     private SportsCar car;
-
     private Player player;
 
     public GameModel() {

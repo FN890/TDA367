@@ -49,7 +49,6 @@ public class GameWorld {
             accumulator -= STEP_TIME;
             world.step(STEP_TIME, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
         }
-        BodyRemover.removeBodies(world);
         checkCollision();
     }
 
