@@ -36,9 +36,9 @@ public class ClientController implements Runnable {
                 // Handle input
 
                 try {
+                    // Parse into command
                     ICommand cmd = protocol.parseTCPMessage(input);
-                    // Handle command
-
+                    handleCommand(cmd);
 
                 } catch (ProtocolException e) {
                     writer.println(protocol.writeError(e.getMessage()));
@@ -53,6 +53,21 @@ public class ClientController implements Runnable {
             disconnect();
         }
 
+
+    }
+
+    private void handleCommand(ICommand cmd) {
+
+        switch (cmd.getCmd()) {
+
+            case "create":
+                break;
+
+            case "join":
+                break;
+
+
+        }
 
     }
 

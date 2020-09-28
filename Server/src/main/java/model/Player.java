@@ -3,9 +3,7 @@ package model;
 public class Player {
 
     private final String name;
-
-    private float x = 0;
-    private float y = 0;
+    private Vector2 position = null;
 
     public Player(String name) {
         this.name = name;
@@ -15,17 +13,12 @@ public class Player {
         return name;
     }
 
-    public void setPosition(float x, float y) {
-        this.x = x;
-        this.y = y;
+    public void setPosition(Vector2 position) {
+        this.position = position;
     }
 
 
-    public float getX() {
-        return x;
-    }
-
-    public float getY() {
-        return y;
+    public Vector2 getPosition() {
+        return position;
     }
 }
