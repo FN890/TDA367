@@ -38,7 +38,7 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
         updateCameraPosition(gameController.getGameModel().getPlayerPosition().x, gameController.getGameModel().getPlayerPosition().y);
         backgroundRender.renderBackground();
         debugRenderer.render(gameController.getGameWorld().getWorld(), camera.combined);
-        Gdx.graphics.setTitle(""+Gdx.graphics.getFramesPerSecond());
+        Gdx.graphics.setTitle("" + Gdx.graphics.getFramesPerSecond());
     }
 
     @Override

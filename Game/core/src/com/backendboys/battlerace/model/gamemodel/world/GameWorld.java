@@ -39,7 +39,7 @@ public class GameWorld {
     }
 
     /**
-     *  Step the world if enough time has passed since last step.
+     * Step the world if enough time has passed since last step.
      */
     public void stepWorld() {
 

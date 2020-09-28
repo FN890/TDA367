@@ -18,10 +18,9 @@ public class GroundGenerator {
     private final ArrayList<Vector2> vertices;
 
     /**
-     *
      * @param numberVertices The amount of vertices that the ground should be based on.
-     * @param step The difference on the x-axis between each vertex.
-     * @param friction The ground friction.
+     * @param step           The difference on the x-axis between each vertex.
+     * @param friction       The ground friction.
      */
     public GroundGenerator(int numberVertices, double step, int friction) {
         this.numberVertices = numberVertices;
@@ -31,7 +30,8 @@ public class GroundGenerator {
     }
 
     /**
-     *  Creates and adds the ground to the world.
+     * Creates and adds the ground to the world.
+     *
      * @param world Adds the ground to the specific world.
      */
     public void generateGround(World world) {

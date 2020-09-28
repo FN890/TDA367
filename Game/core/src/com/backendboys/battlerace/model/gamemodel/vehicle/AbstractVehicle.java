@@ -5,7 +5,7 @@ import com.badlogic.gdx.physics.box2d.*;
 
 import java.util.List;
 
-abstract class AbstractVehicle implements IVehicle{
+abstract class AbstractVehicle implements IVehicle {
 
     private static final float FRICTION = 0.5f;
     private static final float RESTITUTION = 0.6f;
@@ -46,7 +46,7 @@ abstract class AbstractVehicle implements IVehicle{
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = createVehicleShape();
-        fixtureDef.density = (mass/(vehicleArea()));
+        fixtureDef.density = (mass / (vehicleArea()));
         fixtureDef.friction = FRICTION;
         fixtureDef.restitution = RESTITUTION;
 
@@ -57,7 +57,9 @@ abstract class AbstractVehicle implements IVehicle{
     }
 
     protected abstract Shape createVehicleShape();
+
     protected abstract float vehicleArea();
+
     protected abstract List<Body> initParts(Body main, World world);
 
     public void gas() {
@@ -77,7 +79,7 @@ abstract class AbstractVehicle implements IVehicle{
     }
 
     public void rotateRight() {
-        if (body.getAngularVelocity() < -1 * 2*Math.PI) {
+        if (body.getAngularVelocity() < -1 * 2 * Math.PI) {
             return;
         }
         float torque = -angularAcceleration * body.getMassData().I;

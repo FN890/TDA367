@@ -5,8 +5,11 @@ import com.badlogic.gdx.math.Vector2;
 public interface IVehicle {
 
     void gas();
+
     void brake();
+
     void rotateRight();
+
     void rotateLeft();
 
     Vector2 getPosition();

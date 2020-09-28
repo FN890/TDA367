@@ -17,7 +17,7 @@ public class PowerUpGenerator {
 
     /**
      * @param vertices List of vertices in world to measure spawnpoints of powerups.
-     * @param world The world, needed to spawn the powerups in the world.
+     * @param world    The world, needed to spawn the powerups in the world.
      */
 
     public PowerUpGenerator(ArrayList<Vector2> vertices, World world) {
@@ -27,6 +27,7 @@ public class PowerUpGenerator {
 
     /**
      * Generates the powerups and spawns them in the world.
+     *
      * @param numberPowerups The number of powerups to create.
      * @return Returns a list of all powerups in world, needed for collision checking.
      */

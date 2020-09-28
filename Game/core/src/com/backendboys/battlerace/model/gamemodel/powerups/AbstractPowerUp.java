@@ -18,7 +18,8 @@ public abstract class AbstractPowerUp {
 
     /**
      * Creates the body of the powerup and puts in the world.
-     * @param world Needed to spawn the powerup in the world.
+     *
+     * @param world     Needed to spawn the powerup in the world.
      * @param spawnPosx The x value of its' spawn position.
      * @param spawnPosy the y value of its' spawn position.
      */
@@ -39,6 +40,7 @@ public abstract class AbstractPowerUp {
 
     /**
      * Gives the powerup to the player who picked it up.
+     *
      * @param player The player that picked up the powerup
      */
     protected void onPickup(Player player) {

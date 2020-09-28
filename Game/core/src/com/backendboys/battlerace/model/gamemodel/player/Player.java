@@ -60,7 +60,6 @@ public class Player {
     }
 
     /**
-     *
      * @param powerUp Add a {@link AbstractPowerUp()} to Player
      */
     public void addPowerUp(AbstractPowerUp powerUp) {
@@ -105,7 +104,6 @@ public class Player {
     }
 
     /**
-     *
      * @return The position of vehicle
      */
     public Vector2 getPosition() {

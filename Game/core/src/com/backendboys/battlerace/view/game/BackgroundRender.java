@@ -18,9 +18,8 @@ public class BackgroundRender {
     private final static int RECT_WIDTH = 5;
 
     /**
-     *
      * @param orthographicCamera Used setting the projection matrix.
-     * @param groundVertices The ground vertices of the world that should be rendered.
+     * @param groundVertices     The ground vertices of the world that should be rendered.
      */
     public BackgroundRender(OrthographicCamera orthographicCamera, ArrayList<Vector2> groundVertices) {
         this.orthographicCamera = orthographicCamera;

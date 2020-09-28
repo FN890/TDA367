@@ -41,7 +41,7 @@ abstract class AbstractCar extends AbstractVehicle {
         rearWheelRevoluteJointDef.enableMotor = true;
         rearWheelRevoluteJointDef.maxMotorTorque = 3000;
         rearWheelRevoluteJointDef.motorSpeed = 10000;
-        rearWheelRevoluteJointDef.localAnchorA.set(-12,-9);
+        rearWheelRevoluteJointDef.localAnchorA.set(-12, -9);
         world.createJoint(rearWheelRevoluteJointDef);
 
         // Front
@@ -51,13 +51,12 @@ abstract class AbstractCar extends AbstractVehicle {
         frontWheelRevoluteJointDef.enableMotor = false;
         frontWheelRevoluteJointDef.maxMotorTorque = 3000;
         rearWheelRevoluteJointDef.motorSpeed = 10000;
-        frontWheelRevoluteJointDef.localAnchorA.set(12,-9);
+        frontWheelRevoluteJointDef.localAnchorA.set(12, -9);
         world.createJoint(frontWheelRevoluteJointDef);
 
 
         // Prismatic Joint for Axles and Main Body ------------------
         //RevoluteJointDef rDef = new RevoluteJointDef();
-
 
 
     }
@@ -73,9 +72,8 @@ abstract class AbstractCar extends AbstractVehicle {
 
     @Override
     protected float vehicleArea() {
-        return chassi.getWidth()*chassi.getHeight();
+        return chassi.getWidth() * chassi.getHeight();
     }
-
 
 
     @Override
@@ -124,14 +122,14 @@ abstract class AbstractCar extends AbstractVehicle {
     public void gas() {
         //frontWheel.applyForce(2*-12500f, 0f, 0f, 0, true);
         //rearWheel.applyForce(2*-12500f, 0f, 0f, 0, true);
-        rearWheel.applyTorque(-10000*motor.getAcceleration(), true);
+        rearWheel.applyTorque(-10000 * motor.getAcceleration(), true);
     }
 
     @Override
     public void brake() {
         //frontWheel.applyForce(2*12500f, 0f, 0f, 0, true);
         //rearWheel.applyForce(2*12500f, 0f, 0f, 0, true);
-        rearWheel.applyTorque(10000*motor.getAcceleration(), true);
+        rearWheel.applyTorque(10000 * motor.getAcceleration(), true);
     }
 
 }

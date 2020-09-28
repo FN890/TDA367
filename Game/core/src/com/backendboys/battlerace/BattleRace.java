@@ -12,16 +12,16 @@ public class BattleRace extends Game {
     public void create() {
         new MenuController(this);
     }
-    
+
     public void startMenu() {
         new MenuController(this);
     }
 
-    public void startSinglePlayer(){
+    public void startSinglePlayer() {
         Gdx.input.setInputProcessor(new GameController(this));
     }
 
-    public void startMultiplayer(){
+    public void startMultiplayer() {
         //Start multiplayerController
         //Controller got reference to server model?
     }
