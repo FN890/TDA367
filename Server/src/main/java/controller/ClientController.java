@@ -1,9 +1,6 @@
 package controller;
 
-import model.Game;
-import model.GameListener;
-import model.GamesManager;
-import model.Player;
+import model.*;
 import server.protocol.ICommand;
 import server.protocol.IServerProtocol;
 import server.protocol.ProtocolException;
@@ -21,6 +18,9 @@ public class ClientController implements Runnable, GameListener {
 
     private BufferedReader reader;
     private PrintWriter writer;
+    private IServerProtocol protocol;
+
+    private Game currentGame = null;
 
     public ClientController(Socket socket) {
         this.socket = socket;
@@ -32,8 +32,7 @@ public class ClientController implements Runnable, GameListener {
         try {
             this.reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.writer = new PrintWriter(socket.getOutputStream(), true);
-
-            IServerProtocol protocol = ServerProtocolFactory.getServerProtocol();
+            this.protocol = ServerProtocolFactory.getServerProtocol();
 
             String input;
             while ((input = reader.readLine()) != null) {
@@ -73,6 +72,9 @@ public class ClientController implements Runnable, GameListener {
                 handleJoinGame(cmd.getArgs());
                 break;
 
+            case "leave":
+                handleLeaveGame();
+                break;
 
         }
 
@@ -81,18 +83,20 @@ public class ClientController implements Runnable, GameListener {
     // create:Name
     private void handleCreateGame(String[] args) {
         if (args.length < 1) {
-            writer.println("Invalid arguments.");
+            writer.println(protocol.writeError("Invalid arguments."));
             return;
         }
 
-        Player player = new Player(args[0]);
+        String name = args[0];
+
+        Player player = new Player(name, socket.getInetAddress());
         GamesManager.getInstance().createGame(player);
     }
 
     // join:ID,Name
     private void handleJoinGame(String[] args) {
         if (args.length < 2) {
-            writer.println("Invalid arguments.");
+            writer.println(protocol.writeError("Invalid arguments."));
             return;
         }
 
@@ -100,6 +104,31 @@ public class ClientController implements Runnable, GameListener {
         String name = args[1];
 
         Game game = GamesManager.getInstance().findGameByID(id);
+        if (game == null) {
+            writer.println(protocol.writeError("Game not found."));
+            return;
+        }
+
+        Player player = new Player(name, socket.getInetAddress());
+
+        try {
+            game.addPlayer(player);
+            currentGame = game;
+        } catch (GameException e) {
+            writer.println(protocol.writeError(e.getMessage()));
+        }
+
+    }
+
+    private void handleLeaveGame() {
+        if (currentGame == null) {
+            return;
+        }
+
+        currentGame.removePlayerByAddress(socket.getInetAddress());
+        currentGame = null;
+
+        writer.println("Left the game.");
     }
 
     private void disconnect() {
@@ -116,7 +145,7 @@ public class ClientController implements Runnable, GameListener {
     }
 
     @Override
-    public void playerLeft(String name) {
+    public void playerLeft(Player player) {
 
     }
 

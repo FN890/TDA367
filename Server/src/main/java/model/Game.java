@@ -2,10 +2,11 @@ package model;
 
 import data.Vector2;
 
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Game {
+public class Game implements Runnable {
 
     private final String id;
     private final Player host;
@@ -26,7 +27,7 @@ public class Game {
         this.host = host;
     }
 
-    public void addPlayer(Player player) throws GameException {
+    public synchronized void addPlayer(Player player) throws GameException {
         for (Player p : players) {
             if (player.getName().equalsIgnoreCase(p.getName()) || player.getName().equalsIgnoreCase(host.getName())) {
                 throw new GameException(GameError.NAME_TAKEN);
@@ -36,18 +37,40 @@ public class Game {
         notifyListenersPlayerJoined(player);
     }
 
-    public void removePlayer(String name) {
-        players.removeIf(p -> p.getName().equals(name));
-        notifyListenersPlayerLeft(name);
-    }
-
-    public void updatePosition(Player player, float x, float y) {
+    public synchronized void removePlayerByAddress(InetAddress address) {
         for (Player p : players) {
-            if (player == p) {
-                p.setPosition(new Vector2(x, y));
-                notifyListenersPositionUpdated(p);
+            if (p.getAddress().equals(address)) {
+                players.remove(p);
+                notifyListenersPlayerLeft(p);
             }
         }
+    }
+
+    public synchronized void updatePositionByAddress(InetAddress address, float x, float y) {
+        for (Player p : players) {
+            if (p.getAddress().equals(address)) {
+                p.setPosition(new Vector2(x, y));
+            }
+        }
+    }
+
+    //TODO: Fix so that the game sends out updates.
+    @Override
+    public void run() {
+
+        while (true) {
+            notifyUpdate();
+        }
+
+    }
+
+    public synchronized Player getPlayerByAddress(InetAddress address) {
+        for (Player p : players) {
+            if (p.getAddress().equals(address)) {
+                return p;
+            }
+        }
+        return null;
     }
 
     public String getId() {
@@ -60,15 +83,15 @@ public class Game {
         }
     }
 
-    private void notifyListenersPlayerLeft(String name) {
+    private void notifyListenersPlayerLeft(Player player) {
         for (GameListener l : listeners) {
-            l.playerLeft(name);
+            l.playerLeft(player);
         }
     }
 
-    private void notifyListenersPositionUpdated(Player player) {
+    private void notifyUpdate() {
         for (GameListener l : listeners) {
-            l.positionUpdated(player);
+            l.update(players);
         }
     }
 

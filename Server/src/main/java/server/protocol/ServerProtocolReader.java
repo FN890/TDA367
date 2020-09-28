@@ -5,7 +5,7 @@ import java.util.List;
 
 class ServerProtocolReader {
 
-    private static final String[] VALID_COMMANDS = {"create", "join"};
+    private static final String[] VALID_COMMANDS = {"create", "join", "leave"};
 
     Command parseTCPMessage(String msg) throws ProtocolException {
         String trimmed = msg.trim().toLowerCase();
