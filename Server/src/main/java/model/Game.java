@@ -22,7 +22,12 @@ class Game {
         this.host = host;
     }
 
-    void addPlayer(Player player) {
+    void addPlayer(Player player) throws GameException {
+        for (Player p : players) {
+            if (player.getName().equalsIgnoreCase(p.getName()) || player.getName().equalsIgnoreCase(host.getName())) {
+                throw new GameException(GameError.NAME_TAKEN);
+            }
+        }
         players.add(player);
         notifyListenersPlayerJoined(player);
     }
@@ -30,6 +35,15 @@ class Game {
     void removePlayer(String name) {
         players.removeIf(p -> p.getName().equals(name));
         notifyListenersPlayerLeft(name);
+    }
+
+    void updatePosition(Player player, float x, float y) {
+        for (Player p : players) {
+            if (player == p) {
+                p.setPosition(x, y);
+                notifyListenersPositionUpdated(p);
+            }
+        }
     }
 
     private void notifyListenersPlayerJoined(Player player) {
@@ -44,9 +58,9 @@ class Game {
         }
     }
 
-    private void notifyListenersPositionUpdated() {
+    private void notifyListenersPositionUpdated(Player player) {
         for (GameListener l : listeners) {
-            l.positionUpdated();
+            l.positionUpdated(player);
         }
     }
 

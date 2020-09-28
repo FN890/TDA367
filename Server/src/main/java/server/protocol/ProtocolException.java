@@ -16,4 +16,5 @@ public class ProtocolException extends Exception {
     public ProtocolError getError() {
         return error;
     }
+
 }
