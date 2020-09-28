@@ -11,11 +11,13 @@ import com.badlogic.gdx.physics.box2d.*;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Class representing the game world.
+ */
 public class GameWorld {
 
-    private World world;
-    private GroundGenerator groundGenerator;
-    private Box2DDebugRenderer debugRenderer;
+    private final World world;
+    private final GroundGenerator groundGenerator;
 
     //List with all powerups in world
     private ArrayList<AbstractPowerUp> powerUps;
@@ -36,13 +38,18 @@ public class GameWorld {
         powerUps = powerUpGenerator.generatePowerups(30);
     }
 
+    /**
+     *  Step the world if enough time has passed since last step.
+     */
     public void stepWorld() {
+
         float delta = Gdx.graphics.getDeltaTime();
         accumulator += Math.min(delta, 0.25f);
         if (accumulator >= STEP_TIME) {
             accumulator -= STEP_TIME;
             world.step(STEP_TIME, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
         }
+        BodyRemover.removeBodies(world);
         checkCollision();
     }
 
@@ -50,12 +57,6 @@ public class GameWorld {
     //TODO Remove powerup and give the powerup to the player
     private void checkCollision() {
     }
-
-    public void addBody(BodyDef bodyDef, FixtureDef fixtureDef) {
-        Body body = world.createBody(bodyDef);
-        body.createFixture(fixtureDef);
-    }
-
 
     public void dispose() {
         world.dispose();

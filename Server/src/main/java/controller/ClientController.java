@@ -26,8 +26,6 @@ public class ClientController implements Runnable {
     public void run() {
 
         try {
-
-
             this.reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.writer = new PrintWriter(socket.getOutputStream(), true);
 
@@ -39,6 +37,7 @@ public class ClientController implements Runnable {
 
                 try {
                     ICommand cmd = protocol.parseTCPMessage(input);
+                    // Handle command
 
 
                 } catch (ProtocolException e) {
