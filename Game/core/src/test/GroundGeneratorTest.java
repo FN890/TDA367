@@ -17,7 +17,6 @@ public class GroundGeneratorTest {
 
     public GroundGeneratorTest(){
         groundGenerator = new GroundGenerator(NUMBER_VERTICES, STEP, FRICTION);
-        System.loadLibrary("libgdx-box2d64.dylib");
     }
 
     @Test
