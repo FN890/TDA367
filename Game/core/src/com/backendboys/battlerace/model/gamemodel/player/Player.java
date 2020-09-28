@@ -69,4 +69,8 @@ public class Player {
     public Vector2 getPosition() {
         return vehicle.getPosition();
     }
+
+    public IVehicle getVehicle() {
+        return vehicle;
+    }
 }
