@@ -6,15 +6,30 @@ import com.badlogic.gdx.physics.box2d.World;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Class that handles creation of powerups
+ */
+
 public class PowerUpGenerator {
 
     ArrayList<Vector2> vertices;
     World world;
 
+    /**
+     * @param vertices List of vertices in world to measure spawnpoints of powerups.
+     * @param world The world, needed to spawn the powerups in the world.
+     */
+
     public PowerUpGenerator(ArrayList<Vector2> vertices, World world) {
         this.vertices = vertices;
         this.world = world;
     }
+
+    /**
+     * Generates the powerups and spawns them in the world.
+     * @param numberPowerups The number of powerups to create.
+     * @return Returns a list of all powerups in world, needed for collision checking.
+     */
 
     public ArrayList<AbstractPowerUp> generatePowerups(int numberPowerups) {
 
@@ -45,6 +60,5 @@ public class PowerUpGenerator {
         }
 
         return powerUps;
-
     }
 }

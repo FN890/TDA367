@@ -1,6 +1,5 @@
 package com.backendboys.battlerace.model.gamemodel.powerups;
 
-import com.backendboys.battlerace.model.gamemodel.player.Player;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 
@@ -10,8 +9,4 @@ public class NitroPowerUp extends AbstractPowerUp {
         super(new BodyDef(), new FixtureDef());
     }
 
-    @Override
-    protected void onPickup(Player player) {
-
-    }
 }
