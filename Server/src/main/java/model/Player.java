@@ -1,5 +1,7 @@
 package model;
 
+import data.Vector2;
+
 public class Player {
 
     private final String name;

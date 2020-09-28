@@ -1,4 +1,4 @@
-package model;
+package data;
 
 public class Vector2 {
 
@@ -9,6 +9,5 @@ public class Vector2 {
         this.x = x;
         this.y = y;
     }
-
 
 }
