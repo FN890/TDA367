@@ -14,57 +14,105 @@ public class Player {
 
     private UUID playerId;
     private String name;
-    private ArrayList<AbstractPowerUp> listPowersUp = new ArrayList<>();
+    private ArrayList<AbstractPowerUp> listPowerUp = new ArrayList<>();
 
     private IVehicle vehicle;
 
-    public Player(String name){
+    /**
+     * Player is a class containing a vehicle and a list of powerups.
+     * A Player is a user that will move across the gameworld.
+     *
+     * @param name Name of player
+     */
+    public Player(String name) {
         this.name = name;
         this.playerId = UUID.randomUUID();
     }
 
-    public void addVehicle(World world, float xPos, float yPos){
+    /**
+     * @param world is needed for creating the body of a vehicle.
+     * @param xPos  spawn position of the car in the world
+     * @param yPos  spawn position of the car in the world
+     */
+    public void addVehicle(World world, float xPos, float yPos) {
         this.vehicle = VehicleFactory.createSportsCar(world, xPos, yPos);
     }
 
-    public String getName(){
+    /**
+     * @return Name of player
+     */
+    public String getName() {
         return name;
     }
 
-    public UUID getPlayerId(){
+    /**
+     * @return Unique id of player
+     */
+    public UUID getPlayerId() {
         return playerId;
     }
 
-    public List<AbstractPowerUp> getListPowerUp(){
-        return (List<AbstractPowerUp>) listPowersUp.clone();
+    /**
+     * @return list of {@link AbstractPowerUp()} cloned
+     */
+    public List<AbstractPowerUp> getListPowerUp() {
+        return (List<AbstractPowerUp>) listPowerUp.clone();
     }
 
-    public void addPowerUp(AbstractPowerUp powerUp){
-        listPowersUp.add(powerUp);
+    /**
+     *
+     * @param powerUp Add a {@link AbstractPowerUp()} to Player
+     */
+    public void addPowerUp(AbstractPowerUp powerUp) {
+        listPowerUp.add(powerUp);
     }
 
-    // Do something with vehicle or shoot a enemy, maybe change sprite
-    public void usePowerUp(){
-
+    /**
+     * Use a powerup if it exist one.
+     */
+    public void usePowerUp() {
+        if (listPowerUp.size() > 0) {
+            listPowerUp.get(0).use(this);
+        }
     }
 
-    public void gas(){
+    /**
+     * Press on the gas pedal.
+     */
+    public void gas() {
         vehicle.gas();
     }
 
-    public void brake(){
+    /**
+     * Press on the brake.
+     */
+    public void brake() {
         vehicle.brake();
     }
 
-    public void rotateLeft(){
+    /**
+     * Tilt the vehicle left
+     */
+    public void rotateLeft() {
         vehicle.rotateLeft();
     }
 
-    public void rotateRight(){
+    /**
+     * Tilt the vehicle right
+     */
+    public void rotateRight() {
         vehicle.rotateRight();
     }
 
+    /**
+     *
+     * @return The position of vehicle
+     */
     public Vector2 getPosition() {
         return vehicle.getPosition();
+    }
+
+    public IVehicle getVehicle() {
+        return vehicle;
     }
 }

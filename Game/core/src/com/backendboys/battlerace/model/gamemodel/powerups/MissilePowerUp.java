@@ -11,7 +11,7 @@ public class MissilePowerUp extends AbstractPowerUp {
     }
 
     @Override
-    protected void onPickup(Player player) {
+    public void use(Player player) {
 
     }
 }
