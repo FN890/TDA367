@@ -62,22 +62,31 @@ abstract class AbstractVehicle implements IVehicle {
 
     protected abstract List<Body> initParts(Body main, World world);
 
+    /**
+     * Apply a forward force to the center of vehicle if speed < topSpeed.
+     */
     public void gas() {
-        if (body.getLinearVelocity().x > topSpeed) {
+        if (body.getLinearVelocity().x >= topSpeed) {
             return;
         }
         float force = acceleration * body.getMass();
         body.applyForceToCenter(force, 0f, true);
     }
 
+    /**
+     * Apply a backwards force to the center of vehicle if speed > 0.
+     */
     public void brake() {
-        if (body.getLinearVelocity().x < 0) {
+        if (body.getLinearVelocity().x <= 0) {
             return;
         }
         float force = -acceleration * body.getMass() * 0.5f;
         body.applyForceToCenter(force, 0f, true);
     }
 
+    /**
+     * Apply clockwise torque to the center of vehicle
+     */
     public void rotateRight() {
         if (body.getAngularVelocity() < -1 * 2 * Math.PI) {
             return;
@@ -86,6 +95,9 @@ abstract class AbstractVehicle implements IVehicle {
         body.applyTorque(torque, true);
     }
 
+    /**
+     * Apply counter-clockwise torque to the center of vehicle
+     */
     public void rotateLeft() {
         if (body.getAngularVelocity() > 1 * 2 * Math.PI) {
             return;
@@ -94,14 +106,23 @@ abstract class AbstractVehicle implements IVehicle {
         body.applyTorque(torque, true);
     }
 
+    /**
+     * @return Position of center mass of the body.
+     */
     public Vector2 getWorldCenter() {
         return new Vector2(body.getWorldCenter());
     }
 
+    /**
+     * @return Vehicle position.
+     */
     public Vector2 getPosition() {
         return new Vector2(body.getPosition());
     }
 
+    /**
+     * @param pos Changes the position of vehicle.
+     */
     public void setPosition(Vector2 pos) {
         body.getPosition().set(pos);
     }
