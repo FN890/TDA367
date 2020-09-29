@@ -6,6 +6,9 @@ import com.badlogic.gdx.physics.box2d.joints.*;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * AbstractCar extends AbstractVehicle
+ */
 abstract class AbstractCar extends AbstractVehicle {
 
     private final Chassi chassi;
@@ -20,6 +23,14 @@ abstract class AbstractCar extends AbstractVehicle {
     private Body rearWheel;
     private Body frontWheel;
 
+    /**
+     * @param world GameWorld holding all game objects.
+     * @param posX Spawn position in world.
+     * @param posY Spawn position in world.
+     * @param chassi Body part of car, holds width, height and mass.
+     * @param motor Car motor keeping track of TopSpeed, Acceleration and AngularAcceleration.
+     * @param wheels Holding wheel radius, friction, density and restitution.
+     */
     AbstractCar(World world, float posX, float posY, Chassi chassi, Motor motor, Wheels wheels) {
         super(chassi.getMass(), posX, posY, motor.getTopSpeed(), motor.getAcceleration(), motor.getAngularAcceleration());
 
@@ -118,6 +129,9 @@ abstract class AbstractCar extends AbstractVehicle {
         return Arrays.asList(rearWheel, frontWheel);
     }
 
+    /**
+     * Apply clockwise torque to the wheels making it rotate and pushing the car forward.
+     */
     @Override
     public void gas() {
         //frontWheel.applyForce(2*-12500f, 0f, 0f, 0, true);
@@ -125,6 +139,9 @@ abstract class AbstractCar extends AbstractVehicle {
         rearWheel.applyTorque(-10000 * motor.getAcceleration(), true);
     }
 
+    /**
+     * Apply counter-clockwise torque to the wheels making it rotate and pushing the car forward.
+     */
     @Override
     public void brake() {
         //frontWheel.applyForce(2*12500f, 0f, 0f, 0, true);
