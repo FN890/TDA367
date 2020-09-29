@@ -1,6 +1,9 @@
 package model;
 
+import controller.ServerController;
 import data.Vector2;
+import server.protocol.IServerProtocol;
+import server.protocol.ServerProtocolFactory;
 
 import java.net.InetAddress;
 import java.util.ArrayList;
@@ -8,7 +11,7 @@ import java.util.List;
 
 public class Game implements Runnable {
 
-    private static final int UPDATE_RATE = 20;
+    private static final int UPDATE_RATE = 5;
 
     private final String id;
     private final Player host;
@@ -55,7 +58,7 @@ public class Game implements Runnable {
             }
         }
     }
-    
+
     @Override
     public void run() {
 
@@ -64,7 +67,7 @@ public class Game implements Runnable {
 
         while (true) {
             taskTime = System.currentTimeMillis();
-            notifyUpdate();
+            sendPositionPackets();
             taskTime = System.currentTimeMillis() - taskTime;
 
             if (sleepTime - taskTime > 0) {
@@ -76,6 +79,20 @@ public class Game implements Runnable {
             }
         }
 
+    }
+
+    private void sendPositionPackets() {
+        IServerProtocol protocol = ServerProtocolFactory.getServerProtocol();
+
+        for (Player p1 : players) {
+            for (Player p2 : players) {
+
+                if (!p1.equals(p2)) {
+                    ServerController.getInstance().sendUDPPacket(protocol.writePosition(p1.getName(), p1.getPosition()), p2.getAddress(), p2.getPort());
+                }
+
+            }
+        }
     }
 
     public synchronized Player getPlayerByAddress(InetAddress address) {
@@ -100,12 +117,6 @@ public class Game implements Runnable {
     private void notifyListenersPlayerLeft(Player player) {
         for (GameListener l : listeners) {
             l.playerLeft(player);
-        }
-    }
-
-    private void notifyUpdate() {
-        for (GameListener l : listeners) {
-            l.update(players);
         }
     }
 

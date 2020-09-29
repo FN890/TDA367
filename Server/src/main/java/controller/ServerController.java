@@ -4,15 +4,17 @@ import server.TCPServer;
 import server.UDPServer;
 
 import java.io.IOException;
+import java.net.InetAddress;
 
 public class ServerController {
 
     private static final int PORT = 26000;
+    private static ServerController instance = null;
 
     private final TCPServer tcpServer;
     private final UDPServer udpServer;
 
-    public ServerController() {
+    private ServerController() {
         udpServer = createUDPServer();
         tcpServer = createTCPServer();
     }
@@ -37,6 +39,19 @@ public class ServerController {
 
         System.out.println("ERROR: Could not create TCP Server.");
         return null;
+    }
+
+    public void sendUDPPacket(String message, InetAddress address, int port) {
+        try {
+            udpServer.sendPacket(message, address, port);
+        } catch (IOException ignored) {}
+    }
+
+    public static ServerController getInstance() {
+        if (instance == null) {
+            instance = new ServerController();
+        }
+        return instance;
     }
 
 }

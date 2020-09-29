@@ -1,5 +1,7 @@
 package server.protocol;
 
+import data.Vector2;
+
 class ServerProtocolFacade implements IServerProtocol {
 
     private static ServerProtocolFacade instance = null;
@@ -21,6 +23,11 @@ class ServerProtocolFacade implements IServerProtocol {
     @Override
     public synchronized String writeError(String msg) {
         return writerProtocol.writeError(msg);
+    }
+
+    @Override
+    public synchronized String writePosition(String name, Vector2 pos) {
+        return writerProtocol.writePosition(name, pos);
     }
 
     static synchronized ServerProtocolFacade getInstance() {

@@ -8,12 +8,14 @@ public class Player {
 
     private final String name;
     private final InetAddress address;
+    private final int port;
 
     private Vector2 position = null;
 
-    public Player(String name, InetAddress address) {
+    public Player(String name, InetAddress address, int port) {
         this.name = name;
         this.address = address;
+        this.port = port;
     }
 
     public void setPosition(Vector2 position) {
@@ -26,6 +28,10 @@ public class Player {
 
     public InetAddress getAddress() {
         return address;
+    }
+
+    public int getPort() {
+        return port;
     }
 
     public Vector2 getPosition() {

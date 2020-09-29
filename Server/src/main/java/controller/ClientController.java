@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.List;
 
 public class ClientController implements Runnable, GameListener {
 
@@ -60,6 +61,7 @@ public class ClientController implements Runnable, GameListener {
     }
 
 
+    // TODO: Separate these into own class. --------------------
     private void handleCommand(ICommand cmd) {
 
         switch (cmd.getCmd()) {
@@ -89,8 +91,9 @@ public class ClientController implements Runnable, GameListener {
 
         String name = args[0];
 
-        Player player = new Player(name, socket.getInetAddress());
-        GamesManager.getInstance().createGame(player);
+        Player player = new Player(name, socket.getInetAddress(), socket.getPort());
+        currentGame = GamesManager.getInstance().createGame(player);
+        currentGame.addListener(this);
     }
 
     // join:ID,Name
@@ -109,27 +112,32 @@ public class ClientController implements Runnable, GameListener {
             return;
         }
 
-        Player player = new Player(name, socket.getInetAddress());
+        Player player = new Player(name, socket.getInetAddress(), socket.getPort());
 
         try {
             game.addPlayer(player);
             currentGame = game;
+            currentGame.addListener(this);
         } catch (GameException e) {
             writer.println(protocol.writeError(e.getMessage()));
         }
 
     }
 
+    // leave
     private void handleLeaveGame() {
         if (currentGame == null) {
             return;
         }
 
         currentGame.removePlayerByAddress(socket.getInetAddress());
+        currentGame.removeListener(this);
         currentGame = null;
 
         writer.println("Left the game.");
     }
+
+    // TODO: ------------------------------------------------------------------------
 
     private void disconnect() {
         try {
@@ -149,8 +157,5 @@ public class ClientController implements Runnable, GameListener {
 
     }
 
-    @Override
-    public void positionUpdated(Player player) {
 
-    }
 }

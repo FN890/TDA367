@@ -10,6 +10,8 @@ public class GamesManager {
     private final List<Game> games = new ArrayList<>();
     private int currentGameID = 1400;
 
+    private GamesManager() {}
+
     public synchronized Game createGame(Player host) {
         Game game = new Game(generateGameID(), host);
         games.add(game);
@@ -35,7 +37,7 @@ public class GamesManager {
     }
 
 
-    public static GamesManager getInstance() {
+    public static synchronized GamesManager getInstance() {
         if (instance == null) {
             instance = new GamesManager();
         }
