@@ -1,9 +1,11 @@
 package com.backendboys.battlerace.model.gamemodel;
 
+import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
 import com.backendboys.battlerace.model.gamemodel.player.Player;
 import com.backendboys.battlerace.model.gamemodel.vehicle.SportsCar;
 import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.World;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +70,14 @@ public class GameModel {
 
     public Vector2 getPlayerPosition() {
         return player.getPosition();
+    }
+
+    /**
+     * Temp function for testing speed
+     */
+    public void usePowerUp(){
+        WorldExplosions worldExplosions = new WorldExplosions();
+        worldExplosions.addExplosion(new Vector2(player.getPosition().x, player.getPosition().y+10), 1, gameWorld.getWorld());
     }
 
 }

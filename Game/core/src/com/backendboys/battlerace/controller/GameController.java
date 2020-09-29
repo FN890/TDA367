@@ -52,6 +52,8 @@ public class GameController implements InputProcessor {
                 case Input.Keys.ESCAPE:
                     toggleMenu();
                     break;
+                case Input.Keys.SPACE:
+                    gameModel.usePowerUp();
             }
         }
     }
