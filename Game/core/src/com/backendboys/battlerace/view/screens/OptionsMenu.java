@@ -11,18 +11,27 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+/**
+ * The OptionMenu in our game. Is in view when it's set as the current screen for our application
+ */
 class OptionsMenu extends AbstractMenuScreen implements IScreen {
 
     private final SpriteBatch batch;
     private Stage stage;
 
-
+    /**
+     * Constructor
+     * @param menuController The controller is needed currently to check setting's
+     */
     OptionsMenu(MenuController menuController) {
         super(menuController);
 
         batch = new SpriteBatch();
     }
 
+    /**
+     * Shows the OptionsMenu and calls the method that add the buttons to the menu
+     */
     @Override
     public void show() {
         super.show();
