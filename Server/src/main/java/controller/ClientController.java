@@ -1,6 +1,7 @@
 package controller;
 
 import model.*;
+import server.PacketListener;
 import server.protocol.ICommand;
 import server.protocol.IServerProtocol;
 import server.protocol.ProtocolException;
@@ -12,7 +13,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class ClientController implements Runnable, GameListener {
+public class ClientController implements Runnable, GameListener, PacketListener {
 
     private final Socket socket;
 
@@ -33,6 +34,8 @@ public class ClientController implements Runnable, GameListener {
             this.reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.writer = new PrintWriter(socket.getOutputStream(), true);
             this.protocol = ServerProtocolFactory.getServerProtocol();
+
+            ServerController.getInstance().addPacketListener(socket.getInetAddress(), this);
 
             String input;
             while ((input = reader.readLine()) != null) {
@@ -141,6 +144,7 @@ public class ClientController implements Runnable, GameListener {
     private void disconnect() {
         try {
             System.out.println("Client disconnected from server: " + socket.getInetAddress().getHostAddress());
+            ServerController.getInstance().removePacketListener(socket.getInetAddress());
             socket.close();
         } catch (Exception ignored) {}
     }
@@ -153,6 +157,12 @@ public class ClientController implements Runnable, GameListener {
 
     @Override
     public void playerLeft(Player player) {
+
+    }
+
+
+    @Override
+    public void gotPacket(String message) {
 
     }
 

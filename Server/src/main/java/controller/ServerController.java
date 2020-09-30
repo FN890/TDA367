@@ -1,5 +1,6 @@
 package controller;
 
+import server.PacketListener;
 import server.TCPServer;
 import server.UDPServer;
 
@@ -39,6 +40,14 @@ public class ServerController {
 
         System.out.println("ERROR: Could not create TCP Server.");
         return null;
+    }
+
+    public void addPacketListener(InetAddress address, PacketListener listener) {
+        udpServer.addListener(address, listener);
+    }
+
+    public void removePacketListener(InetAddress address) {
+        udpServer.removeListener(address);
     }
 
     public void sendUDPPacket(String message, InetAddress address, int port) {
