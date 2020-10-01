@@ -12,10 +12,11 @@ class PlayerTest {
 
     Player player;
     private final String testName = "Dummy";
+    World world;
 
     public PlayerTest() {
         player = new Player(testName);
-        World world = new World(new Vector2(0, -10), true);
+        world = new World(new Vector2(0, -10), true);
     }
 
     @Test
@@ -30,29 +31,26 @@ class PlayerTest {
 
     @Test
     public void PlayerAddVehicle() {
-        //Not sure how to implement, maybe create a dummy world because we need
-        // a world to create a vehicle
+        player.addVehicle(world, 10, 10);
+        assertNotNull(player.getVehicle());
     }
 
-    /**
-     * PowerUps not implemented fully yet
-     */
+
     @Test
     public void PlayerAddPowerUp() {
-        //player.addPowerUp(new MissilePowerUp());
-        //player.addPowerUp(new NitroPowerUp());
+        player.addPowerUp(new MissilePowerUp());
+        player.addPowerUp(new NitroPowerUp());
 
-        //assertTrue(player.getListPowerUp().size() == 2);
+        assertTrue(player.getListPowerUp().size() == 2);
     }
 
-    /**
-     * PowerUps not implemented fully yet
-     */
+
     @Test
     public void PlayerUsePowerUp() {
-        //player.usePowerUp();
-        //player.usePowerUp();
+        player.usePowerUp();
+        player.usePowerUp();
 
-        //assertTrue(player.getListPowerUp().size() == 0);
+        assertTrue(player.getListPowerUp().size() == 0);
     }
+
 }
