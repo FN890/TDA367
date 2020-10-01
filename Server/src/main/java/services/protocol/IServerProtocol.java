@@ -2,6 +2,7 @@ package services.protocol;
 
 import data.Vector2;
 
+//TODO: Implement ways for client to get gameinfo, such as, game id.
 /**
  * IServerProtocol used for parsing message into ICommand and correctly writing messages.
  */
