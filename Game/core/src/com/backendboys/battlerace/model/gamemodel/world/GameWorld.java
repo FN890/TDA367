@@ -16,6 +16,7 @@ import java.util.Random;
  */
 public class GameWorld {
 
+    private static final int SPEED_SCALE = 3;
     private final World world;
     private final GroundGenerator groundGenerator;
 
@@ -43,13 +44,15 @@ public class GameWorld {
      */
     public void stepWorld() {
 
-        float delta = Gdx.graphics.getDeltaTime();
-        accumulator += Math.min(delta, 0.25f);
-        if (accumulator >= STEP_TIME) {
-            accumulator -= STEP_TIME;
-            world.step(STEP_TIME, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
+        for(int i=0; i<SPEED_SCALE; i++) {
+            float delta = Gdx.graphics.getDeltaTime();
+            accumulator += Math.min(delta, 0.25f);
+            if (accumulator >= STEP_TIME) {
+                accumulator -= STEP_TIME;
+                world.step(STEP_TIME, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
+            }
+            checkCollision();
         }
-        checkCollision();
     }
 
     //TODO Check collision between car and powerup in world
