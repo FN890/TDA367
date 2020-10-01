@@ -30,17 +30,29 @@ public class WorldExplosions {
     public int getNumberOffExplosions() {
         return explosions.size();
     }
+    public int getTotalParticles(){
+        int particles = 0;
+        for(Explosion explosion: explosions){
+            particles += explosion.getNParticles();
+        }
+        return particles;
+    }
 
     /**
-     * removes "dead explosions" by checking if all the particles have slowed down to a set value
+     * removes "dead explosions" and slow particles by checking if all the particles have slowed down to a set value
      * if all particles have slowed down it is removed from the explosions list
      */
     public void removeDeadExplosions() {
+        ArrayList<Explosion> removedExplosions = new ArrayList<>();
         for (Explosion explosion : explosions) {
             explosion.removeSlowParticles();
             if (explosion.explosionIsDead()) {
-                explosions.remove(explosion);
+                removedExplosions.add(explosion);
             }
         }
+        for (Explosion removedExplosion : removedExplosions){
+            explosions.remove(removedExplosion);
+        }
+
     }
 }
