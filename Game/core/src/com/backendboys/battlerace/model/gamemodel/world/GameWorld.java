@@ -54,6 +54,7 @@ public class GameWorld {
 
     //TODO Check collision between car and powerup in world
     //TODO Remove powerup and give the powerup to the player
+    //Collision handling will have its' own class in future versions
     private void checkCollision() {
     }
 
