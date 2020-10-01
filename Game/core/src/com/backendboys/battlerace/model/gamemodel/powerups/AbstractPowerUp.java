@@ -35,6 +35,12 @@ public abstract class AbstractPowerUp {
         Body body = world.createBody(bodyDef);
         body.createFixture(fixtureDef);
 
+        // PowerUp is a sensor, no physics collision will occur.
+        // But collisions and contact listeners will still be called.
+        for(int i=0; i<body.getFixtureList().size; i++) {
+            body.getFixtureList().get(i).setSensor(true);
+        }
+
         boxShape.dispose();
     }
 
