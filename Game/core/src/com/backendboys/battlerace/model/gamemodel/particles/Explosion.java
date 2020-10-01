@@ -35,10 +35,11 @@ class Explosion {
      * The particle is removed from the world and the explosionParticles list
      */
     void removeSlowParticles() {
+
         ArrayList<ExplosionParticle> destroyedParticles = new ArrayList<>();
         for (ExplosionParticle explosionParticle : explosionParticles) {
             Body explosionBody = explosionParticle.getBody();
-            if (explosionBody.getLinearVelocity().y < 50f && explosionBody.getLinearVelocity().x < 50f) {
+            if (Math.abs(explosionBody.getLinearVelocity().y) < 50f && Math.abs(explosionBody.getLinearVelocity().x) < 50f) {
                 explosionBody.getWorld().destroyBody(explosionBody);
                 destroyedParticles.add(explosionParticle);
             }
