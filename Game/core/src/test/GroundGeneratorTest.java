@@ -15,12 +15,12 @@ public class GroundGeneratorTest {
     private final static float STEP = 1;
     private final static int FRICTION = 1;
 
-    public GroundGeneratorTest(){
+    public GroundGeneratorTest() {
         groundGenerator = new GroundGenerator(NUMBER_VERTICES, STEP, FRICTION);
     }
 
     @Test
-    public void testVertices(){
+    public void testVertices() {
         assertEquals(NUMBER_VERTICES, groundGenerator.getNumberVertices());
     }
 

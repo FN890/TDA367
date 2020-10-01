@@ -21,6 +21,7 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
 
     /**
      * Constructor
+     *
      * @param menuController The controller is needed currently to check setting's
      */
     OptionsMenu(MenuController menuController) {

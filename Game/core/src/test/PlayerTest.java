@@ -13,23 +13,23 @@ class PlayerTest {
     Player player;
     private final String testName = "Dummy";
 
-    public PlayerTest(){
+    public PlayerTest() {
         player = new Player(testName);
         World world = new World(new Vector2(0, -10), true);
     }
 
     @Test
-    public void PlayerCreated(){
+    public void PlayerCreated() {
         assertNotNull(player);
     }
 
     @Test
-    public void PlayerCheckName(){
+    public void PlayerCheckName() {
         assertEquals(testName, player.getName());
     }
 
     @Test
-    public void PlayerAddVehicle(){
+    public void PlayerAddVehicle() {
         //Not sure how to implement, maybe create a dummy world because we need
         // a world to create a vehicle
     }
@@ -38,7 +38,7 @@ class PlayerTest {
      * PowerUps not implemented fully yet
      */
     @Test
-    public void PlayerAddPowerUp(){
+    public void PlayerAddPowerUp() {
         //player.addPowerUp(new MissilePowerUp());
         //player.addPowerUp(new NitroPowerUp());
 
@@ -49,7 +49,7 @@ class PlayerTest {
      * PowerUps not implemented fully yet
      */
     @Test
-    public void PlayerUsePowerUp(){
+    public void PlayerUsePowerUp() {
         //player.usePowerUp();
         //player.usePowerUp();
 

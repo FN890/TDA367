@@ -24,11 +24,11 @@ abstract class AbstractCar extends AbstractVehicle {
     private Body frontWheel;
 
     /**
-     * @param world GameWorld holding all game objects.
-     * @param posX Spawn position in world.
-     * @param posY Spawn position in world.
+     * @param world  GameWorld holding all game objects.
+     * @param posX   Spawn position in world.
+     * @param posY   Spawn position in world.
      * @param chassi Body part of car, holds width, height and mass.
-     * @param motor Car motor keeping track of TopSpeed, Acceleration and AngularAcceleration.
+     * @param motor  Car motor keeping track of TopSpeed, Acceleration and AngularAcceleration.
      * @param wheels Holding wheel radius, friction, density and restitution.
      */
     AbstractCar(World world, float posX, float posY, Chassi chassi, Motor motor, Wheels wheels) {

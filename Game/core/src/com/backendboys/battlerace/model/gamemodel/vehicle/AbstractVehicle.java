@@ -7,7 +7,6 @@ import java.util.List;
 
 /**
  * Abstract class that has properties that a vehicle would be expected to have.
- *
  */
 abstract class AbstractVehicle implements IVehicle {
 
