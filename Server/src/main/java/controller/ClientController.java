@@ -163,7 +163,7 @@ public class ClientController implements Runnable, GameListener, PacketListener 
 
     @Override
     public void gotPacket(String message) {
-
+        
     }
 
 
