@@ -23,6 +23,7 @@ abstract class AbstractCar extends AbstractVehicle {
     private Body rearWheel;
     private Body frontWheel;
 
+
     /**
      * @param world  GameWorld holding all game objects.
      * @param posX   Spawn position in world.
