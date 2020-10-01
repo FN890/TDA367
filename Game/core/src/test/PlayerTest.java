@@ -39,10 +39,10 @@ class PlayerTest {
      */
     @Test
     public void PlayerAddPowerUp(){
-        //player.addPowerUp(new MissilePowerUp());
-        //player.addPowerUp(new NitroPowerUp());
+        player.addPowerUp(new MissilePowerUp());
+        player.addPowerUp(new NitroPowerUp());
 
-        //assertTrue(player.getListPowerUp().size() == 2);
+        assertTrue(player.getListPowerUp().size() == 2);
     }
 
     /**
