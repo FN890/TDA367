@@ -9,8 +9,8 @@ class ServerProtocolWriter {
     }
 
 
-    String writePosition(String name, Vector2 pos) {
-        return "pos:" + name + "," + pos.x + "," + pos.y;
+    String writePosition(String name, Vector2 pos, float rotation) {
+        return "pos:" + name + "," + pos.x + "," + pos.y + "," + rotation;
     }
 
 }

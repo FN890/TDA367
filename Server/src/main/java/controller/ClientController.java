@@ -43,7 +43,7 @@ public class ClientController implements Runnable, GameListener, PacketListener 
 
                 try {
                     // Parse into command
-                    ICommand cmd = protocol.parseTCPMessage(input);
+                    ICommand cmd = protocol.parseMessage(input);
                     handleCommand(cmd);
 
                 } catch (ProtocolException e) {

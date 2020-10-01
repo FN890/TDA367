@@ -10,10 +10,12 @@ class Command implements ICommand {
         this.args = args;
     }
 
+    @Override
     public String getCmd() {
         return cmd;
     }
 
+    @Override
     public String[] getArgs() {
         return args;
     }

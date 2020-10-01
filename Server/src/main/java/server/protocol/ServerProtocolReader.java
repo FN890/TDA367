@@ -5,9 +5,9 @@ import java.util.List;
 
 class ServerProtocolReader {
 
-    private static final String[] VALID_COMMANDS = {"create", "join", "leave"};
+    private static final String[] VALID_COMMANDS = {"create", "join", "leave", "pos"};
 
-    Command parseTCPMessage(String msg) throws ProtocolException {
+    Command parseMessage(String msg) throws ProtocolException {
         String trimmed = msg.trim().toLowerCase();
         StringBuilder sb = new StringBuilder();
 
@@ -44,7 +44,7 @@ class ServerProtocolReader {
         return new Command(command, args);
     }
 
-    Command parseTCPCommand(Command cmd) throws ProtocolException {
+    Command parseCommand(Command cmd) throws ProtocolException {
 
         for (String s : VALID_COMMANDS) {
             if (cmd.getCmd().equalsIgnoreCase(s)) {

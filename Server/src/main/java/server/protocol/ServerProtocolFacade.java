@@ -15,9 +15,9 @@ class ServerProtocolFacade implements IServerProtocol {
     }
 
     @Override
-    public synchronized Command parseTCPMessage(String msg) throws ProtocolException {
-        Command cmd = readerProtocol.parseTCPMessage(msg);
-        return readerProtocol.parseTCPCommand(cmd);
+    public synchronized Command parseMessage(String msg) throws ProtocolException {
+        Command cmd = readerProtocol.parseMessage(msg);
+        return readerProtocol.parseCommand(cmd);
     }
 
     @Override
@@ -26,8 +26,8 @@ class ServerProtocolFacade implements IServerProtocol {
     }
 
     @Override
-    public synchronized String writePosition(String name, Vector2 pos) {
-        return writerProtocol.writePosition(name, pos);
+    public synchronized String writePosition(String name, Vector2 pos, float rotation) {
+        return writerProtocol.writePosition(name, pos, rotation);
     }
 
     static synchronized ServerProtocolFacade getInstance() {

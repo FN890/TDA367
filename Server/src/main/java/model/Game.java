@@ -88,7 +88,7 @@ public class Game implements Runnable {
             for (Player p2 : players) {
 
                 if (!p1.equals(p2)) {
-                    ServerController.getInstance().sendUDPPacket(protocol.writePosition(p1.getName(), p1.getPosition()), p2.getAddress(), p2.getPort());
+                    ServerController.getInstance().sendUDPPacket(protocol.writePosition(p1.getName(), p1.getPosition(), p1.getRotation()), p2.getAddress(), p2.getPort());
                 }
 
             }

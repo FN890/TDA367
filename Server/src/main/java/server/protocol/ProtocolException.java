@@ -1,5 +1,8 @@
 package server.protocol;
 
+/**
+ * ProtocolException containing a ProtocolError.
+ */
 public class ProtocolException extends Exception {
 
     private final ProtocolError error;
@@ -13,6 +16,9 @@ public class ProtocolException extends Exception {
         return error.message;
     }
 
+    /**
+     * @return The ProtocolError.
+     */
     public ProtocolError getError() {
         return error;
     }
