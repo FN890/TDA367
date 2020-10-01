@@ -21,7 +21,7 @@ public class GameModel {
 
     // TODO: Create Factory for Car.
     private SportsCar car;
-    private Player player;
+    private final Player player;
 
     public GameModel() {
         this.gameWorld = new GameWorld();
