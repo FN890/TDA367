@@ -34,7 +34,7 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
     @Override
     public void render(float delta) {
         super.render(delta);
-        gameController.gameRendered();
+        gameController.gameStepWorld();
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

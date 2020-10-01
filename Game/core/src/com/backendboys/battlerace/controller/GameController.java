@@ -35,7 +35,7 @@ public class GameController implements InputProcessor {
     /**
      * Calls stepWorld in GameModel
      */
-    public void gameRendered() {
+    public void gameStepWorld() {
         gameModel.getGameWorld().stepWorld();
         handleKeyPresses();
     }
