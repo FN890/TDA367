@@ -32,6 +32,9 @@ public class GameController implements InputProcessor {
         keysDown = new ArrayList<>();
     }
 
+    /**
+     * Calls stepWorld in GameModel
+     */
     public void gameRendered() {
         gameModel.getGameWorld().stepWorld();
         handleKeyPresses();
@@ -57,6 +60,8 @@ public class GameController implements InputProcessor {
                     break;
                 case Input.Keys.SPACE:
                     gameModel.usePowerUp();
+                default:
+                    break;
             }
         }
     }
@@ -90,6 +95,9 @@ public class GameController implements InputProcessor {
 
                 break;
             case 'd':
+
+                break;
+            default:
 
                 break;
         }
