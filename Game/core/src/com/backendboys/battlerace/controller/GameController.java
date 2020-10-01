@@ -82,6 +82,11 @@ public class GameController implements InputProcessor {
         return true;
     }
 
+    /**
+     * Handles key inputs.
+     * @param character the key typed.
+     * @return is keyTyped was handled correctly.
+     */
     @Override
     public boolean keyTyped(char character) {
         switch (character) {
