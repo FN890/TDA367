@@ -43,7 +43,14 @@ public class PowerUpGenerator {
 
         for (int i = 0; i < numberPowerups; i++) {
 
-            positionX -= random.nextInt(100);
+            if (positionX > 200) {
+                positionX += random.nextInt(200);
+            }
+
+            if ((positionX / 5) > vertices.size() - 1) {
+                return powerUps;
+            }
+
             Vector2 tempVector = vertices.get(positionX / 5);
             int positionY = (int) tempVector.y + 30;
 
