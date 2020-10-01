@@ -16,9 +16,9 @@ import java.util.UUID;
  */
 public class Player {
 
-    private UUID playerId;
-    private String name;
-    private ArrayList<AbstractPowerUp> listPowerUp = new ArrayList<>();
+    private final UUID playerId;
+    private final String name;
+    private final ArrayList<AbstractPowerUp> listPowerUp = new ArrayList<>();
 
     private IVehicle vehicle;
 

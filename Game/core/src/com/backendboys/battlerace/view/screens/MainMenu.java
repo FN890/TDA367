@@ -15,7 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  */
 class MainMenu extends AbstractMenuScreen implements IScreen {
 
-    private SpriteBatch batch;
+    private final SpriteBatch batch;
     private Stage stage;
 
     MainMenu(MenuController menuController) {

@@ -9,8 +9,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 abstract class AbstractScreen implements Screen {
 
-    private Viewport viewport;
-    private OrthographicCamera camera;
+    private final Viewport viewport;
+    private final OrthographicCamera camera;
 
     protected AbstractScreen() {
         camera = new OrthographicCamera();
