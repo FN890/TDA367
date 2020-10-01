@@ -13,6 +13,10 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+/**
+ * ClientController Controls one client connected to the TCPServer, each ClientController
+ * has it's own thread.
+ */
 public class ClientController implements Runnable, GameListener, PacketListener {
 
     private final Socket socket;
@@ -24,6 +28,10 @@ public class ClientController implements Runnable, GameListener, PacketListener 
 
     private Game game = null;
 
+    /**
+     * Initializes a ClientController.
+     * @param socket The socket which the client is connected to.
+     */
     public ClientController(Socket socket) {
         this.socket = socket;
     }
@@ -65,10 +73,19 @@ public class ClientController implements Runnable, GameListener, PacketListener 
 
     }
 
+    /**
+     * Send a TCP Message to the clients socket.
+     * @param message The message to send.
+     */
     public void sendTCP(String message) {
         writer.println(message);
     }
 
+    /**
+     * Creates a new Game for this client.
+     * Sends a response to the client if any error occurs.
+     * @param name The host Player name.
+     */
     public void createGame(String name) {
         if (game != null) {
             sendTCP(protocol.writeError("Already in game."));
@@ -83,6 +100,12 @@ public class ClientController implements Runnable, GameListener, PacketListener 
         this.game = game;
     }
 
+    /**
+     * Joins a game by finding it by it's identifier.
+     * Sends a response to the client if any error occurs.
+     * @param name The Player name.
+     * @param id The Game id to join.
+     */
     public void joinGame(String name, String id) {
         if (game != null) {
             sendTCP(protocol.writeError("Already in game."));
@@ -107,6 +130,9 @@ public class ClientController implements Runnable, GameListener, PacketListener 
 
     }
 
+    /**
+     * Leaves the game if the client is in any.
+     */
     public void leaveGame() {
         if (game == null) return;
 
@@ -115,12 +141,22 @@ public class ClientController implements Runnable, GameListener, PacketListener 
         game = null;
     }
 
+    /**
+     * Updates the clients position and rotation in a game, if there is a game.
+     * @param x The new x position.
+     * @param y The new y position.
+     * @param rotation The new rotation.
+     */
     public void updateGamePosition(float x, float y, float rotation) {
         if (game == null) return;
 
         game.updatePositionByAddress(socket.getInetAddress(), x, y, rotation);
     }
 
+    /**
+     * Disconnects the client, and performs all safety procedures to
+     * properly end this clients life on the TCPServer.
+     */
     private void disconnect() {
         try {
             System.out.println("Client disconnected from server: " + socket.getInetAddress().getHostAddress());

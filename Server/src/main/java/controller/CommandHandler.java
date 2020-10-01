@@ -4,16 +4,27 @@ import services.protocol.ICommand;
 import services.protocol.IServerProtocol;
 import services.protocol.ServerProtocolFactory;
 
+/**
+ * Handles all incoming commands from the TCP- or UDPServer.
+ */
 class CommandHandler {
 
     private final ClientController clientController;
     private final IServerProtocol protocol;
 
+    /**
+     * Initializes a CommandHandler.
+     * @param clientController The ClientController using this handler.
+     */
     CommandHandler(ClientController clientController) {
         this.clientController = clientController;
         protocol = ServerProtocolFactory.getServerProtocol();
     }
 
+    /**
+     * Handles a command and forwards to ClientController.
+     * @param cmd The command to handle.
+     */
     void handleCommand(ICommand cmd) {
         switch (cmd.getCmd()) {
             case "create":
@@ -31,6 +42,11 @@ class CommandHandler {
         }
     }
 
+    /**
+     * Handles Create Game Command.
+     * Form: create:name
+     * @param args The commands arguments.
+     */
     private void handleCreateGame(String[] args) {
         if (args.length < 1) {
             clientController.sendTCP(protocol.writeError("Invalid arguments."));
@@ -40,6 +56,11 @@ class CommandHandler {
         clientController.createGame(name);
     }
 
+    /**
+     * Handles Join Game Command.
+     * Form: join:id,name
+     * @param args The commands arguments.
+     */
     private void handleJoinGame(String[] args) {
         if (args.length < 2) {
             clientController.sendTCP(protocol.writeError("Invalid arguments."));
@@ -52,11 +73,19 @@ class CommandHandler {
         clientController.joinGame(name, id);
     }
 
+    /**
+     * Handles Leave Game Command.
+     * Form: leave
+     */
     private void handleLeaveGame() {
         clientController.leaveGame();
     }
 
-
+    /**
+     * Handles Update Position Command.
+     * Form: pos:x,y,rotation
+     * @param args The commands arguments.
+     */
     private void handleUpdatePos(String[] args) {
         if (args.length < 3) {
             clientController.sendTCP(protocol.writeError("Invalid arguments."));

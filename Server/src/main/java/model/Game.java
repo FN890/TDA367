@@ -9,33 +9,52 @@ import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO: SAFETY UPDATE! Should be able to get game id, also remove game when no players left!
+/**
+ * Game class keeps track of an ongoing game.
+ */
 public class Game implements Runnable {
 
+    /**
+     * How often packets will be sent to clients. Unit: Times/Second
+     */
     private static final int UPDATE_RATE = 5;
 
     private final String id;
-    private final Player host;
     private final List<Player> players = new ArrayList<>();
-
     private final List<GameListener> listeners = new ArrayList<>();
 
+    private boolean run = false;
+    private boolean gameEnded = false;
+
+    /**
+     * Adds a GameListener for listening to game updates.
+     * @param listener The GameListener to add.
+     */
     public void addListener(GameListener listener) {
         listeners.add(listener);
     }
 
+    /**
+     * Removes a GameListener.
+     * @param listener The GameListener to remove.
+     */
     public void removeListener(GameListener listener) {
         listeners.remove(listener);
     }
 
     Game(String id, Player host) {
         this.id = id;
-        this.host = host;
+        players.add(host);
     }
 
+    /**
+     * Adds a player to the game.
+     * @param player The Player to add.
+     * @throws GameException When the player name is already taken.
+     */
     public synchronized void addPlayer(Player player) throws GameException {
         for (Player p : players) {
-            if (player.getName().equalsIgnoreCase(p.getName()) || player.getName().equalsIgnoreCase(host.getName())) {
+            if (player.getName().equalsIgnoreCase(p.getName())) {
                 throw new GameException(GameError.NAME_TAKEN);
             }
         }
@@ -43,6 +62,10 @@ public class Game implements Runnable {
         notifyListenersPlayerJoined(player);
     }
 
+    /**
+     * Removes a player from the game, and ends the game if it's the last player.
+     * @param address The Players Address which to remove.
+     */
     public synchronized void removePlayerByAddress(InetAddress address) {
         for (Player p : players) {
             if (p.getAddress().equals(address)) {
@@ -50,8 +73,24 @@ public class Game implements Runnable {
                 notifyListenersPlayerLeft(p);
             }
         }
+
+        if (players.isEmpty()) {
+            endGame();
+        }
     }
 
+    private synchronized void endGame() {
+        GamesManager.getInstance().removeGame(id);
+        gameEnded = true;
+    }
+
+    /**
+     * Updates player position and rotation by its InetAddress.
+     * @param address The Player InetAddress.
+     * @param x The x position.
+     * @param y The y position.
+     * @param rotation The rotation.
+     */
     public synchronized void updatePositionByAddress(InetAddress address, float x, float y, float rotation) {
         for (Player p : players) {
             if (p.getAddress().equals(address)) {
@@ -61,13 +100,23 @@ public class Game implements Runnable {
         }
     }
 
+    /**
+     * Tells the game whether to keep sending packets or not.
+     * @param run The boolean specifying if packets should be sent.
+     */
+    public synchronized void start(boolean run) {
+        this.run = run;
+    }
+
     @Override
     public void run() {
 
         long taskTime = 0;
         long sleepTime = 1000/UPDATE_RATE;
 
-        while (true) {
+        while (!gameEnded) {
+            if (!run) continue;
+
             taskTime = System.currentTimeMillis();
             sendPositionPackets();
             taskTime = System.currentTimeMillis() - taskTime;
@@ -83,6 +132,9 @@ public class Game implements Runnable {
 
     }
 
+    /**
+     * Sends position packet of every player in game, to every player in game.
+     */
     private void sendPositionPackets() {
         IServerProtocol protocol = ServerProtocolFactory.getServerProtocol();
 
@@ -97,6 +149,11 @@ public class Game implements Runnable {
         }
     }
 
+    /**
+     * Get a player by it's InetAddress
+     * @param address The players InetAddress.
+     * @return The Player.
+     */
     public synchronized Player getPlayerByAddress(InetAddress address) {
         for (Player p : players) {
             if (p.getAddress().equals(address)) {
