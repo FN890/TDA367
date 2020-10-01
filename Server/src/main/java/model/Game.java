@@ -2,13 +2,14 @@ package model;
 
 import controller.ServerController;
 import data.Vector2;
-import server.protocol.IServerProtocol;
-import server.protocol.ServerProtocolFactory;
+import services.protocol.IServerProtocol;
+import services.protocol.ServerProtocolFactory;
 
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO: SAFETY UPDATE! Should be able to get game id, also remove game when no players left!
 public class Game implements Runnable {
 
     private static final int UPDATE_RATE = 5;
@@ -51,10 +52,11 @@ public class Game implements Runnable {
         }
     }
 
-    public synchronized void updatePositionByAddress(InetAddress address, float x, float y) {
+    public synchronized void updatePositionByAddress(InetAddress address, float x, float y, float rotation) {
         for (Player p : players) {
             if (p.getAddress().equals(address)) {
                 p.setPosition(new Vector2(x, y));
+                p.setRotation(rotation);
             }
         }
     }

@@ -1,14 +1,18 @@
 package controller;
 
-import server.PacketListener;
-import server.TCPListener;
-import server.TCPServer;
-import server.UDPServer;
+import services.PacketListener;
+import services.TCPListener;
+import services.TCPServer;
+import services.UDPServer;
 
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 
+/**
+ * ServerController controls UDP and TCP servers.
+ * Also forwards packets.
+ */
 public class ServerController implements TCPListener {
 
     private static final int PORT = 26000;

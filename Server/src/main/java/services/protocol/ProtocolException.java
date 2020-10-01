@@ -1,4 +1,4 @@
-package server.protocol;
+package services.protocol;
 
 /**
  * ProtocolException containing a ProtocolError.

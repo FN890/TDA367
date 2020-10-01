@@ -1,4 +1,4 @@
-package server.protocol;
+package services.protocol;
 
 /**
  * ProtocolError contains types of errors with pre-defined messages.

@@ -1,4 +1,4 @@
-package server.protocol;
+package services.protocol;
 
 class Command implements ICommand {
 

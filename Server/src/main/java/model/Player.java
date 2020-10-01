@@ -4,6 +4,9 @@ import data.Vector2;
 
 import java.net.InetAddress;
 
+/**
+ * Player class used once in game. Holds the in-game name, position, and addresses.
+ */
 public class Player {
 
     private final String name;
@@ -13,6 +16,12 @@ public class Player {
     private Vector2 position = null;
     private float rotation;
 
+    /**
+     * Initializes a Player.
+     * @param name The player name.
+     * @param address The players InetAddress.
+     * @param port The players port.
+     */
     public Player(String name, InetAddress address, int port) {
         this.name = name;
         this.address = address;

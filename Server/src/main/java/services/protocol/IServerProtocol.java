@@ -1,4 +1,4 @@
-package server.protocol;
+package services.protocol;
 
 import data.Vector2;
 

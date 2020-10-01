@@ -1,4 +1,4 @@
-package server.protocol;
+package services.protocol;
 
 import java.util.ArrayList;
 import java.util.List;

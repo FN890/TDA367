@@ -1,4 +1,4 @@
-package server.protocol;
+package services.protocol;
 
 /**
  * ICommand represents a command parsed from a message. Retrieved from IServerProtocol.

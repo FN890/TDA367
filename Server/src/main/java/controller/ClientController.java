@@ -1,11 +1,11 @@
 package controller;
 
 import model.*;
-import server.PacketListener;
-import server.protocol.ICommand;
-import server.protocol.IServerProtocol;
-import server.protocol.ProtocolException;
-import server.protocol.ServerProtocolFactory;
+import services.PacketListener;
+import services.protocol.ICommand;
+import services.protocol.IServerProtocol;
+import services.protocol.ProtocolException;
+import services.protocol.ServerProtocolFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,9 +19,10 @@ public class ClientController implements Runnable, GameListener, PacketListener 
 
     private BufferedReader reader;
     private PrintWriter writer;
+    private CommandHandler cmdHandler;
     private IServerProtocol protocol;
 
-    private Game currentGame = null;
+    private Game game = null;
 
     public ClientController(Socket socket) {
         this.socket = socket;
@@ -34,8 +35,10 @@ public class ClientController implements Runnable, GameListener, PacketListener 
             this.reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.writer = new PrintWriter(socket.getOutputStream(), true);
             this.protocol = ServerProtocolFactory.getServerProtocol();
+            this.cmdHandler = new CommandHandler(this);
 
             ServerController.getInstance().addPacketListener(socket.getInetAddress(), this);
+
 
             String input;
             while ((input = reader.readLine()) != null) {
@@ -44,10 +47,10 @@ public class ClientController implements Runnable, GameListener, PacketListener 
                 try {
                     // Parse into command
                     ICommand cmd = protocol.parseMessage(input);
-                    handleCommand(cmd);
+                    cmdHandler.handleCommand(cmd);
 
                 } catch (ProtocolException e) {
-                    writer.println(protocol.writeError(e.getMessage()));
+                    sendTCP(protocol.writeError(e.getMessage()));
                 }
 
             }
@@ -62,55 +65,33 @@ public class ClientController implements Runnable, GameListener, PacketListener 
 
     }
 
-
-    // TODO: Separate these into own class. --------------------
-    private void handleCommand(ICommand cmd) {
-
-        switch (cmd.getCmd()) {
-
-            case "create":
-                handleCreateGame(cmd.getArgs());
-                break;
-
-            case "join":
-                handleJoinGame(cmd.getArgs());
-                break;
-
-            case "leave":
-                handleLeaveGame();
-                break;
-
-        }
-
+    public void sendTCP(String message) {
+        writer.println(message);
     }
 
-    // create:Name
-    private void handleCreateGame(String[] args) {
-        if (args.length < 1) {
-            writer.println(protocol.writeError("Invalid arguments."));
+    public void createGame(String name) {
+        if (game != null) {
+            sendTCP(protocol.writeError("Already in game."));
             return;
         }
-
-        String name = args[0];
 
         Player player = new Player(name, socket.getInetAddress(), socket.getPort());
-        currentGame = GamesManager.getInstance().createGame(player);
-        currentGame.addListener(this);
+        Game game = GamesManager.getInstance().createGame(player);
+
+        game.addListener(this);
+
+        this.game = game;
     }
 
-    // join:ID,Name
-    private void handleJoinGame(String[] args) {
-        if (args.length < 2) {
-            writer.println(protocol.writeError("Invalid arguments."));
+    public void joinGame(String name, String id) {
+        if (game != null) {
+            sendTCP(protocol.writeError("Already in game."));
             return;
         }
-
-        String id = args[0];
-        String name = args[1];
 
         Game game = GamesManager.getInstance().findGameByID(id);
         if (game == null) {
-            writer.println(protocol.writeError("Game not found."));
+            sendTCP(protocol.writeError("Game not found."));
             return;
         }
 
@@ -118,33 +99,33 @@ public class ClientController implements Runnable, GameListener, PacketListener 
 
         try {
             game.addPlayer(player);
-            currentGame = game;
-            currentGame.addListener(this);
+            game.addListener(this);
+            this.game = game;
         } catch (GameException e) {
-            writer.println(protocol.writeError(e.getMessage()));
+            sendTCP(protocol.writeError(e.getMessage()));
         }
 
     }
 
-    // leave
-    private void handleLeaveGame() {
-        if (currentGame == null) {
-            return;
-        }
+    public void leaveGame() {
+        if (game == null) return;
 
-        currentGame.removePlayerByAddress(socket.getInetAddress());
-        currentGame.removeListener(this);
-        currentGame = null;
-
-        writer.println("Left the game.");
+        game.removePlayerByAddress(socket.getInetAddress());
+        game.removeListener(this);
+        game = null;
     }
 
-    // TODO: ------------------------------------------------------------------------
+    public void updateGamePosition(float x, float y, float rotation) {
+        if (game == null) return;
+
+        game.updatePositionByAddress(socket.getInetAddress(), x, y, rotation);
+    }
 
     private void disconnect() {
         try {
             System.out.println("Client disconnected from server: " + socket.getInetAddress().getHostAddress());
             ServerController.getInstance().removePacketListener(socket.getInetAddress());
+            leaveGame();
             socket.close();
         } catch (Exception ignored) {}
     }
@@ -152,19 +133,23 @@ public class ClientController implements Runnable, GameListener, PacketListener 
 
     @Override
     public void playerJoined(Player player) {
-
+        sendTCP("Player " + player.getName() + " left the game.");
     }
 
     @Override
     public void playerLeft(Player player) {
-
+        sendTCP("Player " + player.getName() + " joined the game.");
     }
-
 
     @Override
     public void gotPacket(String message) {
-        
-    }
+        if (game == null) return;
 
+        try {
+            ICommand cmd = protocol.parseMessage(message);
+            cmdHandler.handleCommand(cmd);
+        } catch (ProtocolException ignored) {}
+
+    }
 
 }
