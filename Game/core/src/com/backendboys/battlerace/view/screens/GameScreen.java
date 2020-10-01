@@ -9,6 +9,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
+/**
+ * Class that handles rendering for the game
+ */
 class GameScreen extends AbstractScreen implements IScreen, IModelListener {
 
     private final GameController gameController;

@@ -27,6 +27,10 @@ public class WorldExplosions {
         }
     }
 
+    public int getNumberOffExplosions() {
+        return explosions.size();
+    }
+
     /**
      * removes "dead explosions" by checking if all the particles have slowed down to a set value
      * if all particles have slowed down it is removed from the explosions list

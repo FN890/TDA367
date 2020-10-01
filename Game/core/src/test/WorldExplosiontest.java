@@ -1,0 +1,23 @@
+import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.World;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class WorldExplosiontest {
+    WorldExplosions worldExplosions = new WorldExplosions();
+
+
+    @Test
+    public void createExplosionTest() {
+        assertNotNull(worldExplosions);
+    }
+
+    @Test
+    public void addExplosionTest() {
+        worldExplosions.addExplosion(new Vector2(1, 2), 30, new World(new Vector2(0, -100), true));
+        assertTrue(worldExplosions.getNumberOffExplosions() == 1);
+    }
+}

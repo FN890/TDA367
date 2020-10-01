@@ -2,6 +2,8 @@
 import com.backendboys.battlerace.model.gamemodel.player.Player;
 import com.backendboys.battlerace.model.gamemodel.powerups.MissilePowerUp;
 import com.backendboys.battlerace.model.gamemodel.powerups.NitroPowerUp;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.World;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,6 +15,7 @@ class PlayerTest {
 
     public PlayerTest(){
         player = new Player(testName);
+        World world = new World(new Vector2(0, -10), true);
     }
 
     @Test

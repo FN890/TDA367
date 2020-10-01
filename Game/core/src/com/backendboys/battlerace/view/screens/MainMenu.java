@@ -9,6 +9,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+/**
+ * The main menu in the game.
+ * Includes properties of the objects in the menu such as the buttons.
+ */
 class MainMenu extends AbstractMenuScreen implements IScreen {
 
     private SpriteBatch batch;
