@@ -1,5 +1,8 @@
 package com.backendboys.battlerace.model.gamemodel.vehicle;
 
+/**
+ * Class that has properties of an engine or motor in a vehicle
+ */
 class Motor {
 
     private final float topSpeed;

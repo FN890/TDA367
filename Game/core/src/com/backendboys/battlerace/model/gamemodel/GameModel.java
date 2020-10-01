@@ -10,6 +10,10 @@ import com.badlogic.gdx.physics.box2d.World;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The model class, contains data and logic to change data.
+ * Contains player and the methods that move the vehicle
+ */
 public class GameModel {
 
     private final GameWorld gameWorld;

@@ -4,7 +4,7 @@ import com.backendboys.battlerace.model.gamemodel.player.Player;
 import com.badlogic.gdx.physics.box2d.*;
 
 /**
- * Abstract class that has properties of the powerups
+ * Abstract class that has properties of the powerups.
  */
 
 public abstract class AbstractPowerUp {

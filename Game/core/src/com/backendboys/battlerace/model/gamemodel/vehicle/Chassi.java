@@ -1,5 +1,8 @@
 package com.backendboys.battlerace.model.gamemodel.vehicle;
 
+/**
+ * Has properties of the chassi on a vehicle.
+ */
 class Chassi {
 
     private final float width;

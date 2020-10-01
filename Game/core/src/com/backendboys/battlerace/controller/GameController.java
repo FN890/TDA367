@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Class that handles inputs
+ */
 public class GameController implements InputProcessor {
 
     private final GameModel gameModel;

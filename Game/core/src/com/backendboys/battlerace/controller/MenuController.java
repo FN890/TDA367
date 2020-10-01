@@ -7,6 +7,9 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 
+/**
+ * Class that handles switching between screens in menu and logic for settings
+ */
 public class MenuController {
 
     private final BattleRace game;

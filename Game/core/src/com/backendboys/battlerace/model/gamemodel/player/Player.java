@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Player is a class containing a vehicle and a list of powerups.
+ * A Player is a user that will move across the gameworld.
+ */
 public class Player {
 
     private UUID playerId;
@@ -19,9 +23,6 @@ public class Player {
     private IVehicle vehicle;
 
     /**
-     * Player is a class containing a vehicle and a list of powerups.
-     * A Player is a user that will move across the gameworld.
-     *
      * @param name Name of player
      */
     public Player(String name) {

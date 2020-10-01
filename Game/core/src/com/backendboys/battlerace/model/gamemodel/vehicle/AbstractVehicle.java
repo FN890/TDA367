@@ -5,6 +5,10 @@ import com.badlogic.gdx.physics.box2d.*;
 
 import java.util.List;
 
+/**
+ * Abstract class that has properties that a vehicle would be expected to have.
+ *
+ */
 abstract class AbstractVehicle implements IVehicle {
 
     private static final float FRICTION = 0.5f;

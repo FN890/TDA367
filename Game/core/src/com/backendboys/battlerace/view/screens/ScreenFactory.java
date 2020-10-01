@@ -3,6 +3,10 @@ package com.backendboys.battlerace.view.screens;
 import com.backendboys.battlerace.controller.GameController;
 import com.backendboys.battlerace.controller.MenuController;
 
+/**
+ * A factory that returns an IScreen interface.
+ * Used for encapsulation.
+ */
 public class ScreenFactory {
 
     public static IScreen createMainMenu(MenuController menuController) {

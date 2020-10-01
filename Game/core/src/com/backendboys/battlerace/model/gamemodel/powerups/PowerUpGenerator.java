@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Class that handles creation of powerups
+ * Class that handles creation of powerups.
  */
 
 public class PowerUpGenerator {

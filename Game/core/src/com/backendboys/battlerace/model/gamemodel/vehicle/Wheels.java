@@ -1,5 +1,8 @@
 package com.backendboys.battlerace.model.gamemodel.vehicle;
 
+/**
+ * Class that handles properties of the wheels on a vehicle
+ */
 class Wheels {
 
     private final float radius;
