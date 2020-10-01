@@ -66,6 +66,8 @@ abstract class AbstractCar extends AbstractVehicle {
         frontWheelRevoluteJointDef.localAnchorA.set(12, -9);
         world.createJoint(frontWheelRevoluteJointDef);
 
+        main.setLinearDamping(0.5f);
+        main.setAngularDamping(0.5f);
 
         // Prismatic Joint for Axles and Main Body ------------------
         //RevoluteJointDef rDef = new RevoluteJointDef();
