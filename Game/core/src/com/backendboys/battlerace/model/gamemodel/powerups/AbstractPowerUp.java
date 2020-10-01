@@ -8,8 +8,9 @@ import com.badlogic.gdx.physics.box2d.*;
  */
 
 public abstract class AbstractPowerUp {
-    BodyDef bodyDef;
-    FixtureDef fixtureDef;
+
+    private final BodyDef bodyDef;
+    private final FixtureDef fixtureDef;
 
     public AbstractPowerUp(BodyDef bodyDef, FixtureDef fixtureDef) {
         this.bodyDef = bodyDef;
