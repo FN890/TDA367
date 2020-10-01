@@ -20,7 +20,7 @@ public class GameWorld {
     private final World world;
     private final GroundGenerator groundGenerator;
 
-    private ArrayList<AbstractPowerUp> powerUps;
+    private final ArrayList<AbstractPowerUp> powerUps;
 
     private float accumulator;
     private static final float STEP_TIME = 1f / 60f;
@@ -32,7 +32,6 @@ public class GameWorld {
         world = new World(new Vector2(0, -10), true);
         groundGenerator = new GroundGenerator(10000, 5, 1);
         groundGenerator.generateGround(world);
-        powerUps = new ArrayList<>();
 
         PowerUpGenerator powerUpGenerator = new PowerUpGenerator(groundGenerator.getVertices(), world);
         powerUps = powerUpGenerator.generatePowerups(30);
@@ -42,7 +41,6 @@ public class GameWorld {
      * Step the world if enough time has passed since last step.
      */
     public void stepWorld() {
-
         for(int i=0; i<SPEED_SCALE; i++) {
             float delta = Gdx.graphics.getDeltaTime();
             accumulator += Math.min(delta, 0.25f);
@@ -50,19 +48,8 @@ public class GameWorld {
                 accumulator -= STEP_TIME;
                 world.step(STEP_TIME, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
             }
-            checkCollision();
         }
-<<<<<<< HEAD
     }
-
-    //TODO Check collision between car and powerup in world
-    //TODO Remove powerup and give the powerup to the player
-    //Collision handling will have its' own class in future versions
-    private void checkCollision() {
-=======
->>>>>>> Removed unused method
-    }
-
     public void dispose() {
         world.dispose();
     }
