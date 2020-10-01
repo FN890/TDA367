@@ -20,7 +20,6 @@ public class GameWorld {
     private final World world;
     private final GroundGenerator groundGenerator;
 
-    //List with all powerups in world
     private ArrayList<AbstractPowerUp> powerUps;
 
     private float accumulator;
@@ -53,12 +52,15 @@ public class GameWorld {
             }
             checkCollision();
         }
+<<<<<<< HEAD
     }
 
     //TODO Check collision between car and powerup in world
     //TODO Remove powerup and give the powerup to the player
     //Collision handling will have its' own class in future versions
     private void checkCollision() {
+=======
+>>>>>>> Removed unused method
     }
 
     public void dispose() {
@@ -72,5 +74,7 @@ public class GameWorld {
     public ArrayList<Vector2> getGroundVertices() {
         return groundGenerator.getVertices();
     }
+
+
 
 }
