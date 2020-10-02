@@ -73,6 +73,10 @@ public class GameModel {
         return gameWorld;
     }
 
+    public Player getPlayer(){
+        return player;
+    }
+
     public Vector2 getPlayerPosition() {
         return player.getPosition();
     }

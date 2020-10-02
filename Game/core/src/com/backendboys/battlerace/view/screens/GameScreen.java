@@ -50,7 +50,7 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         updateCameraPosition(gameController.getGameModel().getPlayerPosition().x, gameController.getGameModel().getPlayerPosition().y);
         backgroundRender.renderBackground();
-        vehicleRender.renderVehicle(gameController.getGameModel().getPlayerPosition(), gameController.getGameModel().getPlayerRotation());
+        vehicleRender.renderVehicle(gameController.getGameModel().getPlayer().getVehicle());
         debugRenderer.render(gameController.getGameWorld().getWorld(), camera.combined);
         powerUpsRender.renderPowerUps();
         Gdx.graphics.setTitle("" + Gdx.graphics.getFramesPerSecond());

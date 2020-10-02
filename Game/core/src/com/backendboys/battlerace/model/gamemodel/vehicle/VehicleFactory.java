@@ -14,7 +14,7 @@ public class VehicleFactory {
      * @param posY  y position the vehicle should be placed in world
      * @return Interface IVehicle, a interface for controller the vehicle.
      */
-    public static IVehicle createSportsCar(World world, float posX, float posY) {
+    public static ICar createSportsCar(World world, float posX, float posY) {
         return new SportsCar(world, posX, posY);
     }
 }

@@ -1,5 +1,6 @@
 package com.backendboys.battlerace.model.gamemodel.vehicle;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.physics.box2d.joints.*;
 
@@ -9,7 +10,7 @@ import java.util.List;
 /**
  * AbstractCar extends AbstractVehicle
  */
-abstract class AbstractCar extends AbstractVehicle {
+abstract class AbstractCar extends AbstractVehicle implements ICar {
 
     private final Chassi chassi;
     private final Motor motor;
@@ -53,7 +54,7 @@ abstract class AbstractCar extends AbstractVehicle {
         rearWheelRevoluteJointDef.enableMotor = true;
         rearWheelRevoluteJointDef.maxMotorTorque = 3000;
         rearWheelRevoluteJointDef.motorSpeed = 10000;
-        rearWheelRevoluteJointDef.localAnchorA.set(-12, -9);
+        rearWheelRevoluteJointDef.localAnchorA.set(-16, -5);
         world.createJoint(rearWheelRevoluteJointDef);
 
         // Front
@@ -63,7 +64,7 @@ abstract class AbstractCar extends AbstractVehicle {
         frontWheelRevoluteJointDef.enableMotor = false;
         frontWheelRevoluteJointDef.maxMotorTorque = 3000;
         rearWheelRevoluteJointDef.motorSpeed = 10000;
-        frontWheelRevoluteJointDef.localAnchorA.set(12, -9);
+        frontWheelRevoluteJointDef.localAnchorA.set(17.5f, -5.5f);
         world.createJoint(frontWheelRevoluteJointDef);
 
         main.setLinearDamping(0.5f);
@@ -149,5 +150,24 @@ abstract class AbstractCar extends AbstractVehicle {
         frontWheel.applyTorque(5000 * motor.getAcceleration(), true);
         rearWheel.applyTorque(5000 * motor.getAcceleration(), true);
     }
-    
+
+    @Override
+    public Vector2 getFrontWheelPosition() {
+        return frontWheel.getPosition();
+    }
+
+    @Override
+    public Vector2 getRearWheelPosition() {
+        return rearWheel.getPosition();
+    }
+
+    @Override
+    public float getFrontWheelRotation() {
+        return frontWheel.getTransform().getRotation();
+    }
+
+    @Override
+    public float getRearWheelRotation() {
+        return frontWheel.getTransform().getRotation();
+    }
 }

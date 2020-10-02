@@ -1,5 +1,6 @@
 package com.backendboys.battlerace.view.game;
 
+import com.backendboys.battlerace.model.gamemodel.vehicle.ICar;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -13,11 +14,15 @@ public class VehicleRender {
 
     private final SpriteBatch batch;
     private final Sprite spritePlayerVehicle;
+    private final Sprite spriteVehicleFrontWheel;
+    private final Sprite spriteVehicleRearWheel;
     private final OrthographicCamera camera;
 
     private static final int VEHCILE_WIDTH = 60;
     private static final int VEHCILE_HEIGHT = 25;
     private static final int VEHICLE_GROUND_OFFSET = 3;
+
+    private static final int WHEEL_SIZE = 12;
 
     /**
      *
@@ -26,23 +31,38 @@ public class VehicleRender {
     public VehicleRender(OrthographicCamera camera){
         this.camera = camera;
         batch = new SpriteBatch();
-        Texture textureVehicle = new Texture("RedCar.png");
-        spritePlayerVehicle = new Sprite(textureVehicle);
+        spritePlayerVehicle = new Sprite(new Texture("newredcar.png"));
         spritePlayerVehicle.setSize(VEHCILE_WIDTH, VEHCILE_HEIGHT);
         spritePlayerVehicle.setOriginCenter();
+
+        spriteVehicleFrontWheel = new Sprite(new Texture("wheel.png"));
+        spriteVehicleFrontWheel.setSize(WHEEL_SIZE, WHEEL_SIZE);
+        spriteVehicleFrontWheel.setOriginCenter();
+
+        spriteVehicleRearWheel = new Sprite(new Texture("wheel.png"));
+        spriteVehicleRearWheel.setSize(WHEEL_SIZE, WHEEL_SIZE);
+        spriteVehicleRearWheel.setOriginCenter();
     }
 
     /**
      *
-     * @param position Position of car
-     * @param rotation Rotation of car
+     * @param car Car interface with position and rotation for render
      */
-    public void renderVehicle(Vector2 position, float rotation){
+    public void renderVehicle(ICar car){
         batch.begin();
-        spritePlayerVehicle.setPosition(position.x-VEHCILE_WIDTH/2f, position.y-VEHCILE_HEIGHT/2f-VEHICLE_GROUND_OFFSET);
-        spritePlayerVehicle.setRotation((float) Math.toDegrees(rotation));
+        spritePlayerVehicle.setPosition(car.getPosition().x-VEHCILE_WIDTH/2f, car.getPosition().y-VEHCILE_HEIGHT/2f);
+        spritePlayerVehicle.setRotation((float) Math.toDegrees(car.getRotation()));
+
+        spriteVehicleFrontWheel.setPosition(car.getFrontWheelPosition().x-6f, car.getFrontWheelPosition().y-5.5f);
+        spriteVehicleFrontWheel.setRotation((float) Math.toDegrees(car.getFrontWheelRotation()));
+
+        spriteVehicleRearWheel.setPosition(car.getRearWheelPosition().x-6f, car.getRearWheelPosition().y-5.5f);
+        spriteVehicleRearWheel.setRotation((float) Math.toDegrees(car.getRearWheelRotation()));
+
         batch.setProjectionMatrix(camera.combined);
         spritePlayerVehicle.draw(batch);
+        spriteVehicleRearWheel.draw(batch);
+        spriteVehicleFrontWheel.draw(batch);
         batch.end();
     }
 
