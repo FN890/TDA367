@@ -1,8 +1,8 @@
 package services.protocol;
 
 import data.Vector2;
+import model.Game;
 
-//TODO: Implement ways for client to get gameinfo, such as, game id.
 /**
  * IServerProtocol used for parsing message into ICommand and correctly writing messages.
  */
@@ -15,6 +15,13 @@ public interface IServerProtocol {
      * @throws ProtocolException When the message is on the wrong form.
      */
     Command parseMessage(String msg) throws ProtocolException;
+
+    /**
+     * Writes a response on the form: response:message
+     * @param msg The response message.
+     * @return The message on the form response:message
+     */
+    String writeResponse(String msg);
 
     /**
      * Writes an error onto the form: error:message
@@ -31,4 +38,12 @@ public interface IServerProtocol {
      * @return The position on the form: pos:name,x,y,rotation
      */
     String writePosition(String name, Vector2 pos, float rotation);
+
+    /**
+     * Writes info about the game on the form: response:id,isRunning,name1,name2...
+     * @param game The game to write.
+     * @return The game on the form: response:id,isRunning,name1,name2...
+     */
+    String writeGameInfo(Game game);
+
 }

@@ -1,6 +1,7 @@
 package services.protocol;
 
 import data.Vector2;
+import model.Game;
 
 class ServerProtocolFacade implements IServerProtocol {
 
@@ -21,6 +22,11 @@ class ServerProtocolFacade implements IServerProtocol {
     }
 
     @Override
+    public synchronized String writeResponse(String msg) {
+        return writerProtocol.writeResponse(msg);
+    }
+
+    @Override
     public synchronized String writeError(String msg) {
         return writerProtocol.writeError(msg);
     }
@@ -28,6 +34,11 @@ class ServerProtocolFacade implements IServerProtocol {
     @Override
     public synchronized String writePosition(String name, Vector2 pos, float rotation) {
         return writerProtocol.writePosition(name, pos, rotation);
+    }
+
+    @Override
+    public synchronized String writeGameInfo(Game game) {
+        return writerProtocol.writeGameInfo(game);
     }
 
     static synchronized ServerProtocolFacade getInstance() {
