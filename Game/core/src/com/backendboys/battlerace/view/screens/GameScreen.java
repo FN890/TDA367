@@ -34,7 +34,6 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
         viewport = new ExtendViewport(600, 50, camera);
         debugRenderer = new Box2DDebugRenderer();
         backgroundRender = new BackgroundRender(camera, gameController.getGameWorld().getGroundVertices());
-
         vehicleRender = new VehicleRender(camera);
 
         powerUpsRender = new PowerUpsRender(camera, gameController.getGameModel().getPowerUps());
