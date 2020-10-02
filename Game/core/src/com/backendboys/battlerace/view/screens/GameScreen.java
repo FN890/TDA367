@@ -3,7 +3,7 @@ package com.backendboys.battlerace.view.screens;
 import com.backendboys.battlerace.controller.GameController;
 import com.backendboys.battlerace.model.gamemodel.IModelListener;
 import com.backendboys.battlerace.view.game.BackgroundRender;
-import com.backendboys.battlerace.view.game.SpriteRender;
+import com.backendboys.battlerace.view.game.VehicleRender;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -18,7 +18,7 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
     private final GameController gameController;
 
     private final BackgroundRender backgroundRender;
-    private final SpriteRender spriteRender;
+    private final VehicleRender vehicleRender;
 
     private final OrthographicCamera camera;
     private final ExtendViewport viewport;
@@ -30,7 +30,7 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
         viewport = new ExtendViewport(600, 50, camera);
         debugRenderer = new Box2DDebugRenderer();
         backgroundRender = new BackgroundRender(camera, gameController.getGameWorld().getGroundVertices());
-        spriteRender = new SpriteRender(camera);
+        vehicleRender = new VehicleRender(camera);
     }
 
     // TODO: 2020-09-20 Decrease exposure of different class structures.
@@ -43,7 +43,7 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         updateCameraPosition(gameController.getGameModel().getPlayerPosition().x, gameController.getGameModel().getPlayerPosition().y);
         backgroundRender.renderBackground();
-        spriteRender.renderVehicle(gameController.getGameModel().getPlayerPosition(), gameController.getGameModel().getPlayerRotation());
+        vehicleRender.renderVehicle(gameController.getGameModel().getPlayerPosition(), gameController.getGameModel().getPlayerRotation());
         debugRenderer.render(gameController.getGameWorld().getWorld(), camera.combined);
         Gdx.graphics.setTitle("" + Gdx.graphics.getFramesPerSecond());
     }
@@ -59,6 +59,7 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
         gameController.getGameWorld().dispose();
         debugRenderer.dispose();
         backgroundRender.dispose();
+        vehicleRender.dispose();
     }
 
     @Override
