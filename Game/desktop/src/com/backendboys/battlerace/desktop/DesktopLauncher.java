@@ -4,12 +4,18 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.backendboys.battlerace.BattleRace;
 
+/**
+ * The class that creates the BattleRace class and launches the application
+ */
 public class DesktopLauncher {
 
     private static final String TITLE = "BattleRace alpha 1.0";
     private static final int SCREEN_WIDTH = 1280;
     private static final int SCREEN_HEIGHT = 800;
 
+    /**
+     * The main function creates the BattleRace class which in turn launches the application
+     */
     public static void main(String[] arg) {
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
         config.title = TITLE;
