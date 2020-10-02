@@ -163,8 +163,16 @@ public class Game implements Runnable {
         return null;
     }
 
+    public List<Player> getPlayers() {
+        return players;
+    }
+
     public String getId() {
         return id;
+    }
+
+    public boolean isRunning() {
+        return run;
     }
 
     private void notifyListenersPlayerJoined(Player player) {

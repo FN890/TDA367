@@ -1,5 +1,6 @@
 package controller;
 
+import model.Game;
 import services.protocol.ICommand;
 import services.protocol.IServerProtocol;
 import services.protocol.ServerProtocolFactory;
@@ -27,6 +28,9 @@ class CommandHandler {
      */
     void handleCommand(ICommand cmd) {
         switch (cmd.getCmd()) {
+            case "get":
+                handleGet(cmd.getArgs());
+                break;
             case "create":
                 handleCreateGame(cmd.getArgs());
                 break;
@@ -39,6 +43,32 @@ class CommandHandler {
             case "pos":
                 handleUpdatePos(cmd.getArgs());
                 break;
+        }
+    }
+
+    /**
+     * Handles all get commands.
+     * Sends a response to the client. Either response: or error:
+     * @param args The arguments of the get: command.
+     */
+    private void handleGet(String[] args) {
+        if (args.length < 1) {
+            clientController.sendTCP(protocol.writeError("Invalid arguments."));
+            return;
+        }
+
+        Game game = clientController.getGame();
+        if (game == null) {
+            clientController.sendTCP(protocol.writeError("Not in a game."));
+            return;
+        }
+
+        switch (args[0]) {
+
+            case "game":
+                clientController.sendTCP(protocol.writeGameInfo(game));
+                break;
+
         }
     }
 

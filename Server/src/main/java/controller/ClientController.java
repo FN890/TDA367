@@ -97,6 +97,7 @@ public class ClientController implements Runnable, GameListener, PacketListener 
 
         game.addListener(this);
 
+        game.start(true);
         this.game = game;
     }
 
@@ -151,6 +152,13 @@ public class ClientController implements Runnable, GameListener, PacketListener 
         if (game == null) return;
 
         game.updatePositionByAddress(socket.getInetAddress(), x, y, rotation);
+    }
+
+    /**
+     * @return The current game.
+     */
+    public Game getGame() {
+        return game;
     }
 
     /**
