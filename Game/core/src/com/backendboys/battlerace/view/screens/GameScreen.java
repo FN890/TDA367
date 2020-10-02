@@ -69,6 +69,7 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
         debugRenderer.dispose();
         backgroundRender.dispose();
         vehicleRender.dispose();
+        powerUpsRender.dispose();
     }
 
     @Override

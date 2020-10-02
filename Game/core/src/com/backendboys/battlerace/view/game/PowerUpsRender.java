@@ -11,6 +11,9 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 
+/**
+ * Class that handles rendering the power-ups.
+ */
 public class PowerUpsRender {
 
     private final OrthographicCamera orthographicCamera;
@@ -29,6 +32,9 @@ public class PowerUpsRender {
         sprite.setSize(WIDTH, HEIGHT);
     }
 
+    /**
+     * Render the power-ups that are within view. Should be called every render.
+     */
     public void renderPowerUps() {
         render();
     }
