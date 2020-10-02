@@ -3,7 +3,10 @@ package com.backendboys.battlerace.view.screens;
 import com.backendboys.battlerace.controller.GameController;
 import com.backendboys.battlerace.model.gamemodel.IModelListener;
 import com.backendboys.battlerace.view.game.BackgroundRender;
+
 import com.backendboys.battlerace.view.game.SpriteRender;
+import com.backendboys.battlerace.view.game.PowerUpsRender;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -19,6 +22,7 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
 
     private final BackgroundRender backgroundRender;
     private final SpriteRender spriteRender;
+    private final PowerUpsRender powerUpsRender;
 
     private final OrthographicCamera camera;
     private final ExtendViewport viewport;
@@ -31,6 +35,9 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
         debugRenderer = new Box2DDebugRenderer();
         backgroundRender = new BackgroundRender(camera, gameController.getGameWorld().getGroundVertices());
         spriteRender = new SpriteRender(camera);
+
+        powerUpsRender = new PowerUpsRender(camera, gameController.getGameModel().getPowerUps());
+
     }
 
     // TODO: 2020-09-20 Decrease exposure of different class structures.
@@ -45,6 +52,7 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
         backgroundRender.renderBackground();
         spriteRender.renderVehicle(gameController.getGameModel().getPlayerPosition(), gameController.getGameModel().getPlayerRotation());
         debugRenderer.render(gameController.getGameWorld().getWorld(), camera.combined);
+        powerUpsRender.renderPowerUps();
         Gdx.graphics.setTitle("" + Gdx.graphics.getFramesPerSecond());
     }
 

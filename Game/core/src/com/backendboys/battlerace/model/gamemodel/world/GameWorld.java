@@ -70,4 +70,7 @@ public class GameWorld {
         worldExplosions.addExplosion(pos,particles,world);
     }
 
+    public ArrayList<AbstractPowerUp> getPowerUps() {
+        return powerUps;
+    }
 }
