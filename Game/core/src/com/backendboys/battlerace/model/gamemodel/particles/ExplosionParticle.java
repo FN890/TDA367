@@ -27,7 +27,7 @@ class ExplosionParticle {
         bodyDef.gravityScale = 0;
         bodyDef.position.x = pos.x;
         bodyDef.position.y = pos.y;
-        int movementPower = 100;
+        int movementPower = 200;
         rayDir.scl(movementPower);
         bodyDef.linearVelocity.x = rayDir.x;
         bodyDef.linearVelocity.y = rayDir.y;
@@ -39,7 +39,7 @@ class ExplosionParticle {
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = circleShape;
-        fixtureDef.density = 500;
+        fixtureDef.density = 100;
         fixtureDef.friction = 0;
         fixtureDef.restitution = 0.99f;
         fixtureDef.filter.groupIndex = -1; // makes particles unable to collide with one another
