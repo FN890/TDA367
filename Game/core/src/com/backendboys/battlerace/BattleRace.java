@@ -6,6 +6,10 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Gdx2DPixmap;
 
+/**
+ * When created it starts the application
+ * Created in the DesktopLauncher
+ */
 public class BattleRace extends Game {
 
     @Override
@@ -13,10 +17,16 @@ public class BattleRace extends Game {
         new MenuController(this);
     }
 
+    /**
+     * Changes the screen to the main menu
+     */
     public void startMenu() {
         new MenuController(this);
     }
 
+    /**
+     * Starts the game in singleplayer (Switches to GameScreen)
+     */
     public void startSinglePlayer() {
         Gdx.input.setInputProcessor(new GameController(this));
     }
