@@ -39,7 +39,7 @@ class Explosion {
         ArrayList<ExplosionParticle> destroyedParticles = new ArrayList<>();
         for (ExplosionParticle explosionParticle : explosionParticles) {
             Body explosionBody = explosionParticle.getBody();
-            if (Math.abs(explosionBody.getLinearVelocity().y) < 50f && Math.abs(explosionBody.getLinearVelocity().x) < 50f) {
+            if (Math.abs(explosionBody.getLinearVelocity().y) < 30f && Math.abs(explosionBody.getLinearVelocity().x) < 30f) {
                 explosionBody.getWorld().destroyBody(explosionBody);
                 destroyedParticles.add(explosionParticle);
             }

@@ -1,5 +1,6 @@
 package com.backendboys.battlerace.model.gamemodel.world;
 
+import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
 import com.backendboys.battlerace.model.gamemodel.powerups.AbstractPowerUp;
 import com.backendboys.battlerace.model.gamemodel.powerups.MissilePowerUp;
 import com.backendboys.battlerace.model.gamemodel.powerups.NitroPowerUp;
@@ -27,6 +28,8 @@ public class GameWorld {
     private static final int VELOCITY_ITERATIONS = 6;
     private static final int POSITION_ITERATIONS = 2;
 
+    private final WorldExplosions worldExplosions = new WorldExplosions();
+
     public GameWorld() {
         Box2D.init();
         world = new World(new Vector2(0, -10), true);
@@ -49,6 +52,7 @@ public class GameWorld {
                 world.step(STEP_TIME, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
             }
         }
+        worldExplosions.removeDeadExplosions();
     }
     public void dispose() {
         world.dispose();
@@ -62,6 +66,8 @@ public class GameWorld {
         return groundGenerator.getVertices();
     }
 
-
+    public void addExplosion(Vector2 pos,int particles){
+        worldExplosions.addExplosion(pos,particles,world);
+    }
 
 }
