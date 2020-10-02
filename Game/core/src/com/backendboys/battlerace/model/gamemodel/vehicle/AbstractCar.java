@@ -137,8 +137,6 @@ abstract class AbstractCar extends AbstractVehicle {
      */
     @Override
     public void gas() {
-        //frontWheel.applyForce(2*-12500f, 0f, 0f, 0, true);
-        //rearWheel.applyForce(2*-12500f, 0f, 0f, 0, true);
         rearWheel.applyTorque(-5000 * motor.getAcceleration(), true);
         frontWheel.applyTorque(-5000 * motor.getAcceleration(), true);
     }
@@ -148,10 +146,8 @@ abstract class AbstractCar extends AbstractVehicle {
      */
     @Override
     public void brake() {
-        //frontWheel.applyForce(2*12500f, 0f, 0f, 0, true);
-        //rearWheel.applyForce(2*12500f, 0f, 0f, 0, true);
-        rearWheel.applyTorque(5000 * motor.getAcceleration(), true);
         frontWheel.applyTorque(5000 * motor.getAcceleration(), true);
+        rearWheel.applyTorque(5000 * motor.getAcceleration(), true);
     }
-
+    
 }

@@ -31,7 +31,7 @@ public class BackgroundRender {
      * Method that renders the background. Should be called on every render.
      */
     public void renderBackground() {
-        //generateSky();
+        generateSky();
         generateGround();
         generateDirt();
 

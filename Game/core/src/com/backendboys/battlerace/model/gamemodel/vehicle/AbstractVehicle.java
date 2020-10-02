@@ -120,14 +120,21 @@ abstract class AbstractVehicle implements IVehicle {
      * @return Vehicle position.
      */
     public Vector2 getPosition() {
-        return new Vector2(body.getPosition());
+        return new Vector2(body.getTransform().getPosition());
     }
 
     /**
      * @param pos Changes the position of vehicle.
      */
     public void setPosition(Vector2 pos) {
-        body.getPosition().set(pos);
+        body.getTransform().getPosition().set(pos);
     }
 
+    /**
+     *
+     * @return The rotation of main body of vehicle
+     */
+    public float getRotation(){
+        return body.getTransform().getRotation();
+    }
 }

@@ -16,4 +16,6 @@ public interface IVehicle {
     void rotateLeft();
 
     Vector2 getPosition();
+
+    float getRotation();
 }

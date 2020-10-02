@@ -114,4 +114,8 @@ public class Player {
     public IVehicle getVehicle() {
         return vehicle;
     }
+
+    public float getRotation() {
+        return vehicle.getRotation();
+    }
 }

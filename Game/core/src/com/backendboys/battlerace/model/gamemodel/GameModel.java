@@ -76,6 +76,10 @@ public class GameModel {
         return player.getPosition();
     }
 
+    public float getPlayerRotation(){
+        return player.getRotation();
+    }
+
     /**
      * Temp function for testing speed
      */
