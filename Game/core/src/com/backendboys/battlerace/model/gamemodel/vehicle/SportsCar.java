@@ -13,7 +13,7 @@ public class SportsCar extends AbstractCar {
      * @param posY  y position the vehicle should be placed in world
      */
     public SportsCar(World world, float posX, float posY) {
-        super(world, posX, posY, new Chassi(30, 8, 10), new Motor(5, 5, 10 * (float) (Math.PI * 2)), new Wheels(6, 20, 2, 0.2f));
+        super(world, posX, posY, new Chassi(30, 8, 10), new Motor(5, 5, 3 * (float) (Math.PI * 2)), new Wheels(6, 20, 2, 0.2f));
     }
 
 }
