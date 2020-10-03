@@ -9,7 +9,7 @@ import com.badlogic.gdx.physics.box2d.*;
 class ExplosionParticle {
 
     private final Body body;
-
+    private static final int movementPower = 200;
     /**
      * Constructor for a particle
      * Adds a particle to the world
@@ -27,7 +27,6 @@ class ExplosionParticle {
         bodyDef.gravityScale = 0;
         bodyDef.position.x = pos.x;
         bodyDef.position.y = pos.y;
-        int movementPower = 200;
         rayDir.scl(movementPower);
         bodyDef.linearVelocity.x = rayDir.x;
         bodyDef.linearVelocity.y = rayDir.y;
