@@ -13,6 +13,7 @@ public class WorldExplosions {
      * A list of all the explosions that have been created in the world
      */
     private final ArrayList<Explosion> explosions = new ArrayList<>();
+    private final ArrayList<OnImpactMissile> missiles = new ArrayList<>();
 
     /**
      * Adds an explosion to the world at a set position
@@ -30,9 +31,10 @@ public class WorldExplosions {
     public int getNumberOffExplosions() {
         return explosions.size();
     }
-    public int getTotalParticles(){
+
+    public int getTotalParticles() {
         int particles = 0;
-        for(Explosion explosion: explosions){
+        for (Explosion explosion : explosions) {
             particles += explosion.getNParticles();
         }
         return particles;
@@ -50,9 +52,26 @@ public class WorldExplosions {
                 removedExplosions.add(explosion);
             }
         }
-        for (Explosion removedExplosion : removedExplosions){
+        for (Explosion removedExplosion : removedExplosions) {
             explosions.remove(removedExplosion);
         }
+        removeAndExplodeMissiles();
+    }
 
+    private void removeAndExplodeMissiles() {
+        ArrayList<OnImpactMissile> removedMissiles = new ArrayList<>();
+        for (OnImpactMissile missile : missiles) {
+            if (missile.missileExploded()) {
+                addExplosion(missile.getBody().getPosition(), OnImpactMissile.getNumParticles(), missile.getBody().getWorld());
+                removedMissiles.add(missile);
+            }
+        }
+        for (OnImpactMissile missile : removedMissiles) {
+            missiles.remove(missile);
+        }
+    }
+
+    public void addMissile(World world, Vector2 pos) {
+        missiles.add(new OnImpactMissile(world, pos));
     }
 }

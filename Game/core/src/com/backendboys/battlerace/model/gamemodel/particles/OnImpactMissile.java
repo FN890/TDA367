@@ -10,12 +10,13 @@ class OnImpactMissile {
     private static final float MISSILE_LENGTH = 5f;
     private static final float MISSILE_HEIGHT = 1f;
     private static final float LAUNCH_OFFSET = 10f;
+    private static final int NUM_PARTICLES = 30;
 
 
     OnImpactMissile(World world, Vector2 pos) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
-        bodyDef.fixedRotation = false; // A missle can rotate
+        bodyDef.fixedRotation = false; // A missile can rotate
         bodyDef.bullet = true;
         bodyDef.linearDamping = 0.3f; //air resistance
         bodyDef.gravityScale = 0;
@@ -40,7 +41,20 @@ class OnImpactMissile {
         polygonShape.dispose();
     }
 
-    public Body getBody() {
+    boolean missileExploded() {
+
+        if (Math.abs(body.getLinearVelocity().y) < 1f && Math.abs(body.getLinearVelocity().x) < 1f) {
+            body.getWorld().destroyBody(body);
+            return true;
+        }
+        return false;
+    }
+
+    Body getBody() {
         return body;
+    }
+
+    static int getNumParticles() {
+        return NUM_PARTICLES;
     }
 }
