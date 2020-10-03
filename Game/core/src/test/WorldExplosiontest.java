@@ -33,12 +33,12 @@ public class WorldExplosiontest {
         worldExplosions.addExplosion(new Vector2(200, 200), 30, world);
         for (int i = 0; i < 1000; i++) {
             world.step(1f / 60f, 6, 2);
-            worldExplosions.removeDeadExplosions();
+            worldExplosions.removeCollidedParticles();
             if (worldExplosions.getNumberOffExplosions() == 0) {
                 break;
             }
         }
-        worldExplosions.removeDeadExplosions();
+        worldExplosions.removeCollidedParticles();
         assertTrue(worldExplosions.getNumberOffExplosions() == 0 && world.getBodyCount() == 0);
     }
 

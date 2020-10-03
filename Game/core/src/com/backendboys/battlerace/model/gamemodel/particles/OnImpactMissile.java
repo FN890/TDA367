@@ -3,23 +3,23 @@ package com.backendboys.battlerace.model.gamemodel.particles;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
-class OnImpactMissile {
+class OnImpactMissile extends abstractExplosive {
     private final Body body;
-    private static final Vector2 direction = new Vector2(2, 1);
-    private static final int movementPower = 2000;
+    private static final Vector2 direction = new Vector2(2, 0);
+    private static final int movementPower = 10;
     private static final float MISSILE_LENGTH = 5f;
     private static final float MISSILE_HEIGHT = 1f;
-    private static final float LAUNCH_OFFSET = 10f;
+    private static final float LAUNCH_OFFSET = 30f;
     private static final int NUM_PARTICLES = 30;
 
 
     OnImpactMissile(World world, Vector2 pos) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
-        bodyDef.fixedRotation = false; // A missile can rotate
+        bodyDef.fixedRotation = true; // A missile can rotate
         bodyDef.bullet = true;
-        bodyDef.linearDamping = 0.3f; //air resistance
-        bodyDef.gravityScale = 0;
+        bodyDef.linearDamping = 0; //air resistance
+        bodyDef.gravityScale = 1;
         bodyDef.position.x = pos.x;
         bodyDef.position.y = pos.y + LAUNCH_OFFSET;
         direction.scl(movementPower);
@@ -34,20 +34,11 @@ class OnImpactMissile {
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = polygonShape;
         fixtureDef.density = 100;
-        fixtureDef.friction = 0;
+        fixtureDef.friction = 100;
         fixtureDef.restitution = 0;
         fixtureDef.filter.groupIndex = -1; // makes particles unable to collide with one another
         body.createFixture(fixtureDef);
         polygonShape.dispose();
-    }
-
-    boolean missileExploded() {
-
-        if (Math.abs(body.getLinearVelocity().y) < 1f && Math.abs(body.getLinearVelocity().x) < 1f) {
-            body.getWorld().destroyBody(body);
-            return true;
-        }
-        return false;
     }
 
     Body getBody() {
@@ -56,5 +47,10 @@ class OnImpactMissile {
 
     static int getNumParticles() {
         return NUM_PARTICLES;
+    }
+
+    @Override
+    public void collisionExplosion() {
+        setToBeRemoved(true);
     }
 }

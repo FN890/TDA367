@@ -6,7 +6,7 @@ import com.badlogic.gdx.physics.box2d.*;
 /**
  * A class that is used to create particles for explosions one instance is one particle
  */
-class ExplosionParticle {
+class ExplosionParticle extends abstractExplosive {
 
     private final Body body;
     private static final int movementPower = 200;
@@ -24,7 +24,7 @@ class ExplosionParticle {
         bodyDef.fixedRotation = true;
         bodyDef.bullet = true;
         bodyDef.linearDamping = 0.3f; //air resistance
-        bodyDef.gravityScale = 0;
+        bodyDef.gravityScale = 1;
         bodyDef.position.x = pos.x;
         bodyDef.position.y = pos.y;
         rayDir.scl(movementPower);
@@ -42,11 +42,18 @@ class ExplosionParticle {
         fixtureDef.friction = 0;
         fixtureDef.restitution = 0.99f;
         fixtureDef.filter.groupIndex = -1; // makes particles unable to collide with one another
-        body.createFixture(fixtureDef);
+        body.createFixture(fixtureDef).setUserData(this);
         circleShape.dispose();
+
     }
 
     Body getBody() {
         return body;
+    }
+
+    @Override
+    public void collisionExplosion() {
+        setToBeRemoved(true);
+
     }
 }

@@ -1,6 +1,7 @@
 package com.backendboys.battlerace.model.gamemodel.particles;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 
 import java.util.ArrayList;
@@ -41,10 +42,9 @@ public class WorldExplosions {
     }
 
     /**
-     * removes "dead explosions" and slow particles by checking if all the particles have slowed down to a set value
-     * if all particles have slowed down it is removed from the explosions list
+     *
      */
-    public void removeDeadExplosions() {
+    public void removeCollidedParticles() {
         ArrayList<Explosion> removedExplosions = new ArrayList<>();
         for (Explosion explosion : explosions) {
             explosion.removeSlowParticles();
@@ -61,9 +61,11 @@ public class WorldExplosions {
     private void removeAndExplodeMissiles() {
         ArrayList<OnImpactMissile> removedMissiles = new ArrayList<>();
         for (OnImpactMissile missile : missiles) {
-            if (missile.missileExploded()) {
-                addExplosion(missile.getBody().getPosition(), OnImpactMissile.getNumParticles(), missile.getBody().getWorld());
+            if (missile.isToBeRemoved()) {
+                Body body = missile.getBody();
+                addExplosion(body.getPosition(), OnImpactMissile.getNumParticles(), body.getWorld());
                 removedMissiles.add(missile);
+                body.getWorld().destroyBody(body);
             }
         }
         for (OnImpactMissile missile : removedMissiles) {
@@ -71,7 +73,16 @@ public class WorldExplosions {
         }
     }
 
-    public void addMissile(World world, Vector2 pos) {
-        missiles.add(new OnImpactMissile(world, pos));
+    /**
+     * Creates a missile in the world
+     *
+     * @param world The world where the missile spawns
+     * @param pos   the position of the missile
+     */
+    public void addMissile(Vector2 pos, World world) {
+        if(missiles.size()<3){
+            missiles.add(new OnImpactMissile(world, pos));
+        }
+
     }
 }

@@ -39,12 +39,12 @@ class Explosion {
         ArrayList<ExplosionParticle> destroyedParticles = new ArrayList<>();
         for (ExplosionParticle explosionParticle : explosionParticles) {
             Body explosionBody = explosionParticle.getBody();
-            if (Math.abs(explosionBody.getLinearVelocity().y) < 30f && Math.abs(explosionBody.getLinearVelocity().x) < 30f) {
+            if (explosionParticle.isToBeRemoved()) {
                 explosionBody.getWorld().destroyBody(explosionBody);
                 destroyedParticles.add(explosionParticle);
             }
         }
-        for (ExplosionParticle destroyedParticle : destroyedParticles){
+        for (ExplosionParticle destroyedParticle : destroyedParticles) {
             explosionParticles.remove(destroyedParticle);
         }
     }

@@ -2,15 +2,12 @@ package com.backendboys.battlerace.model.gamemodel.world;
 
 import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
 import com.backendboys.battlerace.model.gamemodel.powerups.AbstractPowerUp;
-import com.backendboys.battlerace.model.gamemodel.powerups.MissilePowerUp;
-import com.backendboys.battlerace.model.gamemodel.powerups.NitroPowerUp;
 import com.backendboys.battlerace.model.gamemodel.powerups.PowerUpGenerator;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Class representing the game world.
@@ -35,7 +32,7 @@ public class GameWorld {
         world = new World(new Vector2(0, -10), true);
         groundGenerator = new GroundGenerator(10000, 5, 1);
         groundGenerator.generateGround(world);
-
+        world.setContactListener(new CollisionListener());
         PowerUpGenerator powerUpGenerator = new PowerUpGenerator(groundGenerator.getVertices(), world);
         powerUps = powerUpGenerator.generatePowerups(30);
     }
@@ -52,7 +49,7 @@ public class GameWorld {
                 world.step(STEP_TIME, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
             }
         }
-        worldExplosions.removeDeadExplosions();
+        worldExplosions.removeCollidedParticles();
     }
     public void dispose() {
         world.dispose();
