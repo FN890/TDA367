@@ -43,6 +43,7 @@ class ExplosionParticle {
         fixtureDef.restitution = 0.99f;
         fixtureDef.filter.groupIndex = -1; // makes particles unable to collide with one another
         body.createFixture(fixtureDef);
+        circleShape.dispose();
     }
 
     Body getBody() {
