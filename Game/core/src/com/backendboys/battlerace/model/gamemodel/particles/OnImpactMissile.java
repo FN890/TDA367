@@ -50,7 +50,7 @@ class OnImpactMissile extends AbstractExplosive {
     }
 
     @Override
-    public void collisionExplosion() {
+    public void explosiveCollided() {
         setToBeRemoved(true);
     }
 }

@@ -2,7 +2,7 @@ package com.backendboys.battlerace.model.gamemodel.particles;
 
 public abstract class AbstractExplosive {
 
-    public abstract void collisionExplosion();
+    public abstract void explosiveCollided();
 
     private boolean toBeRemoved = false;
 
