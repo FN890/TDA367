@@ -6,11 +6,11 @@ public abstract class AbstractExplosive {
 
     private boolean toBeRemoved = false;
 
-    public boolean isToBeRemoved() {
+    boolean isToBeRemoved() {
         return toBeRemoved;
     }
 
-    public void setToBeRemoved(boolean toBeRemoved) {
+    void setToBeRemoved(boolean toBeRemoved) {
         this.toBeRemoved = toBeRemoved;
     }
 }
