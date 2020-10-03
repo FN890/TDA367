@@ -24,23 +24,7 @@ public class WorldExplosiontest {
         assertTrue(worldExplosions.getNumberOffExplosions() == 1 && worldExplosions.getTotalParticles() == 30);
     }
 
-    /**
-     * Test's the ability to remove explosions and the particles from the world
-     * steps the world a thousand times or until all the bodies have been removed
-     */
-    @Test
-    public void removeDeadExplosionTest() {
-        worldExplosions.addExplosion(new Vector2(200, 200), 30, world);
-        for (int i = 0; i < 1000; i++) {
-            world.step(1f / 60f, 6, 2);
-            worldExplosions.removeCollidedParticles();
-            if (worldExplosions.getNumberOffExplosions() == 0) {
-                break;
-            }
-        }
-        worldExplosions.removeCollidedParticles();
-        assertTrue(worldExplosions.getNumberOffExplosions() == 0 && world.getBodyCount() == 0);
-    }
+
 
 
 }
