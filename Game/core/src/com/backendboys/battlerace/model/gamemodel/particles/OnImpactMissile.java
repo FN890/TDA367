@@ -3,7 +3,7 @@ package com.backendboys.battlerace.model.gamemodel.particles;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
-class OnImpactMissile extends abstractExplosive {
+class OnImpactMissile extends AbstractExplosive {
     private final Body body;
     private static final Vector2 direction = new Vector2(2, 0);
     private static final int movementPower = 10;

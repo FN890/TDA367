@@ -1,6 +1,5 @@
 package com.backendboys.battlerace.model.gamemodel.world;
 
-import com.backendboys.battlerace.model.gamemodel.particles.abstractExplosive;
 import com.badlogic.gdx.physics.box2d.*;
 
 
