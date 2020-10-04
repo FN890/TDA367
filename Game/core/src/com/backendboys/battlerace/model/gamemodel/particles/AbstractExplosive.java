@@ -11,6 +11,9 @@ public abstract class AbstractExplosive {
      */
     public abstract void explosiveCollided();
 
+    /**
+     * When you change this boolean you give the explosive permission to be removed
+     */
     private boolean toBeRemoved = false;
 
     boolean isToBeRemoved() {

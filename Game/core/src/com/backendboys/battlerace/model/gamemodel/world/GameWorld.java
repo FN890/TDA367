@@ -50,7 +50,7 @@ public class GameWorld {
                 world.step(STEP_TIME, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
             }
         }
-        worldExplosions.removeCollidedParticles();
+        worldExplosions.removeCollidedMissilesAndParticles();
     }
 
     public void dispose() {

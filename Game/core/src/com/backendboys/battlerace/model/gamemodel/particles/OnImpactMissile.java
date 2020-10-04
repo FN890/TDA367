@@ -3,6 +3,9 @@ package com.backendboys.battlerace.model.gamemodel.particles;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
+/**
+ * A Missile that explodes on impact created in WorldExplosions
+ */
 class OnImpactMissile extends AbstractExplosive {
     private final Body body;
     private static final Vector2 direction = new Vector2(2, 0);
@@ -12,7 +15,11 @@ class OnImpactMissile extends AbstractExplosive {
     private static final float LAUNCH_OFFSET = 30f;
     private static final int NUM_PARTICLES = 30;
 
-
+    /**
+     * constructor - creates the Missile
+     * @param world the world where it spawns
+     * @param pos   spawn point of the missile
+     */
     OnImpactMissile(World world, Vector2 pos) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
@@ -49,6 +56,9 @@ class OnImpactMissile extends AbstractExplosive {
         return NUM_PARTICLES;
     }
 
+    /**
+     * After the Missile collides we give it permission to be removed from the world and the WorldExplosions class
+     */
     @Override
     public void explosiveCollided() {
         setToBeRemoved(true);

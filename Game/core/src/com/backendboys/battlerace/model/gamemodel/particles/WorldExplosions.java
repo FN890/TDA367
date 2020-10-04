@@ -44,7 +44,7 @@ public class WorldExplosions {
     /**
      *
      */
-    public void removeCollidedParticles() {
+    public void removeCollidedMissilesAndParticles() {
         ArrayList<Explosion> removedExplosions = new ArrayList<>();
         for (Explosion explosion : explosions) {
             explosion.removeSlowParticles();
@@ -74,7 +74,7 @@ public class WorldExplosions {
     }
 
     /**
-     * Creates a missile in the world
+     * Adds a missile to the world
      *
      * @param world The world where the missile spawns
      * @param pos   the position of the missile
