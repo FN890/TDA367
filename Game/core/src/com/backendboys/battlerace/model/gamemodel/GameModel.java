@@ -87,7 +87,8 @@ public class GameModel {
      * Temp function for testing speed
      */
     public void usePowerUp() {
-        gameWorld.addExplosion(new Vector2(player.getPosition().x - 20, player.getPosition().y), 30);
+        gameWorld.addMissile(new Vector2(player.getPosition().x - 20, player.getPosition().y));
+
     }
 
     public ArrayList<AbstractPowerUp> getPowerUps() {

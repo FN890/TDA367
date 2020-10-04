@@ -65,8 +65,17 @@ public class GameWorld {
         return groundGenerator.getVertices();
     }
 
-    public void addExplosion(Vector2 pos, int particles) {
-        worldExplosions.addExplosion(pos, particles, world);
+
+    /**
+     * creates a Missile in the world
+     *
+     * @param pos Spawn Position for the Missile
+     */
+    public void addMissile(Vector2 pos) {
+        worldExplosions.addMissile(pos, world);
+        System.out.println("Explosions: " + worldExplosions.getNumberOffExplosions());
+        System.out.println("particles: " + worldExplosions.getTotalExplosionParticles());
+
     }
 
     public ArrayList<AbstractPowerUp> getPowerUps() {

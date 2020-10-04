@@ -8,30 +8,31 @@ import com.badlogic.gdx.physics.box2d.*;
  */
 class OnImpactMissile extends AbstractExplosive {
     private final Body body;
-    private static final Vector2 direction = new Vector2(2, 0);
-    private static final int movementPower = 10;
+    private static final Vector2 direction = new Vector2(10, 4);
+    private static final float MOVEMENT_POWER = 10;
     private static final float MISSILE_LENGTH = 5f;
     private static final float MISSILE_HEIGHT = 1f;
-    private static final float LAUNCH_OFFSET = 30f;
+    private static final float LAUNCH_OFFSET_Y = 3f;
+    private static final float LAUNCH_OFFSET_x = 56.5f;
     private static final int NUM_PARTICLES = 30;
 
     /**
      * constructor - creates the Missile
+     *
      * @param world the world where it spawns
      * @param pos   spawn point of the missile
      */
     OnImpactMissile(World world, Vector2 pos) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
-        bodyDef.fixedRotation = true; // A missile can rotate
-        bodyDef.bullet = true;
+        bodyDef.fixedRotation = false; // A missile can rotate
+        bodyDef.bullet = false;
         bodyDef.linearDamping = 0; //air resistance
         bodyDef.gravityScale = 1;
-        bodyDef.position.x = pos.x;
-        bodyDef.position.y = pos.y + LAUNCH_OFFSET;
-        direction.scl(movementPower);
-        bodyDef.linearVelocity.x = direction.x;
-        bodyDef.linearVelocity.y = direction.y;
+        bodyDef.position.x = pos.x + LAUNCH_OFFSET_x;
+        bodyDef.position.y = pos.y + LAUNCH_OFFSET_Y;
+        bodyDef.linearVelocity.x = direction.x * MOVEMENT_POWER;
+        bodyDef.linearVelocity.y = direction.y * MOVEMENT_POWER;
         body = world.createBody(bodyDef);
 
         body.setUserData(this);
@@ -44,7 +45,7 @@ class OnImpactMissile extends AbstractExplosive {
         fixtureDef.friction = 100;
         fixtureDef.restitution = 0;
         fixtureDef.filter.groupIndex = -1; // makes particles unable to collide with one another
-        body.createFixture(fixtureDef);
+        body.createFixture(fixtureDef).setUserData(this);
         polygonShape.dispose();
     }
 

@@ -10,14 +10,21 @@ public class CollisionListener implements ContactListener {
     public void beginContact(Contact contact) {
         Fixture fixtureA = contact.getFixtureA();
         Fixture fixtureB = contact.getFixtureB();
-        if (fixtureA.getUserData() instanceof AbstractExplosive) {
+
+        if(fixtureA.getUserData() instanceof AbstractExplosive && !(fixtureB.getUserData() instanceof AbstractExplosive)){
+
             AbstractExplosive abstractExplosive = (AbstractExplosive) fixtureA.getUserData();
             abstractExplosive.explosiveCollided();
         }
-        if (fixtureB.getUserData() instanceof AbstractExplosive) {
+
+
+
+        if(fixtureB.getUserData() instanceof AbstractExplosive && !(fixtureA.getUserData() instanceof AbstractExplosive)){
+
             AbstractExplosive abstractExplosive = (AbstractExplosive) fixtureB.getUserData();
             abstractExplosive.explosiveCollided();
         }
+
     }
 
     @Override

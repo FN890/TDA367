@@ -31,15 +31,18 @@ class Explosion {
     }
 
     /**
-     * Removes explosionParticles if they are below a certain speed
+     * Removes explosionParticles if they have collided
      * The particle is removed from the world and the explosionParticles list
      */
-    void removeSlowParticles() {
+    void removeCollidedParticles() {
 
         ArrayList<ExplosionParticle> destroyedParticles = new ArrayList<>();
         for (ExplosionParticle explosionParticle : explosionParticles) {
             Body explosionBody = explosionParticle.getBody();
             if (explosionParticle.isToBeRemoved()) {
+                explosionBody.getWorld().destroyBody(explosionBody);
+                destroyedParticles.add(explosionParticle);
+            } else if (explosionParticle.getBody().getPosition().y <= 0) {
                 explosionBody.getWorld().destroyBody(explosionBody);
                 destroyedParticles.add(explosionParticle);
             }
