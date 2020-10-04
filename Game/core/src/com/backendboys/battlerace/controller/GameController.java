@@ -84,6 +84,7 @@ public class GameController implements InputProcessor {
 
     /**
      * Handles key inputs.
+     *
      * @param character the key typed.
      * @return is keyTyped was handled correctly.
      */

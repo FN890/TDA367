@@ -5,10 +5,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 
 /**
- *  Class for render Vehicle
+ * Class for render Vehicle
  */
 public class VehicleRender {
 
@@ -25,10 +24,9 @@ public class VehicleRender {
     private static final int WHEEL_SIZE = 12;
 
     /**
-     *
      * @param camera Camera for setting projection matrix
      */
-    public VehicleRender(OrthographicCamera camera){
+    public VehicleRender(OrthographicCamera camera) {
         this.camera = camera;
         batch = new SpriteBatch();
         spritePlayerVehicle = new Sprite(new Texture("newredcar.png"));
@@ -45,18 +43,17 @@ public class VehicleRender {
     }
 
     /**
-     *
      * @param car Car interface with position and rotation for render
      */
-    public void renderVehicle(ICar car){
+    public void renderVehicle(ICar car) {
         batch.begin();
-        spritePlayerVehicle.setPosition(car.getPosition().x-VEHCILE_WIDTH/2f, car.getPosition().y-VEHCILE_HEIGHT/2f);
+        spritePlayerVehicle.setPosition(car.getPosition().x - VEHCILE_WIDTH / 2f, car.getPosition().y - VEHCILE_HEIGHT / 2f);
         spritePlayerVehicle.setRotation((float) Math.toDegrees(car.getRotation()));
 
-        spriteVehicleFrontWheel.setPosition(car.getFrontWheelPosition().x-6f, car.getFrontWheelPosition().y-5.5f);
+        spriteVehicleFrontWheel.setPosition(car.getFrontWheelPosition().x - 6f, car.getFrontWheelPosition().y - 5.5f);
         spriteVehicleFrontWheel.setRotation((float) Math.toDegrees(car.getFrontWheelRotation()));
 
-        spriteVehicleRearWheel.setPosition(car.getRearWheelPosition().x-6f, car.getRearWheelPosition().y-5.5f);
+        spriteVehicleRearWheel.setPosition(car.getRearWheelPosition().x - 6f, car.getRearWheelPosition().y - 5.5f);
         spriteVehicleRearWheel.setRotation((float) Math.toDegrees(car.getRearWheelRotation()));
 
         batch.setProjectionMatrix(camera.combined);

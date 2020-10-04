@@ -80,7 +80,7 @@ public class WorldExplosions {
      * @param pos   the position of the missile
      */
     public void addMissile(Vector2 pos, World world) {
-        if(missiles.size()<3){
+        if (missiles.size() < 3) {
             missiles.add(new OnImpactMissile(world, pos));
         }
 

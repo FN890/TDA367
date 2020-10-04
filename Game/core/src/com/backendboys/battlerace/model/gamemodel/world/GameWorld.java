@@ -5,7 +5,8 @@ import com.backendboys.battlerace.model.gamemodel.powerups.AbstractPowerUp;
 import com.backendboys.battlerace.model.gamemodel.powerups.PowerUpGenerator;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.physics.box2d.Box2D;
+import com.badlogic.gdx.physics.box2d.World;
 
 import java.util.ArrayList;
 
@@ -41,7 +42,7 @@ public class GameWorld {
      * Step the world if enough time has passed since last step.
      */
     public void stepWorld() {
-        for(int i=0; i<SPEED_SCALE; i++) {
+        for (int i = 0; i < SPEED_SCALE; i++) {
             float delta = Gdx.graphics.getDeltaTime();
             accumulator += Math.min(delta, 0.25f);
             if (accumulator >= STEP_TIME) {
@@ -51,6 +52,7 @@ public class GameWorld {
         }
         worldExplosions.removeCollidedParticles();
     }
+
     public void dispose() {
         world.dispose();
     }
@@ -63,8 +65,8 @@ public class GameWorld {
         return groundGenerator.getVertices();
     }
 
-    public void addExplosion(Vector2 pos,int particles){
-        worldExplosions.addExplosion(pos,particles,world);
+    public void addExplosion(Vector2 pos, int particles) {
+        worldExplosions.addExplosion(pos, particles, world);
     }
 
     public ArrayList<AbstractPowerUp> getPowerUps() {

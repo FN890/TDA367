@@ -1,8 +1,8 @@
 package com.backendboys.battlerace.desktop;
 
+import com.backendboys.battlerace.BattleRace;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.backendboys.battlerace.BattleRace;
 
 /**
  * The class that creates the BattleRace class and launches the application

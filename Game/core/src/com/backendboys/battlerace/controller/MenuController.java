@@ -1,9 +1,7 @@
 package com.backendboys.battlerace.controller;
 
 import com.backendboys.battlerace.BattleRace;
-import com.backendboys.battlerace.view.screens.IScreen;
 import com.backendboys.battlerace.view.screens.ScreenFactory;
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 
@@ -71,7 +69,6 @@ public class MenuController {
     }
 
     /**
-     *
      * @param play Should background music be played or not.
      */
     public void playMenuMusic(boolean play) {

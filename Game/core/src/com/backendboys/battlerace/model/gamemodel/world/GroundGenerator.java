@@ -5,7 +5,6 @@ import com.badlogic.gdx.physics.box2d.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Random;
 
 /**
  * Class that handles ground creation.

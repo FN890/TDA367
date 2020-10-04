@@ -1,12 +1,10 @@
 package com.backendboys.battlerace.model.gamemodel;
 
-import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
 import com.backendboys.battlerace.model.gamemodel.player.Player;
 import com.backendboys.battlerace.model.gamemodel.powerups.AbstractPowerUp;
 import com.backendboys.battlerace.model.gamemodel.vehicle.SportsCar;
 import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.World;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +71,7 @@ public class GameModel {
         return gameWorld;
     }
 
-    public Player getPlayer(){
+    public Player getPlayer() {
         return player;
     }
 
@@ -81,7 +79,7 @@ public class GameModel {
         return player.getPosition();
     }
 
-    public float getPlayerRotation(){
+    public float getPlayerRotation() {
         return player.getRotation();
     }
 
@@ -89,10 +87,10 @@ public class GameModel {
      * Temp function for testing speed
      */
     public void usePowerUp() {
-       gameWorld.addExplosion(new Vector2(player.getPosition().x-20, player.getPosition().y ), 30);
+        gameWorld.addExplosion(new Vector2(player.getPosition().x - 20, player.getPosition().y), 30);
     }
 
-    public ArrayList<AbstractPowerUp> getPowerUps(){
+    public ArrayList<AbstractPowerUp> getPowerUps() {
         return gameWorld.getPowerUps();
     }
 

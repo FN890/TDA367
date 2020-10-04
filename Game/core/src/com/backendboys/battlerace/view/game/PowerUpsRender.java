@@ -6,8 +6,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 
@@ -52,7 +50,7 @@ public class PowerUpsRender {
     }
 
     private boolean withinCamera(AbstractPowerUp powerUp) {
-        if (powerUp.getBodyDef().position.x > orthographicCamera.position.x - orthographicCamera.viewportWidth){
+        if (powerUp.getBodyDef().position.x > orthographicCamera.position.x - orthographicCamera.viewportWidth) {
             return powerUp.getBodyDef().position.x < orthographicCamera.position.x + orthographicCamera.viewportWidth;
         }
         return false;

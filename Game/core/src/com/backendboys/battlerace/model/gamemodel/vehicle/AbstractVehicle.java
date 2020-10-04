@@ -131,10 +131,9 @@ abstract class AbstractVehicle implements IVehicle {
     }
 
     /**
-     *
      * @return The rotation of main body of vehicle
      */
-    public float getRotation(){
+    public float getRotation() {
         return body.getTransform().getRotation();
     }
 }

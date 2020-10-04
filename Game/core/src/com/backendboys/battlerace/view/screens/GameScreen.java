@@ -3,10 +3,8 @@ package com.backendboys.battlerace.view.screens;
 import com.backendboys.battlerace.controller.GameController;
 import com.backendboys.battlerace.model.gamemodel.IModelListener;
 import com.backendboys.battlerace.view.game.BackgroundRender;
-import com.backendboys.battlerace.view.game.VehicleRender;
-
 import com.backendboys.battlerace.view.game.PowerUpsRender;
-
+import com.backendboys.battlerace.view.game.VehicleRender;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;

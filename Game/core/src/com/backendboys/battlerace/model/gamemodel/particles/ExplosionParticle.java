@@ -10,6 +10,7 @@ class ExplosionParticle extends AbstractExplosive {
 
     private final Body body;
     private static final int movementPower = 200;
+
     /**
      * Constructor for a particle
      * Adds a particle to the world

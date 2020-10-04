@@ -4,7 +4,6 @@ import com.backendboys.battlerace.controller.GameController;
 import com.backendboys.battlerace.controller.MenuController;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Gdx2DPixmap;
 
 /**
  * When created it starts the application

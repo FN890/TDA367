@@ -2,7 +2,6 @@ package com.backendboys.battlerace.model.gamemodel.player;
 
 import com.backendboys.battlerace.model.gamemodel.powerups.AbstractPowerUp;
 import com.backendboys.battlerace.model.gamemodel.vehicle.ICar;
-import com.backendboys.battlerace.model.gamemodel.vehicle.IVehicle;
 import com.backendboys.battlerace.model.gamemodel.vehicle.VehicleFactory;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;

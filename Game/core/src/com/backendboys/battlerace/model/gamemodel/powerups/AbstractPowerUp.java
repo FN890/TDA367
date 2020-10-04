@@ -38,7 +38,7 @@ public abstract class AbstractPowerUp {
 
         // PowerUp is a sensor, no physics collision will occur.
         // But collisions and contact listeners will still be called.
-        for(int i=0; i<body.getFixtureList().size; i++) {
+        for (int i = 0; i < body.getFixtureList().size; i++) {
             body.getFixtureList().get(i).setSensor(true);
         }
 
