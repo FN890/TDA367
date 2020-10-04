@@ -33,7 +33,7 @@ public class WorldExplosions {
         return explosions.size();
     }
 
-    public int getTotalParticles() {
+    public int getTotalExplosionParticles() {
         int particles = 0;
         for (Explosion explosion : explosions) {
             particles += explosion.getNParticles();
@@ -42,9 +42,18 @@ public class WorldExplosions {
     }
 
     /**
-     *
+     * Removes particles and Explodes collided Missiles
      */
     public void removeCollidedMissilesAndParticles() {
+        removeCollidedParticles();
+        removeAndExplodeMissiles();
+    }
+
+    /**
+     * Removes ExplosionParticles that have collided from the world
+     * Also removes Explosions from the ExplosionsList if there are no more particles in that particular Explosion Object
+     */
+    private void removeCollidedParticles() {
         ArrayList<Explosion> removedExplosions = new ArrayList<>();
         for (Explosion explosion : explosions) {
             explosion.removeSlowParticles();
@@ -55,9 +64,11 @@ public class WorldExplosions {
         for (Explosion removedExplosion : removedExplosions) {
             explosions.remove(removedExplosion);
         }
-        removeAndExplodeMissiles();
     }
 
+    /**
+     * Explodes Missiles if they have collided and creates an explosion at the collision point
+     */
     private void removeAndExplodeMissiles() {
         ArrayList<OnImpactMissile> removedMissiles = new ArrayList<>();
         for (OnImpactMissile missile : missiles) {

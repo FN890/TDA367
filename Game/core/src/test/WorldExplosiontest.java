@@ -21,7 +21,7 @@ public class WorldExplosiontest {
     @Test
     public void addExplosionTest() {
         worldExplosions.addExplosion(new Vector2(1, 2), 30, world);
-        assertTrue(worldExplosions.getNumberOffExplosions() == 1 && worldExplosions.getTotalParticles() == 30);
+        assertTrue(worldExplosions.getNumberOffExplosions() == 1 && worldExplosions.getTotalExplosionParticles() == 30);
     }
 
 
