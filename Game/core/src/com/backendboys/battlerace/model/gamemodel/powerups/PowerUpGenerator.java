@@ -45,8 +45,6 @@ public class PowerUpGenerator {
 
         for (int i = 0; i < numberPowerups; i++) {
 
-            positionX += random.nextInt(200);
-
             if ((positionX / 5) > vertices.size() - 1) {
                 return powerUps;
             }
