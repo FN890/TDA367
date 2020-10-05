@@ -15,6 +15,8 @@ public class PowerUpGenerator {
     ArrayList<Vector2> vertices;
     World world;
 
+    private final int STEP = 5;
+
     /**
      * @param vertices List of vertices in world to measure spawnpoints of powerups.
      * @param world    The world, needed to spawn the powerups in the world.
@@ -43,16 +45,14 @@ public class PowerUpGenerator {
 
         for (int i = 0; i < numberPowerups; i++) {
 
-            positionX += random.nextInt(200);
-
             if ((positionX / 5) > vertices.size() - 1) {
                 return powerUps;
             }
 
-            Vector2 tempVector = vertices.get(positionX / 5);
+            Vector2 tempVector = vertices.get(positionX / STEP);
             int positionY = (int) tempVector.y + 30;
 
-            if (random.nextInt(2) == 1) {
+            if (random.nextBoolean()) {
                 NitroPowerUp nitroPowerUp = new NitroPowerUp();
                 nitroPowerUp.InstantiateBody(world, positionX, positionY);
                 powerUps.add(nitroPowerUp);
@@ -62,7 +62,7 @@ public class PowerUpGenerator {
                 missilePowerUp.InstantiateBody(world, positionX, positionY);
                 powerUps.add(missilePowerUp);
             }
-            positionX += space;
+            positionX += space * STEP;
         }
 
         return powerUps;
