@@ -81,4 +81,9 @@ public class GameWorld {
     public ArrayList<AbstractPowerUp> getPowerUps() {
         return powerUps;
     }
+
+    public int getNumberOfPowerUps() {
+        return powerUps.size();
+    }
+
 }
