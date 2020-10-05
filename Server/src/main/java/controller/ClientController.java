@@ -48,6 +48,7 @@ public class ClientController implements Runnable, GameListener, PacketListener 
 
             ServerController.getInstance().addPacketListener(socket.getInetAddress(), this);
 
+            writer.println("connected");
 
             String input;
             while ((input = reader.readLine()) != null) {
