@@ -31,7 +31,8 @@ public class ServerController implements TCPListener {
             UDPServer server = new UDPServer(PORT);
             new Thread(server).start();
             return server;
-        } catch (IOException ignored) {}
+        } catch (IOException ignored) {
+        }
 
         System.out.println("ERROR: Could not create TCP Server.");
         return null;
@@ -43,7 +44,8 @@ public class ServerController implements TCPListener {
             server.addListener(this);
             server.listen();
             return server;
-        } catch (IOException ignored) {}
+        } catch (IOException ignored) {
+        }
 
         System.out.println("ERROR: Could not create TCP Server.");
         return null;
@@ -57,7 +59,8 @@ public class ServerController implements TCPListener {
     /**
      * Adds a PacketListener to the running UDPServer.
      * Used for listening to incoming packets from specific clients.
-     * @param address Client InetAddress.
+     *
+     * @param address  Client InetAddress.
      * @param listener The PacketListener.
      */
     public void addPacketListener(InetAddress address, PacketListener listener) {
@@ -66,6 +69,7 @@ public class ServerController implements TCPListener {
 
     /**
      * Removes a PacketListener from the running UDPServer.
+     *
      * @param address The client InetAddress to remove.
      */
     public void removePacketListener(InetAddress address) {
@@ -74,14 +78,16 @@ public class ServerController implements TCPListener {
 
     /**
      * Send a Packet from the currently running UDPServer.
+     *
      * @param message The message to send.
      * @param address The address to send the message.
-     * @param port The port to send the message.
+     * @param port    The port to send the message.
      */
     public void sendUDPPacket(String message, InetAddress address, int port) {
         try {
             udpServer.sendPacket(message, address, port);
-        } catch (IOException ignored) {}
+        } catch (IOException ignored) {
+        }
     }
 
     /**

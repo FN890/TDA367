@@ -28,6 +28,7 @@ public class Game implements Runnable {
 
     /**
      * Adds a GameListener for listening to game updates.
+     *
      * @param listener The GameListener to add.
      */
     public void addListener(GameListener listener) {
@@ -36,6 +37,7 @@ public class Game implements Runnable {
 
     /**
      * Removes a GameListener.
+     *
      * @param listener The GameListener to remove.
      */
     public void removeListener(GameListener listener) {
@@ -49,6 +51,7 @@ public class Game implements Runnable {
 
     /**
      * Adds a player to the game.
+     *
      * @param player The Player to add.
      * @throws GameException When the player name is already taken.
      */
@@ -64,6 +67,7 @@ public class Game implements Runnable {
 
     /**
      * Removes a player from the game, and ends the game if it's the last player.
+     *
      * @param address The Players Address which to remove.
      */
     public synchronized void removePlayerByAddress(InetAddress address) {
@@ -86,9 +90,10 @@ public class Game implements Runnable {
 
     /**
      * Updates player position and rotation by its InetAddress.
-     * @param address The Player InetAddress.
-     * @param x The x position.
-     * @param y The y position.
+     *
+     * @param address  The Player InetAddress.
+     * @param x        The x position.
+     * @param y        The y position.
      * @param rotation The rotation.
      */
     public synchronized void updatePositionByAddress(InetAddress address, float x, float y, float rotation) {
@@ -102,6 +107,7 @@ public class Game implements Runnable {
 
     /**
      * Tells the game whether to keep sending packets or not.
+     *
      * @param run The boolean specifying if packets should be sent.
      */
     public synchronized void start(boolean run) {
@@ -112,7 +118,7 @@ public class Game implements Runnable {
     public void run() {
 
         long taskTime = 0;
-        long sleepTime = 1000/UPDATE_RATE;
+        long sleepTime = 1000 / UPDATE_RATE;
 
         while (!gameEnded) {
             if (!run) continue;
@@ -151,6 +157,7 @@ public class Game implements Runnable {
 
     /**
      * Get a player by it's InetAddress
+     *
      * @param address The players InetAddress.
      * @return The Player.
      */

@@ -30,6 +30,7 @@ public class ClientController implements Runnable, GameListener, PacketListener 
 
     /**
      * Initializes a ClientController.
+     *
      * @param socket The socket which the client is connected to.
      */
     public ClientController(Socket socket) {
@@ -75,6 +76,7 @@ public class ClientController implements Runnable, GameListener, PacketListener 
 
     /**
      * Send a TCP Message to the clients socket.
+     *
      * @param message The message to send.
      */
     public void sendTCP(String message) {
@@ -84,6 +86,7 @@ public class ClientController implements Runnable, GameListener, PacketListener 
     /**
      * Creates a new Game for this client.
      * Sends a response to the client if any error occurs.
+     *
      * @param name The host Player name.
      */
     public void createGame(String name) {
@@ -104,8 +107,9 @@ public class ClientController implements Runnable, GameListener, PacketListener 
     /**
      * Joins a game by finding it by it's identifier.
      * Sends a response to the client if any error occurs.
+     *
      * @param name The Player name.
-     * @param id The Game id to join.
+     * @param id   The Game id to join.
      */
     public void joinGame(String name, String id) {
         if (game != null) {
@@ -144,8 +148,9 @@ public class ClientController implements Runnable, GameListener, PacketListener 
 
     /**
      * Updates the clients position and rotation in a game, if there is a game.
-     * @param x The new x position.
-     * @param y The new y position.
+     *
+     * @param x        The new x position.
+     * @param y        The new y position.
      * @param rotation The new rotation.
      */
     public void updateGamePosition(float x, float y, float rotation) {
@@ -171,7 +176,8 @@ public class ClientController implements Runnable, GameListener, PacketListener 
             ServerController.getInstance().removePacketListener(socket.getInetAddress());
             leaveGame();
             socket.close();
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
     }
 
 
@@ -192,7 +198,8 @@ public class ClientController implements Runnable, GameListener, PacketListener 
         try {
             ICommand cmd = protocol.parseMessage(message);
             cmdHandler.handleCommand(cmd);
-        } catch (ProtocolException ignored) {}
+        } catch (ProtocolException ignored) {
+        }
 
     }
 

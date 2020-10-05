@@ -8,6 +8,7 @@ import java.net.Socket;
 public interface TCPListener {
     /**
      * Called once a new connection has been established.
+     *
      * @param client The client socket.
      */
     void gotConnection(Socket client);

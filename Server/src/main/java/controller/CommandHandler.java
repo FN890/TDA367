@@ -15,6 +15,7 @@ class CommandHandler {
 
     /**
      * Initializes a CommandHandler.
+     *
      * @param clientController The ClientController using this handler.
      */
     CommandHandler(ClientController clientController) {
@@ -24,6 +25,7 @@ class CommandHandler {
 
     /**
      * Handles a command and forwards to ClientController.
+     *
      * @param cmd The command to handle.
      */
     void handleCommand(ICommand cmd) {
@@ -49,6 +51,7 @@ class CommandHandler {
     /**
      * Handles all get commands.
      * Sends a response to the client. Either response: or error:
+     *
      * @param args The arguments of the get: command.
      */
     private void handleGet(String[] args) {
@@ -75,6 +78,7 @@ class CommandHandler {
     /**
      * Handles Create Game Command.
      * Form: create:name
+     *
      * @param args The commands arguments.
      */
     private void handleCreateGame(String[] args) {
@@ -89,6 +93,7 @@ class CommandHandler {
     /**
      * Handles Join Game Command.
      * Form: join:id,name
+     *
      * @param args The commands arguments.
      */
     private void handleJoinGame(String[] args) {
@@ -114,6 +119,7 @@ class CommandHandler {
     /**
      * Handles Update Position Command.
      * Form: pos:x,y,rotation
+     *
      * @param args The commands arguments.
      */
     private void handleUpdatePos(String[] args) {

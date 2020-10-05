@@ -15,7 +15,9 @@ class ServerProtocolReader {
         List<String> argsList = new ArrayList<>();
 
         for (char c : trimmed.toCharArray()) {
-            if (c == ' ') { continue; }
+            if (c == ' ') {
+                continue;
+            }
 
             if (c == ':' && command == null) {
                 command = sb.toString();

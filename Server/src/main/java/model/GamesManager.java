@@ -13,10 +13,12 @@ public class GamesManager {
     private final List<Game> games = new ArrayList<>();
     private int currentGameID = 1400;
 
-    private GamesManager() {}
+    private GamesManager() {
+    }
 
     /**
      * Creates a new Game.
+     *
      * @param host The player who's creating the game.
      * @return An initialized game.
      */
@@ -28,6 +30,7 @@ public class GamesManager {
 
     /**
      * Removes a game from the "known games" list.
+     *
      * @param id The game id.
      */
     public synchronized void removeGame(String id) {
@@ -36,6 +39,7 @@ public class GamesManager {
 
     /**
      * Finds a game by it's identifier.
+     *
      * @param id The identifier.
      * @return A game.
      */

@@ -9,6 +9,7 @@ public class GameException extends Exception {
 
     /**
      * Creates a GameException.
+     *
      * @param error The GameError.
      */
     GameException(GameError error) {

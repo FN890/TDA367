@@ -18,6 +18,7 @@ public class TCPServer {
 
     /**
      * Adds a listener for listening to incoming connections.
+     *
      * @param listener The TCPListener.
      */
     public void addListener(TCPListener listener) {
@@ -26,6 +27,7 @@ public class TCPServer {
 
     /**
      * Removes a listener.
+     *
      * @param listener The TCPListener to remove.
      */
     public void removeListener(TCPListener listener) {
@@ -34,6 +36,7 @@ public class TCPServer {
 
     /**
      * Creates an instance of TCPServer, which initializes necessary parameters.
+     *
      * @param port The port on which the server will run.
      * @throws IOException If error occurs when creating the ServerSocket.
      */
@@ -45,6 +48,7 @@ public class TCPServer {
     /**
      * Tells the Server to start listening for incoming connections.
      * Will create new Thread and ClientController on connection.
+     *
      * @throws IOException If error occurs when accepting connections.
      */
     public void listen() throws IOException {

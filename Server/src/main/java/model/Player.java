@@ -18,9 +18,10 @@ public class Player {
 
     /**
      * Initializes a Player.
-     * @param name The player name.
+     *
+     * @param name    The player name.
      * @param address The players InetAddress.
-     * @param port The players port.
+     * @param port    The players port.
      */
     public Player(String name, InetAddress address, int port) {
         this.name = name;

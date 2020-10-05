@@ -21,7 +21,8 @@ public class UDPServer implements Runnable {
     /**
      * Adds a PacketListener class associated with a client InetAddress
      * for listening on incoming packets from this address.
-     * @param address The address on which will be associated with the PacketListener.
+     *
+     * @param address  The address on which will be associated with the PacketListener.
      * @param listener The PacketListener class.
      */
     public void addListener(InetAddress address, PacketListener listener) {
@@ -30,6 +31,7 @@ public class UDPServer implements Runnable {
 
     /**
      * Removes a PacketListener with the InetAddress.
+     *
      * @param address The InetAddress.
      */
     public void removeListener(InetAddress address) {
@@ -38,6 +40,7 @@ public class UDPServer implements Runnable {
 
     /**
      * Creates an instance of the UDPServer, and setting up necessary parameters.
+     *
      * @param port The port on which the server will run.
      * @throws SocketException If error occurs on creating a DatagramSocket.
      */
@@ -67,6 +70,7 @@ public class UDPServer implements Runnable {
 
     /**
      * Sends a packet message to the listener specified by address.
+     *
      * @param address The address associated with a PacketListener.
      * @param message The message.
      */
@@ -78,13 +82,14 @@ public class UDPServer implements Runnable {
 
     /**
      * Send a DatagramPacket containing a message to the specified address and port.
+     *
      * @param message The message to send.
      * @param address The receiver address.
-     * @param port The receiver port.
+     * @param port    The receiver port.
      * @throws IOException If the DatagramPacket fails to send.
      */
     public void sendPacket(String message, InetAddress address, int port) throws IOException {
-        byte[] byteMsg =  message.getBytes();
+        byte[] byteMsg = message.getBytes();
 
         DatagramPacket packet = new DatagramPacket(byteMsg, 0, byteMsg.length, address, port);
         socket.send(packet);
