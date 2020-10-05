@@ -32,9 +32,8 @@ public class BackgroundRender {
      */
     public void renderBackground() {
         generateSky();
-        generateGround();
         generateDirt();
-
+        generateGround();
     }
 
     public void dispose() {
