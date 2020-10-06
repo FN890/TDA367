@@ -39,6 +39,8 @@ class ServerProtocolReader {
             args[i] = argsList.get(i);
         }
 
+        argsList.add(sb.toString());
+
         if (command == null) {
             throw new ProtocolException(ProtocolError.INVALID_SYNTAX);
         }

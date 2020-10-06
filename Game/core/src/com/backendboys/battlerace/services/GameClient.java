@@ -10,6 +10,7 @@ public class GameClient implements Runnable, IPacketListener{
 
     private String hostname;
     private int port;
+    private UDPClient udpClient;
 
     public GameClient(String hostname, int port){
         this.hostname = hostname;
@@ -19,6 +20,8 @@ public class GameClient implements Runnable, IPacketListener{
     @Override
     public void run() {
         try(Socket socket = new Socket(hostname, port)){
+
+            udpClient = new UDPClient(port);
 
             InputStream inputStream = socket.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
