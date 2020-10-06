@@ -103,6 +103,8 @@ public class ClientController implements Runnable, GameListener, PacketListener 
 
         game.start(true);
         this.game = game;
+
+        sendTCP(protocol.writeGameInfo(game));
     }
 
     /**
@@ -130,6 +132,8 @@ public class ClientController implements Runnable, GameListener, PacketListener 
             game.addPlayer(player);
             game.addListener(this);
             this.game = game;
+
+            sendTCP(protocol.writeGameInfo(game));
         } catch (GameException e) {
             sendTCP(protocol.writeError(e.getMessage()));
         }
@@ -145,6 +149,8 @@ public class ClientController implements Runnable, GameListener, PacketListener 
         game.removePlayerByAddress(socket.getInetAddress());
         game.removeListener(this);
         game = null;
+
+        sendTCP(protocol.writeResponse("left"));
     }
 
     /**

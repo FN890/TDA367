@@ -18,37 +18,22 @@ public class ServerController implements TCPListener {
     private static final int PORT = 26000;
     private static ServerController instance = null;
 
-    private final TCPServer tcpServer;
-    private final UDPServer udpServer;
+    private TCPServer tcpServer;
+    private UDPServer udpServer;
 
     private ServerController() {
-        udpServer = createUDPServer();
-        tcpServer = createTCPServer();
-    }
-
-    private UDPServer createUDPServer() {
         try {
-            UDPServer server = new UDPServer(PORT);
-            new Thread(server).start();
-            return server;
-        } catch (IOException ignored) {
+            udpServer = new UDPServer(PORT);
+            new Thread(udpServer).start();
+
+            tcpServer = new TCPServer(PORT);
+            tcpServer.addListener(this);
+            new Thread(tcpServer).start();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        System.out.println("ERROR: Could not create TCP Server.");
-        return null;
-    }
-
-    private TCPServer createTCPServer() {
-        try {
-            TCPServer server = new TCPServer(PORT);
-            server.addListener(this);
-            server.listen();
-            return server;
-        } catch (IOException ignored) {
-        }
-
-        System.out.println("ERROR: Could not create TCP Server.");
-        return null;
     }
 
     @Override
@@ -93,8 +78,9 @@ public class ServerController implements TCPListener {
     /**
      * @return The instance of ServerController.
      */
-    public static ServerController getInstance() {
+    public synchronized static ServerController getInstance() {
         if (instance == null) {
+            System.out.println("Creating ServerController...");
             instance = new ServerController();
         }
         return instance;

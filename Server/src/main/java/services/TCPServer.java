@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * TCPServer class used for setting up a TCP Server.
  */
-public class TCPServer {
+public class TCPServer implements Runnable {
 
     private final int port;
     private final ServerSocket serverSocket;
@@ -46,22 +46,26 @@ public class TCPServer {
     }
 
     /**
+     * This method runs whenever a new Thread is started with this Runnable.
      * Tells the Server to start listening for incoming connections.
      * Will create new Thread and ClientController on connection.
-     *
-     * @throws IOException If error occurs when accepting connections.
      */
-    public void listen() throws IOException {
-
+    @Override
+    public void run() {
         System.out.println("Server started listening on port: " + port);
 
         while (true) {
-            Socket client = serverSocket.accept();
+            try {
+                Socket client = serverSocket.accept();
 
-            System.out.println("Client connected to the Server: " + client.getInetAddress().getHostAddress());
-            informListenersGotConnection(client);
+                System.out.println("Client connected to the Server: " + client.getInetAddress().getHostAddress());
+                informListenersGotConnection(client);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
-
     }
 
     private void informListenersGotConnection(Socket client) {
