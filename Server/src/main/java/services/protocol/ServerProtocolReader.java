@@ -34,12 +34,13 @@ class ServerProtocolReader {
             sb.append(c);
         }
 
-        argsList.add(sb.toString());
 
         String[] args = new String[argsList.size()];
         for (int i = 0; i < argsList.size(); i++) {
             args[i] = argsList.get(i);
         }
+
+        argsList.add(sb.toString());
 
         if (command == null) {
             throw new ProtocolException(ProtocolError.INVALID_SYNTAX);
