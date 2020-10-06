@@ -13,9 +13,12 @@ public class WorldExplosions {
     /**
      * A list of all the explosions that have been created in the world
      */
-    private static final int MAX_MISSILES = 10;
+
     private final ArrayList<Explosion> explosions = new ArrayList<>();
     private final ArrayList<OnImpactMissile> missiles = new ArrayList<>();
+
+    public WorldExplosions() {
+    }
 
     /**
      * Adds an explosion to the world at a set position
@@ -92,9 +95,7 @@ public class WorldExplosions {
      * @param pos   the position of the missile
      */
     public void addMissile(Vector2 pos, World world) {
-        //if (missiles.size() < MAX_MISSILES) {
         missiles.add(new OnImpactMissile(world, pos));
-        //}
-
     }
+
 }

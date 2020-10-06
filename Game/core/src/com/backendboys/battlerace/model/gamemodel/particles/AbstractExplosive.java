@@ -3,10 +3,15 @@ package com.backendboys.battlerace.model.gamemodel.particles;
 /**
  * A abstract class used to identify
  * Missiles and ExplosionParticles when collisions happen
+ * This info is then used to call the explosiveCollided(); method
  */
 public abstract class AbstractExplosive {
 
-    private boolean toBeRemoved = false;
+    private boolean toBeRemoved;
+
+    public AbstractExplosive() {
+        this.toBeRemoved = false;
+    }
 
     /**
      * The method that is called when explosives Collide
