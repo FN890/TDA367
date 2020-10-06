@@ -31,7 +31,7 @@ class Explosion {
     }
 
     /**
-     * Removes explosionParticles if they have collided
+     * Removes explosionParticles if they have collided or if they are under the world
      * The particle is removed from the world and the explosionParticles list
      */
     void removeCollidedParticles() {

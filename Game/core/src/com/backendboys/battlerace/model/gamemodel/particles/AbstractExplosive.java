@@ -18,6 +18,7 @@ public abstract class AbstractExplosive {
      * Called from the collisionListener
      */
     public abstract void explosiveCollided();
+
     /**
      * When you change this boolean you give the explosive permission to be removed
      */
