@@ -34,7 +34,7 @@ public class GameWorld {
         groundGenerator = new GroundGenerator(10000, 5, 1);
         groundGenerator.generateGround(world);
         world.setContactListener(new CollisionListener());
-        PowerUpGenerator powerUpGenerator = new PowerUpGenerator(groundGenerator.getVertices(), world);
+        final PowerUpGenerator powerUpGenerator = new PowerUpGenerator(groundGenerator.getVertices(), world);
         powerUps = powerUpGenerator.generatePowerups(30);
     }
 
