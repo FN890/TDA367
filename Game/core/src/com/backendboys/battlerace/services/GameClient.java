@@ -24,8 +24,8 @@ public class GameClient implements Runnable, IPacketListener{
 
             System.out.println("Connected to server");
 
-            Thread udpThread = new Thread(new UDPClient(port));
-            udpThread.start();
+            //Thread udpThread = new Thread(new UDPClient(port));
+            //udpThread.start();
 
             printWriter = new PrintWriter(socket.getOutputStream(), true);
             sendCommand();
@@ -42,7 +42,7 @@ public class GameClient implements Runnable, IPacketListener{
         } catch (UnknownHostException ex) {
             System.out.println("Server not found: " + ex.getMessage());
         } catch (IOException ex) {
-            System.out.println("I/O error: " + ex.getMessage());
+            ex.printStackTrace();
         }
     }
 
