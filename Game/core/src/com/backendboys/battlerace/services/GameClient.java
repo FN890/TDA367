@@ -1,8 +1,8 @@
 package com.backendboys.battlerace.services;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.PrintWriter;
+import jdk.internal.util.xml.impl.Input;
+
+import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -11,9 +11,6 @@ public class GameClient implements Runnable, IPacketListener{
     private String hostname;
     private int port;
 
-    private PrintWriter writer;
-    private BufferedReader reader;
-
     public GameClient(String hostname, int port){
         this.hostname = hostname;
         this.port = port;
@@ -21,11 +18,21 @@ public class GameClient implements Runnable, IPacketListener{
 
     @Override
     public void run() {
-        try{
-            Socket socket = new Socket(hostname, port);
+        try(Socket socket = new Socket(hostname, port)){
 
-        } catch (IOException e) {
-            e.printStackTrace();
+            InputStream inputStream = socket.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+
+        } catch (UnknownHostException ex) {
+            System.out.println("Server not found: " + ex.getMessage());
+        } catch (IOException ex) {
+            System.out.println("I/O error: " + ex.getMessage());
         }
     }
 
