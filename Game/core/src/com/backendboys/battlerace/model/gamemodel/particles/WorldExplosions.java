@@ -13,9 +13,12 @@ public class WorldExplosions {
     /**
      * A list of all the explosions that have been created in the world
      */
-    private static final int MAX_MISSILES = 10;
-    private final ArrayList<Explosion> explosions = new ArrayList<>();
-    private final ArrayList<OnImpactMissile> missiles = new ArrayList<>();
+
+    private static final ArrayList<Explosion> explosions = new ArrayList<>();
+    private static final ArrayList<OnImpactMissile> missiles = new ArrayList<>();
+
+    public WorldExplosions() {
+    }
 
     /**
      * Adds an explosion to the world at a set position
@@ -69,13 +72,17 @@ public class WorldExplosions {
 
     /**
      * Explodes Missiles if they have collided and creates an explosion at the collision point
+     * Also removes Missiles that are under the map and does not add an explosion  for these
      */
     private void removeAndExplodeMissiles() {
         ArrayList<OnImpactMissile> removedMissiles = new ArrayList<>();
         for (OnImpactMissile missile : missiles) {
-            if (missile.isToBeRemoved()) {
-                Body body = missile.getBody();
+            Body body = missile.getBody();
+            if (missile.getIsToBeRemoved()) {
                 addExplosion(body.getPosition(), OnImpactMissile.getNumParticles(), body.getWorld());
+                removedMissiles.add(missile);
+                body.getWorld().destroyBody(body);
+            } else if (body.getPosition().x < 0) {
                 removedMissiles.add(missile);
                 body.getWorld().destroyBody(body);
             }
@@ -92,9 +99,7 @@ public class WorldExplosions {
      * @param pos   the position of the missile
      */
     public void addMissile(Vector2 pos, World world) {
-        //if (missiles.size() < MAX_MISSILES) {
         missiles.add(new OnImpactMissile(world, pos));
-        //}
-
     }
+
 }

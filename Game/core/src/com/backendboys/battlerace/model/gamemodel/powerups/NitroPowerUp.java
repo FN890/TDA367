@@ -17,4 +17,9 @@ public class NitroPowerUp extends AbstractPowerUp {
     public void use(Player player) {
 
     }
+
+    @Override
+    public String toString() {
+        return "Nitro PowerUp";
+    }
 }

@@ -15,7 +15,7 @@ class Explosion {
     /**
      * A list of all the particles created in the explosion
      */
-    private final ArrayList<ExplosionParticle> explosionParticles = new ArrayList<>();
+    private static final ArrayList<ExplosionParticle> explosionParticles = new ArrayList<>();
 
     /**
      * @param pos          The position for the explosion
@@ -31,7 +31,7 @@ class Explosion {
     }
 
     /**
-     * Removes explosionParticles if they have collided
+     * Removes explosionParticles if they have collided or if they are under the world
      * The particle is removed from the world and the explosionParticles list
      */
     void removeCollidedParticles() {
@@ -39,7 +39,7 @@ class Explosion {
         ArrayList<ExplosionParticle> destroyedParticles = new ArrayList<>();
         for (ExplosionParticle explosionParticle : explosionParticles) {
             Body explosionBody = explosionParticle.getBody();
-            if (explosionParticle.isToBeRemoved()) {
+            if (explosionParticle.getIsToBeRemoved()) {
                 explosionBody.getWorld().destroyBody(explosionBody);
                 destroyedParticles.add(explosionParticle);
             } else if (explosionParticle.getBody().getPosition().y <= 0) {

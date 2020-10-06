@@ -38,7 +38,7 @@ public class PowerUpGenerator {
 
         ArrayList<AbstractPowerUp> powerUps = new ArrayList<>();
 
-        int space = vertices.size() / numberPowerups;
+        final int space = vertices.size() / numberPowerups;
         int positionX = space * 2;
 
         Random random = new Random();

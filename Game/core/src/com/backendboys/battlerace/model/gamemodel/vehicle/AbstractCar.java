@@ -49,7 +49,7 @@ abstract class AbstractCar extends AbstractVehicle implements ICar {
         // Revolute Joints for Wheels and Axles -----------------
 
         // Rear
-        RevoluteJointDef rearWheelRevoluteJointDef = new RevoluteJointDef();
+        final RevoluteJointDef rearWheelRevoluteJointDef = new RevoluteJointDef();
         rearWheelRevoluteJointDef.bodyA = main;
         rearWheelRevoluteJointDef.bodyB = rearWheel;
         rearWheelRevoluteJointDef.enableMotor = true;
@@ -59,7 +59,7 @@ abstract class AbstractCar extends AbstractVehicle implements ICar {
         world.createJoint(rearWheelRevoluteJointDef);
 
         // Front
-        RevoluteJointDef frontWheelRevoluteJointDef = new RevoluteJointDef();
+        final RevoluteJointDef frontWheelRevoluteJointDef = new RevoluteJointDef();
         frontWheelRevoluteJointDef.bodyA = main;
         frontWheelRevoluteJointDef.bodyB = frontWheel;
         frontWheelRevoluteJointDef.enableMotor = false;
@@ -80,7 +80,7 @@ abstract class AbstractCar extends AbstractVehicle implements ICar {
     @Override
     protected Shape createVehicleShape() {
 
-        PolygonShape shape = new PolygonShape();
+        final PolygonShape shape = new PolygonShape();
         shape.setAsBox(chassi.getWidth(), chassi.getHeight());
 
         return shape;
@@ -100,11 +100,11 @@ abstract class AbstractCar extends AbstractVehicle implements ICar {
 
 
         // Creating Wheels Shape -------------------
-        CircleShape wheelShape = new CircleShape();
+        final CircleShape wheelShape = new CircleShape();
         wheelShape.setRadius(wheels.getRadius());
 
         // Wheels FixtureDef
-        FixtureDef wheelFixture = new FixtureDef();
+        final FixtureDef wheelFixture = new FixtureDef();
         wheelFixture.density = wheels.getDensity();
         wheelFixture.friction = wheels.getFriction();
         wheelFixture.restitution = wheels.getRestitution();
@@ -112,18 +112,18 @@ abstract class AbstractCar extends AbstractVehicle implements ICar {
         wheelFixture.shape = wheelShape;
 
         // Wheels BodyDef
-        BodyDef wheelBodyDef = new BodyDef();
+        final BodyDef wheelBodyDef = new BodyDef();
         wheelBodyDef.type = BodyDef.BodyType.DynamicBody;
         wheelBodyDef.position.set(getWorldCenter().x - (width), getWorldCenter().y - (height));
 
         // Rear Wheel Body
-        Body rearWheel = world.createBody(wheelBodyDef);
+        final Body rearWheel = world.createBody(wheelBodyDef);
         rearWheel.createFixture(wheelFixture);
 
         wheelBodyDef.position.set(getWorldCenter().x + (width), getWorldCenter().y - (height));
 
         // Front Wheel Body
-        Body frontWheel = world.createBody(wheelBodyDef);
+        final Body frontWheel = world.createBody(wheelBodyDef);
         frontWheel.createFixture(wheelFixture);
 
         createJoints(main, world, rearWheel, frontWheel);

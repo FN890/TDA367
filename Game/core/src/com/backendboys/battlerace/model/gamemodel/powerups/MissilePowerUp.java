@@ -17,4 +17,9 @@ public class MissilePowerUp extends AbstractPowerUp {
     public void use(Player player) {
 
     }
+
+    @Override
+    public String toString() {
+        return "Missile PowerUp";
+    }
 }
