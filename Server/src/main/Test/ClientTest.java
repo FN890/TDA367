@@ -12,4 +12,9 @@ public class ClientTest {
         Assertions.assertEquals(1, 1);
     }
 
+    @Test
+    public void Test() {
+        Assertions.assertEquals(1, 1);
+    }
+
 }
