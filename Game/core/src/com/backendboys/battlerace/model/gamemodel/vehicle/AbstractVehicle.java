@@ -39,15 +39,15 @@ abstract class AbstractVehicle implements IVehicle {
     }
 
     private void instantiateBody(World world, float mass, float posX, float posY) {
-        BodyDef bodyDef = new BodyDef();
+        final BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.position.set(posX, posY);
 
-        Body body = world.createBody(bodyDef);
+        final Body body = world.createBody(bodyDef);
 
-        Shape shape = createVehicleShape();
+        final Shape shape = createVehicleShape();
 
-        FixtureDef fixtureDef = new FixtureDef();
+        final FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = createVehicleShape();
         fixtureDef.density = (mass / (vehicleArea()));
         fixtureDef.friction = FRICTION;
