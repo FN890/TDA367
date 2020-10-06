@@ -53,7 +53,7 @@ abstract class AbstractVehicle implements IVehicle {
         fixtureDef.friction = FRICTION;
         fixtureDef.restitution = RESTITUTION;
 
-        body.createFixture(fixtureDef);
+        body.createFixture(fixtureDef).setUserData(this);
         shape.dispose();
 
         this.body = body;
