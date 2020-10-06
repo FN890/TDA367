@@ -3,10 +3,10 @@ package com.backendboys.battlerace.services;
 /**
  * PacketListener used for listening on UDP Packets.
  */
-public interface PacketListener {
+public interface IPacketListener {
 
     /**
-     * Called once a packet has been received, and its from the right InetAddress.
+     * Called once a packet has been received from the server.
      *
      * @param message The message received.
      */

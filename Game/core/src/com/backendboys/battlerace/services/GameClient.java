@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class GameClient implements Runnable{
+public class GameClient implements Runnable, IPacketListener{
 
     private String hostname;
     private int port;
@@ -27,5 +27,10 @@ public class GameClient implements Runnable{
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void gotPacket(String message) {
+
     }
 }
