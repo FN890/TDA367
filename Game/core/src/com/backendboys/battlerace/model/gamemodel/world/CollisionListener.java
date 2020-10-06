@@ -6,7 +6,7 @@ import com.badlogic.gdx.physics.box2d.*;
 /**
  * A class that handles the logic for what happens when bodies collide in the world
  */
-public class CollisionListener implements ContactListener {
+class CollisionListener implements ContactListener {
     /**
      * Everytime two bodies collide in the world a contact is created between two fixtures
      * The data that a contact provides is used to make thing happen when specific bodies collide
