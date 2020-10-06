@@ -39,7 +39,7 @@ class Explosion {
         ArrayList<ExplosionParticle> destroyedParticles = new ArrayList<>();
         for (ExplosionParticle explosionParticle : explosionParticles) {
             Body explosionBody = explosionParticle.getBody();
-            if (explosionParticle.isToBeRemoved()) {
+            if (explosionParticle.getIsToBeRemoved()) {
                 explosionBody.getWorld().destroyBody(explosionBody);
                 destroyedParticles.add(explosionParticle);
             } else if (explosionParticle.getBody().getPosition().y <= 0) {

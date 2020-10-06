@@ -73,7 +73,7 @@ public class WorldExplosions {
     private void removeAndExplodeMissiles() {
         ArrayList<OnImpactMissile> removedMissiles = new ArrayList<>();
         for (OnImpactMissile missile : missiles) {
-            if (missile.isToBeRemoved()) {
+            if (missile.getIsToBeRemoved()) {
                 Body body = missile.getBody();
                 addExplosion(body.getPosition(), OnImpactMissile.getNumParticles(), body.getWorld());
                 removedMissiles.add(missile);
