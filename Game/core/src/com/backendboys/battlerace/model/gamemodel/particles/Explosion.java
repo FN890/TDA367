@@ -15,7 +15,7 @@ class Explosion {
     /**
      * A list of all the particles created in the explosion
      */
-    private final ArrayList<ExplosionParticle> explosionParticles = new ArrayList<>();
+    private static final ArrayList<ExplosionParticle> explosionParticles = new ArrayList<>();
 
     /**
      * @param pos          The position for the explosion

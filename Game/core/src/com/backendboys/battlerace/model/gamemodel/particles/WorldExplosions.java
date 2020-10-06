@@ -14,8 +14,8 @@ public class WorldExplosions {
      * A list of all the explosions that have been created in the world
      */
 
-    private final ArrayList<Explosion> explosions = new ArrayList<>();
-    private final ArrayList<OnImpactMissile> missiles = new ArrayList<>();
+    private static final ArrayList<Explosion> explosions = new ArrayList<>();
+    private static final ArrayList<OnImpactMissile> missiles = new ArrayList<>();
 
     public WorldExplosions() {
     }
@@ -72,13 +72,17 @@ public class WorldExplosions {
 
     /**
      * Explodes Missiles if they have collided and creates an explosion at the collision point
+     * Also removes Missiles that are under the map and does not add an explosion  for these
      */
     private void removeAndExplodeMissiles() {
         ArrayList<OnImpactMissile> removedMissiles = new ArrayList<>();
         for (OnImpactMissile missile : missiles) {
+            Body body = missile.getBody();
             if (missile.getIsToBeRemoved()) {
-                Body body = missile.getBody();
                 addExplosion(body.getPosition(), OnImpactMissile.getNumParticles(), body.getWorld());
+                removedMissiles.add(missile);
+                body.getWorld().destroyBody(body);
+            } else if (body.getPosition().x < 0) {
                 removedMissiles.add(missile);
                 body.getWorld().destroyBody(body);
             }
