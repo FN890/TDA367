@@ -11,6 +11,8 @@ public class GameClient implements Runnable, IPacketListener{
     private int port;
     private UDPClient udpClient;
 
+    private PrintWriter printWriter;
+
     public GameClient(String hostname, int port){
         this.hostname = hostname;
         this.port = port;
@@ -20,7 +22,13 @@ public class GameClient implements Runnable, IPacketListener{
     public void run() {
         try(Socket socket = new Socket(hostname, port)){
 
-            udpClient = new UDPClient(port);
+            System.out.println("Connected to server");
+
+            Thread udpThread = new Thread(new UDPClient(port));
+            udpThread.start();
+
+            printWriter = new PrintWriter(socket.getOutputStream(), true);
+            sendCommand();
 
             InputStream inputStream = socket.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
@@ -41,5 +49,10 @@ public class GameClient implements Runnable, IPacketListener{
     @Override
     public void gotPacket(String message) {
 
+    }
+
+    private void sendCommand(){
+        System.out.println("Sending create:simon to server");
+        printWriter.println("create:simon");
     }
 }
