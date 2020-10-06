@@ -25,7 +25,7 @@ public abstract class AbstractPowerUp {
      * @param spawnPosy the y value of its' spawn position.
      */
 
-    public void InstantiateBody(World world, float spawnPosx, float spawnPosy) {
+    protected void InstantiateBody(World world, float spawnPosx, float spawnPosy) {
         bodyDef.type = BodyDef.BodyType.StaticBody;
         final PolygonShape boxShape = new PolygonShape();
         boxShape.setAsBox(4f, 4f);
@@ -34,7 +34,7 @@ public abstract class AbstractPowerUp {
         bodyDef.position.set(spawnPosx, spawnPosy);
 
         final Body body = world.createBody(bodyDef);
-        body.createFixture(fixtureDef);
+        body.createFixture(fixtureDef).setUserData(this);
 
         // PowerUp is a sensor, no physics collision will occur.
         // But collisions and contact listeners will still be called.
@@ -55,6 +55,10 @@ public abstract class AbstractPowerUp {
     }
 
     public abstract void use(Player player);
+
+    @Override
+    public abstract String toString();
+
 
     public BodyDef getBodyDef() {
         return bodyDef;
