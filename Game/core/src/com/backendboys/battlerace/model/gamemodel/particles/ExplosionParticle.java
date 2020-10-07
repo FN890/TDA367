@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
 /**
- * A class that is used to create particles for explosions one instance is one particle
+ * A particle for explosions one instance is one particle
  */
 class ExplosionParticle extends AbstractExplosive {
 
@@ -17,7 +17,7 @@ class ExplosionParticle extends AbstractExplosive {
      *
      * @param world  The world where the particle is created
      * @param pos    used to determine the position of the particle
-     * @param rayDir Used to determine which direction in 2d space the particle is travelling
+     * @param rayDir Used to determine which direction the particle is travelling
      */
     ExplosionParticle(World world, Vector2 pos, Vector2 rayDir) {
         BodyDef bodyDef = new BodyDef();

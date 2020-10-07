@@ -7,7 +7,8 @@ import com.badlogic.gdx.physics.box2d.World;
 import java.util.ArrayList;
 
 /**
- * This is the class that creates the explosions in the world and the class that is exposed outside the particles package
+ * This is the class that creates the explosions in the world
+ * and the class that is exposed outside the particles package
  */
 public class WorldExplosions {
     /**
@@ -55,7 +56,8 @@ public class WorldExplosions {
 
     /**
      * Removes ExplosionParticles that have collided from the world
-     * Also removes Explosions from the ExplosionsList if there are no more particles in that particular Explosion Object
+     * Also removes Explosions from the ExplosionsList -
+     * if there are no more particles in that particular Explosion Object
      */
     private void removeCollidedParticles() {
         ArrayList<Explosion> removedExplosions = new ArrayList<>();
@@ -71,14 +73,15 @@ public class WorldExplosions {
     }
 
     /**
-     * Explodes Missiles if they have collided and creates an explosion at the collision point
-     * Also removes Missiles that are under the map and does not add an explosion  for these
+     * Explodes Missiles if they have collided
+     * creates an explosion at the collision point
+     * Also removes Missiles that are under the map
      */
     private void removeAndExplodeMissiles() {
         ArrayList<OnImpactMissile> removedMissiles = new ArrayList<>();
         for (OnImpactMissile missile : missiles) {
             Body body = missile.getBody();
-            if (missile.getIsToBeRemoved()) {
+            if (missile.getToBeRemoved()) {
                 addExplosion(body.getPosition(), OnImpactMissile.getNumParticles(), body.getWorld());
                 removedMissiles.add(missile);
                 body.getWorld().destroyBody(body);

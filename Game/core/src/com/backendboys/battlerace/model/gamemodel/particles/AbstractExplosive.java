@@ -6,9 +6,15 @@ package com.backendboys.battlerace.model.gamemodel.particles;
  * This info is then used to call the explosiveCollided(); method
  */
 public abstract class AbstractExplosive {
-
+    /**
+     * When this boolean is true it's allowed to be removed from the world -
+     * and the the Class WorldExplosions
+     */
     private boolean toBeRemoved;
 
+    /**
+     * Constructor currently only set's the object to not be removed
+     */
     public AbstractExplosive() {
         this.toBeRemoved = false;
     }
@@ -23,7 +29,7 @@ public abstract class AbstractExplosive {
      * When you change this boolean you give the explosive permission to be removed
      */
 
-    boolean getIsToBeRemoved() {
+    boolean getToBeRemoved() {
         return toBeRemoved;
     }
 

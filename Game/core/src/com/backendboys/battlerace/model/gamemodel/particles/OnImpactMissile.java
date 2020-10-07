@@ -58,7 +58,8 @@ class OnImpactMissile extends AbstractExplosive {
     }
 
     /**
-     * After the Missile collides we give it permission to be removed from the world and the WorldExplosions class
+     * After the Missile collides we give it permission to be removed -
+     * from the world and the WorldExplosions class
      */
     @Override
     public void explosiveCollided() {
