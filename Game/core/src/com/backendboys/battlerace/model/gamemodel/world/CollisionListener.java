@@ -1,6 +1,8 @@
 package com.backendboys.battlerace.model.gamemodel.world;
 
 import com.backendboys.battlerace.model.gamemodel.particles.AbstractExplosive;
+import com.backendboys.battlerace.model.gamemodel.powerups.AbstractPowerUp;
+import com.backendboys.battlerace.model.gamemodel.vehicle.IVehicle;
 import com.badlogic.gdx.physics.box2d.*;
 
 /**
@@ -20,7 +22,9 @@ class CollisionListener implements ContactListener {
         Fixture fixtureB = contact.getFixtureB();
 
         checkExplosivesContact(fixtureA, fixtureB);
+        checkPowerUpsConctact(fixtureA, fixtureB);
     }
+
 
     @Override
     public void endContact(Contact contact) {
@@ -47,6 +51,15 @@ class CollisionListener implements ContactListener {
 
             AbstractExplosive abstractExplosive = (AbstractExplosive) fixtureB.getUserData();
             abstractExplosive.explosiveCollided();
+        }
+    }
+
+    private void checkPowerUpsConctact(Fixture fixtureA, Fixture fixtureB) {
+        if (fixtureA.getUserData() instanceof IVehicle && fixtureB.getUserData() instanceof AbstractPowerUp) {
+            System.out.println("Picked up PowerUp!");
+        }
+        else if (fixtureA.getUserData() instanceof AbstractPowerUp && fixtureB.getUserData() instanceof IVehicle) {
+            System.out.println("Picked up powerup!");
         }
     }
 
