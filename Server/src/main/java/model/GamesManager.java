@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -10,11 +11,10 @@ public class GamesManager {
 
     private static GamesManager instance = null;
 
-    private final List<Game> games = new ArrayList<>();
+    private final List<Game> games = Collections.synchronizedList(new ArrayList<>());
     private int currentGameID = 1400;
 
-    private GamesManager() {
-    }
+    private GamesManager() {}
 
     /**
      * Creates a new Game.
@@ -34,7 +34,9 @@ public class GamesManager {
      * @param id The game id.
      */
     public synchronized void removeGame(String id) {
-        games.removeIf(g -> g.getId().equalsIgnoreCase(id));
+        synchronized (games) {
+            games.removeIf(g -> g.getId().equalsIgnoreCase(id));
+        }
     }
 
     /**
@@ -44,11 +46,14 @@ public class GamesManager {
      * @return A game.
      */
     public synchronized Game findGameByID(String id) {
-        for (Game g : games) {
-            if (id.equalsIgnoreCase(g.getId())) {
-                return g;
+        synchronized (games) {
+            for (Game g : games) {
+                if (g.getId().equalsIgnoreCase(id)) {
+                    return g;
+                }
             }
         }
+
         return null;
     }
 

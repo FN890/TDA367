@@ -69,6 +69,7 @@ class CommandHandler {
         switch (args[0]) {
 
             case "game":
+                System.out.println("get:game called! Sending game info");
                 clientController.sendTCP(protocol.writeGameInfo(game));
                 break;
 
@@ -113,6 +114,7 @@ class CommandHandler {
      * Form: leave
      */
     private void handleLeaveGame() {
+        System.out.println("Handling leave command...");
         clientController.leaveGame();
     }
 

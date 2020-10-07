@@ -146,6 +146,8 @@ public class ClientController implements Runnable, GameListener, PacketListener 
     public void leaveGame() {
         if (game == null) return;
 
+        System.out.println("Game != null, leaving game.");
+
         game.removePlayerByAddress(socket.getInetAddress());
         game.removeListener(this);
         game = null;

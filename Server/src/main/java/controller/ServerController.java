@@ -48,7 +48,7 @@ public class ServerController implements TCPListener {
      * @param address  Client InetAddress.
      * @param listener The PacketListener.
      */
-    public void addPacketListener(InetAddress address, PacketListener listener) {
+    public synchronized void addPacketListener(InetAddress address, PacketListener listener) {
         udpServer.addListener(address, listener);
     }
 
@@ -57,7 +57,7 @@ public class ServerController implements TCPListener {
      *
      * @param address The client InetAddress to remove.
      */
-    public void removePacketListener(InetAddress address) {
+    public synchronized void removePacketListener(InetAddress address) {
         udpServer.removeListener(address);
     }
 
@@ -68,7 +68,7 @@ public class ServerController implements TCPListener {
      * @param address The address to send the message.
      * @param port    The port to send the message.
      */
-    public void sendUDPPacket(String message, InetAddress address, int port) {
+    public synchronized void sendUDPPacket(String message, InetAddress address, int port) {
         try {
             udpServer.sendPacket(message, address, port);
         } catch (IOException ignored) {
@@ -80,7 +80,6 @@ public class ServerController implements TCPListener {
      */
     public synchronized static ServerController getInstance() {
         if (instance == null) {
-            System.out.println("Creating ServerController...");
             instance = new ServerController();
         }
         return instance;

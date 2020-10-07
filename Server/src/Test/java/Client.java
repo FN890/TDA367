@@ -32,7 +32,9 @@ public class Client implements Runnable {
 
             String message;
             while((message = reader.readLine()) != null) {
-                if (!message.equalsIgnoreCase("connected")) {
+
+                // Skips sending the response on "updates".
+                if (!message.equalsIgnoreCase("connected") && !message.startsWith("Player")) {
                     response = message;
                 }
             }
@@ -48,6 +50,7 @@ public class Client implements Runnable {
         System.out.println("Sending message...");
         writer.println(message);
 
+        // Waits for a response.
         while(response.isEmpty()) {}
 
         String r = response;

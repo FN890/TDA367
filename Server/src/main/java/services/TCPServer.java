@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ public class TCPServer implements Runnable {
     private final int port;
     private final ServerSocket serverSocket;
 
-    private List<TCPListener> listeners = new ArrayList<>();
+    private final List<TCPListener> listeners = Collections.synchronizedList(new ArrayList<>());
 
     /**
      * Adds a listener for listening to incoming connections.
@@ -69,8 +70,10 @@ public class TCPServer implements Runnable {
     }
 
     private void informListenersGotConnection(Socket client) {
-        for (TCPListener l : listeners) {
-            l.gotConnection(client);
+        synchronized (listeners) {
+            for (TCPListener l : listeners) {
+                l.gotConnection(client);
+            }
         }
     }
 

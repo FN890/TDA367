@@ -7,6 +7,7 @@ import services.protocol.ServerProtocolFactory;
 
 import java.net.InetAddress;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -20,8 +21,8 @@ public class Game implements Runnable {
     private static final int UPDATE_RATE = 5;
 
     private final String id;
-    private final List<Player> players = new ArrayList<>();
-    private final List<GameListener> listeners = new ArrayList<>();
+    private final List<Player> players = Collections.synchronizedList(new ArrayList<>());
+    private final List<GameListener> listeners = Collections.synchronizedList(new ArrayList<>());
 
     private boolean run = false;
     private boolean gameEnded = false;
@@ -31,7 +32,7 @@ public class Game implements Runnable {
      *
      * @param listener The GameListener to add.
      */
-    public void addListener(GameListener listener) {
+    public synchronized void addListener(GameListener listener) {
         listeners.add(listener);
     }
 
@@ -40,7 +41,7 @@ public class Game implements Runnable {
      *
      * @param listener The GameListener to remove.
      */
-    public void removeListener(GameListener listener) {
+    public synchronized void removeListener(GameListener listener) {
         listeners.remove(listener);
     }
 
@@ -56,12 +57,15 @@ public class Game implements Runnable {
      * @throws GameException When the player name is already taken.
      */
     public synchronized void addPlayer(Player player) throws GameException {
-        for (Player p : players) {
-            if (player.getName().equalsIgnoreCase(p.getName())) {
-                throw new GameException(GameError.NAME_TAKEN);
+        synchronized (players) {
+            for (Player p : players) {
+                if (p.getName().equalsIgnoreCase(player.getName())) {
+                    throw new GameException(GameError.NAME_TAKEN);
+                }
             }
+            players.add(player);
         }
-        players.add(player);
+
         notifyListenersPlayerJoined(player);
     }
 
@@ -71,15 +75,23 @@ public class Game implements Runnable {
      * @param address The Players Address which to remove.
      */
     public synchronized void removePlayerByAddress(InetAddress address) {
-        for (Player p : players) {
-            if (p.getAddress().equals(address)) {
-                players.remove(p);
-                notifyListenersPlayerLeft(p);
+        synchronized (players) {
+            Player toRemove = null;
+            for (Player p : players) {
+                if (p.getAddress() == address) {
+                    toRemove = p;
+                }
             }
-        }
+            
+            if (toRemove != null) {
+                players.remove(toRemove);
+                notifyListenersPlayerLeft(toRemove);
+            }
 
-        if (players.isEmpty()) {
-            endGame();
+
+            if (players.isEmpty()) {
+                endGame();
+            }
         }
     }
 
@@ -97,10 +109,12 @@ public class Game implements Runnable {
      * @param rotation The rotation.
      */
     public synchronized void updatePositionByAddress(InetAddress address, float x, float y, float rotation) {
-        for (Player p : players) {
-            if (p.getAddress().equals(address)) {
-                p.setPosition(new Vector2(x, y));
-                p.setRotation(rotation);
+        synchronized (players) {
+            for (Player p : players) {
+                if (p.getAddress().equals(address)) {
+                    p.setPosition(new Vector2(x, y));
+                    p.setRotation(rotation);
+                }
             }
         }
     }
@@ -144,15 +158,18 @@ public class Game implements Runnable {
     private void sendPositionPackets() {
         IServerProtocol protocol = ServerProtocolFactory.getServerProtocol();
 
-        for (Player p1 : players) {
-            for (Player p2 : players) {
+        synchronized (players) {
+            for (Player p1 : players) {
+                for (Player p2 : players) {
 
-                if (!p1.equals(p2)) {
-                    ServerController.getInstance().sendUDPPacket(protocol.writePosition(p1.getName(), p1.getPosition(), p1.getRotation()), p2.getAddress(), p2.getPort());
+                    if (!p1.equals(p2)) {
+                        ServerController.getInstance().sendUDPPacket(protocol.writePosition(p1.getName(), p1.getPosition(), p1.getRotation()), p2.getAddress(), p2.getPort());
+                    }
+
                 }
-
             }
         }
+
     }
 
     /**
@@ -162,35 +179,42 @@ public class Game implements Runnable {
      * @return The Player.
      */
     public synchronized Player getPlayerByAddress(InetAddress address) {
-        for (Player p : players) {
-            if (p.getAddress().equals(address)) {
-                return p;
+        synchronized (players) {
+            for (Player p : players) {
+                if (p.getAddress() == address) {
+                    return p;
+                }
             }
         }
+
         return null;
     }
 
-    public List<Player> getPlayers() {
+    public synchronized List<Player> getPlayers() {
         return players;
     }
 
-    public String getId() {
+    public synchronized String getId() {
         return id;
     }
 
-    public boolean isRunning() {
+    public synchronized boolean isRunning() {
         return run;
     }
 
     private void notifyListenersPlayerJoined(Player player) {
-        for (GameListener l : listeners) {
-            l.playerJoined(player);
+        synchronized (listeners) {
+            for (GameListener l : listeners) {
+                l.playerJoined(player);
+            }
         }
     }
 
     private void notifyListenersPlayerLeft(Player player) {
-        for (GameListener l : listeners) {
-            l.playerLeft(player);
+        synchronized (listeners) {
+            for (GameListener l : listeners) {
+                l.playerLeft(player);
+            }
         }
     }
 

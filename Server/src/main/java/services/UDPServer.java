@@ -5,6 +5,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ public class UDPServer implements Runnable {
     private final int port;
     private final DatagramSocket socket;
 
-    private final Map<InetAddress, PacketListener> listeners = new HashMap<>();
+    private final Map<InetAddress, PacketListener> listeners = Collections.synchronizedMap(new HashMap<>());
 
     /**
      * Adds a PacketListener class associated with a client InetAddress
@@ -75,8 +76,10 @@ public class UDPServer implements Runnable {
      * @param message The message.
      */
     private void sendToListener(InetAddress address, String message) {
-        if (listeners.containsKey(address)) {
-            listeners.get(address).gotPacket(message);
+        synchronized (listeners) {
+            if (listeners.containsKey(address)) {
+                listeners.get(address).gotPacket(message);
+            }
         }
     }
 

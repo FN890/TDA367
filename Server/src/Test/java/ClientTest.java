@@ -1,5 +1,3 @@
-import controller.ServerController;
-import org.junit.BeforeClass;
 import org.junit.jupiter.api.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -25,11 +23,11 @@ public class ClientTest {
 
     @Test
     @Order(1)
-    public void TestInvalidSyntax() {
+    public void TestInvalidCommand() {
 
         String response = client1.sendMessage("test");
 
-        Assertions.assertEquals("error:Invalid syntax.", response);
+        Assertions.assertEquals("error:Invalid command.", response);
     }
 
     @Test
@@ -49,19 +47,23 @@ public class ClientTest {
     public void TestJoinGame() {
 
         String response1 = client2.sendMessage("create:Client2");
-        String sId = response1.substring(9, 13);
 
-        int id = Integer.parseInt(sId);
-
-        String response2 = client3.sendMessage("join:" + id + ",Client3");
-        Assertions.assertEquals("response:" + sId + ",true,client2,client3", response2);
+        String response2 = client3.sendMessage("join:1402,Client3");
+        Assertions.assertEquals("response:1402,true,client2,client3", response2);
     }
 
     @Test
     @Order(4)
     public void TestLeaveGame() {
-        
 
+        client3.sendMessage("leave");
+
+        String response1 = client2.sendMessage("get:game");
+        Assertions.assertEquals("response:1402,true,client2", response1);
+
+        client2.sendMessage("leave");
+        String response2 = client2.sendMessage("join:1402,client2");
+        Assertions.assertEquals("error:Game not found.", response2);
     }
 
 }

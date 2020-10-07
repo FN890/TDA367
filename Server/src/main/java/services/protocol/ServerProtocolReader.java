@@ -34,15 +34,17 @@ class ServerProtocolReader {
             sb.append(c);
         }
 
-        argsList.add(sb.toString());
+        // If command missing arguments and ":", add the remaining characters as command,
+        // else add the remaining characters as an argument.
+        if (command == null) {
+            command = sb.toString();
+        } else {
+            argsList.add(sb.toString());
+        }
 
         String[] args = new String[argsList.size()];
         for (int i = 0; i < argsList.size(); i++) {
             args[i] = argsList.get(i);
-        }
-
-        if (command == null) {
-            throw new ProtocolException(ProtocolError.INVALID_SYNTAX);
         }
 
         return new Command(command, args);
