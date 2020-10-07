@@ -25,9 +25,9 @@ public class ClientTest {
     @Order(1)
     public void TestInvalidCommand() {
 
-        String response = client1.sendMessage("test");
+        String error = client1.sendMessage("test");
 
-        Assertions.assertEquals("error:Invalid command.", response);
+        Assertions.assertEquals("error:Invalid command.", error);
     }
 
     @Test
@@ -58,12 +58,31 @@ public class ClientTest {
 
         client3.sendMessage("leave");
 
-        String response1 = client2.sendMessage("get:game");
-        Assertions.assertEquals("response:1402,true,client2", response1);
+        String response = client2.sendMessage("get:game");
+        Assertions.assertEquals("response:1402,true,client2", response);
 
         client2.sendMessage("leave");
-        String response2 = client2.sendMessage("join:1402,client2");
-        Assertions.assertEquals("error:Game not found.", response2);
+        String error = client2.sendMessage("join:1402,client2");
+        Assertions.assertEquals("error:Game not found.", error);
+    }
+
+    @Test
+    @Order(5)
+    public void TestAlreadyInGame() {
+
+        client2.sendMessage("create:Client2");
+        String error1 = client2.sendMessage("create:Client2");
+        Assertions.assertEquals("error:Already in game.", error1);
+
+        String error2 = client2.sendMessage("join:1403,Client2");
+        Assertions.assertEquals("error:Already in game.", error2);
+    }
+
+    @Test
+    @Order(6)
+    public void TestPositionUpdates() {
+
+        
     }
 
 }
