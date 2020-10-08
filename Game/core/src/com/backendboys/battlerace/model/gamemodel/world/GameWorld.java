@@ -1,5 +1,6 @@
 package com.backendboys.battlerace.model.gamemodel.world;
 
+import com.backendboys.battlerace.model.gamemodel.particles.IParticle;
 import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
 import com.backendboys.battlerace.model.gamemodel.powerups.AbstractPowerUp;
 import com.backendboys.battlerace.model.gamemodel.powerups.PowerUpGenerator;
@@ -82,8 +83,13 @@ public class GameWorld {
         return powerUps;
     }
 
+    public ArrayList<IParticle> getMissiles() {
+        return WorldExplosions.getMissiles();
+    }
+
     public int getNumberOfPowerUps() {
         return powerUps.size();
     }
+
 
 }

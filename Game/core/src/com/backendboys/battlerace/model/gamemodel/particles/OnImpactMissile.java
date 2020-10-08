@@ -7,13 +7,13 @@ import com.badlogic.gdx.physics.box2d.*;
 /**
  * A Missile that explodes on impact created in WorldExplosions
  */
-class OnImpactMissile extends AbstractExplosive {
+class OnImpactMissile extends AbstractExplosive implements IParticle{
     private final Body body;
     private static final Vector2 direction = new Vector2(10, 4);
     private static final float MOVEMENT_POWER = 100;
     private static final float MISSILE_LENGTH = 5f;
     private static final float MISSILE_HEIGHT = 1f;
-    private static final float LAUNCH_OFFSET_Y = 50f;
+    private static final float LAUNCH_OFFSET_Y = 20f;
     private static final float LAUNCH_OFFSET_x = 0f;
     private static final int NUM_PARTICLES = 30;
 
@@ -24,7 +24,7 @@ class OnImpactMissile extends AbstractExplosive {
      * @param pos   spawn point of the missile
      */
     OnImpactMissile(World world, Vector2 pos, float rotation) {
-        rotation = rotation + (MathUtils.PI / 2);
+        rotation = (float) (rotation + Math.PI/2);
         direction.x = rotation * MathUtils.sin(rotation);
         direction.y = -rotation * MathUtils.cos(rotation);
         BodyDef bodyDef = new BodyDef();
@@ -69,5 +69,15 @@ class OnImpactMissile extends AbstractExplosive {
     @Override
     public void explosiveCollided() {
         setToBeRemoved(true);
+    }
+
+    @Override
+    public Vector2 getPosition() {
+        return body.getPosition();
+    }
+
+    @Override
+    public float getRotation() {
+        return body.getAngle();
     }
 }
