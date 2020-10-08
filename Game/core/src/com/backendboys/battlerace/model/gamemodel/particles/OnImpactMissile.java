@@ -25,11 +25,8 @@ class OnImpactMissile extends AbstractExplosive {
      */
     OnImpactMissile(World world, Vector2 pos, float rotation) {
         rotation = rotation + (MathUtils.PI / 2);
-        System.out.println("Rotation: " + rotation);
         direction.x = rotation * MathUtils.sin(rotation);
         direction.y = -rotation * MathUtils.cos(rotation);
-        System.out.println("x: " + direction.x);
-        System.out.println("y: " + direction.y);
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.fixedRotation = false; // A missile can rotate
