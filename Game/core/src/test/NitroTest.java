@@ -18,7 +18,7 @@ public class NitroTest {
     }
 
     @Test
-    public void testPickUpPowerUp() {
+    public void testUsePowerUp() {
         player.addPowerUp(nitroPowerUp);
         assertEquals(1, player.getListPowerUp().size());
 

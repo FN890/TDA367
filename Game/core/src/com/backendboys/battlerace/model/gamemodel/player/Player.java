@@ -72,7 +72,6 @@ public class Player {
      * Use a powerup if it exist one.
      */
     public void usePowerUp() {
-        listPowerUp.add(new NitroPowerUp());
         if (listPowerUp.size() > 0) {
             listPowerUp.get(0).use(this);
         }
