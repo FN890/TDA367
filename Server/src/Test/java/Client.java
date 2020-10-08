@@ -50,6 +50,11 @@ public class Client implements Runnable {
         System.out.println("Sending message...");
         writer.println(message);
 
+        // Skips waiting on commands that does not return a response.
+        if (message.startsWith("pos:")) {
+            return null;
+        }
+
         // Waits for a response.
         while(response.isEmpty()) {}
 

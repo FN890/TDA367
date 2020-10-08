@@ -1,7 +1,11 @@
 import org.junit.jupiter.api.*;
 
+// To run test. Make sure to switch the UDPServer sending port from 26000 to 25000.
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ClientTest {
+
+    private static UDPClient udpClient;
 
     private static Client client1;
     private static Client client2;
@@ -9,6 +13,9 @@ public class ClientTest {
 
     @BeforeAll
     public static void TestConnectClient() {
+
+        udpClient = new UDPClient("localhost", 25000);
+        new Thread(udpClient).start();
 
         client1 = new Client("localhost", 26000);
         new Thread(client1).start();
@@ -80,9 +87,16 @@ public class ClientTest {
 
     @Test
     @Order(6)
-    public void TestPositionUpdates() {
+    public void TestPositionUpdates() throws InterruptedException {
 
-        
+        client1.sendMessage("leave");
+
+        client3.sendMessage("join:1403,Client3");
+
+        client2.sendMessage("pos:100.0,20.0,35.5");
+        Thread.sleep(5000);
+        String client2Pos = udpClient.getClientMessage("client2");
+        Assertions.assertEquals("pos:client2,100.0,20.0,35.5", client2Pos);
     }
 
 }

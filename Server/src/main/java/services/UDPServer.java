@@ -52,10 +52,10 @@ public class UDPServer implements Runnable {
 
     @Override
     public void run() {
-        byte[] buffer = new byte[548];
 
         try {
             while (true) {
+                byte[] buffer = new byte[548];
                 DatagramPacket request = new DatagramPacket(buffer, buffer.length);
                 socket.receive(request);
 

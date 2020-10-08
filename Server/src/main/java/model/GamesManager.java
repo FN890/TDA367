@@ -24,6 +24,7 @@ public class GamesManager {
      */
     public synchronized Game createGame(Player host) {
         Game game = new Game(generateGameID(), host);
+        new Thread(game).start();
         games.add(game);
         return game;
     }

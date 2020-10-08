@@ -71,8 +71,7 @@ public class ServerController implements TCPListener {
     public synchronized void sendUDPPacket(String message, InetAddress address, int port) {
         try {
             udpServer.sendPacket(message, address, port);
-        } catch (IOException ignored) {
-        }
+        } catch (IOException ignored) {}
     }
 
     /**

@@ -24,7 +24,7 @@ public class Game implements Runnable {
     private final List<Player> players = Collections.synchronizedList(new ArrayList<>());
     private final List<GameListener> listeners = Collections.synchronizedList(new ArrayList<>());
 
-    private boolean run = false;
+    private boolean sendPositions = false;
     private boolean gameEnded = false;
 
     /**
@@ -82,7 +82,7 @@ public class Game implements Runnable {
                     toRemove = p;
                 }
             }
-            
+
             if (toRemove != null) {
                 players.remove(toRemove);
                 notifyListenersPlayerLeft(toRemove);
@@ -122,10 +122,10 @@ public class Game implements Runnable {
     /**
      * Tells the game whether to keep sending packets or not.
      *
-     * @param run The boolean specifying if packets should be sent.
+     * @param send The boolean specifying if packets should be sent.
      */
-    public synchronized void start(boolean run) {
-        this.run = run;
+    public synchronized void sendPositions(boolean send) {
+        this.sendPositions = send;
     }
 
     @Override
@@ -135,7 +135,7 @@ public class Game implements Runnable {
         long sleepTime = 1000 / UPDATE_RATE;
 
         while (!gameEnded) {
-            if (!run) continue;
+            if (!sendPositions) continue;
 
             taskTime = System.currentTimeMillis();
             sendPositionPackets();
@@ -199,7 +199,7 @@ public class Game implements Runnable {
     }
 
     public synchronized boolean isRunning() {
-        return run;
+        return sendPositions;
     }
 
     private void notifyListenersPlayerJoined(Player player) {
