@@ -1,4 +1,6 @@
 ## Java
+/out
+/META-INF
 
 *.class
 *.war

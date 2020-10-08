@@ -100,9 +100,20 @@ public class ClientTest {
         client3.sendMessage("join:1403,Client3");
 
         client2.sendMessage("pos:100.0,20.0,35.5");
-        Thread.sleep(5000);
+        Thread.sleep(2000);
         String client2Pos = udpClient.getClientMessage("client2");
         Assertions.assertEquals("pos:client2,100.0,20.0,35.5", client2Pos);
+    }
+
+    @Test
+    @Order(7)
+    public void TestDisconnection() throws InterruptedException {
+
+        client2.disconnect();
+        client3.disconnect();
+        Thread.sleep(5000);
+        String error = client1.sendMessage("join:1403,Client1");
+        Assertions.assertEquals("error:Game not found.", error);
     }
 
 }

@@ -45,9 +45,7 @@ public class UDPClient implements Runnable {
 
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        } catch (Exception ignored) {}
 
 
     }

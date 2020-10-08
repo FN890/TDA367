@@ -6,8 +6,10 @@ import java.net.Socket;
 
 public class Client implements Runnable {
 
-    private String hostname;
-    private int port;
+    private final String hostname;
+    private final int port;
+
+    private Socket socket;
 
     public PrintWriter writer;
     public BufferedReader reader;
@@ -17,7 +19,7 @@ public class Client implements Runnable {
         this.port = port;
 
         try {
-            Socket socket = new Socket(hostname, port);
+            socket = new Socket(hostname, port);
             writer = new PrintWriter(socket.getOutputStream(), true);
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
@@ -39,9 +41,7 @@ public class Client implements Runnable {
                 }
             }
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } catch (IOException ignored) {}
 
     }
 
@@ -61,6 +61,17 @@ public class Client implements Runnable {
         String r = response;
         response = "";
         return r;
+    }
+
+    public void disconnect() {
+        try {
+            if (socket != null) {
+                socket.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
