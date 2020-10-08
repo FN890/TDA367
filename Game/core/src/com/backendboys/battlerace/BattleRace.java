@@ -35,7 +35,7 @@ public class BattleRace extends Game {
         //Start multiplayerController
         //Controller got reference to server model?
 
-        Thread gameThread = new Thread(new GameClient("localhost", 26000));
+        Thread gameThread = new Thread(new GameClient("167.172.34.88", 26000));
         gameThread.start();
     }
 

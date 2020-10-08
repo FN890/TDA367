@@ -24,7 +24,7 @@ public class GameClient implements Runnable, IPacketListener{
 
             System.out.println("Connected to server");
 
-            Thread udpThread = new Thread(new UDPClient(port+1));
+            Thread udpThread = new Thread(new UDPClient(port));
             udpThread.start();
 
             printWriter = new PrintWriter(socket.getOutputStream(), true);

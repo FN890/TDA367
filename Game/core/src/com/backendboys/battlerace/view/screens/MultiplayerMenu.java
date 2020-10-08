@@ -3,11 +3,14 @@ package com.backendboys.battlerace.view.screens;
 
 import com.backendboys.battlerace.controller.MenuController;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.loaders.AssetLoader;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 /**
@@ -17,6 +20,9 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
 
     private final SpriteBatch batch;
     private Stage stage;
+
+    private TextField inputPlayerName;
+    private TextField inputGameId;
 
     MultiplayerMenu(MenuController menuController) {
         super(menuController);
@@ -43,6 +49,8 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
         multiplayerTable.setFillParent(true);
         multiplayerTable.center();
 
+        inputPlayerName = new TextField("Player name", new Skin());
+        inputGameId = new TextField("Game id", new Skin());
         final ImageButton btnJoinGame = new ImageButton(getButtonStyleFromName("Join Game"));
         final ImageButton btnCreateGame = new ImageButton(getButtonStyleFromName("Create Game"));
         final ImageButton btnBack = new ImageButton(getButtonStyleFromName("Back"));
