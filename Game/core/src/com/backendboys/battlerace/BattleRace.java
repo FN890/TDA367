@@ -3,6 +3,7 @@ package com.backendboys.battlerace;
 import com.backendboys.battlerace.controller.GameController;
 import com.backendboys.battlerace.controller.MenuController;
 import com.backendboys.battlerace.services.GameClient;
+import com.backendboys.battlerace.view.screens.ScreenFactory;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
@@ -32,11 +33,7 @@ public class BattleRace extends Game {
     }
 
     public void startMultiplayer() {
-        //Start multiplayerController
-        //Controller got reference to server model?
-
-        Thread gameThread = new Thread(new GameClient("167.172.34.88", 26000));
-        gameThread.start();
+        this.setScreen(ScreenFactory.createMultiplayerMenu(new MenuController(this)));
     }
 
     @Override
