@@ -15,7 +15,7 @@ class Explosion {
     /**
      * A list of all the particles created in the explosion
      */
-    private static final ArrayList<ExplosionParticle> explosionParticles = new ArrayList<>();
+    private final ArrayList<ExplosionParticle> explosionParticles = new ArrayList<>();
 
     /**
      * @param pos          The position for the explosion
@@ -47,6 +47,7 @@ class Explosion {
                 destroyedParticles.add(explosionParticle);
             }
         }
+        System.out.println("explosion size:" + explosionParticles.size());
         for (ExplosionParticle destroyedParticle : destroyedParticles) {
             explosionParticles.remove(destroyedParticle);
         }
