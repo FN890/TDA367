@@ -19,4 +19,8 @@ public interface IVehicle {
 
     float getRotation();
 
+    void setAcceleration(float acceleration);
+
+    float getAcceleration();
+
 }

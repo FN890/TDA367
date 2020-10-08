@@ -21,7 +21,7 @@ abstract class AbstractVehicle implements IVehicle {
     private List<Body> parts;
 
     private final float topSpeed;
-    private final float acceleration;
+    private float acceleration;
     private final float angularAcceleration;
 
     protected AbstractVehicle(float mass, float spawnPosX, float spawnPosY, float topSpeed, float acceleration, float angularAcceleration) {
@@ -135,5 +135,15 @@ abstract class AbstractVehicle implements IVehicle {
      */
     public float getRotation() {
         return body.getTransform().getRotation();
+    }
+
+    @Override
+    public void setAcceleration(float acceleration) {
+        this.acceleration = acceleration;
+    }
+
+    @Override
+    public float getAcceleration() {
+        return acceleration;
     }
 }
