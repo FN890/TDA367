@@ -3,6 +3,7 @@ import com.backendboys.battlerace.model.gamemodel.powerups.MissilePowerUp;
 import com.backendboys.battlerace.model.gamemodel.powerups.NitroPowerUp;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,6 +13,7 @@ class PlayerTest {
     Player player;
     private final String testName = "Dummy";
     World world;
+
 
     public PlayerTest() {
         player = new Player(testName);
@@ -35,6 +37,9 @@ class PlayerTest {
     }
 
 
+    /**
+     * test a random amount of power ups and check if that amount exist in player.
+     */
     @Test
     public void PlayerAddPowerUp() {
         player.addPowerUp(new MissilePowerUp());
