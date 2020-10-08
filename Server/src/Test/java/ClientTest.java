@@ -1,7 +1,13 @@
 import org.junit.jupiter.api.*;
 
-// To run test. Make sure to switch the UDPServer sending port from 26000 to 25000.
-
+/**
+ * ClientTest tests the client connection to the server, and commands like, create, join, and leave game.
+ *
+ * To run this test:
+ * - In the server source, in UDPServer class, change from "port" to 25000 in the sendPacket()
+ *   when creating a new DataGramPacket.
+ * - Start the server (Run the Main class).
+ */
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ClientTest {
 
