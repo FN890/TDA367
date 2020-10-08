@@ -11,6 +11,8 @@ import java.util.ArrayList;
  * and the class that is exposed outside the particles package
  */
 public class WorldExplosions {
+
+
     /**
      * A list of all the explosions that have been created in the world
      */
@@ -103,6 +105,14 @@ public class WorldExplosions {
      */
     public void addMissile(Vector2 pos, World world, float rotation) {
         missiles.add(new OnImpactMissile(world, pos, rotation));
+    }
+
+    public static ArrayList<IParticle> getMissiles() {
+        ArrayList<IParticle> iParticleMissiles = new ArrayList();
+        for (OnImpactMissile missile: missiles){
+            iParticleMissiles.add(missile);
+        }
+        return  iParticleMissiles;
     }
 
 }
