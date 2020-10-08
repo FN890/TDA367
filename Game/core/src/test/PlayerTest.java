@@ -6,18 +6,22 @@ import com.badlogic.gdx.physics.box2d.World;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.Random;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
 
-    Player player;
+    private final Player player;
     private final String testName = "Dummy";
-    World world;
+    private final World world;
+    private final Random random;
 
 
     public PlayerTest() {
         player = new Player(testName);
         world = new World(new Vector2(0, -10), true);
+        this.random = new Random();
     }
 
     @Test
@@ -42,10 +46,17 @@ class PlayerTest {
      */
     @Test
     public void PlayerAddPowerUp() {
-        player.addPowerUp(new MissilePowerUp());
-        player.addPowerUp(new NitroPowerUp());
+        int amountPowerUp1 = random.nextInt(100);
+        int amountPowerUp2 = random.nextInt(100);
 
-        assertTrue(player.getListPowerUp().size() == 2);
+        for(int i=0; i<amountPowerUp1; i++) {
+            player.addPowerUp(new MissilePowerUp());
+        }
+        for(int i=0; i<amountPowerUp2; i++) {
+            player.addPowerUp(new NitroPowerUp());
+        }
+
+        assertEquals(amountPowerUp1 + amountPowerUp2, player.getListPowerUp().size());
     }
 
 
