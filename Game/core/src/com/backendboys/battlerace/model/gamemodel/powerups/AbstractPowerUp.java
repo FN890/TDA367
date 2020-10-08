@@ -54,8 +54,18 @@ public abstract class AbstractPowerUp {
         player.addPowerUp(this);
     }
 
+    /**
+     * What happens when player uses powerup.
+     *
+     * @param player The player that uses the powerup;
+     */
     public abstract void use(Player player);
 
+    /**
+     * Returns name of powerup, used for testing purposes.
+     *
+     * @return Name of powerup
+     */
     @Override
     public abstract String toString();
 
