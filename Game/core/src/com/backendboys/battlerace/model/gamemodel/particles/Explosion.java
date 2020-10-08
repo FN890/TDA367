@@ -47,7 +47,6 @@ class Explosion {
                 destroyedParticles.add(explosionParticle);
             }
         }
-        System.out.println("explosion size:" + explosionParticles.size());
         for (ExplosionParticle destroyedParticle : destroyedParticles) {
             explosionParticles.remove(destroyedParticle);
         }
