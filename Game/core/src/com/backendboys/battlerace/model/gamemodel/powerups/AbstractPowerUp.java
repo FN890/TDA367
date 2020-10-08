@@ -50,7 +50,7 @@ public abstract class AbstractPowerUp {
      *
      * @param player The player that picked up the powerup
      */
-    protected void onPickup(Player player) {
+    public void onPickup(Player player) {
         player.addPowerUp(this);
     }
 

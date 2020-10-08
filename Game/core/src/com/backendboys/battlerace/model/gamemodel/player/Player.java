@@ -74,6 +74,7 @@ public class Player {
         if (listPowerUp.size() > 0) {
             listPowerUp.get(0).use(this);
         }
+        listPowerUp.remove(0);
     }
 
     /**
