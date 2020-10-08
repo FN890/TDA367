@@ -18,4 +18,16 @@ public interface GameListener {
      * @param player The player that left.
      */
     void playerLeft(Player player);
+
+    /**
+     * Called whenever the game state changes. Can be started, or paused.
+     *
+     * @param started Specifies if the game is running or is paused.
+     */
+    void gameStatusUpdated(boolean started);
+
+    /**
+     * Called when the game has ended.
+     */
+    void gameEnded();
 }

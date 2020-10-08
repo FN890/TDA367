@@ -24,7 +24,7 @@ public class Game implements Runnable {
     private final List<Player> players = Collections.synchronizedList(new ArrayList<>());
     private final List<GameListener> listeners = Collections.synchronizedList(new ArrayList<>());
 
-    private boolean sendPositions = false;
+    private boolean started = false;
     private boolean gameEnded = false;
 
     /**
@@ -98,6 +98,7 @@ public class Game implements Runnable {
     private synchronized void endGame() {
         GamesManager.getInstance().removeGame(id);
         gameEnded = true;
+        notifyListenersGameEnded();
     }
 
     /**
@@ -120,12 +121,15 @@ public class Game implements Runnable {
     }
 
     /**
-     * Tells the game whether to keep sending packets or not.
+     * Tells the game whether to keep sending packets or not. With other words, if the game should run.
      *
      * @param send The boolean specifying if packets should be sent.
      */
-    public synchronized void sendPositions(boolean send) {
-        this.sendPositions = send;
+    public synchronized void start(boolean send) {
+        if (started != send) {
+            this.started = send;
+            notifyListenersStateChanged(started);
+        }
     }
 
     @Override
@@ -135,7 +139,7 @@ public class Game implements Runnable {
         long sleepTime = 1000 / UPDATE_RATE;
 
         while (!gameEnded) {
-            if (!sendPositions) continue;
+            if (!started) continue;
 
             taskTime = System.currentTimeMillis();
             sendPositionPackets();
@@ -199,7 +203,7 @@ public class Game implements Runnable {
     }
 
     public synchronized boolean isRunning() {
-        return sendPositions;
+        return started;
     }
 
     private void notifyListenersPlayerJoined(Player player) {
@@ -214,6 +218,22 @@ public class Game implements Runnable {
         synchronized (listeners) {
             for (GameListener l : listeners) {
                 l.playerLeft(player);
+            }
+        }
+    }
+
+    private void notifyListenersStateChanged(boolean started) {
+        synchronized (listeners) {
+            for (GameListener l : listeners) {
+                l.gameStatusUpdated(started);
+            }
+        }
+    }
+
+    private void notifyListenersGameEnded() {
+        synchronized (listeners) {
+            for (GameListener l : listeners) {
+                l.gameEnded();
             }
         }
     }

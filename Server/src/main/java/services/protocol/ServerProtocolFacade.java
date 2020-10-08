@@ -41,6 +41,21 @@ class ServerProtocolFacade implements IServerProtocol {
         return writerProtocol.writeGameInfo(game);
     }
 
+    @Override
+    public String writeGamePlayerUpdate(String name, boolean joined) {
+        return writerProtocol.writeGamePlayerUpdate(name, joined);
+    }
+
+    @Override
+    public String writeGameStatusUpdated(boolean started) {
+        return writerProtocol.writeGameStatusUpdate(started);
+    }
+
+    @Override
+    public String writeGameEndedUpdate() {
+        return writerProtocol.writeGameEndedUpdate();
+    }
+
     static synchronized ServerProtocolFacade getInstance() {
         if (instance == null) {
             instance = new ServerProtocolFacade();

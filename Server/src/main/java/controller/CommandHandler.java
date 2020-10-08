@@ -45,6 +45,10 @@ class CommandHandler {
             case "pos":
                 handleUpdatePos(cmd.getArgs());
                 break;
+            case "start":
+                handleStartGame();
+                break;
+
         }
     }
 
@@ -114,6 +118,14 @@ class CommandHandler {
      */
     private void handleLeaveGame() {
         clientController.leaveGame();
+    }
+
+    /**
+     * Handles Start Game Command.
+     * Form: start
+     */
+    private void handleStartGame() {
+        clientController.startGame();
     }
 
     /**

@@ -100,8 +100,6 @@ public class ClientController implements Runnable, GameListener, PacketListener 
         Game game = GamesManager.getInstance().createGame(player);
 
         game.addListener(this);
-
-        game.sendPositions(true);
         this.game = game;
 
         sendTCP(protocol.writeGameInfo(game));
@@ -154,6 +152,17 @@ public class ClientController implements Runnable, GameListener, PacketListener 
     }
 
     /**
+     * Starts the game if the client is in any.
+     */
+    public void startGame() {
+        if (game == null) {
+            sendTCP(protocol.writeError("Not in a game."));
+            return;
+        }
+        game.start(true);
+    }
+
+    /**
      * Updates the clients position and rotation in a game, if there is a game.
      *
      * @param x        The new x position.
@@ -190,12 +199,22 @@ public class ClientController implements Runnable, GameListener, PacketListener 
 
     @Override
     public void playerJoined(Player player) {
-        sendTCP("Player " + player.getName() + " left the game.");
+        sendTCP(protocol.writeGamePlayerUpdate(player.getName(), true));
     }
 
     @Override
     public void playerLeft(Player player) {
-        sendTCP("Player " + player.getName() + " joined the game.");
+        sendTCP(protocol.writeGamePlayerUpdate(player.getName(), false));
+    }
+
+    @Override
+    public void gameStatusUpdated(boolean started) {
+        sendTCP(protocol.writeGameStatusUpdated(started));
+    }
+
+    @Override
+    public void gameEnded() {
+        sendTCP(protocol.writeGameEndedUpdate());
     }
 
     @Override

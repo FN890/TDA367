@@ -31,4 +31,23 @@ class ServerProtocolWriter {
         return writeResponse(sb.toString());
     }
 
+    // Game Updates
+    String writeGamePlayerUpdate(String name, boolean joined) {
+        if (joined) {
+            return "game:joined," + name;
+        }
+        return "game:left," + name;
+    }
+
+    String writeGameStatusUpdate(boolean started) {
+        if (started) {
+            return "game:started";
+        }
+        return "game:paused";
+    }
+
+    String writeGameEndedUpdate() {
+        return "game:ended";
+    }
+
 }

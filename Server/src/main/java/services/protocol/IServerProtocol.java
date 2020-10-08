@@ -51,4 +51,27 @@ public interface IServerProtocol {
      */
     String writeGameInfo(Game game);
 
+    /**
+     * Writes Game update about Players joining or leaving a game.
+     *
+     * @param name The Player that's updated.
+     * @param joined Specifies weather the player joined or left the game.
+     * @return The update on the form: game:joined,name / game:left,name
+     */
+    String writeGamePlayerUpdate(String name, boolean joined);
+
+    /**
+     * Writes game status updates.
+     *
+     * @param started Specifies weather the game is running or not.
+     * @return The update on the form: game:started / game:paused
+     */
+    String writeGameStatusUpdated(boolean started);
+
+    /**
+     * Writes game ended update.
+     * @return The update on the form: game:ended
+     */
+    String writeGameEndedUpdate();
+
 }
