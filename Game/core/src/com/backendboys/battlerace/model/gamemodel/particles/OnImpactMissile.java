@@ -1,5 +1,6 @@
 package com.backendboys.battlerace.model.gamemodel.particles;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
@@ -9,11 +10,11 @@ import com.badlogic.gdx.physics.box2d.*;
 class OnImpactMissile extends AbstractExplosive {
     private final Body body;
     private static final Vector2 direction = new Vector2(10, 4);
-    private static final float MOVEMENT_POWER = 10;
+    private static final float MOVEMENT_POWER = 100;
     private static final float MISSILE_LENGTH = 5f;
     private static final float MISSILE_HEIGHT = 1f;
-    private static final float LAUNCH_OFFSET_Y = 3f;
-    private static final float LAUNCH_OFFSET_x = 56.5f;
+    private static final float LAUNCH_OFFSET_Y = 50f;
+    private static final float LAUNCH_OFFSET_x = 0f;
     private static final int NUM_PARTICLES = 30;
 
     /**
@@ -22,7 +23,13 @@ class OnImpactMissile extends AbstractExplosive {
      * @param world the world where it spawns
      * @param pos   spawn point of the missile
      */
-    OnImpactMissile(World world, Vector2 pos) {
+    OnImpactMissile(World world, Vector2 pos, float rotation) {
+        rotation = rotation + (MathUtils.PI / 2);
+        System.out.println("Rotation: " + rotation);
+        direction.x = rotation * MathUtils.sin(rotation);
+        direction.y = -rotation * MathUtils.cos(rotation);
+        System.out.println("x: " + direction.x);
+        System.out.println("y: " + direction.y);
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.fixedRotation = false; // A missile can rotate
@@ -31,8 +38,9 @@ class OnImpactMissile extends AbstractExplosive {
         bodyDef.gravityScale = 1;
         bodyDef.position.x = pos.x + LAUNCH_OFFSET_x;
         bodyDef.position.y = pos.y + LAUNCH_OFFSET_Y;
-        bodyDef.linearVelocity.x = direction.x * MOVEMENT_POWER;
-        bodyDef.linearVelocity.y = direction.y * MOVEMENT_POWER;
+        direction.scl(MOVEMENT_POWER);
+        bodyDef.linearVelocity.x = direction.x ;
+        bodyDef.linearVelocity.y = direction.y ;
         body = world.createBody(bodyDef);
 
         body.setUserData(this);

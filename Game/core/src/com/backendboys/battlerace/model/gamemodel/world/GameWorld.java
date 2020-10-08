@@ -71,8 +71,8 @@ public class GameWorld {
      *
      * @param pos Spawn Position for the Missile
      */
-    public void addMissile(Vector2 pos) {
-        worldExplosions.addMissile(pos, world);
+    public void addMissile(Vector2 pos, float rotation) {
+        worldExplosions.addMissile(pos, world, rotation);
         System.out.println("Explosions: " + worldExplosions.getNumberOffExplosions());
         System.out.println("particles: " + worldExplosions.getTotalExplosionParticles());
 
