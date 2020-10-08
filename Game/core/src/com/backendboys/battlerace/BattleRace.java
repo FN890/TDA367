@@ -33,7 +33,7 @@ public class BattleRace extends Game {
     }
 
     public void startMultiplayer() {
-        this.setScreen(ScreenFactory.createMultiplayerMenu(new MenuController(this)));
+        //maybe refernce to serviece.
     }
 
     @Override

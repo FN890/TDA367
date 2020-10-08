@@ -49,10 +49,13 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
         multiplayerTable.setFillParent(true);
         multiplayerTable.center();
 
-        inputPlayerName = new TextField("Player name", new Skin());
-        inputGameId = new TextField("Game id", new Skin());
-        final ImageButton btnJoinGame = new ImageButton(getButtonStyleFromName("Join Game"));
-        final ImageButton btnCreateGame = new ImageButton(getButtonStyleFromName("Create Game"));
+        Skin uiSkin = new Skin(Gdx.files.internal("uiskin.json"));
+
+        inputPlayerName = new TextField("Player name", uiSkin);
+        inputGameId = new TextField("Game id", uiSkin);
+
+        final ImageButton btnJoinGame = new ImageButton(getButtonStyleFromName("Options"));
+        final ImageButton btnCreateGame = new ImageButton(getButtonStyleFromName("Options"));
         final ImageButton btnBack = new ImageButton(getButtonStyleFromName("Back"));
 
         btnJoinGame.addListener(new ClickListener(){
@@ -75,6 +78,13 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
                 getMenuController().toMainMenu();
             }
         });
+
+        multiplayerTable.add(inputPlayerName).row();
+        multiplayerTable.add(inputGameId).row();
+
+        multiplayerTable.add(btnJoinGame).row();
+        multiplayerTable.add(btnCreateGame).row();
+        multiplayerTable.add(btnBack).row();
 
         return multiplayerTable;
     }
