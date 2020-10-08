@@ -17,8 +17,8 @@ public class WorldExplosions {
      * A list of all the explosions that have been created in the world
      */
 
-    private static final ArrayList<Explosion> explosions = new ArrayList<>();
-    private static final ArrayList<OnImpactMissile> missiles = new ArrayList<>();
+    private  final ArrayList<Explosion> explosions = new ArrayList<>();
+    private  final ArrayList<OnImpactMissile> missiles = new ArrayList<>();
 
     public WorldExplosions() {
     }
@@ -107,7 +107,7 @@ public class WorldExplosions {
         missiles.add(new OnImpactMissile(world, pos, rotation));
     }
 
-    public static ArrayList<IParticle> getMissiles() {
+    public  ArrayList<IParticle> getMissiles() {
         ArrayList<IParticle> iParticleMissiles = new ArrayList();
         for (OnImpactMissile missile: missiles){
             iParticleMissiles.add(missile);

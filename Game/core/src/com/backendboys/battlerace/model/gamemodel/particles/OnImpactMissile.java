@@ -7,14 +7,14 @@ import com.badlogic.gdx.physics.box2d.*;
 /**
  * A Missile that explodes on impact created in WorldExplosions
  */
-class OnImpactMissile extends AbstractExplosive implements IParticle{
+class OnImpactMissile extends AbstractExplosive implements IParticle {
     private final Body body;
     private static final Vector2 direction = new Vector2(10, 4);
     private static final float MOVEMENT_POWER = 100;
-    private static final float MISSILE_LENGTH = 5f;
-    private static final float MISSILE_HEIGHT = 1f;
-    private static final float LAUNCH_OFFSET_Y = 20f;
-    private static final float LAUNCH_OFFSET_x = 0f;
+    private static final float MISSILE_LENGTH = 10f;
+    private static final float MISSILE_HEIGHT = 3f;
+    private static final float LAUNCH_OFFSET_Y = 5f;
+    private static final float LAUNCH_OFFSET_x = 41.5f;
     private static final int NUM_PARTICLES = 30;
 
     /**
@@ -32,15 +32,19 @@ class OnImpactMissile extends AbstractExplosive implements IParticle{
         bodyDef.fixedRotation = false; // A missile can rotate
         bodyDef.bullet = false;
         bodyDef.linearDamping = 0; //air resistance
-        bodyDef.gravityScale = 1;
+        bodyDef.gravityScale = 0.5f;
         bodyDef.position.x = pos.x + LAUNCH_OFFSET_x;
         bodyDef.position.y = pos.y + LAUNCH_OFFSET_Y;
+        System.out.println(rotation);
+        //bodyDef.angle = 0; //rotation + (MathUtils.PI / 2);
         direction.scl(MOVEMENT_POWER);
-        bodyDef.linearVelocity.x = direction.x ;
-        bodyDef.linearVelocity.y = direction.y ;
+        bodyDef.linearVelocity.x = direction.x;
+        bodyDef.linearVelocity.y = direction.y;
         body = world.createBody(bodyDef);
+        body.setTransform(body.getPosition(),rotation - (MathUtils.PI / 2));
 
-        body.setUserData(this);
+
+        body.getMassData().center.x = 8f;
         PolygonShape polygonShape = new PolygonShape();
         polygonShape.setAsBox(MISSILE_LENGTH, MISSILE_HEIGHT);
 

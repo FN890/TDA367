@@ -84,7 +84,7 @@ public class GameWorld {
     }
 
     public ArrayList<IParticle> getMissiles() {
-        return WorldExplosions.getMissiles();
+        return worldExplosions.getMissiles();
     }
 
     public int getNumberOfPowerUps() {

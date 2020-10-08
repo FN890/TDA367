@@ -3,6 +3,7 @@ package com.backendboys.battlerace.view.screens;
 import com.backendboys.battlerace.controller.GameController;
 import com.backendboys.battlerace.model.gamemodel.IModelListener;
 import com.backendboys.battlerace.view.game.BackgroundRender;
+import com.backendboys.battlerace.view.game.MissileRender;
 import com.backendboys.battlerace.view.game.PowerUpsRender;
 import com.backendboys.battlerace.view.game.VehicleRender;
 import com.badlogic.gdx.Gdx;
@@ -21,6 +22,7 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
     private final BackgroundRender backgroundRender;
     private final VehicleRender vehicleRender;
     private final PowerUpsRender powerUpsRender;
+    private final MissileRender missileRender;
 
     private final OrthographicCamera camera;
     private final ExtendViewport viewport;
@@ -33,7 +35,7 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
         debugRenderer = new Box2DDebugRenderer();
         backgroundRender = new BackgroundRender(camera, gameController.getGameWorld().getGroundVertices());
         vehicleRender = new VehicleRender(camera);
-
+        missileRender = new MissileRender(camera);
         powerUpsRender = new PowerUpsRender(camera, gameController.getGameModel().getPowerUps());
 
     }
@@ -50,6 +52,7 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
         backgroundRender.renderBackground();
         vehicleRender.renderVehicle(gameController.getGameModel().getPlayer().getVehicle());
         debugRenderer.render(gameController.getGameWorld().getWorld(), camera.combined);
+        missileRender.render(gameController.getGameWorld().getMissiles());
         powerUpsRender.renderPowerUps();
         Gdx.graphics.setTitle("" + Gdx.graphics.getFramesPerSecond());
     }
@@ -66,6 +69,7 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
         debugRenderer.dispose();
         backgroundRender.dispose();
         vehicleRender.dispose();
+        missileRender.dispose();
         powerUpsRender.dispose();
     }
 
