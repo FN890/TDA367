@@ -36,10 +36,9 @@ public class FinishLineRender {
             if (withinCamera(finishLineVerts.get(i))) {
                 shapeRenderer.setProjectionMatrix(orthographicCamera.combined);
 
-                if ((int)finishLineVerts.get(i).y % 3 == 0) {
+                if ((int) finishLineVerts.get(i).y % 3 == 0) {
                     shapeRenderer.setColor(Color.BLACK);
-                }
-                else {
+                } else {
                     shapeRenderer.setColor(Color.WHITE);
                 }
 

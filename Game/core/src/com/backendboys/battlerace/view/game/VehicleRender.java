@@ -48,7 +48,7 @@ public class VehicleRender {
      */
     public void renderVehicle(IVehicle vehicle) {
         batch.begin();
-        if(vehicle instanceof ICar) {
+        if (vehicle instanceof ICar) {
             ICar car = (ICar) vehicle;
             spritePlayerVehicle.setPosition(car.getPosition().x - VEHCILE_WIDTH / 2f, car.getPosition().y - VEHCILE_HEIGHT / 2f);
             spritePlayerVehicle.setRotation((float) Math.toDegrees(car.getRotation()));

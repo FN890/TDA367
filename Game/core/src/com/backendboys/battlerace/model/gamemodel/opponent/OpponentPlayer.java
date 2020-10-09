@@ -8,13 +8,13 @@ public class OpponentPlayer {
     private Vector2 playerPosition;
     private float playerRotation;
 
-    public OpponentPlayer(String playerName, Vector2 playerPosition, float playerRotation){
+    public OpponentPlayer(String playerName, Vector2 playerPosition, float playerRotation) {
         this.playerName = playerName;
         this.playerPosition = playerPosition;
         this.playerRotation = playerRotation;
     }
 
-    public void setVectorPosition(Vector2 position, float rotation){
+    public void setVectorPosition(Vector2 position, float rotation) {
         this.playerPosition = position;
         this.playerRotation = rotation;
     }

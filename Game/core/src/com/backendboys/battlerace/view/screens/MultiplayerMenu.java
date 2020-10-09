@@ -58,14 +58,14 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
         final ImageButton btnCreateGame = new ImageButton(getButtonStyleFromName("Options"));
         final ImageButton btnBack = new ImageButton(getButtonStyleFromName("Back"));
 
-        btnJoinGame.addListener(new ClickListener(){
+        btnJoinGame.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //Start JoinGameScreen
             }
         });
 
-        btnCreateGame.addListener(new ClickListener(){
+        btnCreateGame.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //Start CreateGameScreen

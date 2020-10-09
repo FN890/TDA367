@@ -63,15 +63,15 @@ public class FinishLineGenerator {
         float xPos, yPos;
 
         xPos = groundVertices.get(500).x;
-        yPos = groundVertices.get((int)(xPos / 5)).y + 4;
+        yPos = groundVertices.get((int) (xPos / 5)).y + 4;
 
-        for(int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 20; j++) {
                 vertices.add(new Vector2(xPos, yPos));
                 yPos += 4;
             }
             xPos += 8;
-            yPos = groundVertices.get((int)(xPos / 5)).y + 4;
+            yPos = groundVertices.get((int) (xPos / 5)).y + 4;
         }
         return vertices;
     }

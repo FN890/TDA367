@@ -5,7 +5,7 @@ import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class GameClient implements Runnable, IPacketListener{
+public class GameClient implements Runnable, IPacketListener {
 
     private String hostname;
     private int port;
@@ -13,14 +13,14 @@ public class GameClient implements Runnable, IPacketListener{
 
     private PrintWriter printWriter;
 
-    public GameClient(String hostname, int port){
+    public GameClient(String hostname, int port) {
         this.hostname = hostname;
         this.port = port;
     }
 
     @Override
     public void run() {
-        try(Socket socket = new Socket(hostname, port)){
+        try (Socket socket = new Socket(hostname, port)) {
 
             System.out.println("Connected to server");
 
@@ -51,7 +51,7 @@ public class GameClient implements Runnable, IPacketListener{
 
     }
 
-    private void sendCommand(){
+    private void sendCommand() {
         System.out.println("Sending create:simon to server");
         printWriter.println("create:simon");
     }

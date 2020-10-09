@@ -25,17 +25,17 @@ public class MissileRender {
         batch = new SpriteBatch();
         Texture texture = new Texture(Gdx.files.internal("missile.png"));
         sprite = new Sprite(texture);
-        sprite.setSize(WIDTH,HEIGHT);
-        sprite.setOrigin(WIDTH/2f,HEIGHT/2f);
+        sprite.setSize(WIDTH, HEIGHT);
+        sprite.setOrigin(WIDTH / 2f, HEIGHT / 2f);
     }
 
-    public void render(ArrayList<IParticle> missiles ){
+    public void render(ArrayList<IParticle> missiles) {
         batch.begin();
-        for (IParticle missile: missiles){
-            if(withinCamera(missile)){
+        for (IParticle missile : missiles) {
+            if (withinCamera(missile)) {
 
-                sprite.setPosition(missile.getPosition().x-10,missile.getPosition().y-6);
-                sprite.setRotation(MathUtils.radiansToDegrees*(missile.getRotation()));
+                sprite.setPosition(missile.getPosition().x - 10, missile.getPosition().y - 6);
+                sprite.setRotation(MathUtils.radiansToDegrees * (missile.getRotation()));
                 batch.setProjectionMatrix(orthographicCamera.combined);
                 sprite.draw(batch);
             }
@@ -43,11 +43,12 @@ public class MissileRender {
         batch.end();
     }
 
-    public void dispose(){
+    public void dispose() {
         batch.dispose();
     }
-    private boolean withinCamera(IParticle missile){
-        if (missile.getPosition().x > orthographicCamera.position.x - orthographicCamera.viewportWidth){
+
+    private boolean withinCamera(IParticle missile) {
+        if (missile.getPosition().x > orthographicCamera.position.x - orthographicCamera.viewportWidth) {
             return missile.getPosition().x < orthographicCamera.position.x + orthographicCamera.viewportWidth;
         }
         return true;
