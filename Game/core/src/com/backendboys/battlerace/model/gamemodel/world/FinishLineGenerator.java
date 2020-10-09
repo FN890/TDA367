@@ -5,15 +5,27 @@ import com.badlogic.gdx.physics.box2d.*;
 
 import java.util.ArrayList;
 
+
+/**
+ * Class that handles generation of a finish line.
+ */
 public class FinishLineGenerator {
 
     private ArrayList<Vector2> groundVertices;
     private ArrayList<Vector2> finishLineVerts;
 
+    /**
+     * @param groundVertices List of vertices for the ground in the world.
+     */
     public FinishLineGenerator(ArrayList<Vector2> groundVertices) {
         this.groundVertices = groundVertices;
     }
 
+    /**
+     * Generates the finish line and spawns it in the world.
+     *
+     * @param world The world the finish line will spawn in.
+     */
     public void generateFinishLine(World world) {
 
         Body body = null;
@@ -64,6 +76,9 @@ public class FinishLineGenerator {
         return vertices;
     }
 
+    /**
+     * @return The vertices for the finish line.
+     */
     public ArrayList<Vector2> getFinishLineVerts() {
         return finishLineVerts;
     }

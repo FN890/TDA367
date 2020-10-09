@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import java.util.ArrayList;
 
 /**
- * Class that handles rendering the power-ups.
+ * Class that handles rendering of the finish line.
  */
 public class FinishLineRender {
 
@@ -25,7 +25,7 @@ public class FinishLineRender {
     }
 
     /**
-     * Render the power-ups that are within view. Should be called every render.
+     * Calls the method that renders the finish, should be called every render.
      */
     public void renderFinishLine() {
         render();
