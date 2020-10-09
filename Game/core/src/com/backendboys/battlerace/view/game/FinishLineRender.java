@@ -1,12 +1,7 @@
 package com.backendboys.battlerace.view.game;
 
-import com.backendboys.battlerace.model.gamemodel.powerups.AbstractPowerUp;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 
@@ -41,7 +36,7 @@ public class FinishLineRender {
             if (withinCamera(finishLineVerts.get(i))) {
                 shapeRenderer.setProjectionMatrix(orthographicCamera.combined);
 
-                if ((int)finishLineVerts.get(i).y % 2 == 0) {
+                if ((int)finishLineVerts.get(i).y % 3 == 0) {
                     shapeRenderer.setColor(Color.BLACK);
                 }
                 else {
