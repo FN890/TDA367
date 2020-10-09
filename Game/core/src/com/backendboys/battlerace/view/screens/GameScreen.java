@@ -2,10 +2,7 @@ package com.backendboys.battlerace.view.screens;
 
 import com.backendboys.battlerace.controller.GameController;
 import com.backendboys.battlerace.model.gamemodel.IModelListener;
-import com.backendboys.battlerace.view.game.BackgroundRender;
-import com.backendboys.battlerace.view.game.MissileRender;
-import com.backendboys.battlerace.view.game.PowerUpsRender;
-import com.backendboys.battlerace.view.game.VehicleRender;
+import com.backendboys.battlerace.view.game.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -23,6 +20,7 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
     private final VehicleRender vehicleRender;
     private final PowerUpsRender powerUpsRender;
     private final MissileRender missileRender;
+    private final FinishLineRender finishLineRender;
 
     private final OrthographicCamera camera;
     private final ExtendViewport viewport;
@@ -37,6 +35,7 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
         vehicleRender = new VehicleRender(camera);
         missileRender = new MissileRender(camera);
         powerUpsRender = new PowerUpsRender(camera, gameController.getGameModel().getPowerUps());
+        finishLineRender = new FinishLineRender(camera, gameController.getGameWorld().getFinishLineVertices());
 
     }
 
@@ -54,6 +53,7 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
         debugRenderer.render(gameController.getGameWorld().getWorld(), camera.combined);
         missileRender.render(gameController.getGameWorld().getMissiles());
         powerUpsRender.renderPowerUps();
+        finishLineRender.renderFinishLine();
         Gdx.graphics.setTitle("" + Gdx.graphics.getFramesPerSecond());
     }
 

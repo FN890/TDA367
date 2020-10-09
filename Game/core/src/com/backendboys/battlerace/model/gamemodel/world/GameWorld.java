@@ -4,6 +4,7 @@ import com.backendboys.battlerace.model.gamemodel.particles.IParticle;
 import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
 import com.backendboys.battlerace.model.gamemodel.powerups.AbstractPowerUp;
 import com.backendboys.battlerace.model.gamemodel.powerups.PowerUpGenerator;
+import com.backendboys.battlerace.view.game.FinishLineRender;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
@@ -19,6 +20,7 @@ public class GameWorld {
     private static final int SPEED_SCALE = 3;
     private final World world;
     private final GroundGenerator groundGenerator;
+    private FinishLineGenerator finishLineGenerator;
 
     private final ArrayList<AbstractPowerUp> powerUps;
 
@@ -37,6 +39,8 @@ public class GameWorld {
         world.setContactListener(new CollisionListener());
         final PowerUpGenerator powerUpGenerator = new PowerUpGenerator(groundGenerator.getVertices(), world);
         powerUps = powerUpGenerator.generatePowerups(30);
+        finishLineGenerator = new FinishLineGenerator(getGroundVertices());
+        finishLineGenerator.generateFinishLine(world);
     }
 
     /**
@@ -89,6 +93,10 @@ public class GameWorld {
 
     public int getNumberOfPowerUps() {
         return powerUps.size();
+    }
+
+    public ArrayList<Vector2> getFinishLineVertices() {
+        return finishLineGenerator.getFinishLineVerts();
     }
 
 
