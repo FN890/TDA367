@@ -1,5 +1,6 @@
 package com.backendboys.battlerace.model.gamemodel.world;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
@@ -74,7 +75,7 @@ public class GroundGenerator {
         float xPos = 0;
 
         for (int i = 0; i < numberVertices; i++) {
-            float yPos = 30 * (float) Math.sin(xPos * 0.01) + 30;
+            float yPos = 30 * MathUtils.sin(xPos * 0.01f) + 30;
             xPos += step;
             vertices.add(new Vector2(xPos, yPos + 10));
         }
