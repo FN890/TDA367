@@ -42,7 +42,7 @@ public class PowerUpsRender {
             if (withinCamera(powerUp)) {
                 batch.begin();
                 batch.setProjectionMatrix(orthographicCamera.combined);
-                sprite.setPosition(powerUp.getBodyDef().position.x - 5, powerUp.getBodyDef().position.y - 5);
+                sprite.setPosition(powerUp.getBody().getPosition().x - 5, powerUp.getBody().getPosition().y - 5);
                 sprite.draw(batch);
                 batch.end();
             }
@@ -50,8 +50,8 @@ public class PowerUpsRender {
     }
 
     private boolean withinCamera(AbstractPowerUp powerUp) {
-        if (powerUp.getBodyDef().position.x > orthographicCamera.position.x - orthographicCamera.viewportWidth) {
-            return powerUp.getBodyDef().position.x < orthographicCamera.position.x + orthographicCamera.viewportWidth;
+        if (powerUp.getBody().getPosition().x > orthographicCamera.position.x - orthographicCamera.viewportWidth) {
+            return powerUp.getBody().getPosition().x < orthographicCamera.position.x + orthographicCamera.viewportWidth;
         }
         return false;
     }

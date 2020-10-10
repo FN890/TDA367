@@ -53,13 +53,11 @@ public class PowerUpGenerator {
             int positionY = (int) tempVector.y + 30;
 
             if (random.nextBoolean()) {
-                NitroPowerUp nitroPowerUp = new NitroPowerUp();
-                nitroPowerUp.InstantiateBody(world, positionX, positionY);
+                NitroPowerUp nitroPowerUp = new NitroPowerUp(world, positionX, positionY);
                 powerUps.add(nitroPowerUp);
 
             } else {
-                MissilePowerUp missilePowerUp = new MissilePowerUp();
-                missilePowerUp.InstantiateBody(world, positionX, positionY);
+                MissilePowerUp missilePowerUp = new MissilePowerUp(world, positionX, positionY);
                 powerUps.add(missilePowerUp);
             }
             positionX += space * STEP;

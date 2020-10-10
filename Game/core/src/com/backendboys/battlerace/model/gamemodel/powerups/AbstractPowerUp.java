@@ -9,29 +9,32 @@ import com.badlogic.gdx.physics.box2d.*;
 
 public abstract class AbstractPowerUp {
 
-    private final BodyDef bodyDef;
-    private final FixtureDef fixtureDef;
+    private static float HEIGHT = 4f;
+    private static float WIDTH = 4f;
 
-    public AbstractPowerUp(BodyDef bodyDef, FixtureDef fixtureDef) {
-        this.bodyDef = bodyDef;
-        this.fixtureDef = fixtureDef;
-    }
+    private Body body;
 
     /**
-     * Creates the body of the powerup and puts in the world.
+     * Instantiates the body of the PowerUp and puts it in the world.
      *
      * @param world     Needed to spawn the powerup in the world.
-     * @param spawnPosx The x value of its' spawn position.
-     * @param spawnPosy the y value of its' spawn position.
+     * @param spawnPosX The x value of its' spawn position.
+     * @param spawnPosY the y value of its' spawn position.
      */
+    public AbstractPowerUp(World world, float spawnPosX, float spawnPosY) {
+        instantiateBody(world, spawnPosX, spawnPosY);
+    }
 
-    protected void InstantiateBody(World world, float spawnPosx, float spawnPosy) {
+    private void instantiateBody(World world, float spawnPosX, float spawnPosY) {
+        BodyDef bodyDef = new BodyDef();
+        FixtureDef fixtureDef = new FixtureDef();
+
         bodyDef.type = BodyDef.BodyType.StaticBody;
-        final PolygonShape boxShape = new PolygonShape();
-        boxShape.setAsBox(4f, 4f);
+        PolygonShape boxShape = new PolygonShape();
+        boxShape.setAsBox(HEIGHT, WIDTH);
         fixtureDef.shape = boxShape;
 
-        bodyDef.position.set(spawnPosx, spawnPosy);
+        bodyDef.position.set(spawnPosX, spawnPosY);
 
         final Body body = world.createBody(bodyDef);
         body.createFixture(fixtureDef).setUserData(this);
@@ -46,35 +49,26 @@ public abstract class AbstractPowerUp {
     }
 
     /**
-     * Gives the powerup to the player who picked it up.
+     * What happens when player uses PowerUp.
      *
-     * @param player The player that picked up the powerup
-     */
-    public void onPickup(Player player) {
-        player.addPowerUp(this);
-    }
-
-    /**
-     * What happens when player uses powerup.
-     *
-     * @param player The player that uses the powerup;
+     * @param player The player that uses the PowerUp.
      */
     public abstract void use(Player player);
 
     /**
-     * Returns name of powerup, used for testing purposes.
+     * Returns name of PowerUp, used for testing purposes.
      *
-     * @return Name of powerup
+     * @return Name of PowerUp.
      */
     @Override
     public abstract String toString();
 
-
-    public BodyDef getBodyDef() {
-        return bodyDef;
-    }
-
-    public FixtureDef getFixtureDef() {
-        return fixtureDef;
+    /**
+     * Returns the body of the PowerUp.
+     *
+     * @return The body of PowerUp.
+     */
+    public Body getBody() {
+        return body;
     }
 }
