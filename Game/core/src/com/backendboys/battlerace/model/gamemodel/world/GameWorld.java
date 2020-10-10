@@ -4,7 +4,6 @@ import com.backendboys.battlerace.model.gamemodel.particles.IParticle;
 import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
 import com.backendboys.battlerace.model.gamemodel.powerups.AbstractPowerUp;
 import com.backendboys.battlerace.model.gamemodel.powerups.PowerUpGenerator;
-import com.backendboys.battlerace.view.game.FinishLineRender;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
@@ -29,6 +28,8 @@ public class GameWorld {
     private static final int VELOCITY_ITERATIONS = 6;
     private static final int POSITION_ITERATIONS = 2;
 
+    private final ArrayList<GameWorldListener> gameWorldListeners;
+
     private final WorldExplosions worldExplosions = new WorldExplosions();
 
     public GameWorld() {
@@ -41,6 +42,7 @@ public class GameWorld {
         powerUps = powerUpGenerator.generatePowerups(30);
         finishLineGenerator = new FinishLineGenerator(getGroundVertices());
         finishLineGenerator.generateFinishLine(world);
+        gameWorldListeners = new ArrayList<>();
     }
 
     /**
@@ -81,6 +83,20 @@ public class GameWorld {
         System.out.println("Explosions: " + worldExplosions.getNumberOffExplosions());
         System.out.println("particles: " + worldExplosions.getTotalExplosionParticles());
 
+    }
+
+    public void addListener(GameWorldListener gameWorldListener) {
+        gameWorldListeners.add(gameWorldListener);
+    }
+
+    public void removeListener(GameWorldListener gameWorldListener) {
+        gameWorldListeners.remove(gameWorldListener);
+    }
+
+    private void notifyGameWorldListeners() {
+        for (GameWorldListener gameWorldListener : gameWorldListeners) {
+            gameWorldListener.onGameWorldStepped();
+        }
     }
 
     public ArrayList<AbstractPowerUp> getPowerUps() {
