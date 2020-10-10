@@ -4,7 +4,6 @@ import com.backendboys.battlerace.model.gamemodel.particles.IParticle;
 import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
 import com.backendboys.battlerace.model.gamemodel.powerups.AbstractPowerUp;
 import com.backendboys.battlerace.model.gamemodel.powerups.PowerUpGenerator;
-import com.backendboys.battlerace.view.game.FinishLineRender;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
@@ -29,6 +28,8 @@ public class GameWorld {
     private static final int VELOCITY_ITERATIONS = 6;
     private static final int POSITION_ITERATIONS = 2;
 
+    private final ArrayList<IGameWorldListener> IGameWorldListeners;
+
     private final WorldExplosions worldExplosions = new WorldExplosions();
 
     public GameWorld() {
@@ -41,6 +42,7 @@ public class GameWorld {
         powerUps = powerUpGenerator.generatePowerups(30);
         finishLineGenerator = new FinishLineGenerator(getGroundVertices());
         finishLineGenerator.generateFinishLine(world);
+        IGameWorldListeners = new ArrayList<>();
     }
 
     /**
@@ -55,6 +57,7 @@ public class GameWorld {
                 world.step(STEP_TIME, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
             }
         }
+        notifyGameWorldListeners();
         worldExplosions.removeCollidedMissilesAndParticles();
     }
 
@@ -81,6 +84,20 @@ public class GameWorld {
         System.out.println("Explosions: " + worldExplosions.getNumberOffExplosions());
         System.out.println("particles: " + worldExplosions.getTotalExplosionParticles());
 
+    }
+
+    public void addListener(IGameWorldListener IGameWorldListener) {
+        IGameWorldListeners.add(IGameWorldListener);
+    }
+
+    public void removeListener(IGameWorldListener IGameWorldListener) {
+        IGameWorldListeners.remove(IGameWorldListener);
+    }
+
+    private void notifyGameWorldListeners() {
+        for (IGameWorldListener IGameWorldListener : IGameWorldListeners) {
+            IGameWorldListener.onGameWorldStepped();
+        }
     }
 
     public ArrayList<AbstractPowerUp> getPowerUps() {
