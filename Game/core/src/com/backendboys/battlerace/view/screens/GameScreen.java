@@ -1,7 +1,9 @@
 package com.backendboys.battlerace.view.screens;
 
 import com.backendboys.battlerace.controller.GameController;
+import com.backendboys.battlerace.model.gamemodel.GameModel;
 import com.backendboys.battlerace.model.gamemodel.IModelListener;
+import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
 import com.backendboys.battlerace.view.game.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -14,6 +16,8 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
  */
 class GameScreen extends AbstractScreen implements IScreen, IModelListener {
 
+    private final GameWorld gameWorld;
+    private final GameModel gameModel;
     private final GameController gameController;
 
     private final BackgroundRender backgroundRender;
@@ -27,19 +31,22 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
     private final Box2DDebugRenderer debugRenderer;
 
     GameScreen(GameController gameController) {
+
         this.gameController = gameController;
+        gameModel = gameController.getGameModel();
+        gameWorld = gameModel.getGameWorld();
+
         camera = new OrthographicCamera();
         viewport = new ExtendViewport(600, 50, camera);
         debugRenderer = new Box2DDebugRenderer();
-        backgroundRender = new BackgroundRender(camera, gameController.getGameWorld().getGroundVertices());
+        backgroundRender = new BackgroundRender(camera, gameWorld.getGroundVertices());
         vehicleRender = new VehicleRender(camera);
         missileRender = new MissileRender(camera);
-        powerUpsRender = new PowerUpsRender(camera, gameController.getGameModel().getPowerUps());
-        finishLineRender = new FinishLineRender(camera, gameController.getGameWorld().getFinishLineVertices());
+        powerUpsRender = new PowerUpsRender(camera, gameModel.getPowerUps());
+        finishLineRender = new FinishLineRender(camera, gameWorld.getFinishLineVertices());
 
     }
 
-    // TODO: 2020-09-20 Decrease exposure of different class structures.
     @Override
     public void render(float delta) {
         super.render(delta);
@@ -47,11 +54,11 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        updateCameraPosition(gameController.getGameModel().getPlayerPosition().x, gameController.getGameModel().getPlayerPosition().y);
+        updateCameraPosition(gameModel.getPlayerPosition().x, gameModel.getPlayerPosition().y);
         backgroundRender.renderBackground();
-        vehicleRender.renderVehicle(gameController.getGameModel().getPlayer().getVehicle());
-        debugRenderer.render(gameController.getGameWorld().getWorld(), camera.combined);
-        missileRender.render(gameController.getGameWorld().getMissiles());
+        vehicleRender.renderVehicle(gameModel.getPlayer().getVehicle());
+        debugRenderer.render(gameWorld.getWorld(), camera.combined);
+        missileRender.render(gameWorld.getMissiles());
         powerUpsRender.renderPowerUps();
         finishLineRender.renderFinishLine();
         Gdx.graphics.setTitle("" + Gdx.graphics.getFramesPerSecond());
