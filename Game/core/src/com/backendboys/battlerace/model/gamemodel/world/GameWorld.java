@@ -57,6 +57,7 @@ public class GameWorld {
                 world.step(STEP_TIME, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
             }
         }
+        notifyGameWorldListeners();
         worldExplosions.removeCollidedMissilesAndParticles();
     }
 
