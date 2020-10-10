@@ -28,7 +28,7 @@ public class GameWorld {
     private static final int VELOCITY_ITERATIONS = 6;
     private static final int POSITION_ITERATIONS = 2;
 
-    private final ArrayList<GameWorldListener> gameWorldListeners;
+    private final ArrayList<IGameWorldListener> IGameWorldListeners;
 
     private final WorldExplosions worldExplosions = new WorldExplosions();
 
@@ -42,7 +42,7 @@ public class GameWorld {
         powerUps = powerUpGenerator.generatePowerups(30);
         finishLineGenerator = new FinishLineGenerator(getGroundVertices());
         finishLineGenerator.generateFinishLine(world);
-        gameWorldListeners = new ArrayList<>();
+        IGameWorldListeners = new ArrayList<>();
     }
 
     /**
@@ -86,17 +86,17 @@ public class GameWorld {
 
     }
 
-    public void addListener(GameWorldListener gameWorldListener) {
-        gameWorldListeners.add(gameWorldListener);
+    public void addListener(IGameWorldListener IGameWorldListener) {
+        IGameWorldListeners.add(IGameWorldListener);
     }
 
-    public void removeListener(GameWorldListener gameWorldListener) {
-        gameWorldListeners.remove(gameWorldListener);
+    public void removeListener(IGameWorldListener IGameWorldListener) {
+        IGameWorldListeners.remove(IGameWorldListener);
     }
 
     private void notifyGameWorldListeners() {
-        for (GameWorldListener gameWorldListener : gameWorldListeners) {
-            gameWorldListener.onGameWorldStepped();
+        for (IGameWorldListener IGameWorldListener : IGameWorldListeners) {
+            IGameWorldListener.onGameWorldStepped();
         }
     }
 
