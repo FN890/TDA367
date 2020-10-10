@@ -22,10 +22,10 @@ public abstract class AbstractPowerUp {
      * @param spawnPosY the y value of its' spawn position.
      */
     public AbstractPowerUp(World world, float spawnPosX, float spawnPosY) {
-        instantiateBody(world, spawnPosX, spawnPosY);
+        body = instantiateBody(world, spawnPosX, spawnPosY);
     }
 
-    private void instantiateBody(World world, float spawnPosX, float spawnPosY) {
+    private Body instantiateBody(World world, float spawnPosX, float spawnPosY) {
         BodyDef bodyDef = new BodyDef();
         FixtureDef fixtureDef = new FixtureDef();
 
@@ -36,7 +36,7 @@ public abstract class AbstractPowerUp {
 
         bodyDef.position.set(spawnPosX, spawnPosY);
 
-        final Body body = world.createBody(bodyDef);
+        Body body = world.createBody(bodyDef);
         body.createFixture(fixtureDef).setUserData(this);
 
         // PowerUp is a sensor, no physics collision will occur.
@@ -46,6 +46,8 @@ public abstract class AbstractPowerUp {
         }
 
         boxShape.dispose();
+
+        return body;
     }
 
     /**
