@@ -44,7 +44,7 @@ public class BackgroundRender {
 
     private void generateGround() {
         for (int i = 0; i < groundVertices.size(); i++) {
-            if (i + i < groundVertices.size()) {
+            if (i + 1 < groundVertices.size()) {
                 if (withinCameraView(groundVertices.get(i))) {
                     shapeRenderer.setProjectionMatrix(orthographicCamera.combined);
                     shapeRenderer.setColor(Color.GREEN);
@@ -58,7 +58,7 @@ public class BackgroundRender {
 
     private void generateDirt() {
         for (int i = 0; i < groundVertices.size(); i++) {
-            if (i + i < groundVertices.size()) {
+            if (i + 1 < groundVertices.size()) {
                 if (withinCameraView(groundVertices.get(i))) {
                     shapeRenderer.setProjectionMatrix(orthographicCamera.combined);
                     shapeRenderer.setColor(Color.BROWN);
@@ -72,7 +72,7 @@ public class BackgroundRender {
 
     private void generateSky() {
         for (int i = 0; i < groundVertices.size(); i++) {
-            if (i + i < groundVertices.size()) {
+            if (i + 1 < groundVertices.size()) {
                 if (withinCameraView(groundVertices.get(i))) {
                     shapeRenderer.setProjectionMatrix(orthographicCamera.combined);
                     shapeRenderer.setColor(Color.SKY);
