@@ -50,10 +50,10 @@ class PlayerTest {
         int amountPowerUp2 = random.nextInt(100);
 
         for(int i=0; i<amountPowerUp1; i++) {
-            player.addPowerUp(new MissilePowerUp());
+            player.addPowerUp(new MissilePowerUp(world, 1, 1));
         }
         for(int i=0; i<amountPowerUp2; i++) {
-            player.addPowerUp(new NitroPowerUp());
+            player.addPowerUp(new NitroPowerUp(world, 1, 1));
         }
 
         assertEquals(amountPowerUp1 + amountPowerUp2, player.getListPowerUp().size());

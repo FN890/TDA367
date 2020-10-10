@@ -12,9 +12,9 @@ public class NitroTest {
     private GameWorld gameWorld;
 
     public NitroTest() {
-        nitroPowerUp = new NitroPowerUp();
         player = new Player("player");
         gameWorld = new GameWorld();
+        nitroPowerUp = new NitroPowerUp(gameWorld.getWorld(), 1, 1);
     }
 
     @Test

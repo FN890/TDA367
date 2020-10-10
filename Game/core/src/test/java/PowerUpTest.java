@@ -16,7 +16,7 @@ public class PowerUpTest {
 
     @Test
     public void testPickUpPowerUp() {
-        gameWorld.getPowerUps().get(0).onPickup(player);
+        player.addPowerUp(gameWorld.getPowerUps().get(0));
         assertEquals(1, player.getListPowerUp().size());
     }
 
