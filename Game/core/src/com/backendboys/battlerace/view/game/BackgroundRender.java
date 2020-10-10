@@ -12,10 +12,10 @@ import java.util.ArrayList;
  */
 public class BackgroundRender {
 
+    private float rectWidth;
     private final OrthographicCamera orthographicCamera;
     private final ArrayList<Vector2> groundVertices;
     private final ShapeRenderer shapeRenderer;
-    private final static int RECT_WIDTH = 5;
 
     /**
      * @param orthographicCamera Used setting the projection matrix.
@@ -25,6 +25,8 @@ public class BackgroundRender {
         this.orthographicCamera = orthographicCamera;
         this.groundVertices = groundVertices;
         this.shapeRenderer = new ShapeRenderer();
+
+        rectWidth = calculateDX(groundVertices.get(1), groundVertices.get(0));
     }
 
     /**
@@ -47,7 +49,7 @@ public class BackgroundRender {
                     shapeRenderer.setProjectionMatrix(orthographicCamera.combined);
                     shapeRenderer.setColor(Color.GREEN);
                     shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-                    shapeRenderer.rectLine(groundVertices.get(i), groundVertices.get(i + 1), RECT_WIDTH);
+                    shapeRenderer.rectLine(groundVertices.get(i), groundVertices.get(i + 1), rectWidth);
                     shapeRenderer.end();
                 }
             }
@@ -61,7 +63,7 @@ public class BackgroundRender {
                     shapeRenderer.setProjectionMatrix(orthographicCamera.combined);
                     shapeRenderer.setColor(Color.BROWN);
                     shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-                    shapeRenderer.box(groundVertices.get(i).x, groundVertices.get(i).y, 1, RECT_WIDTH, -groundVertices.get(i).y, 1);
+                    shapeRenderer.box(groundVertices.get(i).x, groundVertices.get(i).y, 1, rectWidth, -groundVertices.get(i).y, 1);
                     shapeRenderer.end();
                 }
             }
@@ -75,7 +77,7 @@ public class BackgroundRender {
                     shapeRenderer.setProjectionMatrix(orthographicCamera.combined);
                     shapeRenderer.setColor(Color.SKY);
                     shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-                    shapeRenderer.box(groundVertices.get(i).x, groundVertices.get(i).y + 1, 1, RECT_WIDTH, orthographicCamera.viewportHeight, 1);
+                    shapeRenderer.box(groundVertices.get(i).x, groundVertices.get(i).y + 1, 1, rectWidth, orthographicCamera.viewportHeight, 1);
                     shapeRenderer.end();
                 }
             }
@@ -89,4 +91,9 @@ public class BackgroundRender {
             return false;
         }
     }
+
+    private float calculateDX(Vector2 v1, Vector2 v2) {
+        return v2.x - v1.x;
+    }
+
 }
