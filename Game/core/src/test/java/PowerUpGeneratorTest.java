@@ -1,3 +1,4 @@
+import com.backendboys.battlerace.model.gamemodel.GameModel;
 import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
 import org.junit.jupiter.api.Test;
 
@@ -5,13 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PowerUpGeneratorTest {
 
-    private GameWorld gameWorld;
+    private GameModel gameModel;
 
 
     @Test
     public void testNumberofPowerups() {
-        gameWorld = new GameWorld();
-        assertEquals(30, gameWorld.getNumberOfPowerUps());
+        gameModel = new GameModel();
+        assertEquals(30, gameModel.getPowerUps().size());
     }
 
 }

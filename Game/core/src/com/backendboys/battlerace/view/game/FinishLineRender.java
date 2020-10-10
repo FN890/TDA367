@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class that handles rendering of the finish line.
@@ -13,12 +14,12 @@ import java.util.ArrayList;
 public class FinishLineRender {
 
     private final OrthographicCamera orthographicCamera;
-    private final ArrayList<Vector2> finishLineVerts;
+    private final List<Vector2> finishLineVerts;
     private final ShapeRenderer shapeRenderer;
 
     private final static int WIDTH = 8, HEIGHT = 5;
 
-    public FinishLineRender(OrthographicCamera orthographicCamera, ArrayList<Vector2> finishLineVerts) {
+    public FinishLineRender(OrthographicCamera orthographicCamera, List<Vector2> finishLineVerts) {
         this.orthographicCamera = orthographicCamera;
         this.finishLineVerts = finishLineVerts;
         this.shapeRenderer = new ShapeRenderer();

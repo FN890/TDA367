@@ -1,6 +1,7 @@
-package com.backendboys.battlerace.model.gamemodel.world;
+package com.backendboys.battlerace.model.gamemodel;
 
 import com.backendboys.battlerace.model.gamemodel.particles.AbstractExplosive;
+import com.backendboys.battlerace.model.gamemodel.player.Player;
 import com.backendboys.battlerace.model.gamemodel.powerups.AbstractPowerUp;
 import com.backendboys.battlerace.model.gamemodel.vehicle.IVehicle;
 import com.badlogic.gdx.physics.box2d.*;
@@ -9,6 +10,13 @@ import com.badlogic.gdx.physics.box2d.*;
  * A class that handles the logic for what happens when bodies collide in the world
  */
 class CollisionListener implements ContactListener {
+
+    private GameModel model;
+
+    CollisionListener(GameModel model) {
+        this.model = model;
+    }
+
     /**
      * Everytime two bodies collide in the world a contact is created between two fixtures
      * The data that a contact provides is used to make thing happen when specific bodies collide
@@ -59,7 +67,8 @@ class CollisionListener implements ContactListener {
             System.out.println("Picked up PowerUp!");
         } else if (fixtureA.getUserData() instanceof AbstractPowerUp && fixtureB.getUserData() instanceof IVehicle) {
             AbstractPowerUp abstractPowerUp = (AbstractPowerUp) fixtureA.getUserData();
-            System.out.println(abstractPowerUp.toString());
+            model.getPlayer().addPowerUp(abstractPowerUp);
+            model.removePowerUp(abstractPowerUp);
         }
     }
 

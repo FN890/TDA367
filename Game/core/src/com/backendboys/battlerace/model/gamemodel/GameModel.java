@@ -2,8 +2,9 @@ package com.backendboys.battlerace.model.gamemodel;
 
 import com.backendboys.battlerace.model.gamemodel.player.Player;
 import com.backendboys.battlerace.model.gamemodel.powerups.AbstractPowerUp;
-import com.backendboys.battlerace.model.gamemodel.vehicle.SportsCar;
+import com.backendboys.battlerace.model.gamemodel.powerups.PowerUpGenerator;
 import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
+import com.backendboys.battlerace.model.gamemodel.world.GroundGenerator;
 import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
@@ -16,38 +17,38 @@ import java.util.List;
 public class GameModel {
 
     private final GameWorld gameWorld;
-    private final List<IModelListener> modelListeners = new ArrayList<>();
-
-    // TODO: Create Factory for Car.
-    private SportsCar car;
     private final Player player;
 
+    private List<AbstractPowerUp> powerUps = new ArrayList<>();
+    private FinishLineGenerator finishLineGenerator;
+
     public GameModel() {
-        this.gameWorld = new GameWorld();
+        this.gameWorld = new GameWorld(new GroundGenerator(10000, 5, 1));
+        generateObjects();
 
         Vector2 startPosition = gameWorld.getGroundVertices().get(50);
         player = new Player("Mad Max");
         player.addVehicle(gameWorld.getWorld(), startPosition.x, startPosition.y + 25);
+
+        gameWorld.setCollisionListener(new CollisionListener(this));
     }
 
-    // TODO: We dont need this. Updates can be made to model in the controller gameRendered();
-    // TODO: ModelListeners will be used for things like: gameended(); gamestarted();
-    public void update() {
-        gameWorld.stepWorld();
-        notifyListeners();
+    private void generateObjects() {
+        PowerUpGenerator powerUpGenerator = new PowerUpGenerator(gameWorld.getGroundVertices(), gameWorld.getWorld());
+        powerUps = powerUpGenerator.generatePowerups(30);
+
+        finishLineGenerator = new FinishLineGenerator(gameWorld.getGroundVertices());
+        finishLineGenerator.generateFinishLine(gameWorld.getWorld());
     }
 
-    public void addListener(IModelListener modelListener) {
-        modelListeners.add(modelListener);
-    }
-
-    public void removeListener(IModelListener modelListener) {
-        modelListeners.remove(modelListener);
-    }
-
-    private void notifyListeners() {
-        for (IModelListener modelListener : modelListeners) {
-            modelListener.update();
+    /**
+     * Removes the PowerUp from the game and from the world.
+     * @param powerUp The PowerUp to remove.
+     */
+    public void removePowerUp(AbstractPowerUp powerUp) {
+        boolean removed = powerUps.remove(powerUp);
+        if (removed) {
+            gameWorld.destroyBody(powerUp.getBody());
         }
     }
 
@@ -91,8 +92,12 @@ public class GameModel {
 
     }
 
-    public ArrayList<AbstractPowerUp> getPowerUps() {
-        return gameWorld.getPowerUps();
+    public List<AbstractPowerUp> getPowerUps() {
+        return powerUps;
+    }
+
+    public List<Vector2> getFinishLineVertices() {
+        return finishLineGenerator.getFinishLineVerts();
     }
 
 }

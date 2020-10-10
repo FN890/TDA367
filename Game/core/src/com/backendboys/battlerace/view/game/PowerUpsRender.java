@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class that handles rendering the power-ups.
@@ -15,13 +16,13 @@ import java.util.ArrayList;
 public class PowerUpsRender {
 
     private final OrthographicCamera orthographicCamera;
-    private final ArrayList<AbstractPowerUp> powerUps;
+    private final List<AbstractPowerUp> powerUps;
     private final SpriteBatch batch;
     private final Sprite sprite;
 
     private final static int WIDTH = 10, HEIGHT = 10;
 
-    public PowerUpsRender(OrthographicCamera orthographicCamera, ArrayList<AbstractPowerUp> powerUps) {
+    public PowerUpsRender(OrthographicCamera orthographicCamera, List<AbstractPowerUp> powerUps) {
         this.orthographicCamera = orthographicCamera;
         this.powerUps = powerUps;
         batch = new SpriteBatch();

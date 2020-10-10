@@ -2,14 +2,15 @@ package com.backendboys.battlerace.model.gamemodel.world;
 
 import com.backendboys.battlerace.model.gamemodel.particles.IParticle;
 import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
-import com.backendboys.battlerace.model.gamemodel.powerups.AbstractPowerUp;
-import com.backendboys.battlerace.model.gamemodel.powerups.PowerUpGenerator;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2D;
+import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.World;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 /**
  * Class representing the game world.
@@ -17,32 +18,31 @@ import java.util.ArrayList;
 public class GameWorld {
 
     private static final int SPEED_SCALE = 3;
-    private final World world;
-    private final GroundGenerator groundGenerator;
-    private FinishLineGenerator finishLineGenerator;
-
-    private final ArrayList<AbstractPowerUp> powerUps;
-
-    private float accumulator;
     private static final float STEP_TIME = 1f / 60f;
     private static final int VELOCITY_ITERATIONS = 6;
     private static final int POSITION_ITERATIONS = 2;
+    private float accumulator;
 
-    private final ArrayList<IGameWorldListener> IGameWorldListeners;
+    private final World world;
+    private final GroundGenerator groundGenerator;
+
+    private final Stack<Body> toRemove = new Stack<>();
 
     private final WorldExplosions worldExplosions = new WorldExplosions();
 
-    public GameWorld() {
+    public GameWorld(GroundGenerator groundGenerator) {
         Box2D.init();
         world = new World(new Vector2(0, -10), true);
-        groundGenerator = new GroundGenerator(10000, 5, 1);
+        this.groundGenerator = groundGenerator;
         groundGenerator.generateGround(world);
-        world.setContactListener(new CollisionListener());
-        final PowerUpGenerator powerUpGenerator = new PowerUpGenerator(groundGenerator.getVertices(), world);
-        powerUps = powerUpGenerator.generatePowerups(30);
-        finishLineGenerator = new FinishLineGenerator(getGroundVertices());
-        finishLineGenerator.generateFinishLine(world);
-        IGameWorldListeners = new ArrayList<>();
+    }
+
+    public void destroyBody(Body body) {
+        toRemove.add(body);
+    }
+
+    public void setCollisionListener(ContactListener contactListener) {
+        world.setContactListener(contactListener);
     }
 
     /**
@@ -55,10 +55,17 @@ public class GameWorld {
             if (accumulator >= STEP_TIME) {
                 accumulator -= STEP_TIME;
                 world.step(STEP_TIME, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
+                destroyBodies();
             }
         }
-        notifyGameWorldListeners();
+
         worldExplosions.removeCollidedMissilesAndParticles();
+    }
+
+    private void destroyBodies() {
+        for (int i = 0; i < toRemove.size(); i++) {
+            world.destroyBody(toRemove.pop());
+        }
     }
 
     public void dispose() {
@@ -73,7 +80,6 @@ public class GameWorld {
         return groundGenerator.getVertices();
     }
 
-
     /**
      * creates a Missile in the world
      *
@@ -86,34 +92,8 @@ public class GameWorld {
 
     }
 
-    public void addListener(IGameWorldListener IGameWorldListener) {
-        IGameWorldListeners.add(IGameWorldListener);
-    }
-
-    public void removeListener(IGameWorldListener IGameWorldListener) {
-        IGameWorldListeners.remove(IGameWorldListener);
-    }
-
-    private void notifyGameWorldListeners() {
-        for (IGameWorldListener IGameWorldListener : IGameWorldListeners) {
-            IGameWorldListener.onGameWorldStepped();
-        }
-    }
-
-    public ArrayList<AbstractPowerUp> getPowerUps() {
-        return powerUps;
-    }
-
     public ArrayList<IParticle> getMissiles() {
         return worldExplosions.getMissiles();
-    }
-
-    public int getNumberOfPowerUps() {
-        return powerUps.size();
-    }
-
-    public ArrayList<Vector2> getFinishLineVertices() {
-        return finishLineGenerator.getFinishLineVerts();
     }
 
 

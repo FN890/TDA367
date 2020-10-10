@@ -1,3 +1,4 @@
+import com.backendboys.battlerace.model.gamemodel.world.GroundGenerator;
 import com.backendboys.battlerace.model.gamemodel.player.Player;
 import com.backendboys.battlerace.model.gamemodel.powerups.NitroPowerUp;
 import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
@@ -13,7 +14,7 @@ public class NitroTest {
 
     public NitroTest() {
         player = new Player("player");
-        gameWorld = new GameWorld();
+        gameWorld = new GameWorld(new GroundGenerator(10000, 5, 1));
         nitroPowerUp = new NitroPowerUp(gameWorld.getWorld(), 1, 1);
     }
 

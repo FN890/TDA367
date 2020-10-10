@@ -2,7 +2,6 @@ package com.backendboys.battlerace.view.screens;
 
 import com.backendboys.battlerace.controller.GameController;
 import com.backendboys.battlerace.model.gamemodel.GameModel;
-import com.backendboys.battlerace.model.gamemodel.IModelListener;
 import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
 import com.backendboys.battlerace.view.game.*;
 import com.badlogic.gdx.Gdx;
@@ -14,7 +13,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 /**
  * Class that handles rendering for the game
  */
-class GameScreen extends AbstractScreen implements IScreen, IModelListener {
+class GameScreen extends AbstractScreen implements IScreen {
 
     private final GameWorld gameWorld;
     private final GameModel gameModel;
@@ -43,7 +42,7 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
         vehicleRender = new VehicleRender(camera);
         missileRender = new MissileRender(camera);
         powerUpsRender = new PowerUpsRender(camera, gameModel.getPowerUps());
-        finishLineRender = new FinishLineRender(camera, gameWorld.getFinishLineVertices());
+        finishLineRender = new FinishLineRender(camera, gameModel.getFinishLineVertices());
 
     }
 
@@ -78,10 +77,6 @@ class GameScreen extends AbstractScreen implements IScreen, IModelListener {
         vehicleRender.dispose();
         missileRender.dispose();
         powerUpsRender.dispose();
-    }
-
-    @Override
-    public void update() {
     }
 
     // TODO: 2020-09-20 Make camera follow y-axis properly
