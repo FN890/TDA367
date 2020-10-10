@@ -35,8 +35,8 @@ public class GameWorld {
     public GameWorld() {
         Box2D.init();
         world = new World(new Vector2(0, -10), true);
-        groundGenerator = new GroundGenerator(10000, 5, 1);
-        groundGenerator.generateGround(world);
+        groundGenerator = new GroundGenerator(world);
+        groundGenerator.generateGround(10000, 5, 1);
         world.setContactListener(new CollisionListener());
         final PowerUpGenerator powerUpGenerator = new PowerUpGenerator(groundGenerator.getVertices(), world);
         powerUps = powerUpGenerator.generatePowerups(30);

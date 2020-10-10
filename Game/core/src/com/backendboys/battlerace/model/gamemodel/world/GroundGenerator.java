@@ -12,31 +12,27 @@ import java.util.Arrays;
  */
 public class GroundGenerator {
 
-    private final int numberVertices;
-    private final double step;
-    private final float friction;
+    private final World world;
     private final ArrayList<Vector2> vertices;
 
     /**
-     * @param numberVertices The amount of vertices that the ground should be based on.
-     * @param step           The difference on the x-axis between each vertex.
-     * @param friction       The ground friction.
+     * @param world The World that the ground should be added to.
      */
-    public GroundGenerator(int numberVertices, double step, int friction) {
-        this.numberVertices = numberVertices;
-        this.step = step;
-        this.friction = friction;
+    public GroundGenerator(World world) {
+        this.world = world;
         vertices = new ArrayList<>();
     }
 
     /**
      * Creates and adds the ground to the world.
      *
-     * @param world Adds the ground to the specific world.
+     * @param numberVertices The amount of vertices that the ground should be based on.
+     * @param step           The difference on the x-axis between each vertex.
+     * @param friction       The ground friction.
      */
-    public void generateGround(World world) {
+    public void generateGround(int numberVertices, double step, int friction) {
 
-        generateVertices();
+        generateVertices(numberVertices, step);
         ArrayList<Vector2> tempVertices = new ArrayList<>(vertices);
 
         final BodyDef bodyDef = new BodyDef();
@@ -71,7 +67,7 @@ public class GroundGenerator {
         }
     }
 
-    private void generateVertices() {
+    private void generateVertices(int numberVertices, double step) {
         float xPos = 0;
 
         for (int i = 0; i < numberVertices; i++) {
@@ -86,6 +82,6 @@ public class GroundGenerator {
     }
 
     public int getNumberVertices() {
-        return numberVertices;
+        return vertices.size();
     }
 }
