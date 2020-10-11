@@ -8,12 +8,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GroundGeneratorTest {
 
-    private GroundGenerator groundGenerator;
+    private final World world;
+    private final GroundGenerator groundGenerator;
     private final static int NUMBER_VERTICES = 14200;
     private final static float STEP = 1;
     private final static int FRICTION = 1;
 
     public GroundGeneratorTest() {
+        world = new World(new Vector2(0, -10), true);
         groundGenerator = new GroundGenerator(NUMBER_VERTICES, STEP, FRICTION);
     }
 
@@ -24,7 +26,6 @@ public class GroundGeneratorTest {
 
     @Test
     public void testAddedGround() {
-        World world = new World(new Vector2(0, -10), true);
         assertEquals(world.getBodyCount(), 0);
         groundGenerator.generateGround(world);
         assertTrue(world.getBodyCount() != 0);

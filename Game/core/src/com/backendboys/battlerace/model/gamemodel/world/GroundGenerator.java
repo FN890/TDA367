@@ -14,7 +14,7 @@ public class GroundGenerator {
 
     private final int numberVertices;
     private final double step;
-    private final float friction;
+    private final int friction;
     private final ArrayList<Vector2> vertices;
 
     /**
@@ -32,11 +32,11 @@ public class GroundGenerator {
     /**
      * Creates and adds the ground to the world.
      *
-     * @param world Adds the ground to the specific world.
+     * @param world The World that the ground should be added to.
      */
     public void generateGround(World world) {
 
-        generateVertices();
+        generateVertices(numberVertices, step);
         ArrayList<Vector2> tempVertices = new ArrayList<>(vertices);
 
         final BodyDef bodyDef = new BodyDef();
@@ -71,7 +71,7 @@ public class GroundGenerator {
         }
     }
 
-    private void generateVertices() {
+    private void generateVertices(int numberVertices, double step) {
         float xPos = 0;
 
         for (int i = 0; i < numberVertices; i++) {
@@ -86,6 +86,6 @@ public class GroundGenerator {
     }
 
     public int getNumberVertices() {
-        return numberVertices;
+        return vertices.size();
     }
 }

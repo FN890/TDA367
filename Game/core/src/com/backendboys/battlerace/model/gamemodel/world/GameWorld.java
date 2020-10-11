@@ -34,7 +34,7 @@ public class GameWorld {
         Box2D.init();
         world = new World(new Vector2(0, -10), true);
         this.groundGenerator = groundGenerator;
-        groundGenerator.generateGround(world);
+        this.groundGenerator.generateGround(world);
     }
 
     public void destroyBody(Body body) {
