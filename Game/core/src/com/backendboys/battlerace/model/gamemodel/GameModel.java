@@ -96,6 +96,7 @@ public class GameModel {
 
     /**
      * Returns the Player.
+     *
      * @return The Player object.
      */
     public Player getPlayer() {

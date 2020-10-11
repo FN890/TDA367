@@ -1,7 +1,6 @@
 package com.backendboys.battlerace.model.gamemodel;
 
 import com.backendboys.battlerace.model.gamemodel.particles.AbstractExplosive;
-import com.backendboys.battlerace.model.gamemodel.player.Player;
 import com.backendboys.battlerace.model.gamemodel.powerups.AbstractPowerUp;
 import com.backendboys.battlerace.model.gamemodel.vehicle.IVehicle;
 import com.badlogic.gdx.physics.box2d.*;

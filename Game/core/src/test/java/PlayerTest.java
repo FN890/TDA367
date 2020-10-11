@@ -3,7 +3,6 @@ import com.backendboys.battlerace.model.gamemodel.powerups.MissilePowerUp;
 import com.backendboys.battlerace.model.gamemodel.powerups.NitroPowerUp;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.Random;
@@ -49,10 +48,10 @@ class PlayerTest {
         int amountPowerUp1 = random.nextInt(100);
         int amountPowerUp2 = random.nextInt(100);
 
-        for(int i=0; i<amountPowerUp1; i++) {
+        for (int i = 0; i < amountPowerUp1; i++) {
             player.addPowerUp(new MissilePowerUp(world, 1, 1));
         }
-        for(int i=0; i<amountPowerUp2; i++) {
+        for (int i = 0; i < amountPowerUp2; i++) {
             player.addPowerUp(new NitroPowerUp(world, 1, 1));
         }
 
