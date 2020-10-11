@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The model class, contains data and logic to change data.
- * Contains player and the methods that move the vehicle
+ * The model class, contains data and logic to the game.
+ * Contains player and all other objects that exists in a game.
  */
 public class GameModel {
 
@@ -22,6 +22,10 @@ public class GameModel {
     private List<AbstractPowerUp> powerUps = new ArrayList<>();
     private FinishLineGenerator finishLineGenerator;
 
+    /**
+     * Instantiates a GameModel, which creates a world and generates GameObjects, such as,
+     * player, ground, powerups, and finishline.
+     */
     public GameModel() {
         this.gameWorld = new GameWorld(new GroundGenerator(10000, 5, 1));
         generateObjects();
@@ -43,6 +47,7 @@ public class GameModel {
 
     /**
      * Removes the PowerUp from the game and from the world.
+     *
      * @param powerUp The PowerUp to remove.
      */
     public void removePowerUp(AbstractPowerUp powerUp) {
@@ -52,26 +57,47 @@ public class GameModel {
         }
     }
 
+    /**
+     * Makes the Player gas.
+     */
     public void gas() {
         player.gas();
     }
 
+    /**
+     * Makes the Player rotate to the left.
+     */
     public void rotateLeft() {
         player.rotateLeft();
     }
 
+    /**
+     * Makes the Player brake.
+     */
     public void brake() {
         player.brake();
     }
 
+    /**
+     * Makes the Player rotate to the right.
+     */
     public void rotateRight() {
         player.rotateRight();
     }
 
+    /**
+     * Returns the GameWorld.
+     *
+     * @return The GameWorld object.
+     */
     public GameWorld getGameWorld() {
         return gameWorld;
     }
 
+    /**
+     * Returns the Player.
+     * @return The Player object.
+     */
     public Player getPlayer() {
         return player;
     }
@@ -89,9 +115,13 @@ public class GameModel {
      */
     public void usePowerUp() {
         gameWorld.addMissile(new Vector2(player.getPosition().x, player.getPosition().y), player.getRotation());
-
     }
 
+    /**
+     * Returns the list of PowerUps.
+     *
+     * @return The PowerUps list.
+     */
     public List<AbstractPowerUp> getPowerUps() {
         return powerUps;
     }
