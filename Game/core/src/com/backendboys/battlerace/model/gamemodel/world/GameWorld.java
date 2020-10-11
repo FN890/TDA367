@@ -17,14 +17,16 @@ import java.util.Stack;
  */
 public class GameWorld {
 
+    private float accumulator;
     private static final int SPEED_SCALE = 3;
     private static final float STEP_TIME = 1f / 60f;
     private static final int VELOCITY_ITERATIONS = 6;
     private static final int POSITION_ITERATIONS = 2;
-    private float accumulator;
 
     private final World world;
     private final GroundGenerator groundGenerator;
+    private final static int WALL_X_OFFSET = 25;
+    private final static int WALL_HEIGHT = 100;
 
     private final Stack<Body> toRemove = new Stack<>();
 
@@ -35,6 +37,8 @@ public class GameWorld {
         world = new World(new Vector2(0, -10), true);
         this.groundGenerator = groundGenerator;
         this.groundGenerator.generateGround(world);
+        WallGenerator.generateWall(world, groundGenerator.getVertices().get(WALL_X_OFFSET), WALL_HEIGHT);
+        WallGenerator.generateWall(world, groundGenerator.getVertices().get(getGroundVertices().size() - WALL_X_OFFSET), WALL_HEIGHT);
     }
 
     public void destroyBody(Body body) {
