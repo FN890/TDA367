@@ -49,6 +49,13 @@ public class FinishLineRender {
         }
     }
 
+    /**
+     * Disposes the shapeRender.
+     */
+    public void dispose() {
+        shapeRenderer.dispose();
+    }
+
     private boolean withinCamera(Vector2 vector2) {
         if (vector2.x > orthographicCamera.position.x - orthographicCamera.viewportWidth) {
             return vector2.x < orthographicCamera.position.x + orthographicCamera.viewportWidth;

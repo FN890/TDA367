@@ -77,6 +77,7 @@ class GameScreen extends AbstractScreen implements IScreen {
         vehicleRender.dispose();
         missileRender.dispose();
         powerUpsRender.dispose();
+        finishLineRender.dispose();
     }
 
     // TODO: 2020-09-20 Make camera follow y-axis properly
