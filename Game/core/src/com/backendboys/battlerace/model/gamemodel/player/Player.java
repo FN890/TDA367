@@ -6,8 +6,8 @@ import com.backendboys.battlerace.model.gamemodel.vehicle.VehicleFactory;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 import java.util.UUID;
 
 /**
@@ -18,7 +18,7 @@ public class Player {
 
     private final UUID playerId;
     private final String name;
-    private final ArrayList<AbstractPowerUp> listPowerUp = new ArrayList<>();
+    private final Stack<AbstractPowerUp> powerUpStack = new Stack<>();
 
     private IVehicle vehicle;
 
@@ -57,24 +57,24 @@ public class Player {
      * @return list of {@link AbstractPowerUp()} cloned
      */
     public List<AbstractPowerUp> getListPowerUp() {
-        return (List<AbstractPowerUp>) listPowerUp.clone();
+        return (List<AbstractPowerUp>) powerUpStack.clone();
     }
 
     /**
      * @param powerUp Add a {@link AbstractPowerUp()} to Player
      */
     public void addPowerUp(AbstractPowerUp powerUp) {
-        listPowerUp.add(powerUp);
+        powerUpStack.add(powerUp);
     }
 
     /**
      * Use a powerup if it exist one.
      */
     public void usePowerUp() {
-        if (listPowerUp.size() > 0) {
-            listPowerUp.get(0).use(this);
+        if (powerUpStack.size() > 0) {
+            powerUpStack.get(0).use(this);
         }
-        listPowerUp.remove(0);
+        powerUpStack.pop();
     }
 
     /**
