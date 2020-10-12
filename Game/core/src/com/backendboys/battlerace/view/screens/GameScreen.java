@@ -1,7 +1,9 @@
 package com.backendboys.battlerace.view.screens;
 
 import com.backendboys.battlerace.controller.GameController;
+import com.backendboys.battlerace.controller.ServerController;
 import com.backendboys.battlerace.model.gamemodel.GameModel;
+import com.backendboys.battlerace.model.gamemodel.player.Player;
 import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
 import com.backendboys.battlerace.view.game.*;
 import com.badlogic.gdx.Gdx;
@@ -18,6 +20,7 @@ class GameScreen extends AbstractScreen implements IScreen {
     private final GameWorld gameWorld;
     private final GameModel gameModel;
     private final GameController gameController;
+    private ServerController serverController = null;
 
     private final BackgroundRender backgroundRender;
     private final VehicleRender vehicleRender;
@@ -54,6 +57,7 @@ class GameScreen extends AbstractScreen implements IScreen {
     public void render(float delta) {
         super.render(delta);
         gameController.gameStepWorld();
+        sendPositionPackets(gameModel.getPlayer());
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -85,6 +89,16 @@ class GameScreen extends AbstractScreen implements IScreen {
         explosionParticleRender.dispose();
         powerUpsRender.dispose();
         finishLineRender.dispose();
+    }
+
+    public void setServerController(ServerController serverController) {
+        this.serverController = serverController;
+    }
+
+    private void sendPositionPackets(Player player) {
+        if (serverController != null) {
+            serverController.sendPositionPacket(player);
+        }
     }
 
     // TODO: 2020-09-20 Make camera follow y-axis properly

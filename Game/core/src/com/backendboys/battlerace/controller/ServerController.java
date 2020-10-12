@@ -2,11 +2,13 @@ package com.backendboys.battlerace.controller;
 
 import com.backendboys.battlerace.BattleRace;
 import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
+import com.backendboys.battlerace.model.gamemodel.player.Player;
 import com.backendboys.battlerace.services.IPacketListener;
 import com.backendboys.battlerace.services.ITCPListener;
 import com.backendboys.battlerace.services.TCPClient;
 import com.backendboys.battlerace.services.UDPClient;
 import com.backendboys.battlerace.services.protocol.CommandConverter;
+import com.backendboys.battlerace.services.protocol.CommandFactory;
 import com.backendboys.battlerace.services.protocol.ICommand;
 import com.badlogic.gdx.math.Vector2;
 
@@ -33,6 +35,14 @@ public class ServerController implements ITCPListener, IPacketListener {
         tcpClient = new TCPClient(HOSTNAME, PORT);
         tcpClient.addListener(this);
         new Thread(tcpClient).start();
+    }
+
+    public void sendPositionPacket(Player player) {
+        ICommand command = CommandFactory.createCommand("pos", player.getName(),
+                String.valueOf(player.getPosition().x),
+                String.valueOf(player.getPosition().y), String.valueOf(player.getRotation()));
+
+        udpClient.sendPacket(commandConverter.toMessage(command));
     }
 
     @Override
