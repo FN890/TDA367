@@ -59,8 +59,8 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
         inputPlayerName = new TextField("", uiSkin);
         inputGameId = new TextField("", uiSkin);
 
-        final ImageButton btnJoinGame = new ImageButton(getButtonStyleFromName("Options"));
-        final ImageButton btnCreateGame = new ImageButton(getButtonStyleFromName("Options"));
+        final ImageButton btnJoinGame = new ImageButton(getButtonStyleFromName("Exit"));
+        final ImageButton btnCreateGame = new ImageButton(getButtonStyleFromName("Exit"));
         final ImageButton btnBack = new ImageButton(getButtonStyleFromName("Back"));
 
         btnJoinGame.addListener(new ClickListener() {

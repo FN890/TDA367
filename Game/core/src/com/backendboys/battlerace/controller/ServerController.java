@@ -28,6 +28,8 @@ public class ServerController implements ITCPListener, IPacketListener {
     public ServerController(BattleRace game) {
         this.game = game;
 
+        commandConverter = new CommandConverter();
+
         udpClient = new UDPClient(HOSTNAME, PORT);
         udpClient.addListener(this);
         new Thread(udpClient).start();
