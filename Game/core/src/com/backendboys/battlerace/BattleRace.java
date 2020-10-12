@@ -12,7 +12,7 @@ import com.badlogic.gdx.Gdx;
  */
 public class BattleRace extends Game {
 
-    ServerController serverController;
+    public ServerController serverController;
 
     @Override
     public void create() {
@@ -24,7 +24,6 @@ public class BattleRace extends Game {
      */
     public void startMenu() {
         new MenuController(this);
-        serverController = new ServerController(this);
     }
 
     /**
