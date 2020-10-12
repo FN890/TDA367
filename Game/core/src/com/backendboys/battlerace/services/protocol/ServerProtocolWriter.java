@@ -1,4 +1,4 @@
-package com.backendboys.battlerace.services.protocols;
+package com.backendboys.battlerace.services.protocol;
 
 
 import com.badlogic.gdx.math.Vector2;

@@ -1,4 +1,4 @@
-package com.backendboys.battlerace.services.protocols;
+package com.backendboys.battlerace.services.protocol;
 
 /**
  * ProtocolException containing a ProtocolError.

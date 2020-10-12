@@ -1,4 +1,4 @@
-package com.backendboys.battlerace.services.protocols;
+package com.backendboys.battlerace.services.protocol;
 
 /**
  * ICommand represents a command parsed from a message. Retrieved from IServerProtocol.
