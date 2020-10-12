@@ -57,7 +57,7 @@ class GameScreen extends AbstractScreen implements IScreen {
         backgroundRender.renderBackground();
         vehicleRender.renderVehicle(gameModel.getPlayer().getVehicle());
         debugRenderer.render(gameWorld.getWorld(), camera.combined);
-        missileRender.render(gameWorld.getMissiles());
+        missileRender.render(gameModel.getMissiles());
         powerUpsRender.renderPowerUps();
         finishLineRender.renderFinishLine();
         Gdx.graphics.setTitle("" + Gdx.graphics.getFramesPerSecond());

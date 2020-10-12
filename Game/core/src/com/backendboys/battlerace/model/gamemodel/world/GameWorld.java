@@ -29,7 +29,7 @@ public class GameWorld {
 
     private final Stack<Body> toRemove = new Stack<>();
 
-    private final WorldExplosions worldExplosions = new WorldExplosions();
+
 
     private final ArrayList<GameWorldListener> gameWorldListeners;
 
@@ -86,21 +86,8 @@ public class GameWorld {
         return groundGenerator.getVertices();
     }
 
-    /**
-     * creates a Missile in the world
-     *
-     * @param pos Spawn Position for the Missile
-     */
-    public void addMissile(Vector2 pos, float rotation) {
-        worldExplosions.addMissile(pos, world, rotation);
-        System.out.println("Explosions: " + worldExplosions.getNumberOffExplosions());
-        System.out.println("particles: " + worldExplosions.getTotalExplosionParticles());
 
-    }
 
-    public ArrayList<IParticle> getMissiles() {
-        return worldExplosions.getMissiles();
-    }
 
     public void addListener(GameWorldListener gameWorldListener) {
         gameWorldListeners.add(gameWorldListener);

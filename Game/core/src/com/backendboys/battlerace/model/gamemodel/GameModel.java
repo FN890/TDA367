@@ -1,5 +1,7 @@
 package com.backendboys.battlerace.model.gamemodel;
 
+import com.backendboys.battlerace.model.gamemodel.particles.IParticle;
+import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
 import com.backendboys.battlerace.model.gamemodel.player.Player;
 import com.backendboys.battlerace.model.gamemodel.powerups.AbstractPowerUp;
 import com.backendboys.battlerace.model.gamemodel.powerups.PowerUpGenerator;
@@ -18,7 +20,7 @@ public class GameModel {
 
     private final GameWorld gameWorld;
     private final Player player;
-
+    private final WorldExplosions worldExplosions;
     private List<AbstractPowerUp> powerUps = new ArrayList<>();
     private FinishLineGenerator finishLineGenerator;
 
@@ -29,7 +31,7 @@ public class GameModel {
     public GameModel() {
         this.gameWorld = new GameWorld(new GroundGenerator(10000, 5, 1));
         generateObjects();
-
+        worldExplosions = new WorldExplosions();
         Vector2 startPosition = gameWorld.getGroundVertices().get(50);
         player = new Player("Mad Max");
         player.addVehicle(gameWorld.getWorld(), startPosition.x, startPosition.y + 25);
@@ -111,11 +113,14 @@ public class GameModel {
         return player.getRotation();
     }
 
+    public ArrayList<IParticle> getMissiles() {
+        return worldExplosions.getMissiles();
+    }
     /**
      * Temp function for testing speed
      */
     public void usePowerUp() {
-        gameWorld.addMissile(new Vector2(player.getPosition().x, player.getPosition().y), player.getRotation());
+
     }
 
     /**
