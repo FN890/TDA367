@@ -7,12 +7,11 @@ import java.net.SocketException;
 
 public class UDPClient implements Runnable {
 
-    private final DatagramSocket socket;
     private final int port;
+    private DatagramSocket socket;
 
-    public UDPClient(int port) throws SocketException {
+    public UDPClient(int port) {
         this.port = port;
-        this.socket = new DatagramSocket(port);
     }
 
     @Override
@@ -20,6 +19,8 @@ public class UDPClient implements Runnable {
         byte[] buffer = new byte[548];
 
         try {
+            socket = new DatagramSocket(port);
+
             while (true) {
                 DatagramPacket request = new DatagramPacket(buffer, buffer.length);
                 socket.receive(request);
