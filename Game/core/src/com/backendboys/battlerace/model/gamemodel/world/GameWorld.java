@@ -1,7 +1,6 @@
 package com.backendboys.battlerace.model.gamemodel.world;
 
-import com.backendboys.battlerace.model.gamemodel.particles.IParticle;
-import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -28,7 +27,6 @@ public class GameWorld {
     private final static int WALL_HEIGHT = 10000;
 
     private final Stack<Body> toRemove = new Stack<>();
-
 
 
     private final ArrayList<GameWorldListener> gameWorldListeners;
@@ -85,9 +83,6 @@ public class GameWorld {
     public ArrayList<Vector2> getGroundVertices() {
         return groundGenerator.getVertices();
     }
-
-
-
 
     public void addListener(GameWorldListener gameWorldListener) {
         gameWorldListeners.add(gameWorldListener);

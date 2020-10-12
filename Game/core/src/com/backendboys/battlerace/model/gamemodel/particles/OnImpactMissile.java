@@ -29,14 +29,13 @@ class OnImpactMissile extends AbstractExplosive implements IParticle {
         direction.y = -rotation * MathUtils.cos(rotation);
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
-        bodyDef.fixedRotation = false; // A missile can rotate
+        bodyDef.fixedRotation = false;
         bodyDef.bullet = false;
-        bodyDef.linearDamping = 0; //air resistance
+        bodyDef.linearDamping = 0;
         bodyDef.gravityScale = 0.5f;
         bodyDef.position.x = pos.x + LAUNCH_OFFSET_x;
         bodyDef.position.y = pos.y + LAUNCH_OFFSET_Y;
         System.out.println(rotation);
-        //bodyDef.angle = 0; //rotation + (MathUtils.PI / 2);
         direction.scl(MOVEMENT_POWER);
         bodyDef.linearVelocity.x = direction.x;
         bodyDef.linearVelocity.y = direction.y;

@@ -117,6 +117,7 @@ public class GameModel {
     public ArrayList<IParticle> getMissiles() {
         return worldExplosions.getMissiles();
     }
+
     /**
      * Temp function for testing speed
      */
