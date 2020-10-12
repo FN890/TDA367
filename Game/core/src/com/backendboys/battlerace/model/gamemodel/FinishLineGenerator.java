@@ -28,7 +28,7 @@ public class FinishLineGenerator {
      */
     public void generateFinishLine(World world) {
 
-        Body body = null;
+        Body body;
 
         finishLineVerts = generateVertices();
 
