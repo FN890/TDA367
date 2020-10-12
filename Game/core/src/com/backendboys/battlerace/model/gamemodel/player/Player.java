@@ -69,7 +69,7 @@ public class Player {
     }
 
     /**
-     * Use a powerup if it exist one.
+     * Use a powerup if one exists.
      */
     public void usePowerUp() {
         if (powerUpStack.size() > 0) {
