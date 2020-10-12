@@ -12,7 +12,7 @@ class OnImpactMissile extends AbstractExplosive implements IParticle {
     private static final Vector2 direction = new Vector2(10, 4);
     private static final float MOVEMENT_POWER = 100;
     private static final float MISSILE_LENGTH = 10f;
-    private static final float MISSILE_HEIGHT = 3f;
+    private static final float MISSILE_HEIGHT = 5f;
     private static final float LAUNCH_OFFSET_Y = 5f;
     private static final float LAUNCH_OFFSET_x = 41.5f;
     private static final int NUM_PARTICLES = 60;

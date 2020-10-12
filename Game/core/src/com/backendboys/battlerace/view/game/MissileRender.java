@@ -17,7 +17,7 @@ public class MissileRender {
     private final SpriteBatch batch;
     private final Sprite sprite;
 
-    private final static int WIDTH = 30, HEIGHT = 10;
+    private final static int WIDTH = 40, HEIGHT = 20;
 
     public MissileRender(OrthographicCamera orthographicCamera) {
         this.orthographicCamera = orthographicCamera;
@@ -34,7 +34,7 @@ public class MissileRender {
         for (IParticle missile : missiles) {
             if (withinCamera(missile)) {
 
-                sprite.setPosition(missile.getPosition().x - 10, missile.getPosition().y - 6);
+                sprite.setPosition(missile.getPosition().x - WIDTH / 2f, missile.getPosition().y - HEIGHT / 2f);
                 sprite.setRotation(MathUtils.radiansToDegrees * (missile.getRotation()));
                 batch.setProjectionMatrix(orthographicCamera.combined);
                 sprite.draw(batch);
