@@ -32,6 +32,8 @@ public class GameWorld {
 
     private final WorldExplosions worldExplosions = new WorldExplosions();
 
+    private final ArrayList<GameWorldListener> gameWorldListeners;
+
     public GameWorld(GroundGenerator groundGenerator) {
         Box2D.init();
         world = new World(new Vector2(0, -10), true);
@@ -39,6 +41,7 @@ public class GameWorld {
         this.groundGenerator.generateGround(world);
         WallGenerator.generateWall(world, groundGenerator.getVertices().get(WALL_X_OFFSET), WALL_HEIGHT);
         WallGenerator.generateWall(world, groundGenerator.getVertices().get(getGroundVertices().size() - WALL_X_OFFSET), WALL_HEIGHT);
+        gameWorldListeners = new ArrayList<>();
     }
 
     public void destroyBody(Body body) {
@@ -59,6 +62,7 @@ public class GameWorld {
             if (accumulator >= STEP_TIME) {
                 accumulator -= STEP_TIME;
                 world.step(STEP_TIME, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
+                notifyGameWorldListeners();
                 destroyBodies();
             }
         }
@@ -100,5 +104,18 @@ public class GameWorld {
         return worldExplosions.getMissiles();
     }
 
+    public void addListener(GameWorldListener gameWorldListener) {
+        gameWorldListeners.add(gameWorldListener);
+    }
+
+    public void removeListener(GameWorldListener gameWorldListener) {
+        gameWorldListeners.remove(gameWorldListener);
+    }
+
+    private void notifyGameWorldListeners() {
+        for (GameWorldListener gameWorldListener : gameWorldListeners) {
+            gameWorldListener.onGameWorldStepped();
+        }
+    }
 
 }
