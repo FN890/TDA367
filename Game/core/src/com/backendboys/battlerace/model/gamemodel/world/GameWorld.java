@@ -24,7 +24,7 @@ public class GameWorld {
 
     private final World world;
     private final GroundGenerator groundGenerator;
-    private final static int WALL_HEIGHT = 10000;
+    private final static int BORDER_HEIGHT = 10000;
 
     private final Stack<Body> toRemove = new Stack<>();
 
@@ -36,7 +36,7 @@ public class GameWorld {
         world = new World(new Vector2(0, -10), true);
         this.groundGenerator = groundGenerator;
         this.groundGenerator.generateGround(world);
-        BorderGenerator.generateBorder(world, getGroundVertices().get(0), getGroundVertices().get(getGroundVertices().size() - 1), WALL_HEIGHT);
+        BorderGenerator.generateBorders(world, getGroundVertices().get(0), getGroundVertices().get(getGroundVertices().size() - 1), BORDER_HEIGHT);
         gameWorldListeners = new ArrayList<>();
     }
 
