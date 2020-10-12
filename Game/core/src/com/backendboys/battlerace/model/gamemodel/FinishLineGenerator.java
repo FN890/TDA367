@@ -48,10 +48,8 @@ public class FinishLineGenerator {
 
             body = world.createBody(bodyDef);
             body.createFixture(fixtureDef);
-        }
 
-        for (int i = 0; i < body.getFixtureList().size; i++) {
-            body.getFixtureList().get(i).setSensor(true);
+            body.getFixtureList().get(0).setSensor(true);
         }
 
         boxShape.dispose();
