@@ -52,7 +52,12 @@ class Explosion {
         }
     }
 
-    public int getNParticles() {
+    public ArrayList<IParticle> getExplosionParticles() {
+        ArrayList<IParticle> iParticles = new ArrayList<>();
+        return iParticles;
+    }
+
+    int getNParticles() {
         return explosionParticles.size();
     }
 
