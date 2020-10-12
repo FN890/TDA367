@@ -2,6 +2,7 @@ package com.backendboys.battlerace.controller;
 
 import com.backendboys.battlerace.BattleRace;
 import com.backendboys.battlerace.model.gamemodel.GameModel;
+import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
 import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
 import com.backendboys.battlerace.view.screens.ScreenFactory;
 import com.badlogic.gdx.Input;
@@ -30,6 +31,18 @@ public class GameController implements InputProcessor {
         game.setScreen(ScreenFactory.createGameScreen(this));
 
         keysDown = new ArrayList<>();
+    }
+
+    public void handleAddOpponent(OpponentPlayer opponent) {
+        gameModel.addOpponent(opponent);
+    }
+
+    public void handleRemoveOpponent(OpponentPlayer opponent) {
+        gameModel.removeOpponent(opponent);
+    }
+
+    public void handleUpdateOpponentPosition(String name, float x, float y, float rotation) {
+        gameModel.updateOpponentPosition(name, x, y, rotation);
     }
 
     /**

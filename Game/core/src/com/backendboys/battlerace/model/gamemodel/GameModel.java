@@ -1,5 +1,6 @@
 package com.backendboys.battlerace.model.gamemodel;
 
+import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
 import com.backendboys.battlerace.model.gamemodel.particles.IParticle;
 import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
 import com.backendboys.battlerace.model.gamemodel.player.Player;
@@ -20,6 +21,8 @@ public class GameModel {
 
     private final GameWorld gameWorld;
     private final Player player;
+    private final List<OpponentPlayer> opponentPlayers = new ArrayList<>();
+
     private final WorldExplosions worldExplosions;
     private List<AbstractPowerUp> powerUps = new ArrayList<>();
     private FinishLineGenerator finishLineGenerator;
@@ -46,6 +49,22 @@ public class GameModel {
 
         finishLineGenerator = new FinishLineGenerator(gameWorld.getGroundVertices());
         finishLineGenerator.generateFinishLine(gameWorld.getWorld());
+    }
+
+    public void addOpponent(OpponentPlayer opponent) {
+        opponentPlayers.add(opponent);
+    }
+
+    public void removeOpponent(OpponentPlayer opponent) {
+        opponentPlayers.remove(opponent);
+    }
+
+    public void updateOpponentPosition(String name, float x, float y, float rotation) {
+        for (OpponentPlayer o : opponentPlayers) {
+            if (o.getPlayerName().equalsIgnoreCase(name)) {
+                o.setVectorPosition(new Vector2(x, y), rotation);
+            }
+        }
     }
 
     /**

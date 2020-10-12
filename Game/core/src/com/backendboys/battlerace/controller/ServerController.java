@@ -23,7 +23,6 @@ public class ServerController implements ITCPListener, IPacketListener {
         new Thread(tcpClient).start();
     }
 
-
     @Override
     public void gotPacket(String message) {
 
