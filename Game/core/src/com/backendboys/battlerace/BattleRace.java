@@ -37,6 +37,11 @@ public class BattleRace extends Game {
         serverController.sendMessage("start");
     }
 
+    public void joinMultiplayer(String name, int id) {
+        ServerController serverController = new ServerController(this);
+        serverController.sendMessage("join:" + id + "," + name);
+    }
+
     @Override
     public void render() {
         super.render();
