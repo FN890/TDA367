@@ -11,4 +11,6 @@ public interface IPacketListener {
      * @param message The message received.
      */
     void gotPacket(String message);
+
+    void UDPErrorOccurred(String message);
 }

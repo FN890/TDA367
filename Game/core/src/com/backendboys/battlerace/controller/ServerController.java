@@ -15,6 +15,8 @@ public class ServerController implements ITCPListener, IPacketListener {
 
     public ServerController() {
         udpClient = new UDPClient(PORT);
+        udpClient.addListener(this);
+        new Thread(udpClient).start();
 
         tcpClient = new TCPClient(HOSTNAME, PORT);
         tcpClient.addListener(this);
@@ -28,12 +30,17 @@ public class ServerController implements ITCPListener, IPacketListener {
     }
 
     @Override
-    public void gotMessage(String msg) {
+    public void UDPErrorOccurred(String message) {
 
     }
 
     @Override
-    public void lostConnection(String msg) {
+    public void gotMessage(String message) {
+
+    }
+
+    @Override
+    public void lostConnection(String message) {
 
     }
 }

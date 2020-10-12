@@ -4,14 +4,26 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UDPClient implements Runnable {
 
     private final int port;
     private DatagramSocket socket;
 
+    private final List<IPacketListener> listeners = new ArrayList<>();
+
     public UDPClient(int port) {
         this.port = port;
+    }
+
+    public void addListener(IPacketListener listener) {
+        listeners.add(listener);
+    }
+
+    public void removeListener(IPacketListener listener) {
+        listeners.remove(listener);
     }
 
     @Override
@@ -26,10 +38,29 @@ public class UDPClient implements Runnable {
                 socket.receive(request);
 
                 String message = new String(request.getData(), 0, request.getLength());
-                System.out.println("Packet received: " + message);
+                notifyGotPacket(message);
             }
+
         } catch (IOException e) {
-            e.printStackTrace();
+            notifyErrorOccurred(e.getMessage());
         }
     }
+
+    public void sendPacket() {
+
+
+    }
+
+    private void notifyGotPacket(String msg) {
+        for (IPacketListener l : listeners) {
+            l.gotPacket(msg);
+        }
+    }
+
+    private void notifyErrorOccurred(String msg) {
+        for (IPacketListener l : listeners) {
+            l.UDPErrorOccurred(msg);
+        }
+    }
+
 }
