@@ -133,6 +133,10 @@ public class GameModel {
         return player.getRotation();
     }
 
+    public List<OpponentPlayer> getOpponents() {
+        return opponentPlayers;
+    }
+
     public ArrayList<IParticle> getMissiles() {
         return worldExplosions.getMissiles();
     }

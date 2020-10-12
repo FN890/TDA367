@@ -21,6 +21,7 @@ class GameScreen extends AbstractScreen implements IScreen {
 
     private final BackgroundRender backgroundRender;
     private final VehicleRender vehicleRender;
+    private final OpponentRender opponentRender;
     private final PowerUpsRender powerUpsRender;
     private final MissileRender missileRender;
     private final ExplosionParticleRender explosionParticleRender;
@@ -41,6 +42,7 @@ class GameScreen extends AbstractScreen implements IScreen {
         debugRenderer = new Box2DDebugRenderer();
         backgroundRender = new BackgroundRender(camera, gameWorld.getGroundVertices());
         vehicleRender = new VehicleRender(camera);
+        opponentRender = new OpponentRender(camera);
         missileRender = new MissileRender(camera);
         explosionParticleRender = new ExplosionParticleRender(camera);
         powerUpsRender = new PowerUpsRender(camera, gameModel.getPowerUps());
@@ -58,6 +60,7 @@ class GameScreen extends AbstractScreen implements IScreen {
         updateCameraPosition(gameModel.getPlayerPosition().x, gameModel.getPlayerPosition().y);
         backgroundRender.renderBackground();
         vehicleRender.renderVehicle(gameModel.getPlayer().getVehicle());
+        opponentRender.renderOpponents(gameModel.getOpponents());
         debugRenderer.render(gameWorld.getWorld(), camera.combined);
         missileRender.render(gameModel.getMissiles());
         explosionParticleRender.render(gameModel.getExplosionParticles());
