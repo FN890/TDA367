@@ -1,6 +1,7 @@
 package com.backendboys.battlerace.model.gamemodel.player;
 
 import com.backendboys.battlerace.model.gamemodel.powerups.AbstractPowerUp;
+import com.backendboys.battlerace.model.gamemodel.powerups.NitroPowerUp;
 import com.backendboys.battlerace.model.gamemodel.vehicle.IVehicle;
 import com.backendboys.battlerace.model.gamemodel.vehicle.VehicleFactory;
 import com.badlogic.gdx.math.Vector2;
@@ -72,9 +73,9 @@ public class Player {
      */
     public void usePowerUp() {
         if (powerUpStack.size() > 0) {
-            powerUpStack.get(0).use(this);
+            powerUpStack.pop().use(this);
+            System.out.println("Used powerup");
         }
-        powerUpStack.pop();
     }
 
     /**

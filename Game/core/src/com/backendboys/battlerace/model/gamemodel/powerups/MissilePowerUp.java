@@ -14,7 +14,7 @@ public class MissilePowerUp extends AbstractPowerUp {
 
     @Override
     public void use(Player player) {
-
+        System.out.println("Used " +this.toString());
     }
 
     @Override

@@ -171,4 +171,14 @@ abstract class AbstractCar extends AbstractVehicle implements ICar {
     public float getRearWheelRotation() {
         return frontWheel.getTransform().getRotation();
     }
+
+    @Override
+    public float getAcceleration() {
+        return motor.getAcceleration();
+    }
+
+    @Override
+    public void setAcceleration(float acceleration) {
+        motor.setAcceleration(acceleration);
+    }
 }

@@ -62,10 +62,9 @@ class CollisionListener implements ContactListener {
     }
 
     private void checkPowerUpsConctact(Fixture fixtureA, Fixture fixtureB) {
-        if (fixtureA.getUserData() instanceof IVehicle && fixtureB.getUserData() instanceof AbstractPowerUp) {
-            System.out.println("Picked up PowerUp!");
-        } else if (fixtureA.getUserData() instanceof AbstractPowerUp && fixtureB.getUserData() instanceof IVehicle) {
+         if (fixtureA.getUserData() instanceof AbstractPowerUp && fixtureB.getUserData() instanceof IVehicle) {
             AbstractPowerUp abstractPowerUp = (AbstractPowerUp) fixtureA.getUserData();
+            System.out.println(abstractPowerUp.toString());
             model.getPlayer().addPowerUp(abstractPowerUp);
             model.removePowerUp(abstractPowerUp);
         }
