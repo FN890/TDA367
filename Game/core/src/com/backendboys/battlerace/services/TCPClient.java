@@ -33,6 +33,7 @@ public class TCPClient implements Runnable {
     public void run() {
         try (Socket socket = new Socket(hostname, port)) {
 
+            System.out.println("Connected");
             printWriter = new PrintWriter(socket.getOutputStream(), true);
 
             InputStream inputStream = socket.getInputStream();

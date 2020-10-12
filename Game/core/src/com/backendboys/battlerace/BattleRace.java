@@ -12,6 +12,8 @@ import com.badlogic.gdx.Gdx;
  */
 public class BattleRace extends Game {
 
+    ServerController serverController;
+
     @Override
     public void create() {
         new MenuController(this);
@@ -22,6 +24,7 @@ public class BattleRace extends Game {
      */
     public void startMenu() {
         new MenuController(this);
+        serverController = new ServerController(this);
     }
 
     /**
@@ -32,7 +35,6 @@ public class BattleRace extends Game {
     }
 
     public void startMultiplayer(String name) {
-        ServerController serverController = new ServerController(this);
         serverController.sendMessage("create:" + name);
         serverController.sendMessage("start");
     }
