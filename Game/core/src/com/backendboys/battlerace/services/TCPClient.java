@@ -49,9 +49,8 @@ public class TCPClient implements Runnable {
         }
     }
 
-    private void sendCommand() {
-        System.out.println("Sending create:simon to server");
-        printWriter.println("create:simon");
+    public void sendCommand(String command) {
+        printWriter.println(command);
     }
 
     private void notifyLostConnection(String msg) {

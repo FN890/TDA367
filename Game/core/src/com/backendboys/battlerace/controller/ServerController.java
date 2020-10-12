@@ -91,4 +91,8 @@ public class ServerController implements ITCPListener, IPacketListener {
     public void lostConnection(String message) {
 
     }
+
+    public void sendMessage(String command){
+        tcpClient.sendCommand(command);
+    }
 }

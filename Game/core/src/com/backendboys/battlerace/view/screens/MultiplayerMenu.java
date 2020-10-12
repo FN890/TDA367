@@ -73,7 +73,9 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
         btnCreateGame.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //Start CreateGameScreen
+                if(!inputPlayerName.getText().isEmpty()) {
+                    getMenuController().startServer(inputPlayerName.getText());
+                }
             }
         });
 

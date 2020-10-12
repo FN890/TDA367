@@ -47,6 +47,10 @@ public class MenuController {
         game.setScreen(ScreenFactory.createMultiplayerMenu(this));
     }
 
+    public void startServer(String name){
+        game.startMultiplayer(name);
+    }
+
     /**
      * Exits the game.
      */
