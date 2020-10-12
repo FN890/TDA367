@@ -109,11 +109,7 @@ public class WorldExplosions implements GameWorldListener {
     }
 
     public ArrayList<IParticle> getMissiles() {
-        ArrayList<IParticle> iParticleMissiles = new ArrayList();
-        for (OnImpactMissile missile : missiles) {
-            iParticleMissiles.add(missile);
-        }
-        return iParticleMissiles;
+        return new ArrayList<IParticle>(missiles);
     }
 
     public ArrayList<IParticle> getParticles(){
