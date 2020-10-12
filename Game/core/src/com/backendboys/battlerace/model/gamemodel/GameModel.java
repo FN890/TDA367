@@ -32,6 +32,7 @@ public class GameModel {
         this.gameWorld = new GameWorld(new GroundGenerator(10000, 5, 1));
         generateObjects();
         worldExplosions = new WorldExplosions();
+        gameWorld.addListener(worldExplosions);
         Vector2 startPosition = gameWorld.getGroundVertices().get(50);
         player = new Player("Mad Max");
         player.addVehicle(gameWorld.getWorld(), startPosition.x, startPosition.y + 25);
@@ -120,7 +121,7 @@ public class GameModel {
      * Temp function for testing speed
      */
     public void usePowerUp() {
-
+        worldExplosions.addMissile(player.getPosition(), gameWorld.getWorld(), player.getRotation());
     }
 
     /**
