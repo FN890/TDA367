@@ -4,6 +4,9 @@ import com.backendboys.battlerace.services.IPacketListener;
 import com.backendboys.battlerace.services.ITCPListener;
 import com.backendboys.battlerace.services.TCPClient;
 import com.backendboys.battlerace.services.UDPClient;
+import com.backendboys.battlerace.services.protocol.CommandConverter;
+import com.backendboys.battlerace.services.protocol.ICommand;
+import com.badlogic.gdx.math.Vector2;
 
 public class ServerController implements ITCPListener, IPacketListener {
 
@@ -12,6 +15,8 @@ public class ServerController implements ITCPListener, IPacketListener {
 
     private TCPClient tcpClient;
     private UDPClient udpClient;
+
+    private CommandConverter commandConverter;
 
     public ServerController() {
         udpClient = new UDPClient(HOSTNAME, PORT);
@@ -25,7 +30,14 @@ public class ServerController implements ITCPListener, IPacketListener {
 
     @Override
     public void gotPacket(String message) {
+        ICommand command = commandConverter.toCommand(message);
 
+        if(command.getCmd().equals("pos")) {
+            String playerName = command.getArgs()[0];
+            float playerXPos = Float.parseFloat(command.getArgs()[1]);
+            float playerYPos = Float.parseFloat(command.getArgs()[2]);
+            float playerRotation = Float.parseFloat(command.getArgs()[3]);
+        }
     }
 
     @Override
@@ -35,7 +47,13 @@ public class ServerController implements ITCPListener, IPacketListener {
 
     @Override
     public void gotMessage(String message) {
+        ICommand command = commandConverter.toCommand(message);
 
+        if(command.getCmd().equals("response")){
+            if(command.getArgs().length > 2){
+
+            }
+        }
     }
 
     @Override
