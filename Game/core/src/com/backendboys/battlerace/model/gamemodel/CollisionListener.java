@@ -49,12 +49,12 @@ class CollisionListener implements ContactListener {
     }
 
     private void checkExplosivesContact(Fixture fixtureA, Fixture fixtureB) {
-        if (fixtureA.getUserData() instanceof AbstractExplosive && !(fixtureB.getUserData() instanceof AbstractExplosive)) {
+        if (fixtureA.getUserData() instanceof AbstractExplosive && !(fixtureB.getUserData() instanceof IVehicle)) {
 
             AbstractExplosive abstractExplosive = (AbstractExplosive) fixtureA.getUserData();
             abstractExplosive.explosiveCollided();
         }
-        if (fixtureB.getUserData() instanceof AbstractExplosive && !(fixtureA.getUserData() instanceof AbstractExplosive)) {
+        if (fixtureB.getUserData() instanceof AbstractExplosive && !(fixtureA.getUserData() instanceof IVehicle)) {
 
             AbstractExplosive abstractExplosive = (AbstractExplosive) fixtureB.getUserData();
             abstractExplosive.explosiveCollided();

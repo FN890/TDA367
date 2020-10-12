@@ -32,9 +32,7 @@ public class ExplosionParticleRender {
         batch.begin();
         for (IParticle particle : particles) {
             if (withinCamera(particle)) {
-
-                sprite.setPosition(particle.getPosition().x, particle.getPosition().y);
-
+                sprite.setPosition(particle.getPosition().x-2.5f, particle.getPosition().y-2.5f);
                 batch.setProjectionMatrix(orthographicCamera.combined);
                 sprite.draw(batch);
             }
@@ -48,4 +46,9 @@ public class ExplosionParticleRender {
         }
         return true;
     }
+
+    public void dispose() {
+        batch.dispose();
+    }
+
 }

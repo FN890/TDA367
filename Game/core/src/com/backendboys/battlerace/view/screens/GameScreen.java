@@ -23,6 +23,7 @@ class GameScreen extends AbstractScreen implements IScreen {
     private final VehicleRender vehicleRender;
     private final PowerUpsRender powerUpsRender;
     private final MissileRender missileRender;
+    private final ExplosionParticleRender explosionParticleRender;
     private final FinishLineRender finishLineRender;
 
     private final OrthographicCamera camera;
@@ -41,6 +42,7 @@ class GameScreen extends AbstractScreen implements IScreen {
         backgroundRender = new BackgroundRender(camera, gameWorld.getGroundVertices());
         vehicleRender = new VehicleRender(camera);
         missileRender = new MissileRender(camera);
+        explosionParticleRender = new ExplosionParticleRender(camera);
         powerUpsRender = new PowerUpsRender(camera, gameModel.getPowerUps());
         finishLineRender = new FinishLineRender(camera, gameModel.getFinishLineVertices());
 
@@ -58,6 +60,7 @@ class GameScreen extends AbstractScreen implements IScreen {
         vehicleRender.renderVehicle(gameModel.getPlayer().getVehicle());
         debugRenderer.render(gameWorld.getWorld(), camera.combined);
         missileRender.render(gameModel.getMissiles());
+        explosionParticleRender.render(gameModel.getExplosionParticles());
         powerUpsRender.renderPowerUps();
         finishLineRender.renderFinishLine();
         Gdx.graphics.setTitle("" + Gdx.graphics.getFramesPerSecond());
@@ -76,6 +79,7 @@ class GameScreen extends AbstractScreen implements IScreen {
         backgroundRender.dispose();
         vehicleRender.dispose();
         missileRender.dispose();
+        explosionParticleRender.dispose();
         powerUpsRender.dispose();
         finishLineRender.dispose();
     }

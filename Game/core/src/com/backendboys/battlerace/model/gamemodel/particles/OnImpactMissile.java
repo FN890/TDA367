@@ -15,7 +15,7 @@ class OnImpactMissile extends AbstractExplosive implements IParticle {
     private static final float MISSILE_HEIGHT = 3f;
     private static final float LAUNCH_OFFSET_Y = 5f;
     private static final float LAUNCH_OFFSET_x = 41.5f;
-    private static final int NUM_PARTICLES = 30;
+    private static final int NUM_PARTICLES = 60;
 
     /**
      * constructor - creates the Missile

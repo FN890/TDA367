@@ -6,7 +6,7 @@ import com.badlogic.gdx.physics.box2d.*;
 /**
  * A particle for explosions one instance is one particle
  */
-class ExplosionParticle extends AbstractExplosive {
+class ExplosionParticle extends AbstractExplosive implements IParticle {
 
     private final Body body;
     private static final int movementPower = 200;
@@ -35,7 +35,7 @@ class ExplosionParticle extends AbstractExplosive {
 
         body.setUserData(this);
         CircleShape circleShape = new CircleShape();
-        circleShape.setRadius(0.4f);
+        circleShape.setRadius(2.5f);
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = circleShape;
@@ -56,5 +56,15 @@ class ExplosionParticle extends AbstractExplosive {
     public void explosiveCollided() {
         setToBeRemoved(true);
 
+    }
+
+    @Override
+    public Vector2 getPosition() {
+        return body.getPosition();
+    }
+
+    @Override
+    public float getRotation() {
+        return 0;
     }
 }
