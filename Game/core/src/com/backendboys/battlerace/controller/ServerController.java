@@ -51,7 +51,12 @@ public class ServerController implements ITCPListener, IPacketListener {
 
         if(command.getCmd().equals("response")){
             if(command.getArgs().length > 2){
-
+                int id = Integer.parseInt(command.getArgs()[0]);
+                boolean isRunning = Boolean.parseBoolean(command.getArgs()[1]);
+                String[] listPlayers = new String[command.getArgs().length - 2];
+                for(int i=2; i<command.getArgs().length; i++){
+                    listPlayers[i] = command.getArgs()[i];
+                }
             }
         }
     }
