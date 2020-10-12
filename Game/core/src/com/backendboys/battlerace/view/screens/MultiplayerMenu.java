@@ -6,11 +6,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Align;
 
 /**
  * The MultiplayerMenu, here you can chose between create game or join game.
@@ -50,8 +48,16 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
 
         Skin uiSkin = new Skin(Gdx.files.internal("uiskin.json"));
 
-        inputPlayerName = new TextField("Player name", uiSkin);
-        inputGameId = new TextField("Game id", uiSkin);
+        Label lblPlayerName = new Label("Player name: ", uiSkin);
+        lblPlayerName.setFontScale(1.5f);
+
+        Label lblGameId = new Label("Game ID: ", uiSkin);
+        lblGameId.setFontScale(1.5f);
+
+        Label vSpace = new Label("", uiSkin);
+
+        inputPlayerName = new TextField("", uiSkin);
+        inputGameId = new TextField("", uiSkin);
 
         final ImageButton btnJoinGame = new ImageButton(getButtonStyleFromName("Options"));
         final ImageButton btnCreateGame = new ImageButton(getButtonStyleFromName("Options"));
@@ -78,12 +84,21 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
             }
         });
 
-        multiplayerTable.add(inputPlayerName).row();
-        multiplayerTable.add(inputGameId).row();
+        multiplayerTable.add(lblPlayerName).align(Align.left).row();
+        multiplayerTable.add(inputPlayerName).width(200).row();
+
+        multiplayerTable.add(vSpace).row();
+
+        multiplayerTable.add(lblGameId).align(Align.left).row();
+        multiplayerTable.add(inputGameId).width(200).row();
+
+        multiplayerTable.add(vSpace).row();
 
         multiplayerTable.add(btnJoinGame).row();
         multiplayerTable.add(btnCreateGame).row();
         multiplayerTable.add(btnBack).row();
+
+        multiplayerTable.pack();
 
         return multiplayerTable;
     }
