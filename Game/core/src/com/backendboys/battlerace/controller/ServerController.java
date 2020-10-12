@@ -14,7 +14,7 @@ public class ServerController implements ITCPListener, IPacketListener {
     private UDPClient udpClient;
 
     public ServerController() {
-        udpClient = new UDPClient(PORT);
+        udpClient = new UDPClient(HOSTNAME, PORT);
         udpClient.addListener(this);
         new Thread(udpClient).start();
 
