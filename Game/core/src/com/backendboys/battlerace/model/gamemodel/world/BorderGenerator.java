@@ -3,14 +3,17 @@ package com.backendboys.battlerace.model.gamemodel.world;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
-class WallGenerator {
+class BorderGenerator {
 
-    static void generateWall(World world, Vector2 vertex, int height) {
+    static void generateBorder(World world, Vector2 startVertex, Vector2 endVertex, int height) {
 
-        Vector2 vertexTop = new Vector2(vertex);
-        vertexTop.y += height;
+        Vector2 leftVertexTop = new Vector2(startVertex);
+        leftVertexTop.y += height;
 
-        Vector2[] wallVertices = {vertex, vertexTop};
+        Vector2 rightVertexTop = new Vector2(endVertex);
+        rightVertexTop.y += height;
+
+        Vector2[] wallVertices = {startVertex, leftVertexTop, rightVertexTop, endVertex};
 
         ChainShape chainShape = new ChainShape();
 
