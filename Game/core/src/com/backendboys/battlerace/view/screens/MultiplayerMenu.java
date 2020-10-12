@@ -51,7 +51,7 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
         Label lblPlayerName = new Label("Player name: ", uiSkin);
         lblPlayerName.setFontScale(1.5f);
 
-        Label lblGameId = new Label("Game ID: ", uiSkin);
+        Label lblGameId = new Label("Game id: ", uiSkin);
         lblGameId.setFontScale(1.5f);
 
         Label vSpace = new Label("", uiSkin);
