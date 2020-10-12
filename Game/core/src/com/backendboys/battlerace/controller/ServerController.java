@@ -1,5 +1,7 @@
 package com.backendboys.battlerace.controller;
 
+import com.backendboys.battlerace.BattleRace;
+import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
 import com.backendboys.battlerace.services.IPacketListener;
 import com.backendboys.battlerace.services.ITCPListener;
 import com.backendboys.battlerace.services.TCPClient;
@@ -16,9 +18,14 @@ public class ServerController implements ITCPListener, IPacketListener {
     private TCPClient tcpClient;
     private UDPClient udpClient;
 
+    private final BattleRace game;
+
+    private GameController gameController;
     private CommandConverter commandConverter;
 
-    public ServerController() {
+    public ServerController(BattleRace game) {
+        this.game = game;
+
         udpClient = new UDPClient(HOSTNAME, PORT);
         udpClient.addListener(this);
         new Thread(udpClient).start();
@@ -33,10 +40,17 @@ public class ServerController implements ITCPListener, IPacketListener {
         ICommand command = commandConverter.toCommand(message);
 
         if(command.getCmd().equals("pos")) {
-            String playerName = command.getArgs()[0];
-            float playerXPos = Float.parseFloat(command.getArgs()[1]);
-            float playerYPos = Float.parseFloat(command.getArgs()[2]);
-            float playerRotation = Float.parseFloat(command.getArgs()[3]);
+            try {
+                String playerName = command.getArgs()[0];
+                float playerXPos = Float.parseFloat(command.getArgs()[1]);
+                float playerYPos = Float.parseFloat(command.getArgs()[2]);
+                float playerRotation = Float.parseFloat(command.getArgs()[3]);
+
+                gameController.handleUpdateOpponentPosition(playerName, playerXPos, playerYPos, playerRotation);
+
+            }catch (NumberFormatException e){
+
+            }
         }
     }
 
@@ -53,9 +67,11 @@ public class ServerController implements ITCPListener, IPacketListener {
             if(command.getArgs().length > 2){
                 int id = Integer.parseInt(command.getArgs()[0]);
                 boolean isRunning = Boolean.parseBoolean(command.getArgs()[1]);
-                String[] listPlayers = new String[command.getArgs().length - 2];
+                gameController = new GameController(game);
+
                 for(int i=2; i<command.getArgs().length; i++){
-                    listPlayers[i] = command.getArgs()[i];
+                    String playerName = command.getArgs()[i];
+                    gameController.handleAddOpponent(new OpponentPlayer(playerName, new Vector2(25, 50), 0));
                 }
             }
         }
