@@ -1,5 +1,6 @@
 package com.backendboys.battlerace.model.gamemodel.particles;
 
+import com.backendboys.battlerace.model.gamemodel.world.GameWorldListener;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
  * This is the class that creates the explosions in the world
  * and the class that is exposed outside the particles package
  */
-public class WorldExplosions {
+public class WorldExplosions implements GameWorldListener {
 
 
     /**
@@ -51,7 +52,7 @@ public class WorldExplosions {
     /**
      * Removes particles and Explodes collided Missiles
      */
-    public void removeCollidedMissilesAndParticles() {
+    private void removeCollidedMissilesAndParticles() {
         removeCollidedParticles();
         removeAndExplodeMissiles();
     }
@@ -115,4 +116,8 @@ public class WorldExplosions {
         return iParticleMissiles;
     }
 
+    @Override
+    public void onGameWorldStepped() {
+        removeCollidedMissilesAndParticles();
+    }
 }

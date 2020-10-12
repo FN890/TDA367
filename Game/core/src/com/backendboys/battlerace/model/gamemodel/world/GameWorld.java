@@ -65,7 +65,7 @@ public class GameWorld {
             }
         }
 
-        worldExplosions.removeCollidedMissilesAndParticles();
+
     }
 
     private void destroyBodies() {
