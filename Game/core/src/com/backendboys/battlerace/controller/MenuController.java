@@ -48,11 +48,11 @@ public class MenuController {
         game.serverController = new ServerController(game);
     }
 
-    public void startServer(String name){
+    public void startServer(String name) {
         game.startMultiplayer(name);
     }
 
-    public void startServer(String name, String id){
+    public void startServer(String name, String id) {
         game.joinMultiplayer(name, id);
     }
 

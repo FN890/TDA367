@@ -51,7 +51,7 @@ public class ServerController implements ITCPListener, IPacketListener {
     public void gotPacket(String message) {
         ICommand command = commandConverter.toCommand(message);
 
-        if(command.getCmd().equals("pos")) {
+        if (command.getCmd().equals("pos")) {
             try {
                 String playerName = command.getArgs()[0];
                 float playerXPos = Float.parseFloat(command.getArgs()[1]);
@@ -60,7 +60,7 @@ public class ServerController implements ITCPListener, IPacketListener {
 
                 gameController.handleUpdateOpponentPosition(playerName, playerXPos, playerYPos, playerRotation);
 
-            }catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
 
             }
         }
@@ -75,14 +75,14 @@ public class ServerController implements ITCPListener, IPacketListener {
     public void gotMessage(String message) {
         ICommand command = commandConverter.toCommand(message);
 
-        if(command.getCmd().equals("response")){
-            if(command.getArgs().length > 2){
+        if (command.getCmd().equals("response")) {
+            if (command.getArgs().length > 2) {
                 int id = Integer.parseInt(command.getArgs()[0]);
                 System.out.println("Server ID: " + id);
                 boolean isRunning = Boolean.parseBoolean(command.getArgs()[1]);
                 gameController = new GameController(game);
 
-                for(int i=2; i<command.getArgs().length; i++){
+                for (int i = 2; i < command.getArgs().length; i++) {
                     String playerName = command.getArgs()[i];
                     gameController.handleAddOpponent(new OpponentPlayer(playerName, new Vector2(25, 50), 0));
                 }
@@ -95,7 +95,7 @@ public class ServerController implements ITCPListener, IPacketListener {
 
     }
 
-    public void sendMessage(String command){
+    public void sendMessage(String command) {
         tcpClient.sendCommand(command);
     }
 }
