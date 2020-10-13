@@ -146,4 +146,9 @@ abstract class AbstractVehicle implements IVehicle {
     public float getAcceleration() {
         return acceleration;
     }
+
+    @Override
+    public World getWorld() {
+        return body.getWorld();
+    }
 }

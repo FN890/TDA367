@@ -120,4 +120,8 @@ public class Player {
     public float getRotation() {
         return vehicle.getRotation();
     }
+
+    public World getWorld() {
+        return vehicle.getWorld();
+    }
 }
