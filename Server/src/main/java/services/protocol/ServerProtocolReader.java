@@ -52,7 +52,7 @@ class ServerProtocolReader {
 
     Command parseCommand(Command cmd) throws ProtocolException {
 
-        for (int i = 0; i<VALID_COMMANDS.length; i++) {
+        for (int i = 0; i < VALID_COMMANDS.length; i++) {
             if (cmd.getCmd().equalsIgnoreCase(VALID_COMMANDS[i])) {
                 return cmd;
             }

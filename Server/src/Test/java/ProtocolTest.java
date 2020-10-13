@@ -21,7 +21,7 @@ public class ProtocolTest {
         System.out.println(Arrays.toString(cmd.getArgs()));
 
         Assertions.assertEquals("join", cmd.getCmd());
-        Assertions.assertArrayEquals(new String[] {"123", "gustav"}, cmd.getArgs());
+        Assertions.assertArrayEquals(new String[]{"123", "gustav"}, cmd.getArgs());
     }
 
 

@@ -54,7 +54,7 @@ public interface IServerProtocol {
     /**
      * Writes Game update about Players joining or leaving a game.
      *
-     * @param name The Player that's updated.
+     * @param name   The Player that's updated.
      * @param joined Specifies weather the player joined or left the game.
      * @return The update on the form: game:joined,name / game:left,name
      */
@@ -70,6 +70,7 @@ public interface IServerProtocol {
 
     /**
      * Writes game ended update.
+     *
      * @return The update on the form: game:ended
      */
     String writeGameEndedUpdate();

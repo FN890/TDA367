@@ -14,7 +14,8 @@ public class GamesManager {
     private final List<Game> games = Collections.synchronizedList(new ArrayList<>());
     private int currentGameID = 1400;
 
-    private GamesManager() {}
+    private GamesManager() {
+    }
 
     /**
      * Creates a new Game.

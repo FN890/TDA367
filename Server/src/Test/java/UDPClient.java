@@ -45,7 +45,8 @@ public class UDPClient implements Runnable {
 
             }
 
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
 
 
     }
