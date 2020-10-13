@@ -6,7 +6,6 @@ import com.badlogic.gdx.physics.box2d.*;
 /**
  * Abstract class that has properties of the powerups.
  */
-
 public abstract class AbstractPowerUp {
 
     private static float HEIGHT = 4f;
