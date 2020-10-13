@@ -1,5 +1,6 @@
 package com.backendboys.battlerace.model.gamemodel.powerups;
 
+import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 
@@ -16,15 +17,17 @@ public class PowerUpGenerator {
     World world;
 
     private final int STEP = 5;
+    private WorldExplosions worldExplosions;
 
     /**
      * @param vertices List of vertices in world to measure spawnpoints of powerups.
      * @param world    The world, needed to spawn the powerups in the world.
      */
 
-    public PowerUpGenerator(ArrayList<Vector2> vertices, World world) {
+    public PowerUpGenerator(ArrayList<Vector2> vertices, World world, WorldExplosions worldExplosions) {
         this.vertices = vertices;
         this.world = world;
+        this.worldExplosions = worldExplosions;
     }
 
     /**
@@ -57,7 +60,7 @@ public class PowerUpGenerator {
                 powerUps.add(nitroPowerUp);
 
             } else {
-                MissilePowerUp missilePowerUp = new MissilePowerUp(world, positionX, positionY);
+                MissilePowerUp missilePowerUp = new MissilePowerUp(world, positionX, positionY, worldExplosions);
                 powerUps.add(missilePowerUp);
             }
             positionX += space * STEP;

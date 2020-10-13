@@ -44,7 +44,7 @@ public class GameModel {
     }
 
     private void generateObjects() {
-        PowerUpGenerator powerUpGenerator = new PowerUpGenerator(gameWorld.getGroundVertices(), gameWorld.getWorld());
+        PowerUpGenerator powerUpGenerator = new PowerUpGenerator(gameWorld.getGroundVertices(), gameWorld.getWorld(), worldExplosions);
         powerUps = powerUpGenerator.generatePowerups(30);
 
         finishLineGenerator = new FinishLineGenerator(gameWorld.getGroundVertices());
