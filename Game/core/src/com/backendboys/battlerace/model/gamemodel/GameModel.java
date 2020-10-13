@@ -141,11 +141,21 @@ public class GameModel {
         return worldExplosions.getMissiles();
     }
 
-    public ArrayList<IParticle> getExplosionParticles(){return worldExplosions.getParticles();}
+    public ArrayList<IParticle> getExplosionParticles() {
+        return worldExplosions.getParticles();
+    }
+
     /**
-     * Temp function for testing speed
+     * Method that tells the player to use a powerup
      */
     public void usePowerUp() {
+        player.usePowerUp();
+    }
+
+    /**
+     * Temp function for testing missiles
+     */
+    public void shootMissile() {
         worldExplosions.addMissile(player.getPosition(), gameWorld.getWorld(), player.getRotation());
     }
 

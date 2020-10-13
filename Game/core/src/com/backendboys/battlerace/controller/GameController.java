@@ -72,7 +72,7 @@ public class GameController implements InputProcessor {
                     toggleMenu();
                     break;
                 case Input.Keys.SPACE:
-                    gameModel.usePowerUp();
+                    gameModel.shootMissile();
                 default:
                     break;
             }
