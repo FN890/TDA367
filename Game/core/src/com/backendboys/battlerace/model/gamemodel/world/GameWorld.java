@@ -1,6 +1,9 @@
 package com.backendboys.battlerace.model.gamemodel.world;
 
 
+import com.backendboys.battlerace.model.gamemodel.world.ground.GroundGenerator;
+import com.backendboys.battlerace.model.gamemodel.world.ground.SinusDividedXGroundVertices;
+import com.backendboys.battlerace.model.gamemodel.world.ground.SinusGroundVertices;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -28,14 +31,13 @@ public class GameWorld {
 
     private final Stack<Body> toRemove = new Stack<>();
 
-
     private final ArrayList<GameWorldListener> gameWorldListeners;
 
     public GameWorld(GroundGenerator groundGenerator) {
         Box2D.init();
         world = new World(new Vector2(0, -10), true);
         this.groundGenerator = groundGenerator;
-        this.groundGenerator.generateGround(world);
+        this.groundGenerator.generateGround(world, new SinusDividedXGroundVertices());
         BorderGenerator.generateBorders(world, getGroundVertices().get(0), getGroundVertices().get(getGroundVertices().size() - 1), BORDER_HEIGHT);
         gameWorldListeners = new ArrayList<>();
     }

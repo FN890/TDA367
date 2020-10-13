@@ -7,7 +7,7 @@ import com.backendboys.battlerace.model.gamemodel.player.Player;
 import com.backendboys.battlerace.model.gamemodel.powerups.AbstractPowerUp;
 import com.backendboys.battlerace.model.gamemodel.powerups.PowerUpGenerator;
 import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
-import com.backendboys.battlerace.model.gamemodel.world.GroundGenerator;
+import com.backendboys.battlerace.model.gamemodel.world.ground.GroundGenerator;
 import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;

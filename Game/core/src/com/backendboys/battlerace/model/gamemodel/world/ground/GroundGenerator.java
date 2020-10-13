@@ -1,6 +1,5 @@
-package com.backendboys.battlerace.model.gamemodel.world;
+package com.backendboys.battlerace.model.gamemodel.world.ground;
 
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
@@ -12,10 +11,10 @@ import java.util.Arrays;
  */
 public class GroundGenerator {
 
+    private ArrayList<Vector2> vertices;
     private final int numberVertices;
     private final double step;
     private final int friction;
-    private final ArrayList<Vector2> vertices;
 
     /**
      * @param numberVertices The amount of vertices that the ground should be based on.
@@ -34,9 +33,9 @@ public class GroundGenerator {
      *
      * @param world The World that the ground should be added to.
      */
-    public void generateGround(World world) {
+    public void generateGround(World world, IGroundVertices groundVertices) {
 
-        generateVertices(numberVertices, step);
+        vertices = groundVertices.generateGroundVertices(numberVertices, step);
         ArrayList<Vector2> tempVertices = new ArrayList<>(vertices);
 
         final BodyDef bodyDef = new BodyDef();
@@ -68,16 +67,6 @@ public class GroundGenerator {
             chainShape.createChain(vector2s);
             Body ground = world.createBody(bodyDef);
             ground.createFixture(fixtureDef);
-        }
-    }
-
-    private void generateVertices(int numberVertices, double step) {
-        float xPos = 0;
-
-        for (int i = 0; i < numberVertices; i++) {
-            float yPos = 30 * MathUtils.sin(xPos * 0.01f) + 30;
-            xPos += step;
-            vertices.add(new Vector2(xPos, yPos + 10));
         }
     }
 

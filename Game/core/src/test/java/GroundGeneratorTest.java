@@ -1,4 +1,5 @@
-import com.backendboys.battlerace.model.gamemodel.world.GroundGenerator;
+import com.backendboys.battlerace.model.gamemodel.world.ground.GroundGenerator;
+import com.backendboys.battlerace.model.gamemodel.world.ground.SinusGroundVertices;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import org.junit.jupiter.api.Test;
@@ -27,7 +28,7 @@ public class GroundGeneratorTest {
     @Test
     public void testAddedGround() {
         assertEquals(world.getBodyCount(), 0);
-        groundGenerator.generateGround(world);
+        groundGenerator.generateGround(world, new SinusGroundVertices());
         assertTrue(world.getBodyCount() != 0);
     }
 
