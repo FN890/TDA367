@@ -45,7 +45,6 @@ class GameScreen extends AbstractScreen implements IScreen {
         camera = new OrthographicCamera();
         viewport = new ExtendViewport(600, 50, camera);
 
-
         backgroundRender = new BackgroundRender(camera, gameWorld.getGroundVertices());
         vehicleRender = new VehicleRender(camera);
         debugRenderer = new Box2DDebugRenderer();
@@ -55,7 +54,6 @@ class GameScreen extends AbstractScreen implements IScreen {
         powerUpsRender = new PowerUpsRender(camera, gameModel.getPowerUps());
         finishLineRender = new FinishLineRender(camera, gameModel.getFinishLineVertices());
 
-        System.out.println("Creating SpriteBatch...");
         batch = new SpriteBatch();
     }
 

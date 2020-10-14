@@ -43,6 +43,7 @@ public class TCPClient implements Runnable {
             String line;
 
             while ((line = reader.readLine()) != null) {
+                System.out.println(line);
                 notifyGotMessage(line);
             }
 

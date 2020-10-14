@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Class that handles inputs
  */
-public class GameController implements InputProcessor, ITCPListener {
+public class GameController implements InputProcessor {
 
     private final GameModel gameModel;
     private final BattleRace game;
@@ -39,6 +39,7 @@ public class GameController implements InputProcessor, ITCPListener {
         keysDown = new ArrayList<>();
 
         serverController = new ServerController(game, this);
+        gameScreen.setServerController(serverController);
     }
 
     public GameController(BattleRace game, ServerController serverController) {
@@ -176,19 +177,8 @@ public class GameController implements InputProcessor, ITCPListener {
         return false;
     }
 
-    @Override
-    public void gotMessage(String message) {
-
-    }
-
-    @Override
-    public void lostConnection(String message) {
-
-    }
-
-    @Override
     public void onConnection() {
-        System.out.println("create:game");
-        serverController.startServer("Simon");
+        System.out.println("join:1515,game");
+        serverController.joinServer("Gustav", "1521");
     }
 }
