@@ -91,7 +91,7 @@ public class ServerController implements ITCPListener, IPacketListener {
 
     @Override
     public void lostConnection(String message) {
-
+        isConnected = false;
     }
 
     public void sendMessage(String command) {
