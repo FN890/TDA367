@@ -3,10 +3,7 @@ package com.backendboys.battlerace.controller;
 import com.backendboys.battlerace.BattleRace;
 import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
 import com.backendboys.battlerace.model.gamemodel.player.Player;
-import com.backendboys.battlerace.services.IPacketListener;
-import com.backendboys.battlerace.services.ITCPListener;
-import com.backendboys.battlerace.services.TCPClient;
-import com.backendboys.battlerace.services.UDPClient;
+import com.backendboys.battlerace.services.*;
 import com.backendboys.battlerace.services.protocol.CommandConverter;
 import com.backendboys.battlerace.services.protocol.CommandFactory;
 import com.backendboys.battlerace.services.protocol.ICommand;
@@ -24,6 +21,8 @@ public class ServerController implements ITCPListener, IPacketListener {
 
     private GameController gameController;
     private CommandConverter commandConverter;
+
+    private boolean isConnected = false;
 
     public ServerController(BattleRace game) {
         this.game = game;
@@ -97,5 +96,22 @@ public class ServerController implements ITCPListener, IPacketListener {
 
     public void sendMessage(String command) {
         tcpClient.sendCommand(command);
+    }
+
+    @Override
+    public void onConnectionCallback() {
+        isConnected = true;
+    }
+
+    public void startServer(String name) {
+        if(isConnected){
+            sendMessage("create:" + name);
+        }
+    }
+
+    public void joinServer(String name, String id) {
+        if(isConnected){
+            sendMessage("join:" + id + "," + name);
+        }
     }
 }

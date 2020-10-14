@@ -33,15 +33,6 @@ public class BattleRace extends Game {
         Gdx.input.setInputProcessor(new GameController(this));
     }
 
-    public void startMultiplayer(String name) {
-        serverController.sendMessage("create:" + name);
-        serverController.sendMessage("start");
-    }
-
-    public void joinMultiplayer(String name, String id) {
-        ServerController serverController = new ServerController(this);
-        serverController.sendMessage("join:" + id + "," + name);
-    }
 
     @Override
     public void render() {
