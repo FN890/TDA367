@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ExplosionParticleRender extends AbstractRender<List<IParticle>> {
@@ -30,7 +29,6 @@ public class ExplosionParticleRender extends AbstractRender<List<IParticle>> {
         batch.begin();
         for (IParticle particle : object) {
             if (withinCamera(particle)) {
-                batch.begin();
                 sprite.setPosition(particle.getPosition().x - 2.5f, particle.getPosition().y - 2.5f);
                 batch.setProjectionMatrix(getCamera().combined);
                 sprite.draw(batch);
