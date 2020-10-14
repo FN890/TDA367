@@ -1,5 +1,6 @@
-package com.backendboys.battlerace.model.gamemodel.world.ground;
+package com.backendboys.battlerace.model.gamemodel.world;
 
+import com.backendboys.battlerace.model.gamemodel.world.ground.IGroundStrategy;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
@@ -9,22 +10,11 @@ import java.util.Arrays;
 /**
  * Class that handles ground creation.
  */
-public class GroundGenerator {
+class GroundGenerator {
 
     private ArrayList<Vector2> vertices;
-    private final int numberVertices;
-    private final double step;
-    private final int friction;
 
-    /**
-     * @param numberVertices The amount of vertices that the ground should be based on.
-     * @param step           The difference on the x-axis between each vertex.
-     * @param friction       The ground friction.
-     */
-    public GroundGenerator(int numberVertices, double step, int friction) {
-        this.numberVertices = numberVertices;
-        this.step = step;
-        this.friction = friction;
+    GroundGenerator() {
         vertices = new ArrayList<>();
     }
 
@@ -32,10 +22,12 @@ public class GroundGenerator {
      * Creates and adds the ground to the world.
      *
      * @param world The World that the ground should be added to.
+     * @param iGroundStrategy Strategy for creating the ground vertices.
+     * @param friction The ground friction.
      */
-    public void generateGround(World world, IGroundVertices groundVertices) {
+    void generateGround(World world, IGroundStrategy iGroundStrategy, int friction) {
 
-        vertices = groundVertices.generateGroundVertices(numberVertices, step);
+        vertices = iGroundStrategy.generateGroundVertices();
         ArrayList<Vector2> tempVertices = new ArrayList<>(vertices);
 
         final BodyDef bodyDef = new BodyDef();
@@ -74,7 +66,4 @@ public class GroundGenerator {
         return vertices;
     }
 
-    public int getNumberVertices() {
-        return vertices.size();
-    }
 }

@@ -7,7 +7,7 @@ import com.backendboys.battlerace.model.gamemodel.player.Player;
 import com.backendboys.battlerace.model.gamemodel.powerups.AbstractPowerUp;
 import com.backendboys.battlerace.model.gamemodel.powerups.PowerUpGenerator;
 import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
-import com.backendboys.battlerace.model.gamemodel.world.ground.GroundGenerator;
+import com.backendboys.battlerace.model.gamemodel.world.ground.GroundStrategyFactory;
 import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
@@ -32,14 +32,13 @@ public class GameModel {
      * player, ground, powerups, and finishline.
      */
     public GameModel() {
-        this.gameWorld = new GameWorld(new GroundGenerator(10000, 5, 1));
+        this.gameWorld = new GameWorld(GroundStrategyFactory.getSinCosStrategy(1000, 40, 5), 1);
         generateObjects();
         worldExplosions = new WorldExplosions();
         gameWorld.addListener(worldExplosions);
         Vector2 startPosition = gameWorld.getGroundVertices().get(50);
         player = new Player("Mad Max");
         player.addVehicle(gameWorld.getWorld(), startPosition.x, startPosition.y + 25);
-
         gameWorld.setCollisionListener(new CollisionListener(this));
     }
 

@@ -5,16 +5,19 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 
-public class SinusGroundVertices implements IGroundVertices {
+public class SinCosStrategy extends AbstractGroundStrategy {
+
+    SinCosStrategy(int numberVertices, int minHeight, double step) {
+        super(numberVertices, minHeight, step);
+    }
 
     @Override
-    public ArrayList<Vector2> generateGroundVertices(int numberVertices, double step) {
-
+    public ArrayList<Vector2> generateGroundVertices() {
         ArrayList<Vector2> groundVertices = new ArrayList<>();
 
         float xPos = 0;
         for (int i = 0; i < numberVertices; i++) {
-            float yPos = 30 * MathUtils.sin(xPos * 0.01f) + 40;
+            float yPos = 30 * MathUtils.sin(xPos * 0.005f) * MathUtils.cos(xPos * 0.015f) * (float) Math.atan(xPos * 0.0015) + minHeight;
             xPos += step;
             groundVertices.add(new Vector2(xPos, yPos));
         }

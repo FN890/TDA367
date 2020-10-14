@@ -1,7 +1,7 @@
 import com.backendboys.battlerace.model.gamemodel.player.Player;
 import com.backendboys.battlerace.model.gamemodel.powerups.NitroPowerUp;
 import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
-import com.backendboys.battlerace.model.gamemodel.world.ground.GroundGenerator;
+import com.backendboys.battlerace.model.gamemodel.world.ground.GroundStrategyFactory;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,7 +14,7 @@ public class NitroTest {
 
     public NitroTest() {
         player = new Player("player");
-        gameWorld = new GameWorld(new GroundGenerator(10000, 5, 1));
+        gameWorld = new GameWorld(GroundStrategyFactory.getSinCosStrategy(1000, 40, 5), 1);
         nitroPowerUp = new NitroPowerUp(gameWorld.getWorld(), 1, 1);
     }
 
