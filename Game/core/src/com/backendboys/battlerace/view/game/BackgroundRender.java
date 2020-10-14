@@ -63,7 +63,7 @@ public class BackgroundRender {
                     shapeRenderer.setProjectionMatrix(orthographicCamera.combined);
                     shapeRenderer.setColor(Color.BROWN);
                     shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-                    shapeRenderer.box(groundVertices.get(i).x, groundVertices.get(i).y, 1, rectWidth, -groundVertices.get(i).y, 1);
+                    shapeRenderer.box(groundVertices.get(i).x, groundVertices.get(i).y, 1, rectWidth, -groundVertices.get(i).y * 2, 1);
                     shapeRenderer.end();
                 }
             }
@@ -77,7 +77,7 @@ public class BackgroundRender {
                     shapeRenderer.setProjectionMatrix(orthographicCamera.combined);
                     shapeRenderer.setColor(Color.SKY);
                     shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-                    shapeRenderer.box(groundVertices.get(i).x, groundVertices.get(i).y + 1, 1, rectWidth, orthographicCamera.viewportHeight, 1);
+                    shapeRenderer.box(groundVertices.get(i).x, groundVertices.get(i).y + rectWidth, 1, rectWidth, orthographicCamera.viewportHeight * 2, 1);
                     shapeRenderer.end();
                 }
             }
