@@ -80,6 +80,7 @@ abstract class AbstractMenuScreen extends AbstractScreen {
         menuTextureAtlas.dispose();
         background.dispose();
         menuSprites.clear();
+        batch.dispose();
     }
 
     protected Sprite getMenuSprite(String name) {

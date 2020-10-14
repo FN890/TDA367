@@ -46,8 +46,6 @@ class GameScreen extends AbstractScreen implements IScreen {
         camera = new OrthographicCamera();
         System.out.println("Creating ViewPort...");
         viewport = new ExtendViewport(600, 50, camera);
-        System.out.println("Creating SpriteBatch...");
-        batch = new SpriteBatch();
 
         System.out.println("Initiating Renderers...");
         backgroundRender = new BackgroundRender(camera, gameWorld.getGroundVertices());
@@ -65,6 +63,9 @@ class GameScreen extends AbstractScreen implements IScreen {
         powerUpsRender = new PowerUpsRender(camera, gameModel.getPowerUps());
         System.out.println("FinishLineRender...");
         finishLineRender = new FinishLineRender(camera, gameModel.getFinishLineVertices());
+
+        System.out.println("Creating SpriteBatch...");
+        batch = new SpriteBatch();
     }
 
     @Override
