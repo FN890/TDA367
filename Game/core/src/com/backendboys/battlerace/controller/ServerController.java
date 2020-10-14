@@ -99,7 +99,7 @@ public class ServerController implements ITCPListener, IPacketListener {
     }
 
     @Override
-    public void onConnectionCallback() {
+    public void onConnection() {
         isConnected = true;
     }
 

@@ -3,7 +3,6 @@ package com.backendboys.battlerace.services;
 
 import java.io.*;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,7 +67,7 @@ public class TCPClient implements Runnable {
 
     private void notifyConnected() {
         for (ITCPListener l : listeners) {
-            l.onConnectionCallback();
+            l.onConnection();
         }
     }
 }

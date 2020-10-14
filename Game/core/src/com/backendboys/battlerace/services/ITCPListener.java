@@ -6,5 +6,5 @@ public interface ITCPListener{
 
     void lostConnection(String message);
 
-    void onConnectionCallback();
+    void onConnection();
 }
