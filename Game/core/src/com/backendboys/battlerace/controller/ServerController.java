@@ -84,7 +84,7 @@ public class ServerController implements ITCPListener, IPacketListener {
                 for (int i = 2; i < command.getArgs().length; i++) {
                     String playerName = command.getArgs()[i];
                     System.out.println("Adding opponent..." + playerName);
-                    gameController.handleAddOpponent(new OpponentPlayer(playerName, new Vector2(25 + i*5, 50), 0));
+                    gameController.handleAddOpponent(new OpponentPlayer(playerName, new Vector2(25, 50), 0));
                 }
             }
         }
