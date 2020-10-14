@@ -26,7 +26,7 @@ public class GroundStrategyFactory {
      * @return
      */
     public static IGroundStrategy getSinCosStrategy(int numberVertices, int minHeight, double step) {
-        return new SinCosStrategy(numberVertices, minHeight, step);
+        return new SinCosATanStrategy(numberVertices, minHeight, step);
     }
 
 }

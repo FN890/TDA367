@@ -6,11 +6,11 @@ import com.badlogic.gdx.math.Vector2;
 import java.util.ArrayList;
 
 /**
- * Strategy: Sin * Cos.
+ * Strategy: Sin * Cos * aTan.
  */
-public class SinCosStrategy extends AbstractGroundStrategy {
+public class SinCosATanStrategy extends AbstractGroundStrategy {
 
-    SinCosStrategy(int numberVertices, int minHeight, double step) {
+    SinCosATanStrategy(int numberVertices, int minHeight, double step) {
         super(numberVertices, minHeight, step);
     }
 
