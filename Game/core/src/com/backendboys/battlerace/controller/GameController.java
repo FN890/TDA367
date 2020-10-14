@@ -39,6 +39,7 @@ public class GameController implements InputProcessor, ITCPListener {
         keysDown = new ArrayList<>();
 
         serverController = new ServerController(game, this);
+        gameScreen.setServerController(serverController);
     }
 
     public GameController(BattleRace game, ServerController serverController) {

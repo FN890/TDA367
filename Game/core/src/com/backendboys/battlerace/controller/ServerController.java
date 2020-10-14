@@ -79,14 +79,19 @@ public class ServerController implements ITCPListener, IPacketListener {
             if (command.getArgs().length > 2) {
                 int id = Integer.parseInt(command.getArgs()[0]);
                 System.out.println("Server ID: " + id);
-                boolean isRunning = Boolean.parseBoolean(command.getArgs()[1]);
+            }
+        }else if (command.getCmd().equals("game")) {
+            if (command.getArgs().length > 2) {
+                if(command.getArgs()[0].equals("joined")) {
+                    String playerName = command.getArgs()[1];
+                    gameController.handleAddOpponent(new OpponentPlayer(playerName, new Vector2(50, 100), 0));
+                    System.out.println("Opponent created");
+                }else if(command.getArgs()[0].equals("left")) {
 
-                for (int i = 2; i < command.getArgs().length; i++) {
-                    String playerName = command.getArgs()[i];
-                    gameController.handleAddOpponent(new OpponentPlayer(playerName, new Vector2(25, 50), 0));
                 }
             }
         }
+
     }
 
     @Override
