@@ -107,7 +107,6 @@ class GameScreen extends AbstractScreen implements IScreen {
         missileRender.dispose();
         explosionParticleRender.dispose();
         powerUpsRender.dispose();
-
         finishLineRender.dispose();
     }
 

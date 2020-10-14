@@ -53,7 +53,7 @@ public class PowerUpGenerator {
             }
 
             Vector2 tempVector = vertices.get(positionX / STEP);
-            int positionY = (int) tempVector.y + 30;
+            int positionY = (int) tempVector.y + 20;
 
             if (random.nextBoolean()) {
                 NitroPowerUp nitroPowerUp = new NitroPowerUp(world, positionX, positionY);

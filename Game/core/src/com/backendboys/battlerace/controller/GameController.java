@@ -6,6 +6,7 @@ import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
 import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
 import com.backendboys.battlerace.view.screens.IScreen;
 import com.backendboys.battlerace.view.screens.ScreenFactory;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 
