@@ -37,7 +37,7 @@ public class GameModel {
         worldExplosions = new WorldExplosions();
         gameWorld.addListener(worldExplosions);
         Vector2 startPosition = gameWorld.getGroundVertices().get(50);
-        player = new Player("Mad Max");
+        player = new Player("gustav");
         player.addVehicle(gameWorld.getWorld(), startPosition.x, startPosition.y + 25);
         gameWorld.setCollisionListener(new CollisionListener(this));
     }
