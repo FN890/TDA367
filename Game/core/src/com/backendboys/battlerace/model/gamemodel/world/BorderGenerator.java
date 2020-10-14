@@ -32,6 +32,7 @@ class BorderGenerator {
         bodyDef.type = BodyDef.BodyType.StaticBody;
 
         final FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.friction = 0;
         fixtureDef.shape = chainShape;
 
         chainShape.createChain(borderVertices);
