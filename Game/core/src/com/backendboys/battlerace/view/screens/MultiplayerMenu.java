@@ -2,6 +2,7 @@ package com.backendboys.battlerace.view.screens;
 
 
 import com.backendboys.battlerace.controller.MenuController;
+import com.backendboys.battlerace.controller.ServerController;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -15,14 +16,17 @@ import com.badlogic.gdx.utils.Align;
  */
 class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
 
+    private ServerController serverController;
+
     private final SpriteBatch batch;
     private Stage stage;
 
     private TextField inputPlayerName;
     private TextField inputGameId;
 
-    MultiplayerMenu(MenuController menuController) {
+    MultiplayerMenu(MenuController menuController, ServerController serverController) {
         super(menuController);
+        this.serverController = serverController;
 
         batch = new SpriteBatch();
     }
@@ -66,8 +70,8 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
         btnJoinGame.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (!inputPlayerName.getText().isEmpty()) {
-                    getMenuController().startServer(inputPlayerName.getText(), inputGameId.getText());
+                if (!inputPlayerName.getText().isEmpty() && !inputGameId.getText().isEmpty()) {
+                    serverController.joinServer(inputPlayerName.getText(), inputGameId.getText());
                 }
             }
         });
@@ -76,7 +80,7 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (!inputPlayerName.getText().isEmpty()) {
-                    getMenuController().startServer(inputPlayerName.getText());
+                    serverController.startServer(inputPlayerName.getText());
                 }
             }
         });
@@ -144,4 +148,8 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
     }
 
 
+    @Override
+    public void setServerController(ServerController serverController) {
+
+    }
 }

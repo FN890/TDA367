@@ -44,17 +44,10 @@ public class MenuController {
      * Starts a multiplayer game.
      */
     public void toMultiPlayer() {
-        game.setScreen(ScreenFactory.createMultiplayerMenu(this));
-        game.serverController = new ServerController(game);
+        ServerController serverController = new ServerController(game);
+        game.setScreen(ScreenFactory.createMultiplayerMenu(this, serverController));
     }
 
-    public void startServer(String name) {
-        game.startMultiplayer(name);
-    }
-
-    public void startServer(String name, String id) {
-        game.joinMultiplayer(name, id);
-    }
 
     /**
      * Exits the game.
@@ -93,6 +86,5 @@ public class MenuController {
             music.stop();
         }
     }
-
 
 }

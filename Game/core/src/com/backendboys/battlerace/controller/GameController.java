@@ -4,6 +4,7 @@ import com.backendboys.battlerace.BattleRace;
 import com.backendboys.battlerace.model.gamemodel.GameModel;
 import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
 import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
+import com.backendboys.battlerace.view.screens.IScreen;
 import com.backendboys.battlerace.view.screens.ScreenFactory;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
@@ -28,7 +29,18 @@ public class GameController implements InputProcessor {
     public GameController(BattleRace game) {
         gameModel = new GameModel();
         this.game = game;
-        game.setScreen(ScreenFactory.createGameScreen(this));
+        IScreen gameScreen = ScreenFactory.createGameScreen(this);
+        game.setScreen(gameScreen);
+
+        keysDown = new ArrayList<>();
+    }
+
+    public GameController(BattleRace game, ServerController serverController) {
+        gameModel = new GameModel();
+        this.game = game;
+        IScreen gameScreen = ScreenFactory.createGameScreen(this);
+        gameScreen.setServerController(serverController);
+        game.setScreen(gameScreen);
 
         keysDown = new ArrayList<>();
     }

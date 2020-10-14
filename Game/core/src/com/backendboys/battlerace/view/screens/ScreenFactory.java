@@ -2,6 +2,7 @@ package com.backendboys.battlerace.view.screens;
 
 import com.backendboys.battlerace.controller.GameController;
 import com.backendboys.battlerace.controller.MenuController;
+import com.backendboys.battlerace.controller.ServerController;
 
 /**
  * A factory that returns an IScreen interface.
@@ -21,7 +22,7 @@ public class ScreenFactory {
         return new GameScreen(gameController);
     }
 
-    public static IScreen createMultiplayerMenu(MenuController menuController) {
-        return new MultiplayerMenu(menuController);
+    public static IScreen createMultiplayerMenu(MenuController menuController, ServerController serverController) {
+        return new MultiplayerMenu(menuController, serverController);
     }
 }

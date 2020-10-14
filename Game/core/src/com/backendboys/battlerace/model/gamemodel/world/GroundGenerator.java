@@ -1,6 +1,6 @@
 package com.backendboys.battlerace.model.gamemodel.world;
 
-import com.badlogic.gdx.math.MathUtils;
+import com.backendboys.battlerace.model.gamemodel.world.ground.IGroundStrategy;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
@@ -10,22 +10,11 @@ import java.util.Arrays;
 /**
  * Class that handles ground creation.
  */
-public class GroundGenerator {
+class GroundGenerator {
 
-    private final int numberVertices;
-    private final double step;
-    private final int friction;
-    private final ArrayList<Vector2> vertices;
+    private ArrayList<Vector2> vertices;
 
-    /**
-     * @param numberVertices The amount of vertices that the ground should be based on.
-     * @param step           The difference on the x-axis between each vertex.
-     * @param friction       The ground friction.
-     */
-    public GroundGenerator(int numberVertices, double step, int friction) {
-        this.numberVertices = numberVertices;
-        this.step = step;
-        this.friction = friction;
+    GroundGenerator() {
         vertices = new ArrayList<>();
     }
 
@@ -33,10 +22,12 @@ public class GroundGenerator {
      * Creates and adds the ground to the world.
      *
      * @param world The World that the ground should be added to.
+     * @param iGroundStrategy Strategy for creating the ground vertices.
+     * @param friction The ground friction.
      */
-    public void generateGround(World world) {
+    void generateGround(World world, IGroundStrategy iGroundStrategy, int friction) {
 
-        generateVertices(numberVertices, step);
+        vertices = iGroundStrategy.generateGroundVertices();
         ArrayList<Vector2> tempVertices = new ArrayList<>(vertices);
 
         final BodyDef bodyDef = new BodyDef();
@@ -71,21 +62,8 @@ public class GroundGenerator {
         }
     }
 
-    private void generateVertices(int numberVertices, double step) {
-        float xPos = 0;
-
-        for (int i = 0; i < numberVertices; i++) {
-            float yPos = 30 * MathUtils.sin(xPos * 0.01f) + 30;
-            xPos += step;
-            vertices.add(new Vector2(xPos, yPos + 10));
-        }
-    }
-
     public ArrayList<Vector2> getVertices() {
         return vertices;
     }
 
-    public int getNumberVertices() {
-        return vertices.size();
-    }
 }

@@ -3,7 +3,6 @@ package com.backendboys.battlerace.services;
 
 import java.io.*;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class TCPClient implements Runnable {
     public void run() {
         try (Socket socket = new Socket(hostname, port)) {
 
-            System.out.println("Connected");
+            notifyConnected();
             printWriter = new PrintWriter(socket.getOutputStream(), true);
 
             InputStream inputStream = socket.getInputStream();
@@ -63,6 +62,12 @@ public class TCPClient implements Runnable {
     private void notifyGotMessage(String msg) {
         for (ITCPListener l : listeners) {
             l.gotMessage(msg);
+        }
+    }
+
+    private void notifyConnected() {
+        for (ITCPListener l : listeners) {
+            l.onConnection();
         }
     }
 }
