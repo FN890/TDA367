@@ -32,7 +32,7 @@ public class GameModel {
      * player, ground, powerups, and finishline.
      */
     public GameModel() {
-        this.gameWorld = new GameWorld(GroundStrategyFactory.getSinCosStrategy(1000, 40, 5), 1);
+        this.gameWorld = new GameWorld(GroundStrategyFactory.getSinCosStrategy(5000, 60, 5), 1);
         generateObjects();
         worldExplosions = new WorldExplosions();
         gameWorld.addListener(worldExplosions);
