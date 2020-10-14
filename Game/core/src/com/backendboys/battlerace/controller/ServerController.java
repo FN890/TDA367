@@ -24,9 +24,10 @@ public class ServerController implements ITCPListener, IPacketListener {
 
     private boolean isConnected = false;
 
-    public ServerController(BattleRace game) {
+    public ServerController(BattleRace game, GameController gameController) {
         this.game = game;
 
+        this.gameController = gameController;
         commandConverter = new CommandConverter();
 
         udpClient = new UDPClient(HOSTNAME, PORT);
@@ -79,7 +80,6 @@ public class ServerController implements ITCPListener, IPacketListener {
                 int id = Integer.parseInt(command.getArgs()[0]);
                 System.out.println("Server ID: " + id);
                 boolean isRunning = Boolean.parseBoolean(command.getArgs()[1]);
-                gameController = new GameController(game, ServerController.this);
 
                 for (int i = 2; i < command.getArgs().length; i++) {
                     String playerName = command.getArgs()[i];
@@ -101,6 +101,8 @@ public class ServerController implements ITCPListener, IPacketListener {
     @Override
     public void onConnection() {
         isConnected = true;
+        System.out.println("onConnection serverC");
+        gameController.onConnection();
     }
 
     public void startServer(String name) {

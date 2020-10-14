@@ -32,11 +32,13 @@ public class TCPClient implements Runnable {
     public void run() {
         try (Socket socket = new Socket(hostname, port)) {
 
-            notifyConnected();
             printWriter = new PrintWriter(socket.getOutputStream(), true);
 
             InputStream inputStream = socket.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+            System.out.println("connected");
+            notifyConnected();
 
             String line;
 

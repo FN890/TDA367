@@ -44,8 +44,8 @@ public class MenuController {
      * Starts a multiplayer game.
      */
     public void toMultiPlayer() {
-        game.serverController = new ServerController(game);
-        game.setScreen(ScreenFactory.createMultiplayerMenu(this, game.serverController));
+        //game.serverController = new ServerController(game);
+        //game.setScreen(ScreenFactory.createMultiplayerMenu(this, game.serverController));
     }
 
 

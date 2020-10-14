@@ -42,28 +42,17 @@ class GameScreen extends AbstractScreen implements IScreen {
         gameModel = gameController.getGameModel();
         gameWorld = gameModel.getGameWorld();
 
-        System.out.println("Creating Camera...");
         camera = new OrthographicCamera();
-        System.out.println("Creating ViewPort...");
         viewport = new ExtendViewport(600, 50, camera);
-        System.out.println("Creating SpriteBatch...");
         batch = new SpriteBatch();
 
-        System.out.println("Initiating Renderers...");
         backgroundRender = new BackgroundRender(camera, gameWorld.getGroundVertices());
-        System.out.println("VehicleRender...");
         vehicleRender = new VehicleRender(camera);
-        System.out.println("DebugRender...");
         debugRenderer = new Box2DDebugRenderer();
-        System.out.println("OpponentRender...");
         opponentRender = new OpponentRender(camera);
-        System.out.println("MissileRender...");
         missileRender = new MissileRender(camera);
-        System.out.println("ExplosionRender...");
         explosionParticleRender = new ExplosionParticleRender(camera);
-        System.out.println("PowerUpsRender...");
         powerUpsRender = new PowerUpsRender(camera, gameModel.getPowerUps());
-        System.out.println("FinishLineRender...");
         finishLineRender = new FinishLineRender(camera, gameModel.getFinishLineVertices());
     }
 
