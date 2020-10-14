@@ -5,6 +5,9 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 
+/**
+ * Strategy: Sin.
+ */
 public class SinStrategy extends AbstractGroundStrategy {
 
     SinStrategy(int numberVertices, int minHeight, double step) {
