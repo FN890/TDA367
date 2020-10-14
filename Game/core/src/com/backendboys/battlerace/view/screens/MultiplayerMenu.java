@@ -145,6 +145,8 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
     @Override
     public void dispose() {
         super.dispose();
+        batch.dispose();
+        stage.dispose();
     }
 
 
