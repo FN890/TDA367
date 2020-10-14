@@ -55,7 +55,7 @@ public class CommandConverter {
         for (String arg : cmd.getArgs()) {
             sb.append(arg).append(",");
         }
-        sb.deleteCharAt(sb.length()-1);
+        sb.deleteCharAt(sb.length() - 1);
 
         return command + ":" + sb.toString();
     }

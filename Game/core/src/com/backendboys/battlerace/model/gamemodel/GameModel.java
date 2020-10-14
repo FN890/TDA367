@@ -1,5 +1,6 @@
 package com.backendboys.battlerace.model.gamemodel;
 
+import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
 import com.backendboys.battlerace.model.gamemodel.particles.IParticle;
 import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
 import com.backendboys.battlerace.model.gamemodel.player.Player;
@@ -20,6 +21,8 @@ public class GameModel {
 
     private final GameWorld gameWorld;
     private final Player player;
+    private final List<OpponentPlayer> opponentPlayers = new ArrayList<>();
+
     private final WorldExplosions worldExplosions;
     private List<AbstractPowerUp> powerUps = new ArrayList<>();
     private FinishLineGenerator finishLineGenerator;
@@ -41,11 +44,27 @@ public class GameModel {
     }
 
     private void generateObjects() {
-        PowerUpGenerator powerUpGenerator = new PowerUpGenerator(gameWorld.getGroundVertices(), gameWorld.getWorld());
+        PowerUpGenerator powerUpGenerator = new PowerUpGenerator(gameWorld.getGroundVertices(), gameWorld.getWorld(), worldExplosions);
         powerUps = powerUpGenerator.generatePowerups(30);
 
         finishLineGenerator = new FinishLineGenerator(gameWorld.getGroundVertices());
         finishLineGenerator.generateFinishLine(gameWorld.getWorld());
+    }
+
+    public void addOpponent(OpponentPlayer opponent) {
+        opponentPlayers.add(opponent);
+    }
+
+    public void removeOpponent(OpponentPlayer opponent) {
+        opponentPlayers.remove(opponent);
+    }
+
+    public void updateOpponentPosition(String name, float x, float y, float rotation) {
+        for (OpponentPlayer o : opponentPlayers) {
+            if (o.getPlayerName().equalsIgnoreCase(name)) {
+                o.setVectorPosition(new Vector2(x, y), rotation);
+            }
+        }
     }
 
     /**
@@ -114,15 +133,29 @@ public class GameModel {
         return player.getRotation();
     }
 
+    public List<OpponentPlayer> getOpponents() {
+        return opponentPlayers;
+    }
+
     public ArrayList<IParticle> getMissiles() {
         return worldExplosions.getMissiles();
     }
 
-    public ArrayList<IParticle> getExplosionParticles(){return worldExplosions.getParticles();}
+    public ArrayList<IParticle> getExplosionParticles() {
+        return worldExplosions.getParticles();
+    }
+
     /**
-     * Temp function for testing speed
+     * Method that tells the player to use a powerup
      */
     public void usePowerUp() {
+        player.usePowerUp();
+    }
+
+    /**
+     * Temp function for testing missiles
+     */
+    public void shootMissile() {
         worldExplosions.addMissile(player.getPosition(), gameWorld.getWorld(), player.getRotation());
     }
 

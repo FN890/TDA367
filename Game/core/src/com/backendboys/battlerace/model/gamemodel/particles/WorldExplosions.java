@@ -112,14 +112,15 @@ public class WorldExplosions implements GameWorldListener {
         return new ArrayList<IParticle>(missiles);
     }
 
-    public ArrayList<IParticle> getParticles(){
+    public ArrayList<IParticle> getParticles() {
         ArrayList<IParticle> iExplosionParticles = new ArrayList<>();
-        for (Explosion explosion: explosions){
+        for (Explosion explosion : explosions) {
             System.out.println(explosion.getExplosionParticles().size());
             iExplosionParticles.addAll(explosion.getExplosionParticles());
         }
         return iExplosionParticles;
     }
+
     @Override
     public void onGameWorldStepped() {
         removeCollidedMissilesAndParticles();

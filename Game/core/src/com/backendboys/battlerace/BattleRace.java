@@ -2,6 +2,7 @@ package com.backendboys.battlerace;
 
 import com.backendboys.battlerace.controller.GameController;
 import com.backendboys.battlerace.controller.MenuController;
+import com.backendboys.battlerace.controller.ServerController;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
@@ -10,6 +11,8 @@ import com.badlogic.gdx.Gdx;
  * Created in the DesktopLauncher
  */
 public class BattleRace extends Game {
+
+    public ServerController serverController;
 
     @Override
     public void create() {
@@ -30,8 +33,14 @@ public class BattleRace extends Game {
         Gdx.input.setInputProcessor(new GameController(this));
     }
 
-    public void startMultiplayer() {
-        //maybe refernce to serviece.
+    public void startMultiplayer(String name) {
+        serverController.sendMessage("create:" + name);
+        serverController.sendMessage("start");
+    }
+
+    public void joinMultiplayer(String name, String id) {
+        ServerController serverController = new ServerController(this);
+        serverController.sendMessage("join:" + id + "," + name);
     }
 
     @Override

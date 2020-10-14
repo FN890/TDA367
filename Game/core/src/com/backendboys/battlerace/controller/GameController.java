@@ -2,6 +2,7 @@ package com.backendboys.battlerace.controller;
 
 import com.backendboys.battlerace.BattleRace;
 import com.backendboys.battlerace.model.gamemodel.GameModel;
+import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
 import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
 import com.backendboys.battlerace.view.screens.ScreenFactory;
 import com.badlogic.gdx.Input;
@@ -32,6 +33,18 @@ public class GameController implements InputProcessor {
         keysDown = new ArrayList<>();
     }
 
+    public void handleAddOpponent(OpponentPlayer opponent) {
+        gameModel.addOpponent(opponent);
+    }
+
+    public void handleRemoveOpponent(OpponentPlayer opponent) {
+        gameModel.removeOpponent(opponent);
+    }
+
+    public void handleUpdateOpponentPosition(String name, float x, float y, float rotation) {
+        gameModel.updateOpponentPosition(name, x, y, rotation);
+    }
+
     /**
      * Calls stepWorld in GameModel
      */
@@ -59,7 +72,7 @@ public class GameController implements InputProcessor {
                     toggleMenu();
                     break;
                 case Input.Keys.SPACE:
-                    gameModel.usePowerUp();
+                    gameModel.shootMissile();
                 default:
                     break;
             }
