@@ -148,4 +148,8 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
     }
 
 
+    @Override
+    public void setServerController(ServerController serverController) {
+
+    }
 }

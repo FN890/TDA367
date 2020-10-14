@@ -79,7 +79,7 @@ public class ServerController implements ITCPListener, IPacketListener {
                 int id = Integer.parseInt(command.getArgs()[0]);
                 System.out.println("Server ID: " + id);
                 boolean isRunning = Boolean.parseBoolean(command.getArgs()[1]);
-                gameController = new GameController(game);
+                gameController = new GameController(game, ServerController.this);
 
                 for (int i = 2; i < command.getArgs().length; i++) {
                     String playerName = command.getArgs()[i];

@@ -12,8 +12,6 @@ import com.badlogic.gdx.Gdx;
  */
 public class BattleRace extends Game {
 
-    public ServerController serverController;
-
     @Override
     public void create() {
         new MenuController(this);
