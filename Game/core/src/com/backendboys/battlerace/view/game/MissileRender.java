@@ -9,34 +9,31 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class MissileRender {
-
-    private final OrthographicCamera orthographicCamera;
-
-    private final SpriteBatch batch;
-    private final Sprite sprite;
+public class MissileRender extends AbstractRender<List<IParticle>> {
 
     private final static int WIDTH = 40, HEIGHT = 20;
 
-    public MissileRender(OrthographicCamera orthographicCamera) {
-        this.orthographicCamera = orthographicCamera;
+    private final Sprite sprite;
 
-        batch = new SpriteBatch();
+    public MissileRender(OrthographicCamera orthographicCamera) {
+        super(orthographicCamera);
+
         Texture texture = new Texture(Gdx.files.internal("missile.png"));
         sprite = new Sprite(texture);
         sprite.setSize(WIDTH, HEIGHT);
         sprite.setOrigin(WIDTH / 2f, HEIGHT / 2f);
     }
 
-    public void render(ArrayList<IParticle> missiles) {
+    @Override
+    public void render(SpriteBatch batch, List<IParticle> object) {
         batch.begin();
-        for (IParticle missile : missiles) {
+        for (IParticle missile : object) {
             if (withinCamera(missile)) {
-
                 sprite.setPosition(missile.getPosition().x - WIDTH / 2f, missile.getPosition().y - HEIGHT / 2f);
                 sprite.setRotation(MathUtils.radiansToDegrees * (missile.getRotation()));
-                batch.setProjectionMatrix(orthographicCamera.combined);
+                batch.setProjectionMatrix(getCamera().combined);
                 sprite.draw(batch);
             }
         }
@@ -44,12 +41,11 @@ public class MissileRender {
     }
 
     public void dispose() {
-        batch.dispose();
     }
 
     private boolean withinCamera(IParticle missile) {
-        if (missile.getPosition().x > orthographicCamera.position.x - orthographicCamera.viewportWidth) {
-            return missile.getPosition().x < orthographicCamera.position.x + orthographicCamera.viewportWidth;
+        if (missile.getPosition().x > getCamera().position.x - getCamera().viewportWidth) {
+            return missile.getPosition().x < getCamera().position.x + getCamera().viewportWidth;
         }
         return true;
     }

@@ -12,52 +12,47 @@ import java.util.List;
 /**
  * Class that handles rendering the power-ups.
  */
-public class PowerUpsRender {
+public class PowerUpsRender extends AbstractRender<Object> {
 
-    private final OrthographicCamera orthographicCamera;
     private final List<AbstractPowerUp> powerUps;
-    private final SpriteBatch batch;
     private final Sprite sprite;
 
     private final static int WIDTH = 10, HEIGHT = 10;
 
     public PowerUpsRender(OrthographicCamera orthographicCamera, List<AbstractPowerUp> powerUps) {
-        this.orthographicCamera = orthographicCamera;
+        super(orthographicCamera);
         this.powerUps = powerUps;
-        batch = new SpriteBatch();
+
         Texture texture = new Texture(Gdx.files.internal("powerp.jpg"));
         sprite = new Sprite(texture);
         sprite.setSize(WIDTH, HEIGHT);
     }
 
-    /**
-     * Render the power-ups that are within view. Should be called every render.
-     */
-    public void renderPowerUps() {
-        render();
+    @Override
+    public void render(SpriteBatch batch, Object object) {
+        render(batch);
     }
 
-    private void render() {
+    private void render(SpriteBatch batch) {
+        batch.begin();
         for (AbstractPowerUp powerUp : powerUps) {
             if (withinCamera(powerUp)) {
-                batch.begin();
-                batch.setProjectionMatrix(orthographicCamera.combined);
+                batch.setProjectionMatrix(getCamera().combined);
                 sprite.setPosition(powerUp.getBody().getPosition().x - 5, powerUp.getBody().getPosition().y - 5);
                 sprite.draw(batch);
-                batch.end();
             }
         }
+        batch.end();
     }
 
     private boolean withinCamera(AbstractPowerUp powerUp) {
-        if (powerUp.getBody().getPosition().x > orthographicCamera.position.x - orthographicCamera.viewportWidth) {
-            return powerUp.getBody().getPosition().x < orthographicCamera.position.x + orthographicCamera.viewportWidth;
+        if (powerUp.getBody().getPosition().x > getCamera().position.x - getCamera().viewportWidth) {
+            return powerUp.getBody().getPosition().x < getCamera().position.x + getCamera().viewportWidth;
         }
         return false;
     }
 
     public void dispose() {
-        batch.dispose();
     }
 
 }

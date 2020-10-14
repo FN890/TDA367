@@ -8,32 +8,31 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ExplosionParticleRender {
-
-    private final OrthographicCamera orthographicCamera;
-
-    private final SpriteBatch batch;
-    private final Sprite sprite;
+public class ExplosionParticleRender extends AbstractRender<List<IParticle>> {
 
     private final static int WIDTH = 5, HEIGHT = 5;
 
-    public ExplosionParticleRender(OrthographicCamera orthographicCamera) {
-        this.orthographicCamera = orthographicCamera;
+    private final Sprite sprite;
 
-        batch = new SpriteBatch();
+    public ExplosionParticleRender(OrthographicCamera orthographicCamera) {
+        super(orthographicCamera);
+
         Texture texture = new Texture(Gdx.files.internal("fragment.png"));
         sprite = new Sprite(texture);
         sprite.setSize(WIDTH, HEIGHT);
         sprite.setOrigin(WIDTH / 2f, HEIGHT / 2f);
     }
 
-    public void render(ArrayList<IParticle> particles) {
+    @Override
+    public void render(SpriteBatch batch, List<IParticle> object) {
         batch.begin();
-        for (IParticle particle : particles) {
+        for (IParticle particle : object) {
             if (withinCamera(particle)) {
+                batch.begin();
                 sprite.setPosition(particle.getPosition().x - 2.5f, particle.getPosition().y - 2.5f);
-                batch.setProjectionMatrix(orthographicCamera.combined);
+                batch.setProjectionMatrix(getCamera().combined);
                 sprite.draw(batch);
             }
         }
@@ -41,14 +40,14 @@ public class ExplosionParticleRender {
     }
 
     private boolean withinCamera(IParticle particle) {
-        if (particle.getPosition().x > orthographicCamera.position.x - orthographicCamera.viewportWidth) {
-            return particle.getPosition().x < orthographicCamera.position.x + orthographicCamera.viewportWidth;
+        if (particle.getPosition().x > getCamera().position.x - getCamera().viewportWidth) {
+            return particle.getPosition().x < getCamera().position.x + getCamera().viewportWidth;
         }
         return true;
     }
 
     public void dispose() {
-        batch.dispose();
+
     }
 
 }
