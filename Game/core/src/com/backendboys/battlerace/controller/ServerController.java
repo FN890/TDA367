@@ -50,7 +50,7 @@ public class ServerController implements ITCPListener, IPacketListener {
     @Override
     public void gotPacket(String message) {
         ICommand command = commandConverter.toCommand(message);
-
+        System.out.println("Got packet! " + message);
         if (command.getCmd().equals("pos")) {
             try {
                 String playerName = command.getArgs()[0];
@@ -68,7 +68,7 @@ public class ServerController implements ITCPListener, IPacketListener {
 
     @Override
     public void UDPErrorOccurred(String message) {
-
+        System.out.println(message);
     }
 
     @Override
@@ -86,6 +86,7 @@ public class ServerController implements ITCPListener, IPacketListener {
                     String playerName = command.getArgs()[1];
                     gameController.handleAddOpponent(new OpponentPlayer(playerName, new Vector2(50, 100), 0));
                     System.out.println("Opponent created");
+
                 }else if(command.getArgs()[0].equals("left")) {
 
                 }
