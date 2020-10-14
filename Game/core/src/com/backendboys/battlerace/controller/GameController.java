@@ -4,6 +4,7 @@ import com.backendboys.battlerace.BattleRace;
 import com.backendboys.battlerace.model.gamemodel.GameModel;
 import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
 import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
+import com.backendboys.battlerace.services.ITCPListener;
 import com.backendboys.battlerace.view.screens.IScreen;
 import com.backendboys.battlerace.view.screens.ScreenFactory;
 import com.badlogic.gdx.Gdx;
@@ -17,12 +18,14 @@ import java.util.List;
 /**
  * Class that handles inputs
  */
-public class GameController implements InputProcessor {
+public class GameController implements InputProcessor, ITCPListener {
 
     private final GameModel gameModel;
     private final BattleRace game;
 
     private final List<Integer> keysDown;
+
+    ServerController serverController;
 
     /**
      * @param game Created GameModel and set GameScreen.
@@ -34,6 +37,8 @@ public class GameController implements InputProcessor {
         game.setScreen(gameScreen);
 
         keysDown = new ArrayList<>();
+
+        serverController = new ServerController(game, this);
     }
 
     public GameController(BattleRace game, ServerController serverController) {
@@ -169,5 +174,21 @@ public class GameController implements InputProcessor {
     @Override
     public boolean scrolled(int amount) {
         return false;
+    }
+
+    @Override
+    public void gotMessage(String message) {
+
+    }
+
+    @Override
+    public void lostConnection(String message) {
+
+    }
+
+    @Override
+    public void onConnection() {
+        System.out.println("create:game");
+        serverController.startServer("Simon");
     }
 }
