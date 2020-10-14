@@ -31,7 +31,6 @@ class GameScreen extends AbstractScreen implements IScreen {
     private final ExplosionParticleRender explosionParticleRender;
     private final Box2DDebugRenderer debugRenderer;
 
-
     private final FinishLineRender finishLineRender;
 
     private final OrthographicCamera camera;
@@ -45,8 +44,8 @@ class GameScreen extends AbstractScreen implements IScreen {
 
         camera = new OrthographicCamera();
         viewport = new ExtendViewport(600, 50, camera);
-        backgroundRender = new BackgroundRender(camera, gameWorld.getGroundVertices());
 
+        backgroundRender = new BackgroundRender(camera, gameWorld.getGroundVertices());
         vehicleRender = new VehicleRender(camera);
         debugRenderer = new Box2DDebugRenderer();
         opponentRender = new OpponentRender(camera);
@@ -54,8 +53,6 @@ class GameScreen extends AbstractScreen implements IScreen {
         explosionParticleRender = new ExplosionParticleRender(camera);
         powerUpsRender = new PowerUpsRender(camera, gameModel.getPowerUps());
         finishLineRender = new FinishLineRender(camera, gameModel.getFinishLineVertices());
-
-
     }
 
     @Override
@@ -67,16 +64,16 @@ class GameScreen extends AbstractScreen implements IScreen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         updateCameraPosition(gameModel.getPlayerPosition().x, gameModel.getPlayerPosition().y);
+
         backgroundRender.renderBackground();
         vehicleRender.renderVehicle(gameModel.getPlayer().getVehicle());
-
         opponentRender.renderOpponents(gameModel.getOpponents());
         debugRenderer.render(gameWorld.getWorld(), camera.combined);
         missileRender.render(gameModel.getMissiles());
         explosionParticleRender.render(gameModel.getExplosionParticles());
         powerUpsRender.renderPowerUps();
-
         finishLineRender.renderFinishLine();
+
         Gdx.graphics.setTitle("" + Gdx.graphics.getFramesPerSecond());
     }
 
@@ -89,15 +86,14 @@ class GameScreen extends AbstractScreen implements IScreen {
     @Override
     public void dispose() {
         gameController.getGameWorld().dispose();
-        backgroundRender.dispose();
 
+        backgroundRender.dispose();
         debugRenderer.dispose();
         opponentRender.dispose();
         vehicleRender.dispose();
         missileRender.dispose();
         explosionParticleRender.dispose();
         powerUpsRender.dispose();
-
         finishLineRender.dispose();
     }
 
