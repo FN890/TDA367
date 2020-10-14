@@ -10,26 +10,21 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 /**
  * Class for render Vehicle
  */
-public class VehicleRender {
-
-    private final SpriteBatch batch;
-    private final Sprite spritePlayerVehicle;
-    private final Sprite spriteVehicleFrontWheel;
-    private final Sprite spriteVehicleRearWheel;
-    private final OrthographicCamera camera;
+public class VehicleRender extends AbstractRender<IVehicle> {
 
     private static final int VEHCILE_WIDTH = 60;
     private static final int VEHCILE_HEIGHT = 25;
     private static final int VEHICLE_GROUND_OFFSET = 3;
-
     private static final int WHEEL_SIZE = 12;
 
-    /**
-     * @param camera Camera for setting projection matrix
-     */
-    public VehicleRender(OrthographicCamera camera) {
-        this.camera = camera;
-        batch = new SpriteBatch();
+    private final Sprite spritePlayerVehicle;
+    private final Sprite spriteVehicleFrontWheel;
+    private final Sprite spriteVehicleRearWheel;
+
+
+    public VehicleRender(OrthographicCamera orthographicCamera) {
+        super(orthographicCamera);
+
         spritePlayerVehicle = new Sprite(new Texture("newredcar.png"));
         spritePlayerVehicle.setSize(VEHCILE_WIDTH, VEHCILE_HEIGHT);
         spritePlayerVehicle.setOriginCenter();
@@ -43,13 +38,11 @@ public class VehicleRender {
         spriteVehicleRearWheel.setOriginCenter();
     }
 
-    /**
-     * @param vehicle vehicle interface with position and rotation for render
-     */
-    public void renderVehicle(IVehicle vehicle) {
+    @Override
+    public void render(SpriteBatch batch, IVehicle object) {
         batch.begin();
-        if (vehicle instanceof ICar) {
-            ICar car = (ICar) vehicle;
+        if (object instanceof ICar) {
+            ICar car = (ICar) object;
             spritePlayerVehicle.setPosition(car.getPosition().x - VEHCILE_WIDTH / 2f, car.getPosition().y - VEHCILE_HEIGHT / 2f);
             spritePlayerVehicle.setRotation((float) Math.toDegrees(car.getRotation()));
 
@@ -59,7 +52,7 @@ public class VehicleRender {
             spriteVehicleRearWheel.setPosition(car.getRearWheelPosition().x - 6f, car.getRearWheelPosition().y - 5.5f);
             spriteVehicleRearWheel.setRotation((float) Math.toDegrees(car.getRearWheelRotation()));
 
-            batch.setProjectionMatrix(camera.combined);
+            batch.setProjectionMatrix(getCamera().combined);
             spritePlayerVehicle.draw(batch);
             spriteVehicleRearWheel.draw(batch);
             spriteVehicleFrontWheel.draw(batch);
@@ -67,10 +60,6 @@ public class VehicleRender {
         batch.end();
     }
 
-    /**
-     * Disposes the spriteBatch
-     */
     public void dispose() {
-        batch.dispose();
     }
 }

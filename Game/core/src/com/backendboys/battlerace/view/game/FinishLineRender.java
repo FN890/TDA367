@@ -2,6 +2,7 @@ package com.backendboys.battlerace.view.game;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 
@@ -10,31 +11,28 @@ import java.util.List;
 /**
  * Class that handles rendering of the finish line.
  */
-public class FinishLineRender {
+public class FinishLineRender extends AbstractRender<Object> {
 
-    private final OrthographicCamera orthographicCamera;
     private final List<Vector2> finishLineVerts;
     private final ShapeRenderer shapeRenderer;
 
     private final static int WIDTH = 8, HEIGHT = 5;
 
     public FinishLineRender(OrthographicCamera orthographicCamera, List<Vector2> finishLineVerts) {
-        this.orthographicCamera = orthographicCamera;
+        super(orthographicCamera);
         this.finishLineVerts = finishLineVerts;
         this.shapeRenderer = new ShapeRenderer();
     }
 
-    /**
-     * Calls the method that renders the finish, should be called every render.
-     */
-    public void renderFinishLine() {
+    @Override
+    public void render(SpriteBatch batch, Object object) {
         render();
     }
 
     private void render() {
         for (int i = 0; i < finishLineVerts.size(); i++) {
             if (withinCamera(finishLineVerts.get(i))) {
-                shapeRenderer.setProjectionMatrix(orthographicCamera.combined);
+                shapeRenderer.setProjectionMatrix(getCamera().combined);
 
                 if ((int) finishLineVerts.get(i).y % 3 == 0) {
                     shapeRenderer.setColor(Color.BLACK);
@@ -57,8 +55,8 @@ public class FinishLineRender {
     }
 
     private boolean withinCamera(Vector2 vector2) {
-        if (vector2.x > orthographicCamera.position.x - orthographicCamera.viewportWidth) {
-            return vector2.x < orthographicCamera.position.x + orthographicCamera.viewportWidth;
+        if (vector2.x > getCamera().position.x - getCamera().viewportWidth) {
+            return vector2.x < getCamera().position.x + getCamera().viewportWidth;
         }
         return false;
     }

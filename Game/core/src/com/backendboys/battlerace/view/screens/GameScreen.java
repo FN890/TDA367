@@ -9,6 +9,7 @@ import com.backendboys.battlerace.view.game.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
@@ -22,20 +23,18 @@ class GameScreen extends AbstractScreen implements IScreen {
     private final GameController gameController;
     private ServerController serverController = null;
 
+    private final OrthographicCamera camera;
+    private final ExtendViewport viewport;
+    private final SpriteBatch batch;
+
     private final BackgroundRender backgroundRender;
     private final VehicleRender vehicleRender;
-
     private final OpponentRender opponentRender;
     private final PowerUpsRender powerUpsRender;
     private final MissileRender missileRender;
     private final ExplosionParticleRender explosionParticleRender;
     private final Box2DDebugRenderer debugRenderer;
-
-
     private final FinishLineRender finishLineRender;
-
-    private final OrthographicCamera camera;
-    private final ExtendViewport viewport;
 
     GameScreen(GameController gameController) {
 
@@ -43,19 +42,29 @@ class GameScreen extends AbstractScreen implements IScreen {
         gameModel = gameController.getGameModel();
         gameWorld = gameModel.getGameWorld();
 
+        System.out.println("Creating Camera...");
         camera = new OrthographicCamera();
+        System.out.println("Creating ViewPort...");
         viewport = new ExtendViewport(600, 50, camera);
+        System.out.println("Creating SpriteBatch...");
+        batch = new SpriteBatch();
+
+        System.out.println("Initiating Renderers...");
         backgroundRender = new BackgroundRender(camera, gameWorld.getGroundVertices());
-
+        System.out.println("VehicleRender...");
         vehicleRender = new VehicleRender(camera);
+        System.out.println("DebugRender...");
         debugRenderer = new Box2DDebugRenderer();
+        System.out.println("OpponentRender...");
         opponentRender = new OpponentRender(camera);
+        System.out.println("MissileRender...");
         missileRender = new MissileRender(camera);
+        System.out.println("ExplosionRender...");
         explosionParticleRender = new ExplosionParticleRender(camera);
+        System.out.println("PowerUpsRender...");
         powerUpsRender = new PowerUpsRender(camera, gameModel.getPowerUps());
+        System.out.println("FinishLineRender...");
         finishLineRender = new FinishLineRender(camera, gameModel.getFinishLineVertices());
-
-
     }
 
     @Override
@@ -67,17 +76,19 @@ class GameScreen extends AbstractScreen implements IScreen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         updateCameraPosition(gameModel.getPlayerPosition().x, gameModel.getPlayerPosition().y);
-        backgroundRender.renderBackground();
-        vehicleRender.renderVehicle(gameModel.getPlayer().getVehicle());
-
-        opponentRender.renderOpponents(gameModel.getOpponents());
-        debugRenderer.render(gameWorld.getWorld(), camera.combined);
-        missileRender.render(gameModel.getMissiles());
-        explosionParticleRender.render(gameModel.getExplosionParticles());
-        powerUpsRender.renderPowerUps();
-
-        finishLineRender.renderFinishLine();
+        renderData();
         Gdx.graphics.setTitle("" + Gdx.graphics.getFramesPerSecond());
+    }
+
+    private void renderData() {
+        backgroundRender.render(batch, null);
+        vehicleRender.render(batch, gameModel.getPlayer().getVehicle());
+        opponentRender.render(batch, gameModel.getOpponents());
+        debugRenderer.render(gameWorld.getWorld(), camera.combined);
+        missileRender.render(batch, gameModel.getMissiles());
+        explosionParticleRender.render(batch, gameModel.getExplosionParticles());
+        powerUpsRender.render(batch, null);
+        finishLineRender.render(batch, null);
     }
 
     @Override
@@ -90,7 +101,6 @@ class GameScreen extends AbstractScreen implements IScreen {
     public void dispose() {
         gameController.getGameWorld().dispose();
         backgroundRender.dispose();
-
         debugRenderer.dispose();
         opponentRender.dispose();
         vehicleRender.dispose();

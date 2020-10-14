@@ -38,8 +38,10 @@ public class GameController implements InputProcessor {
     public GameController(BattleRace game, ServerController serverController) {
         gameModel = new GameModel();
         this.game = game;
+        System.out.println("Creating gamescreen...");
         IScreen gameScreen = ScreenFactory.createGameScreen(this);
         gameScreen.setServerController(serverController);
+        System.out.println("Setting Screen...");
         game.setScreen(gameScreen);
 
         keysDown = new ArrayList<>();
