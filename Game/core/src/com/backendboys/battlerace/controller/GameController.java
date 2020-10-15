@@ -4,10 +4,8 @@ import com.backendboys.battlerace.BattleRace;
 import com.backendboys.battlerace.model.gamemodel.GameModel;
 import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
 import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
-import com.backendboys.battlerace.services.ITCPListener;
 import com.backendboys.battlerace.view.screens.IScreen;
 import com.backendboys.battlerace.view.screens.ScreenFactory;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 
@@ -187,6 +185,6 @@ public class GameController implements InputProcessor {
     public void onConnection() {
         System.out.println("create:gustav");
         //serverController.startServer("gustav");
-        serverController.joinServer("Simon", "1401");
+        serverController.createGame("gustav");
     }
 }

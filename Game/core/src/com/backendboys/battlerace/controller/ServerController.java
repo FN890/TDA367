@@ -50,7 +50,7 @@ public class ServerController implements ITCPListener, IPacketListener {
     @Override
     public void gotPacket(String message) {
         ICommand command = commandConverter.toCommand(message);
-        System.out.println("Got packet! " + message);
+
         if (command.getCmd().equals("pos")) {
             try {
                 String playerName = command.getArgs()[0];
@@ -117,14 +117,14 @@ public class ServerController implements ITCPListener, IPacketListener {
         gameController.onConnection();
     }
 
-    public void startServer(String name) {
+    public void createGame(String name) {
         if(isConnected){
             sendMessage("create:" + name);
             sendMessage("start");
         }
     }
 
-    public void joinServer(String name, String id) {
+    public void joinGame(String name, String id) {
         if(isConnected){
             sendMessage("join:" + id + "," + name);
         }
