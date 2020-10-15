@@ -68,7 +68,6 @@ public class ClientController implements Runnable, GameListener, PacketListener 
             disconnect();
 
         } catch (IOException e) {
-            e.printStackTrace();
             disconnect();
         }
 
@@ -147,8 +146,6 @@ public class ClientController implements Runnable, GameListener, PacketListener 
         game.removePlayerByAddress(socket.getInetAddress());
         game.removeListener(this);
         game = null;
-
-        sendTCP(protocol.writeResponse("left"));
     }
 
     /**

@@ -41,6 +41,7 @@ public class UDPClient implements Runnable {
                 socket.receive(response);
 
                 String message = new String(buffer, 0, response.getLength());
+                System.out.println("Got packet: " + message);
                 messages.add(message);
 
             }
