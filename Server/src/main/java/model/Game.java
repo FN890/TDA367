@@ -18,7 +18,7 @@ public class Game implements Runnable {
     /**
      * How often packets will be sent to clients. Unit: Times/Second
      */
-    private static final int UPDATE_RATE = 5;
+    private static final int UPDATE_RATE = 40;
 
     private final String id;
     private final List<Player> players = Collections.synchronizedList(new ArrayList<>());
@@ -72,13 +72,13 @@ public class Game implements Runnable {
     /**
      * Removes a player from the game, and ends the game if it's the last player.
      *
-     * @param address The Players Address which to remove.
+     * @param player The Player which to remove.
      */
-    public synchronized void removePlayerByAddress(InetAddress address) {
+    public synchronized void removePlayer(Player player) {
         synchronized (players) {
             Player toRemove = null;
             for (Player p : players) {
-                if (p.getAddress() == address) {
+                if (p.equals(player)) {
                     toRemove = p;
                 }
             }
@@ -104,15 +104,15 @@ public class Game implements Runnable {
     /**
      * Updates player position and rotation by its InetAddress.
      *
-     * @param address  The Player InetAddress.
+     * @param player  The Player.
      * @param x        The x position.
      * @param y        The y position.
      * @param rotation The rotation.
      */
-    public synchronized void updatePositionByAddress(InetAddress address, float x, float y, float rotation) {
+    public synchronized void updatePlayerPosition(Player player, float x, float y, float rotation) {
         synchronized (players) {
             for (Player p : players) {
-                if (p.getAddress().equals(address)) {
+                if (p.equals(player)) {
                     p.setPosition(new Vector2(x, y));
                     p.setRotation(rotation);
                 }
@@ -168,7 +168,7 @@ public class Game implements Runnable {
             for (Player p1 : players) {
                 if (p1.getPosition() == null) { continue; }
                 for (Player p2 : players) {
-
+                    if (!p2.hasUDPAddress()) { continue; }
                     if (!p1.equals(p2)) {
                         ServerController.getInstance().sendUDPPacket(protocol.writePosition(p1.getName(), p1.getPosition(), p1.getRotation()), p2.getAddress(), p2.getPort());
                     }
@@ -188,7 +188,7 @@ public class Game implements Runnable {
     public synchronized Player getPlayerByAddress(InetAddress address) {
         synchronized (players) {
             for (Player p : players) {
-                if (p.getAddress() == address) {
+                if (p.getAddress().equals(address)) {
                     return p;
                 }
             }
