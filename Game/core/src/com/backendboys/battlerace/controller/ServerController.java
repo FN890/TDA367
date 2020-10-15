@@ -117,14 +117,14 @@ public class ServerController implements ITCPListener, IPacketListener {
         gameController.onConnection();
     }
 
-    public void startServer(String name) {
+    public void createGame(String name) {
         if(isConnected){
             sendMessage("create:" + name);
             sendMessage("start");
         }
     }
 
-    public void joinServer(String name, String id) {
+    public void joinGame(String name, String id) {
         if(isConnected){
             sendMessage("join:" + id + "," + name);
         }

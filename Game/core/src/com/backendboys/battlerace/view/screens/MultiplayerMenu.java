@@ -71,7 +71,7 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (!inputPlayerName.getText().isEmpty() && !inputGameId.getText().isEmpty()) {
-                    serverController.joinServer(inputPlayerName.getText(), inputGameId.getText());
+                    serverController.joinGame(inputPlayerName.getText(), inputGameId.getText());
                 }
             }
         });
@@ -80,7 +80,7 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (!inputPlayerName.getText().isEmpty()) {
-                    serverController.startServer(inputPlayerName.getText());
+                    serverController.createGame(inputPlayerName.getText());
                 }
             }
         });
