@@ -11,6 +11,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.Socket;
 
 /**
@@ -27,6 +28,7 @@ public class ClientController implements Runnable, GameListener, PacketListener 
     private IServerProtocol protocol;
 
     private Game game = null;
+    private Player player = null;
 
     /**
      * Initializes a ClientController.
@@ -95,7 +97,7 @@ public class ClientController implements Runnable, GameListener, PacketListener 
             return;
         }
 
-        Player player = new Player(name, socket.getInetAddress(), socket.getPort());
+        this.player = new Player(name);
         Game game = GamesManager.getInstance().createGame(player);
 
         game.addListener(this);
@@ -123,7 +125,7 @@ public class ClientController implements Runnable, GameListener, PacketListener 
             return;
         }
 
-        Player player = new Player(name, socket.getInetAddress(), socket.getPort());
+        this.player = new Player(name);
 
         try {
             game.addPlayer(player);
@@ -143,9 +145,10 @@ public class ClientController implements Runnable, GameListener, PacketListener 
     public void leaveGame() {
         if (game == null) return;
 
-        game.removePlayerByAddress(socket.getInetAddress());
+        game.removePlayer(player);
         game.removeListener(this);
         game = null;
+        player = null;
     }
 
     /**
@@ -169,7 +172,7 @@ public class ClientController implements Runnable, GameListener, PacketListener 
     public void updateGamePosition(float x, float y, float rotation) {
         if (game == null) return;
 
-        game.updatePositionByAddress(socket.getInetAddress(), x, y, rotation);
+        game.updatePlayerPosition(player, x, y, rotation);
     }
 
     /**
@@ -215,8 +218,12 @@ public class ClientController implements Runnable, GameListener, PacketListener 
     }
 
     @Override
-    public void gotPacket(String message) {
+    public void gotPacket(InetAddress address, int port, String message) {
         if (game == null) return;
+
+        if (!player.hasUDPAddress()) {
+            player.setUDPAddress(address, port);
+        }
 
         try {
             ICommand cmd = protocol.parseMessage(message);

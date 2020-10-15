@@ -1,5 +1,7 @@
 package services;
 
+import java.net.InetAddress;
+
 /**
  * PacketListener used for listening on UDP Packets.
  */
@@ -10,5 +12,5 @@ public interface PacketListener {
      *
      * @param message The message received.
      */
-    void gotPacket(String message);
+    void gotPacket(InetAddress address, int port, String message);
 }
