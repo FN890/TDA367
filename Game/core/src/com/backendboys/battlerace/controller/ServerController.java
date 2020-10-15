@@ -50,7 +50,7 @@ public class ServerController implements ITCPListener, IPacketListener {
     @Override
     public void gotPacket(String message) {
         ICommand command = commandConverter.toCommand(message);
-        System.out.println("Got packet! " + message);
+
         if (command.getCmd().equals("pos")) {
             try {
                 String playerName = command.getArgs()[0];
