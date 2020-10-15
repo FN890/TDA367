@@ -37,14 +37,12 @@ public class UDPClient implements Runnable {
 
         try {
             socket = new DatagramSocket(port);
-            System.out.println("UDP copnnected");
 
             while (true) {
                 DatagramPacket request = new DatagramPacket(buffer, buffer.length);
                 socket.receive(request);
 
                 String message = new String(request.getData(), 0, request.getLength());
-                System.out.println("gOT KESSAGE " + message);
                 notifyGotPacket(message);
             }
 

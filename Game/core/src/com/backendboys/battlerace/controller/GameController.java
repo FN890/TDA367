@@ -47,10 +47,8 @@ public class GameController implements InputProcessor {
     public GameController(BattleRace game, ServerController serverController) {
         gameModel = new GameModel();
         this.game = game;
-        System.out.println("Creating gamescreen...");
         IScreen gameScreen = ScreenFactory.createGameScreen(this);
         gameScreen.setServerController(serverController);
-        System.out.println("Setting Screen...");
         game.setScreen(gameScreen);
 
         keysDown = new ArrayList<>();
@@ -188,6 +186,7 @@ public class GameController implements InputProcessor {
 
     public void onConnection() {
         System.out.println("create:gustav");
-        serverController.startServer("gustav");
+        //serverController.startServer("gustav");
+        serverController.joinServer("Simon", "1401");
     }
 }
