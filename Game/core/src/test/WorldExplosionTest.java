@@ -45,13 +45,14 @@ public class WorldExplosionTest {
 
     @Test
     public void addMissileTest() {
+        Vector2 startVelocity = new Vector2(0, 0);
         int randomMissilesA = random.nextInt(100);
         int randomMissilesB = random.nextInt(100);
         for (int i = 0; i < randomMissilesA; i++) {
-            worldExplosions.addMissile(new Vector2(i, i), world, 1f);
+            worldExplosions.addMissile(new Vector2(i, i), world, 1f, startVelocity);
         }
         for (int i = 0; i < randomMissilesB; i++) {
-            worldExplosions.addMissile(new Vector2(i, i), world, 1f);
+            worldExplosions.addMissile(new Vector2(i, i), world, 1f, startVelocity);
         }
         assertTrue(worldExplosions.getMissiles().size() == randomMissilesA + randomMissilesB);
     }

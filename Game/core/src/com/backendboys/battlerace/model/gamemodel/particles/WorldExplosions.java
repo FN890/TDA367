@@ -104,8 +104,8 @@ public class WorldExplosions implements GameWorldListener {
      * @param world The world where the missile spawns
      * @param pos   the position of the missile
      */
-    public void addMissile(Vector2 pos, World world, float rotation) {
-        missiles.add(new OnImpactMissile(world, pos, rotation));
+    public void addMissile(Vector2 pos, World world, float rotation,Vector2 initialVelocity) {
+        missiles.add(new OnImpactMissile(world, pos, rotation, initialVelocity));
     }
 
     public ArrayList<IParticle> getMissiles() {
