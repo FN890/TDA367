@@ -14,7 +14,7 @@ class OnImpactMissile extends AbstractExplosive implements IParticle {
     private static final float MOVEMENT_POWER = 100;
     private static final float MISSILE_LENGTH = 10f;
     private static final float MISSILE_HEIGHT = 5f;
-    private static final float LAUNCH_OFFSET_Y = 5f;
+    private static final float LAUNCH_OFFSET_Y = 10f;
     private static final float LAUNCH_OFFSET_x = 41.5f;
     private static final int NUM_PARTICLES = 42;
 
@@ -26,15 +26,22 @@ class OnImpactMissile extends AbstractExplosive implements IParticle {
      */
     OnImpactMissile(World world, Vector2 pos, float rotation) {
         rotation = (float) (rotation + Math.PI / 2);
-        direction.x = rotation * MathUtils.sin(rotation);
-        direction.y = -rotation * MathUtils.cos(rotation);
+        direction.x = MathUtils.sin(rotation);
+        direction.y = -MathUtils.cos(rotation);
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.fixedRotation = false;
         bodyDef.bullet = false;
         bodyDef.linearDamping = 0;
         bodyDef.gravityScale = 0.5f;
-        bodyDef.position.x = pos.x + LAUNCH_OFFSET_x;
+        System.out.println(direction.x);
+        if (direction.x < 0) {
+            bodyDef.position.x = pos.x - LAUNCH_OFFSET_x;
+        }
+        else {
+            bodyDef.position.x = pos.x + LAUNCH_OFFSET_x;
+        }
+
         bodyDef.position.y = pos.y + LAUNCH_OFFSET_Y;
 
         direction.scl(MOVEMENT_POWER);
