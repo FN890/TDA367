@@ -74,7 +74,6 @@ public class Player {
     public void usePowerUp() {
         if (powerUpStack.size() > 0) {
             powerUpStack.pop().use(this);
-            System.out.println("Used powerup");
         }
     }
 
