@@ -8,10 +8,10 @@ import com.badlogic.gdx.physics.box2d.*;
  */
 public abstract class AbstractPowerUp {
 
-    private static float HEIGHT = 4f;
-    private static float WIDTH = 4f;
+    private final static float HEIGHT = 4f;
+    private final static float WIDTH = 4f;
 
-    private Body body;
+    private final Body body;
 
     /**
      * Instantiates the body of the PowerUp and puts it in the world.

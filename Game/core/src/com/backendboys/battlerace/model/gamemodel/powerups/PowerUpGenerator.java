@@ -13,11 +13,11 @@ import java.util.Random;
 
 public class PowerUpGenerator {
 
-    ArrayList<Vector2> vertices;
-    World world;
+    private final ArrayList<Vector2> vertices;
+    private final World world;
 
-    private final int STEP = 5;
-    private WorldExplosions worldExplosions;
+    private static final int STEP = 5;
+    private final WorldExplosions worldExplosions;
 
     /**
      * @param vertices List of vertices in world to measure spawnpoints of powerups.
