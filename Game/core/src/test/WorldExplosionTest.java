@@ -1,6 +1,4 @@
 import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
-import com.backendboys.battlerace.model.gamemodel.player.Player;
-import com.backendboys.battlerace.model.gamemodel.powerups.MissilePowerUp;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import org.junit.jupiter.api.Test;
@@ -10,12 +8,12 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class WorldExplosiontest {
+public class WorldExplosionTest {
     final WorldExplosions worldExplosions;
     final World world;
     final Random random;
 
-    public WorldExplosiontest() {
+    public WorldExplosionTest() {
         worldExplosions = new WorldExplosions();
         world = new World(new Vector2(0, -10), true);
         this.random = new Random();
@@ -55,7 +53,6 @@ public class WorldExplosiontest {
         for (int i = 0; i < randomMissilesB; i++) {
             worldExplosions.addMissile(new Vector2(i, i), world, 1f);
         }
-        System.out.println(randomMissilesA + randomMissilesB);
         assertTrue(worldExplosions.getMissiles().size() == randomMissilesA + randomMissilesB);
     }
 
