@@ -60,8 +60,6 @@ public class UDPServer implements Runnable {
                 socket.receive(request);
 
                 String message = new String(request.getData(), 0, request.getLength());
-                System.out.println("Packet received: " + message);
-
                 sendToListener(request.getAddress(), message);
             }
         } catch (IOException e) {
