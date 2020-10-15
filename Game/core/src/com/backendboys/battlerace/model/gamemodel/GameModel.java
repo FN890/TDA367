@@ -168,7 +168,7 @@ public class GameModel {
     }
 
     public List<Vector2> getFinishLineVertices() {
-        return finishLineGenerator.getFinishLineVerts();
+        return finishLineGenerator.getFinishLineVertices();
     }
 
 }

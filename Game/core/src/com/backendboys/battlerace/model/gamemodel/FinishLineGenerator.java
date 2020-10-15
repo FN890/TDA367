@@ -11,8 +11,8 @@ import java.util.ArrayList;
  */
 public class FinishLineGenerator {
 
-    private ArrayList<Vector2> groundVertices;
-    private ArrayList<Vector2> finishLineVerts;
+    private final ArrayList<Vector2> groundVertices;
+    private ArrayList<Vector2> finishLineVertices;
 
     /**
      * @param groundVertices List of vertices for the ground in the world.
@@ -30,7 +30,7 @@ public class FinishLineGenerator {
 
         Body body;
 
-        finishLineVerts = generateVertices();
+        finishLineVertices = generateVertices();
 
         generateVertices();
 
@@ -43,8 +43,8 @@ public class FinishLineGenerator {
 
         fixtureDef.shape = boxShape;
 
-        for (int i = 0; i < finishLineVerts.size(); i++) {
-            bodyDef.position.set(finishLineVerts.get(i));
+        for (int i = 0; i < finishLineVertices.size(); i++) {
+            bodyDef.position.set(finishLineVertices.get(i));
 
             body = world.createBody(bodyDef);
             body.createFixture(fixtureDef);
@@ -77,7 +77,7 @@ public class FinishLineGenerator {
     /**
      * @return The vertices for the finish line.
      */
-    public ArrayList<Vector2> getFinishLineVerts() {
-        return finishLineVerts;
+    public ArrayList<Vector2> getFinishLineVertices() {
+        return finishLineVertices;
     }
 }

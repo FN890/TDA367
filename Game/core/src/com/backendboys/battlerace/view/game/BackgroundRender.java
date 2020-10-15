@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class BackgroundRender extends AbstractRender<Object> {
 
-    private float rectWidth;
+    private final float rectWidth;
     private final ArrayList<Vector2> groundVertices;
     private final ShapeRenderer shapeRenderer;
 

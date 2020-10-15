@@ -12,8 +12,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  */
 public class VehicleRender extends AbstractRender<IVehicle> {
 
-    private static final int VEHCILE_WIDTH = 60;
-    private static final int VEHCILE_HEIGHT = 25;
+    private static final int VEHICLE_WIDTH = 60;
+    private static final int VEHICLE_HEIGHT = 25;
     private static final int VEHICLE_GROUND_OFFSET = 3;
     private static final int WHEEL_SIZE = 12;
 
@@ -26,7 +26,7 @@ public class VehicleRender extends AbstractRender<IVehicle> {
         super(orthographicCamera);
 
         spritePlayerVehicle = new Sprite(new Texture("newredcar.png"));
-        spritePlayerVehicle.setSize(VEHCILE_WIDTH, VEHCILE_HEIGHT);
+        spritePlayerVehicle.setSize(VEHICLE_WIDTH, VEHICLE_HEIGHT);
         spritePlayerVehicle.setOriginCenter();
 
         spriteVehicleFrontWheel = new Sprite(new Texture("wheel.png"));
@@ -43,7 +43,7 @@ public class VehicleRender extends AbstractRender<IVehicle> {
         batch.begin();
         if (object instanceof ICar) {
             ICar car = (ICar) object;
-            spritePlayerVehicle.setPosition(car.getPosition().x - VEHCILE_WIDTH / 2f, car.getPosition().y - VEHCILE_HEIGHT / 2f);
+            spritePlayerVehicle.setPosition(car.getPosition().x - VEHICLE_WIDTH / 2f, car.getPosition().y - VEHICLE_HEIGHT / 2f);
             spritePlayerVehicle.setRotation((float) Math.toDegrees(car.getRotation()));
 
             spriteVehicleFrontWheel.setPosition(car.getFrontWheelPosition().x - 6f, car.getFrontWheelPosition().y - 5.5f);

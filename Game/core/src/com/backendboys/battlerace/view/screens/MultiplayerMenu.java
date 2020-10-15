@@ -16,7 +16,7 @@ import com.badlogic.gdx.utils.Align;
  */
 class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
 
-    private ServerController serverController;
+    private final ServerController serverController;
 
     private final SpriteBatch batch;
     private Stage stage;

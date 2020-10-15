@@ -5,7 +5,7 @@ import com.badlogic.gdx.physics.box2d.World;
 /**
  * SportsCar is a specific implementation of a AbstractCar.
  */
-public class SportsCar extends AbstractCar {
+class SportsCar extends AbstractCar {
 
     /**
      * @param world the gameWorld, used for creating the physics body of vehicle and adding it to the world.

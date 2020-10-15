@@ -10,7 +10,7 @@ import com.badlogic.gdx.physics.box2d.*;
  */
 class CollisionListener implements ContactListener {
 
-    private GameModel model;
+    private final GameModel model;
 
     CollisionListener(GameModel model) {
         this.model = model;
@@ -29,7 +29,7 @@ class CollisionListener implements ContactListener {
         Fixture fixtureB = contact.getFixtureB();
 
         checkExplosivesContact(fixtureA, fixtureB);
-        checkPowerUpsConctact(fixtureA, fixtureB);
+        checkPowerUpsContact(fixtureA, fixtureB);
     }
 
 
@@ -61,7 +61,7 @@ class CollisionListener implements ContactListener {
         }
     }
 
-    private void checkPowerUpsConctact(Fixture fixtureA, Fixture fixtureB) {
+    private void checkPowerUpsContact(Fixture fixtureA, Fixture fixtureB) {
         if (fixtureA.getUserData() instanceof AbstractPowerUp && fixtureB.getUserData() instanceof IVehicle) {
             AbstractPowerUp abstractPowerUp = (AbstractPowerUp) fixtureA.getUserData();
             System.out.println(abstractPowerUp.toString());

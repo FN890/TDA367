@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.*;
  * A Missile that explodes on impact created in WorldExplosions
  */
 class OnImpactMissile extends AbstractExplosive implements IParticle {
+
     private final Body body;
     private static final Vector2 direction = new Vector2(10, 4);
     private static final float MOVEMENT_POWER = 100;

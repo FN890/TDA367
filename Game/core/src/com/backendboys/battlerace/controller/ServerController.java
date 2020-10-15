@@ -14,13 +14,13 @@ public class ServerController implements ITCPListener, IPacketListener {
     private final static String HOSTNAME = "167.172.34.88";
     private final static int PORT = 26000;
 
-    private TCPClient tcpClient;
-    private UDPClient udpClient;
+    private final TCPClient tcpClient;
+    private final UDPClient udpClient;
 
     private final BattleRace game;
 
-    private GameController gameController;
-    private CommandConverter commandConverter;
+    private final GameController gameController;
+    private final CommandConverter commandConverter;
 
     private boolean isConnected = false;
 
