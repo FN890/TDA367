@@ -33,8 +33,8 @@ public class GameModel {
      */
     public GameModel() {
         this.gameWorld = new GameWorld(GroundStrategyFactory.getSinCosStrategy(5000, 60, 5), 1);
-        generateObjects();
         worldExplosions = new WorldExplosions();
+        generateObjects();
         gameWorld.addListener(worldExplosions);
         Vector2 startPosition = gameWorld.getGroundVertices().get(50);
         player = new Player("gustav");

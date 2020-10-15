@@ -25,6 +25,8 @@ public class GameController implements InputProcessor {
 
     private final List<Integer> keysDown;
 
+    private boolean usedPowerUp = false;
+
     ServerController serverController;
 
     /**
@@ -93,7 +95,10 @@ public class GameController implements InputProcessor {
                     toggleMenu();
                     break;
                 case Input.Keys.SPACE:
-                    gameModel.shootMissile();
+                    if (!usedPowerUp) {
+                        usedPowerUp = true;
+                        gameModel.usePowerUp();
+                    }
                 default:
                     break;
             }
@@ -112,6 +117,10 @@ public class GameController implements InputProcessor {
 
     @Override
     public boolean keyUp(int keycode) {
+        switch (keycode) {
+            case Input.Keys.SPACE:
+                usedPowerUp = false;
+        }
         keysDown.removeAll(Arrays.asList(keycode));
         return true;
     }
