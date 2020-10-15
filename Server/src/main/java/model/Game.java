@@ -157,6 +157,7 @@ public class Game implements Runnable {
 
     /**
      * Sends position packet of every player in game, to every player in game.
+     * Only sending if the player has gotten a position.
      * Only sending if the started flag is set to true.
      */
     private void sendPositionPackets() {
@@ -165,6 +166,7 @@ public class Game implements Runnable {
 
         synchronized (players) {
             for (Player p1 : players) {
+                if (p1.getPosition() == null) { continue; }
                 for (Player p2 : players) {
 
                     if (!p1.equals(p2)) {
