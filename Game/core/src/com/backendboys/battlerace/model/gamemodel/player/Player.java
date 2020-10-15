@@ -123,4 +123,8 @@ public class Player {
     public World getWorld() {
         return vehicle.getWorld();
     }
+
+    public Vector2 getLinearVelocity() {
+        return vehicle.getLinearVelocity();
+    }
 }

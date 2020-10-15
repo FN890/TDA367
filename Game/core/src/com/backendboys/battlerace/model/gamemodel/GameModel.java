@@ -155,7 +155,7 @@ public class GameModel {
      * Temp function for testing missiles
      */
     public void shootMissile() {
-        worldExplosions.addMissile(player.getPosition(), gameWorld.getWorld(), player.getRotation());
+        worldExplosions.addMissile(player.getPosition(), gameWorld.getWorld(), player.getRotation(), player.getLinearVelocity());
     }
 
     /**

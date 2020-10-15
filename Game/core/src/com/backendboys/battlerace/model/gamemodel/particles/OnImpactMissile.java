@@ -14,7 +14,7 @@ class OnImpactMissile extends AbstractExplosive implements IParticle {
     private static final float MOVEMENT_POWER = 100;
     private static final float MISSILE_LENGTH = 10f;
     private static final float MISSILE_HEIGHT = 5f;
-    private static final float LAUNCH_OFFSET_Y = 5f;
+    private static final float LAUNCH_OFFSET_Y = 10f;
     private static final float LAUNCH_OFFSET_x = 41.5f;
     private static final int NUM_PARTICLES = 42;
 
@@ -24,22 +24,27 @@ class OnImpactMissile extends AbstractExplosive implements IParticle {
      * @param world the world where it spawns
      * @param pos   spawn point of the missile
      */
-    OnImpactMissile(World world, Vector2 pos, float rotation) {
+    OnImpactMissile(World world, Vector2 pos, float rotation, Vector2 initialVelocity) {
         rotation = (float) (rotation + Math.PI / 2);
-        direction.x = rotation * MathUtils.sin(rotation);
-        direction.y = -rotation * MathUtils.cos(rotation);
+        direction.x = MathUtils.sin(rotation);
+        direction.y = -MathUtils.cos(rotation);
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.fixedRotation = false;
         bodyDef.bullet = false;
         bodyDef.linearDamping = 0;
         bodyDef.gravityScale = 0.5f;
-        bodyDef.position.x = pos.x + LAUNCH_OFFSET_x;
+
+        if (direction.x < 0) {
+            bodyDef.position.x = pos.x - LAUNCH_OFFSET_x;
+        } else {
+            bodyDef.position.x = pos.x + LAUNCH_OFFSET_x;
+        }
         bodyDef.position.y = pos.y + LAUNCH_OFFSET_Y;
 
         direction.scl(MOVEMENT_POWER);
-        bodyDef.linearVelocity.x = direction.x;
-        bodyDef.linearVelocity.y = direction.y;
+        bodyDef.linearVelocity.x = direction.x + initialVelocity.x;
+        bodyDef.linearVelocity.y = direction.y + initialVelocity.y;
         body = world.createBody(bodyDef);
         body.setTransform(body.getPosition(), rotation - (MathUtils.PI / 2));
 

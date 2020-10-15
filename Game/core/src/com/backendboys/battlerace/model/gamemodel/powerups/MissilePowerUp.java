@@ -2,6 +2,7 @@ package com.backendboys.battlerace.model.gamemodel.powerups;
 
 import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
 import com.backendboys.battlerace.model.gamemodel.player.Player;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 
 /**
@@ -18,7 +19,7 @@ public class MissilePowerUp extends AbstractPowerUp {
 
     @Override
     public void use(Player player) {
-        worldExplosions.addMissile(player.getPosition(), player.getWorld(), player.getRotation());
+        worldExplosions.addMissile(player.getPosition(), player.getWorld(), player.getRotation(), player.getLinearVelocity());
         System.out.println("Used " + this.toString());
     }
 

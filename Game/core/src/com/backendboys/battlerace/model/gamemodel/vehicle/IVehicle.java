@@ -25,4 +25,6 @@ public interface IVehicle {
     float getAcceleration();
 
     World getWorld();
+
+    Vector2 getLinearVelocity();
 }

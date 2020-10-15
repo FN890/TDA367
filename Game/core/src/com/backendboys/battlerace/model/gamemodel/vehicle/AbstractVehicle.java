@@ -151,4 +151,9 @@ abstract class AbstractVehicle implements IVehicle {
     public World getWorld() {
         return body.getWorld();
     }
+
+    @Override
+    public Vector2 getLinearVelocity() {
+        return body.getLinearVelocity();
+    }
 }
