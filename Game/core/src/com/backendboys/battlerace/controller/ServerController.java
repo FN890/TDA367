@@ -40,7 +40,7 @@ public class ServerController implements ITCPListener, IPacketListener {
     }
 
     public void sendPositionPacket(Player player) {
-        ICommand command = CommandFactory.createCommand("pos", player.getName(),
+        ICommand command = CommandFactory.createCommand("pos",
                 String.valueOf(player.getPosition().x),
                 String.valueOf(player.getPosition().y), String.valueOf(player.getRotation()));
 
@@ -114,13 +114,13 @@ public class ServerController implements ITCPListener, IPacketListener {
     @Override
     public void onConnection() {
         isConnected = true;
-        System.out.println("onConnection serverC");
         gameController.onConnection();
     }
 
     public void startServer(String name) {
         if(isConnected){
             sendMessage("create:" + name);
+            sendMessage("start");
         }
     }
 

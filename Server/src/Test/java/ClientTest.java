@@ -49,10 +49,10 @@ public class ClientTest {
 
         String response = client1.sendMessage("create:Gustav");
 
-        Assertions.assertEquals("response:1401,true,gustav", response);
+        Assertions.assertEquals("response:1401,false,gustav", response);
 
         response = client1.sendMessage("get:game");
-        Assertions.assertEquals("response:1401,true,gustav", response);
+        Assertions.assertEquals("response:1401,false,gustav", response);
     }
 
     @Test
@@ -62,7 +62,7 @@ public class ClientTest {
         String response1 = client2.sendMessage("create:Client2");
 
         String response2 = client3.sendMessage("join:1402,Client3");
-        Assertions.assertEquals("response:1402,true,client2,client3", response2);
+        Assertions.assertEquals("response:1402,false,client2,client3", response2);
     }
 
     @Test
@@ -72,7 +72,7 @@ public class ClientTest {
         client3.sendMessage("leave");
 
         String response = client2.sendMessage("get:game");
-        Assertions.assertEquals("response:1402,true,client2", response);
+        Assertions.assertEquals("response:1402,false,client2", response);
 
         client2.sendMessage("leave");
         String error = client2.sendMessage("join:1402,client2");
@@ -93,6 +93,18 @@ public class ClientTest {
 
     @Test
     @Order(6)
+    public void TestStartGame() {
+        String response1 = client2.sendMessage("get:game");
+        Assertions.assertEquals("response:1403,false,client2", response1);
+
+        client2.sendMessage("start");
+
+        String response2 = client2.sendMessage("get:game");
+        Assertions.assertEquals("response:1403,true,client2", response2);
+    }
+
+    @Test
+    @Order(7)
     public void TestPositionUpdates() throws InterruptedException {
 
         client1.sendMessage("leave");
@@ -106,7 +118,7 @@ public class ClientTest {
     }
 
     @Test
-    @Order(7)
+    @Order(8)
     public void TestDisconnection() throws InterruptedException {
 
         client2.disconnect();

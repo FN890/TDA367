@@ -139,7 +139,6 @@ public class Game implements Runnable {
         long sleepTime = 1000 / UPDATE_RATE;
 
         while (!gameEnded) {
-            if (!started) continue;
 
             taskTime = System.currentTimeMillis();
             sendPositionPackets();
@@ -158,8 +157,10 @@ public class Game implements Runnable {
 
     /**
      * Sends position packet of every player in game, to every player in game.
+     * Only sending if the started flag is set to true.
      */
     private void sendPositionPackets() {
+        if (!started) { ;return; }
         IServerProtocol protocol = ServerProtocolFactory.getServerProtocol();
 
         synchronized (players) {

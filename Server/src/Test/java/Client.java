@@ -36,7 +36,7 @@ public class Client implements Runnable {
             while ((message = reader.readLine()) != null) {
 
                 // Skips sending the response on "updates".
-                if (!message.equalsIgnoreCase("connected") && !message.startsWith("Player")) {
+                if (!message.equalsIgnoreCase("connected") && !message.startsWith("game:")) {
                     response = message;
                 }
             }
@@ -48,12 +48,14 @@ public class Client implements Runnable {
 
     private String response = "";
 
-    public String sendMessage(String message) {
+    public synchronized String sendMessage(String message) {
+        response = "";
         System.out.println("Sending message...");
         writer.println(message);
 
         // Skips waiting on commands that does not return a response.
-        if (message.startsWith("pos:")) {
+        if (message.startsWith("pos:") || message.equalsIgnoreCase("start")
+                || message.equalsIgnoreCase("leave")) {
             return null;
         }
 
@@ -61,9 +63,7 @@ public class Client implements Runnable {
         while (response.isEmpty()) {
         }
 
-        String r = response;
-        response = "";
-        return r;
+        return response;
     }
 
     public void disconnect() {
