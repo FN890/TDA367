@@ -60,7 +60,7 @@ public class UDPServer implements Runnable {
                 socket.receive(request);
 
                 String message = new String(request.getData(), 0, request.getLength());
-                sendToListener(request.getAddress(), message);
+                sendToListener(request.getAddress(), request.getPort(), message);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -73,10 +73,10 @@ public class UDPServer implements Runnable {
      * @param address The address associated with a PacketListener.
      * @param message The message.
      */
-    private void sendToListener(InetAddress address, String message) {
+    private void sendToListener(InetAddress address, int port, String message) {
         synchronized (listeners) {
             if (listeners.containsKey(address)) {
-                listeners.get(address).gotPacket(message);
+                listeners.get(address).gotPacket(address, port, message);
             }
         }
     }
