@@ -35,7 +35,7 @@ class OnImpactMissile extends AbstractExplosive implements IParticle {
         bodyDef.gravityScale = 0.5f;
         bodyDef.position.x = pos.x + LAUNCH_OFFSET_x;
         bodyDef.position.y = pos.y + LAUNCH_OFFSET_Y;
-        System.out.println(rotation);
+
         direction.scl(MOVEMENT_POWER);
         bodyDef.linearVelocity.x = direction.x;
         bodyDef.linearVelocity.y = direction.y;
