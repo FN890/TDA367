@@ -9,7 +9,7 @@ import java.util.Random;
 /**
  * Strategy: Sin * Cos * aTan.
  */
-public class SinCosATanStrategy extends AbstractGroundStrategy {
+class SinCosATanStrategy extends AbstractGroundStrategy {
 
     SinCosATanStrategy(int numberVertices, int minHeight, double step) {
         super(numberVertices, minHeight, step);

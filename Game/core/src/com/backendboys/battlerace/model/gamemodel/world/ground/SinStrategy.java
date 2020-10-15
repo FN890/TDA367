@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Strategy: Sin.
  */
-public class SinStrategy extends AbstractGroundStrategy {
+class SinStrategy extends AbstractGroundStrategy {
 
     SinStrategy(int numberVertices, int minHeight, double step) {
         super(numberVertices, minHeight, step);
