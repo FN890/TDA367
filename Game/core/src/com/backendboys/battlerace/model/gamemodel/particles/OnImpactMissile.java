@@ -24,7 +24,7 @@ class OnImpactMissile extends AbstractExplosive implements IParticle {
      * @param world the world where it spawns
      * @param pos   spawn point of the missile
      */
-    OnImpactMissile(World world, Vector2 pos, float rotation,Vector2 initialVelocity) {
+    OnImpactMissile(World world, Vector2 pos, float rotation, Vector2 initialVelocity) {
         rotation = (float) (rotation + Math.PI / 2);
         direction.x = MathUtils.sin(rotation);
         direction.y = -MathUtils.cos(rotation);
@@ -34,14 +34,12 @@ class OnImpactMissile extends AbstractExplosive implements IParticle {
         bodyDef.bullet = false;
         bodyDef.linearDamping = 0;
         bodyDef.gravityScale = 0.5f;
-        System.out.println(direction.x);
+
         if (direction.x < 0) {
             bodyDef.position.x = pos.x - LAUNCH_OFFSET_x;
-        }
-        else {
+        } else {
             bodyDef.position.x = pos.x + LAUNCH_OFFSET_x;
         }
-
         bodyDef.position.y = pos.y + LAUNCH_OFFSET_Y;
 
         direction.scl(MOVEMENT_POWER);
