@@ -61,7 +61,7 @@ public class UDPClient implements Runnable {
     }
 
     public int getListeningPort() {
-        return socket.getPort();
+        return socket.getLocalPort();
     }
 
     private void notifyGotPacket(String msg) {

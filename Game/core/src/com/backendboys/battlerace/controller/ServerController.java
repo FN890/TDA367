@@ -116,6 +116,7 @@ public class ServerController implements ITCPListener, IPacketListener {
 
     @Override
     public void onConnection() {
+        System.out.println("Sending port: " + udpClient.getListeningPort());
         sendMessage("port:" + udpClient.getListeningPort());
         isConnected = true;
         gameController.onConnection();
