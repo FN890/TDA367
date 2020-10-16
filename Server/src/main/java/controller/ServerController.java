@@ -8,6 +8,7 @@ import services.UDPServer;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.*;
 
 /**
  * ServerController controls UDP and TCP servers.
@@ -21,7 +22,11 @@ public class ServerController implements TCPListener {
     private TCPServer tcpServer;
     private UDPServer udpServer;
 
+    private final Map<InetAddress, ClientController> connections;
+
     private ServerController() {
+        connections = Collections.synchronizedMap(new HashMap<>());
+
         try {
             udpServer = new UDPServer(PORT);
             new Thread(udpServer).start();
@@ -38,7 +43,26 @@ public class ServerController implements TCPListener {
 
     @Override
     public void gotConnection(Socket client) {
-        new Thread(new ClientController(client)).start();
+        synchronized (connections) {
+            for (InetAddress a : connections.keySet()) {
+                if (a.equals(client.getInetAddress())) {
+                    connections.remove(a);
+                }
+            }
+            ClientController newConnection = new ClientController(this, client);
+            connections.put(client.getInetAddress(), newConnection);
+            new Thread(newConnection).start();
+        }
+    }
+
+    /**
+     * Removes a connection from the list of connections.
+     * @param address The address to remove.
+     */
+    public void removeConnection(InetAddress address) {
+        synchronized (connections) {
+            connections.remove(address);
+        }
     }
 
     /**

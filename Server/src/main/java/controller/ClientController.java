@@ -20,6 +20,7 @@ import java.net.Socket;
  */
 public class ClientController implements Runnable, GameListener, PacketListener {
 
+    private final ServerController serverController;
     private final Socket socket;
 
     private BufferedReader reader;
@@ -35,7 +36,8 @@ public class ClientController implements Runnable, GameListener, PacketListener 
      *
      * @param socket The socket which the client is connected to.
      */
-    public ClientController(Socket socket) {
+    public ClientController(ServerController serverController, Socket socket) {
+        this.serverController = serverController;
         this.socket = socket;
     }
 
@@ -186,11 +188,12 @@ public class ClientController implements Runnable, GameListener, PacketListener 
      * Disconnects the client, and performs all safety procedures to
      * properly end this clients life on the TCPServer.
      */
-    private void disconnect() {
+    public void disconnect() {
         try {
             System.out.println("Client disconnected from server: " + socket.getInetAddress().getHostAddress());
             ServerController.getInstance().removePacketListener(socket.getInetAddress());
             leaveGame();
+            serverController.removeConnection(socket.getInetAddress());
             socket.close();
         } catch (Exception ignored) {
         }
