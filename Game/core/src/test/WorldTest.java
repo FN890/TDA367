@@ -2,7 +2,7 @@ import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
 import com.backendboys.battlerace.model.gamemodel.world.ground.GroundStrategyFactory;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WorldTest {
 

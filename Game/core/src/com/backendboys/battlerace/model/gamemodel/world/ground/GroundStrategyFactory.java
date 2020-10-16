@@ -5,13 +5,13 @@ package com.backendboys.battlerace.model.gamemodel.world.ground;
  */
 public class GroundStrategyFactory {
 
-    private GroundStrategyFactory(){}
+    private GroundStrategyFactory() {
+    }
 
     /**
-     *
      * @param numberVertices The amount of vertices the ground should be based on.
-     * @param minHeight Minimum value on y-axis.
-     * @param step The difference between each vertex on the x-axis.
+     * @param minHeight      Minimum value on y-axis.
+     * @param step           The difference between each vertex on the x-axis.
      * @return
      */
     public static IGroundStrategy getSinStrategy(int numberVertices, int minHeight, double step) {
@@ -19,10 +19,9 @@ public class GroundStrategyFactory {
     }
 
     /**
-     *
      * @param numberVertices The amount of vertices the ground should be based on.
-     * @param minHeight Minimum value on y-axis.
-     * @param step The difference between each vertex on the x-axis.
+     * @param minHeight      Minimum value on y-axis.
+     * @param step           The difference between each vertex on the x-axis.
      * @return
      */
     public static IGroundStrategy getSinCosStrategy(int numberVertices, int minHeight, double step) {
