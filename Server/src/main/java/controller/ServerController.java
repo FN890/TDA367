@@ -1,5 +1,6 @@
 package controller;
 
+import data.Address;
 import services.PacketListener;
 import services.TCPListener;
 import services.TCPServer;
@@ -22,7 +23,7 @@ public class ServerController implements TCPListener {
     private TCPServer tcpServer;
     private UDPServer udpServer;
 
-    private final Map<InetAddress, ClientController> connections;
+    private final Map<Socket, ClientController> connections;
 
     private ServerController() {
         connections = Collections.synchronizedMap(new HashMap<>());
@@ -44,24 +45,26 @@ public class ServerController implements TCPListener {
     @Override
     public void gotConnection(Socket client) {
         synchronized (connections) {
-            for (InetAddress a : connections.keySet()) {
-                if (a.equals(client.getInetAddress())) {
-                    connections.remove(a);
+            for (Socket s : connections.keySet()) {
+                if (s.equals(client)) {
+                    System.out.println("Removing connection...");
+                    connections.get(s).disconnect();
                 }
             }
-            ClientController newConnection = new ClientController(this, client);
-            connections.put(client.getInetAddress(), newConnection);
+            System.out.println("Creating new client...");
+            ClientController newConnection = new ClientController(client);
+            connections.put(client, newConnection);
             new Thread(newConnection).start();
         }
     }
 
     /**
      * Removes a connection from the list of connections.
-     * @param address The address to remove.
+     * @param client The socket to remove.
      */
-    public void removeConnection(InetAddress address) {
+    public void removeConnection(Socket client) {
         synchronized (connections) {
-            connections.remove(address);
+            connections.remove(client);
         }
     }
 
@@ -69,19 +72,19 @@ public class ServerController implements TCPListener {
      * Adds a PacketListener to the running UDPServer.
      * Used for listening to incoming packets from specific clients.
      *
-     * @param address  Client InetAddress.
+     * @param address  Client Address.
      * @param listener The PacketListener.
      */
-    public synchronized void addPacketListener(InetAddress address, PacketListener listener) {
+    public synchronized void addPacketListener(Address address, PacketListener listener) {
         udpServer.addListener(address, listener);
     }
 
     /**
      * Removes a PacketListener from the running UDPServer.
      *
-     * @param address The client InetAddress to remove.
+     * @param address The client Address to remove.
      */
-    public synchronized void removePacketListener(InetAddress address) {
+    public synchronized void removePacketListener(Address address) {
         udpServer.removeListener(address);
     }
 

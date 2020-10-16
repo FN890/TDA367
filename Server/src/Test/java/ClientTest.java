@@ -107,6 +107,7 @@ public class ClientTest {
         client1.sendMessage("leave");
 
         client3.sendMessage("join:1403,Client3");
+        client3.sendMessage("port:25000");
 
         udpClient.sendPacket("pos:100.0,20.0,35.5");
         Thread.sleep(2000);

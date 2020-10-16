@@ -1,10 +1,9 @@
 package services;
 
+import data.Address;
+
 import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.SocketException;
+import java.net.*;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,25 +15,25 @@ public class UDPServer implements Runnable {
 
     private final DatagramSocket socket;
 
-    private final Map<InetAddress, PacketListener> listeners = Collections.synchronizedMap(new HashMap<>());
+    private final Map<Address, PacketListener> listeners = Collections.synchronizedMap(new HashMap<>());
 
     /**
      * Adds a PacketListener class associated with a client InetAddress
      * for listening on incoming packets from this address.
      *
-     * @param address  The address on which will be associated with the PacketListener.
+     * @param address  The Address on which will be associated with the PacketListener.
      * @param listener The PacketListener class.
      */
-    public void addListener(InetAddress address, PacketListener listener) {
+    public void addListener(Address address, PacketListener listener) {
         listeners.put(address, listener);
     }
 
     /**
      * Removes a PacketListener with the InetAddress.
      *
-     * @param address The InetAddress.
+     * @param address The Address.
      */
-    public void removeListener(InetAddress address) {
+    public void removeListener(Address address) {
         listeners.remove(address);
     }
 
@@ -72,9 +71,12 @@ public class UDPServer implements Runnable {
      * @param message The message.
      */
     private void sendToListener(InetAddress address, int port, String message) {
+        Address addr = new Address(address, port);
         synchronized (listeners) {
-            if (listeners.containsKey(address)) {
-                listeners.get(address).gotPacket(address, port, message);
+            for (Address a : listeners.keySet()) {
+                if (a.equals(addr)) {
+                    listeners.get(a).gotPacket(address, port, message);
+                }
             }
         }
     }
@@ -89,7 +91,9 @@ public class UDPServer implements Runnable {
      */
     public void sendPacket(String message, InetAddress address, int port) throws IOException {
         byte[] byteMsg = message.getBytes();
-
+        System.out.println("Sending packet to: " + address);
+        System.out.println("Port: " + port);
+        System.out.println("Message: " + message);
         DatagramPacket packet = new DatagramPacket(byteMsg, 0, byteMsg.length, address, port);
         socket.send(packet);
     }

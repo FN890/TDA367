@@ -1,5 +1,6 @@
 package model;
 
+import data.Address;
 import data.Vector2;
 
 import java.net.InetAddress;
@@ -10,12 +11,10 @@ import java.net.InetAddress;
 public class Player {
 
     private String name;
-
-    private InetAddress UDPAddress;
-    private int UDPPort;
-
     private Vector2 position = null;
     private float rotation;
+
+    private Address UDPAddress = null;
 
     /**
      * Initializes a Player.
@@ -27,8 +26,7 @@ public class Player {
     }
 
     public void setUDPAddress(InetAddress address, int port) {
-        this.UDPAddress = address;
-        this.UDPPort = port;
+        UDPAddress = new Address(address, port);
     }
 
     public boolean hasUDPAddress() {
@@ -47,12 +45,8 @@ public class Player {
         return name;
     }
 
-    public InetAddress getAddress() {
+    public Address getAddress() {
         return UDPAddress;
-    }
-
-    public int getPort() {
-        return UDPPort;
     }
 
     public Vector2 getPosition() {
