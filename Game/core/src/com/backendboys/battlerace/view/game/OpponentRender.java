@@ -1,10 +1,14 @@
 package com.backendboys.battlerace.view.game;
 
 import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
 import java.util.List;
 
@@ -14,12 +18,18 @@ public class OpponentRender extends AbstractRender<List<OpponentPlayer>> {
     private static final int VEHCILE_HEIGHT = 25;
 
     private final Sprite spritePlayerVehicle;
+    private final Label lblPlayerName;
 
     public OpponentRender(OrthographicCamera orthographicCamera) {
         super(orthographicCamera);
         spritePlayerVehicle = new Sprite(new Texture("BlueCar.png"));
         spritePlayerVehicle.setSize(VEHCILE_WIDTH, VEHCILE_HEIGHT);
         spritePlayerVehicle.setOriginCenter();
+
+        Skin uiSkin = new Skin(Gdx.files.internal("uiskin.json"));
+
+        lblPlayerName = new Label("Opponent", uiSkin);
+        lblPlayerName.setFontScale(1.5f);
     }
 
     @Override
@@ -27,6 +37,7 @@ public class OpponentRender extends AbstractRender<List<OpponentPlayer>> {
         batch.begin();
         for (OpponentPlayer o : object) {
             renderOpponent(batch, o);
+            renderOpponentName(batch, o);
         }
         batch.end();
     }
@@ -36,6 +47,13 @@ public class OpponentRender extends AbstractRender<List<OpponentPlayer>> {
         spritePlayerVehicle.setRotation((float) Math.toDegrees(opponent.getPlayerRotation()));
 
         spritePlayerVehicle.draw(batch);
+    }
+
+    private void renderOpponentName(SpriteBatch batch, OpponentPlayer opponent){
+        lblPlayerName.setText(opponent.getPlayerName());
+        lblPlayerName.setPosition(opponent.getPlayerPosition().x - VEHCILE_WIDTH / 2f, opponent.getPlayerPosition().y - VEHCILE_HEIGHT);
+
+        lblPlayerName.draw(batch, 1);
     }
 
 
