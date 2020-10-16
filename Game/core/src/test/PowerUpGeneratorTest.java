@@ -7,7 +7,6 @@ public class PowerUpGeneratorTest {
 
     private GameModel gameModel;
 
-
     @Test
     public void testNumberofPowerups() {
         gameModel = new GameModel();
