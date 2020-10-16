@@ -47,7 +47,7 @@ public class FinishLineGenerator {
             bodyDef.position.set(finishLineVertices.get(i));
 
             body = world.createBody(bodyDef);
-            body.createFixture(fixtureDef);
+            body.createFixture(fixtureDef).setUserData(this);
 
             body.getFixtureList().get(0).setSensor(true);
         }

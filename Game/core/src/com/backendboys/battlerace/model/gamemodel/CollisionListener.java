@@ -30,6 +30,7 @@ class CollisionListener implements ContactListener {
 
         checkExplosivesContact(fixtureA, fixtureB);
         checkPowerUpsContact(fixtureA, fixtureB);
+        checkFinishLineContact(fixtureA, fixtureB);
     }
 
 
@@ -67,6 +68,12 @@ class CollisionListener implements ContactListener {
             System.out.println(abstractPowerUp.toString());
             model.getPlayer().addPowerUp(abstractPowerUp);
             model.removePowerUp(abstractPowerUp);
+        }
+    }
+
+    private void checkFinishLineContact(Fixture fixtureA, Fixture fixtureB) {
+        if (fixtureA.getUserData() instanceof FinishLineGenerator && fixtureB.getUserData() instanceof IVehicle) {
+            System.out.println("LOL");
         }
     }
 
