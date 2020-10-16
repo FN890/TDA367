@@ -185,6 +185,6 @@ public class GameController implements InputProcessor {
     public void onConnection() {
         System.out.println("create:gustav");
         //serverController.startServer("gustav");
-        serverController.createGame("Xerxz");
+        serverController.joinGame("gustav", "1401");
     }
 }

@@ -24,7 +24,7 @@ public class ClientController implements Runnable, GameListener, PacketListener 
 
     private BufferedReader reader;
     private PrintWriter writer;
-    private CommandHandler cmdHandler;
+    private CommandManager cmdManager;
     private IServerProtocol protocol;
 
     private Game game = null;
@@ -46,7 +46,7 @@ public class ClientController implements Runnable, GameListener, PacketListener 
             this.reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.writer = new PrintWriter(socket.getOutputStream(), true);
             this.protocol = ServerProtocolFactory.getServerProtocol();
-            this.cmdHandler = new CommandHandler(this);
+            this.cmdManager = new CommandManager(this);
 
             ServerController.getInstance().addPacketListener(socket.getInetAddress(), this);
 
@@ -59,7 +59,7 @@ public class ClientController implements Runnable, GameListener, PacketListener 
                 try {
                     // Parse into command
                     ICommand cmd = protocol.parseMessage(input);
-                    cmdHandler.handleCommand(cmd);
+                    cmdManager.handleCommand(cmd);
 
                 } catch (ProtocolException e) {
                     sendTCP(protocol.writeError(e.getMessage()));
@@ -227,7 +227,7 @@ public class ClientController implements Runnable, GameListener, PacketListener 
 
         try {
             ICommand cmd = protocol.parseMessage(message);
-            cmdHandler.handleCommand(cmd);
+            cmdManager.handleCommand(cmd);
         } catch (ProtocolException ignored) {
         }
 
