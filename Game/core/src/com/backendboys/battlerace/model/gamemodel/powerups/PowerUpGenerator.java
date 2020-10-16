@@ -37,9 +37,9 @@ public class PowerUpGenerator {
      * @return Returns a list of all powerups in world, needed for collision checking.
      */
 
-    public ArrayList<AbstractPowerUp> generatePowerups(int numberPowerups) {
+    public ArrayList<IPowerUp> generatePowerups(int numberPowerups) {
 
-        ArrayList<AbstractPowerUp> powerUps = new ArrayList<>();
+        ArrayList<IPowerUp> powerUps = new ArrayList<>();
 
         final int space = vertices.size() / numberPowerups;
         int positionX = space * 2;

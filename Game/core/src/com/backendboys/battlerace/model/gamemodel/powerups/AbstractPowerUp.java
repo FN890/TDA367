@@ -1,17 +1,22 @@
 package com.backendboys.battlerace.model.gamemodel.powerups;
 
 import com.backendboys.battlerace.model.gamemodel.player.Player;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+
+import java.util.Stack;
 
 /**
  * Abstract class that has properties of the powerups.
  */
-public abstract class AbstractPowerUp {
+public abstract class AbstractPowerUp implements IPowerUp{
 
     private final static float HEIGHT = 4f;
     private final static float WIDTH = 4f;
 
     private final Body body;
+
+    private final Stack<Body> bodiesToRemove;
 
     /**
      * Instantiates the body of the PowerUp and puts it in the world.
@@ -22,6 +27,7 @@ public abstract class AbstractPowerUp {
      */
     public AbstractPowerUp(World world, float spawnPosX, float spawnPosY) {
         body = instantiateBody(world, spawnPosX, spawnPosY);
+        bodiesToRemove = new Stack<>();
     }
 
     private Body instantiateBody(World world, float spawnPosX, float spawnPosY) {
@@ -56,6 +62,20 @@ public abstract class AbstractPowerUp {
      */
     public abstract void use(Player player);
 
+    @Override
+    public void remove() {
+        bodiesToRemove.add(body);
+    }
+
+    @Override
+    public void onGameWorldStepped() {
+        World world = body.getWorld();
+
+        while (bodiesToRemove.size() > 0) {
+            world.destroyBody(bodiesToRemove.pop());
+        }
+    }
+
     /**
      * Returns name of PowerUp, used for testing purposes.
      *
@@ -71,5 +91,9 @@ public abstract class AbstractPowerUp {
      */
     public Body getBody() {
         return body;
+    }
+
+    public Vector2 getPosition() {
+        return body.getPosition();
     }
 }

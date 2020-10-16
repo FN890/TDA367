@@ -1,6 +1,6 @@
 package com.backendboys.battlerace.model.gamemodel.player;
 
-import com.backendboys.battlerace.model.gamemodel.powerups.AbstractPowerUp;
+import com.backendboys.battlerace.model.gamemodel.powerups.IPowerUp;
 import com.backendboys.battlerace.model.gamemodel.vehicle.IVehicle;
 import com.backendboys.battlerace.model.gamemodel.vehicle.VehicleFactory;
 import com.badlogic.gdx.math.Vector2;
@@ -18,7 +18,7 @@ public class Player {
 
     private final UUID playerId;
     private final String name;
-    private final Stack<AbstractPowerUp> powerUpStack = new Stack<>();
+    private final Stack<IPowerUp> powerUpStack = new Stack<>();
 
     private IVehicle vehicle;
 
@@ -54,16 +54,16 @@ public class Player {
     }
 
     /**
-     * @return list of {@link AbstractPowerUp()} cloned
+     * @return list of {@link IPowerUp()} cloned
      */
-    public List<AbstractPowerUp> getListPowerUp() {
-        return (List<AbstractPowerUp>) powerUpStack.clone();
+    public List<IPowerUp> getListPowerUp() {
+        return (List<IPowerUp>) powerUpStack.clone();
     }
 
     /**
-     * @param powerUp Add a {@link AbstractPowerUp()} to Player
+     * @param powerUp Add a {@link IPowerUp()} to Player
      */
-    public void addPowerUp(AbstractPowerUp powerUp) {
+    public void addPowerUp(IPowerUp powerUp) {
         powerUpStack.add(powerUp);
     }
 

@@ -4,7 +4,7 @@ import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
 import com.backendboys.battlerace.model.gamemodel.particles.IParticle;
 import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
 import com.backendboys.battlerace.model.gamemodel.player.Player;
-import com.backendboys.battlerace.model.gamemodel.powerups.AbstractPowerUp;
+import com.backendboys.battlerace.model.gamemodel.powerups.IPowerUp;
 import com.backendboys.battlerace.model.gamemodel.powerups.PowerUpGenerator;
 import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
 import com.backendboys.battlerace.model.gamemodel.world.ground.GroundStrategyFactory;
@@ -24,7 +24,7 @@ public class GameModel {
     private final List<OpponentPlayer> opponentPlayers = new ArrayList<>();
 
     private final WorldExplosions worldExplosions;
-    private List<AbstractPowerUp> powerUps = new ArrayList<>();
+    private List<IPowerUp> powerUps = new ArrayList<>();
     private FinishLineGenerator finishLineGenerator;
 
     /**
@@ -45,6 +45,10 @@ public class GameModel {
     private void generateObjects() {
         PowerUpGenerator powerUpGenerator = new PowerUpGenerator(gameWorld.getGroundVertices(), gameWorld.getWorld(), worldExplosions);
         powerUps = powerUpGenerator.generatePowerups(30);
+
+        for (IPowerUp powerUp : powerUps) {
+            gameWorld.addListener(powerUp);
+        }
 
         finishLineGenerator = new FinishLineGenerator(gameWorld.getGroundVertices());
         finishLineGenerator.generateFinishLine(gameWorld.getWorld());
@@ -71,11 +75,10 @@ public class GameModel {
      *
      * @param powerUp The PowerUp to remove.
      */
-    public void removePowerUp(AbstractPowerUp powerUp) {
-        boolean removed = powerUps.remove(powerUp);
-        if (removed) {
-            gameWorld.destroyBody(powerUp.getBody());
-        }
+    public void removePowerUp(IPowerUp powerUp) {
+        powerUp.remove();
+
+        powerUps.remove(powerUp);
     }
 
     /**
@@ -163,7 +166,7 @@ public class GameModel {
      *
      * @return The PowerUps list.
      */
-    public List<AbstractPowerUp> getPowerUps() {
+    public List<IPowerUp> getPowerUps() {
         return powerUps;
     }
 
