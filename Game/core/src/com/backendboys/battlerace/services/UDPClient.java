@@ -33,7 +33,7 @@ public class UDPClient implements Runnable {
         byte[] buffer = new byte[548];
 
         try {
-            socket = new DatagramSocket(port);
+            socket = new DatagramSocket();
 
             while (true) {
                 DatagramPacket request = new DatagramPacket(buffer, buffer.length);
