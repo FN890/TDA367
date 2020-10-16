@@ -10,12 +10,12 @@ import com.badlogic.gdx.physics.box2d.*;
 class OnImpactMissile extends AbstractExplosive implements IParticle {
 
     private final Body body;
-    private static final Vector2 direction = new Vector2(10, 4);
+    private static final Vector2 DIRECTION = new Vector2(10, 4);
     private static final float MOVEMENT_POWER = 100;
     private static final float MISSILE_LENGTH = 10f;
     private static final float MISSILE_HEIGHT = 5f;
     private static final float LAUNCH_OFFSET_Y = 10f;
-    private static final float LAUNCH_OFFSET_x = 41.5f;
+    private static final float LAUNCH_OFFSET_X = 41.5f;
     private static final int NUM_PARTICLES = 42;
 
     /**
@@ -26,8 +26,8 @@ class OnImpactMissile extends AbstractExplosive implements IParticle {
      */
     OnImpactMissile(World world, Vector2 pos, float rotation, Vector2 initialVelocity) {
         rotation = (float) (rotation + Math.PI / 2);
-        direction.x = MathUtils.sin(rotation);
-        direction.y = -MathUtils.cos(rotation);
+        DIRECTION.x = MathUtils.sin(rotation);
+        DIRECTION.y = -MathUtils.cos(rotation);
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.fixedRotation = false;
@@ -35,16 +35,16 @@ class OnImpactMissile extends AbstractExplosive implements IParticle {
         bodyDef.linearDamping = 0;
         bodyDef.gravityScale = 0.5f;
 
-        if (direction.x < 0) {
-            bodyDef.position.x = pos.x - LAUNCH_OFFSET_x;
+        if (DIRECTION.x < 0) {
+            bodyDef.position.x = pos.x - LAUNCH_OFFSET_X;
         } else {
-            bodyDef.position.x = pos.x + LAUNCH_OFFSET_x;
+            bodyDef.position.x = pos.x + LAUNCH_OFFSET_X;
         }
         bodyDef.position.y = pos.y + LAUNCH_OFFSET_Y;
 
-        direction.scl(MOVEMENT_POWER);
-        bodyDef.linearVelocity.x = direction.x + initialVelocity.x;
-        bodyDef.linearVelocity.y = direction.y + initialVelocity.y;
+        DIRECTION.scl(MOVEMENT_POWER);
+        bodyDef.linearVelocity.x = DIRECTION.x + initialVelocity.x;
+        bodyDef.linearVelocity.y = DIRECTION.y + initialVelocity.y;
         body = world.createBody(bodyDef);
         body.setTransform(body.getPosition(), rotation - (MathUtils.PI / 2));
 

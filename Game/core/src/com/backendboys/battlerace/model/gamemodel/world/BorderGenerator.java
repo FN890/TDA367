@@ -11,10 +11,11 @@ class BorderGenerator {
     /**
      * Generates two vertical and one horizontal border. T
      * The horizontal border is created by connecting the two vertical borders highest vertices.
-     * @param world The world that will receive the borders.
+     *
+     * @param world       The world that will receive the borders.
      * @param startVertex Left vertical border bottom vertex;
-     * @param endVertex Right vertical border bottom vertex;
-     * @param height The vertical borders height.
+     * @param endVertex   Right vertical border bottom vertex;
+     * @param height      The vertical borders height.
      */
     static void generateBorders(World world, Vector2 startVertex, Vector2 endVertex, int height) {
 

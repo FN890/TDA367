@@ -9,10 +9,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MissilePowerUpTest {
 
-    private MissilePowerUp missilePowerUp;
-    private Player player;
-    private GameWorld gameWorld;
-    private WorldExplosions worldExplosions;
+    private final MissilePowerUp missilePowerUp;
+    private final Player player;
+    private final GameWorld gameWorld;
+    private final WorldExplosions worldExplosions;
 
     public MissilePowerUpTest() {
         player = new Player("player");

@@ -9,7 +9,7 @@ import com.badlogic.gdx.physics.box2d.*;
 class ExplosionParticle extends AbstractExplosive implements IParticle {
 
     private final Body body;
-    private static final int movementPower = 200;
+    private static final int MOVEMENT_POWER = 200;
 
     /**
      * Constructor for a particle
@@ -28,7 +28,7 @@ class ExplosionParticle extends AbstractExplosive implements IParticle {
         bodyDef.gravityScale = 1;
         bodyDef.position.x = pos.x;
         bodyDef.position.y = pos.y;
-        rayDir.scl(movementPower);
+        rayDir.scl(MOVEMENT_POWER);
         bodyDef.linearVelocity.x = rayDir.x;
         bodyDef.linearVelocity.y = rayDir.y;
         body = world.createBody(bodyDef);

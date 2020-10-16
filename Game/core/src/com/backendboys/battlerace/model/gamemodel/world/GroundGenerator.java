@@ -21,9 +21,9 @@ class GroundGenerator {
     /**
      * Creates and adds the ground to the world.
      *
-     * @param world The World that the ground should be added to.
+     * @param world           The World that the ground should be added to.
      * @param iGroundStrategy Strategy for creating the ground vertices.
-     * @param friction The ground friction.
+     * @param friction        The ground friction.
      */
     void generateGround(World world, IGroundStrategy iGroundStrategy, int friction) {
 

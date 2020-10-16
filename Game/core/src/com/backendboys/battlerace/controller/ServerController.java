@@ -3,7 +3,10 @@ package com.backendboys.battlerace.controller;
 import com.backendboys.battlerace.BattleRace;
 import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
 import com.backendboys.battlerace.model.gamemodel.player.Player;
-import com.backendboys.battlerace.services.*;
+import com.backendboys.battlerace.services.IPacketListener;
+import com.backendboys.battlerace.services.ITCPListener;
+import com.backendboys.battlerace.services.TCPClient;
+import com.backendboys.battlerace.services.UDPClient;
 import com.backendboys.battlerace.services.protocol.CommandConverter;
 import com.backendboys.battlerace.services.protocol.CommandFactory;
 import com.backendboys.battlerace.services.protocol.ICommand;
@@ -82,19 +85,19 @@ public class ServerController implements ITCPListener, IPacketListener {
                 System.out.println("Server ID: " + id);
 
                 // FIX THIS Hardocded name removal
-                for(int i=2; i<command.getArgs().length-1; i++){
+                for (int i = 2; i < command.getArgs().length - 1; i++) {
                     String playerName = command.getArgs()[i];
                     gameController.handleAddOpponent(new OpponentPlayer(playerName, new Vector2(50, 100), 0));
                 }
             }
-        }else if (command.getCmd().equals("game")) {
+        } else if (command.getCmd().equals("game")) {
             if (command.getArgs().length > 1) {
-                if(command.getArgs()[0].equals("joined")) {
+                if (command.getArgs()[0].equals("joined")) {
                     String playerName = command.getArgs()[1];
                     gameController.handleAddOpponent(new OpponentPlayer(playerName, new Vector2(50, 100), 0));
                     System.out.println("Opponent created");
 
-                }else if(command.getArgs()[0].equals("left")) {
+                } else if (command.getArgs()[0].equals("left")) {
 
                 }
             }
@@ -118,14 +121,14 @@ public class ServerController implements ITCPListener, IPacketListener {
     }
 
     public void createGame(String name) {
-        if(isConnected){
+        if (isConnected) {
             sendMessage("create:" + name);
             sendMessage("start");
         }
     }
 
     public void joinGame(String name, String id) {
-        if(isConnected){
+        if (isConnected) {
             sendMessage("join:" + id + "," + name);
         }
     }
