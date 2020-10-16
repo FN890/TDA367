@@ -52,6 +52,18 @@ public class UDPClient implements Runnable {
 
     }
 
+    public void sendPacket(String message) {
+        try {
+            byte[] byteMsg = message.getBytes();
+
+            DatagramPacket packet = new DatagramPacket(byteMsg, 0, byteMsg.length, address, port);
+            socket.send(packet);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public String getClientMessage(String name) {
         synchronized (messages) {
             for (String m : messages) {

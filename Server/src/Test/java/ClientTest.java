@@ -105,16 +105,16 @@ public class ClientTest {
 
     @Test
     @Order(7)
-    public void TestPositionUpdates() throws InterruptedException {
+    public void TestPositionToSelf() throws InterruptedException {
 
         client1.sendMessage("leave");
 
         client3.sendMessage("join:1403,Client3");
 
-        client2.sendMessage("pos:100.0,20.0,35.5");
+        udpClient.sendPacket("pos:100.0,20.0,35.5");
         Thread.sleep(2000);
         String client2Pos = udpClient.getClientMessage("client2");
-        Assertions.assertEquals("pos:client2,100.0,20.0,35.5", client2Pos);
+        Assertions.assertNull(client2Pos);
     }
 
     @Test
