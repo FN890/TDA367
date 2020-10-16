@@ -197,14 +197,28 @@ public class Game implements Runnable {
         return null;
     }
 
+    /**
+     * Returns a list of players in the game.
+     *
+     * @return The list of players.
+     */
     public synchronized List<Player> getPlayers() {
         return players;
     }
 
+    /**
+     * Returns the game id.
+     * @return The game id.
+     */
     public synchronized String getId() {
         return id;
     }
 
+    /**
+     * Returns whether the game is running or not.
+     * If the game is running, the game sends packets to clients.
+     * @return True if the game is running.
+     */
     public synchronized boolean isRunning() {
         return started;
     }
