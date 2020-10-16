@@ -14,7 +14,6 @@ import java.util.Map;
  */
 public class UDPServer implements Runnable {
 
-    private final int port;
     private final DatagramSocket socket;
 
     private final Map<InetAddress, PacketListener> listeners = Collections.synchronizedMap(new HashMap<>());
@@ -46,7 +45,6 @@ public class UDPServer implements Runnable {
      * @throws SocketException If error occurs on creating a DatagramSocket.
      */
     public UDPServer(int port) throws SocketException {
-        this.port = port;
         this.socket = new DatagramSocket(port);
     }
 
