@@ -39,6 +39,7 @@ public class GameModel {
         Vector2 startPosition = gameWorld.getGroundVertices().get(50);
         player = new Player("gustav");
         player.addVehicle(gameWorld.getWorld(), startPosition.x, startPosition.y + 25);
+        addOpponent(new OpponentPlayer("Xerxz", new Vector2(100, 100), 0));
         gameWorld.setCollisionListener(new CollisionListener(this));
     }
 

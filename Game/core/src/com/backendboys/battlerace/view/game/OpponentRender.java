@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.utils.Align;
 
 import java.util.List;
 
@@ -29,7 +30,6 @@ public class OpponentRender extends AbstractRender<List<OpponentPlayer>> {
         Skin uiSkin = new Skin(Gdx.files.internal("uiskin.json"));
 
         lblPlayerName = new Label("Opponent", uiSkin);
-        lblPlayerName.setFontScale(1.5f);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class OpponentRender extends AbstractRender<List<OpponentPlayer>> {
 
     private void renderOpponentName(SpriteBatch batch, OpponentPlayer opponent){
         lblPlayerName.setText(opponent.getPlayerName());
-        lblPlayerName.setPosition(opponent.getPlayerPosition().x - VEHCILE_WIDTH / 2f, opponent.getPlayerPosition().y - VEHCILE_HEIGHT);
+        lblPlayerName.setPosition(opponent.getPlayerPosition().x - VEHCILE_WIDTH / 2f, opponent.getPlayerPosition().y + 25);
 
         lblPlayerName.draw(batch, 1);
     }
