@@ -23,10 +23,18 @@ public class PositionHandler extends AbstractHandler {
             return;
         }
 
-        float x = Float.parseFloat(args[0]);
-        float y = Float.parseFloat(args[1]);
-        float rotation = Float.parseFloat(args[2]);
+        try {
+            float x = Float.parseFloat(args[0]);
+            float y = Float.parseFloat(args[1]);
+            float rotation = Float.parseFloat(args[2]);
 
-        clientController.updateGamePosition(x, y, rotation);
+            clientController.updateGamePosition(x, y, rotation);
+
+        } catch (NumberFormatException e) {
+            clientController.sendTCP(protocol.writeError("Invalid arguments."));
+        }
+
+
+
     }
 }
