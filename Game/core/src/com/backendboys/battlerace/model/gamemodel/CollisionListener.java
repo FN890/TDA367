@@ -1,7 +1,7 @@
 package com.backendboys.battlerace.model.gamemodel;
 
 import com.backendboys.battlerace.model.gamemodel.particles.AbstractExplosive;
-import com.backendboys.battlerace.model.gamemodel.powerups.AbstractPowerUp;
+import com.backendboys.battlerace.model.gamemodel.powerups.IPowerUp;
 import com.backendboys.battlerace.model.gamemodel.vehicle.IVehicle;
 import com.badlogic.gdx.physics.box2d.*;
 
@@ -63,11 +63,11 @@ class CollisionListener implements ContactListener {
     }
 
     private void checkPowerUpsContact(Fixture fixtureA, Fixture fixtureB) {
-        if (fixtureA.getUserData() instanceof AbstractPowerUp && fixtureB.getUserData() instanceof IVehicle) {
-            AbstractPowerUp abstractPowerUp = (AbstractPowerUp) fixtureA.getUserData();
-            System.out.println(abstractPowerUp.toString());
-            model.getPlayer().addPowerUp(abstractPowerUp);
-            model.removePowerUp(abstractPowerUp);
+        if (fixtureA.getUserData() instanceof IPowerUp && fixtureB.getUserData() instanceof IVehicle) {
+            IPowerUp powerUp = (IPowerUp) fixtureA.getUserData();
+            System.out.println(powerUp.toString());
+            model.getPlayer().addPowerUp(powerUp);
+            model.removePowerUp(powerUp);
         }
     }
 

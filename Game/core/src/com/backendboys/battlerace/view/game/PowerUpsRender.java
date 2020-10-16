@@ -1,6 +1,6 @@
 package com.backendboys.battlerace.view.game;
 
-import com.backendboys.battlerace.model.gamemodel.powerups.AbstractPowerUp;
+import com.backendboys.battlerace.model.gamemodel.powerups.IPowerUp;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -14,12 +14,12 @@ import java.util.List;
  */
 public class PowerUpsRender extends AbstractRender<Object> {
 
-    private final List<AbstractPowerUp> powerUps;
+    private final List<IPowerUp> powerUps;
     private final Sprite sprite;
 
     private final static int WIDTH = 10, HEIGHT = 10;
 
-    public PowerUpsRender(OrthographicCamera orthographicCamera, List<AbstractPowerUp> powerUps) {
+    public PowerUpsRender(OrthographicCamera orthographicCamera, List<IPowerUp> powerUps) {
         super(orthographicCamera);
         this.powerUps = powerUps;
 
@@ -35,19 +35,19 @@ public class PowerUpsRender extends AbstractRender<Object> {
 
     private void render(SpriteBatch batch) {
         batch.begin();
-        for (AbstractPowerUp powerUp : powerUps) {
+        for (IPowerUp powerUp : powerUps) {
             if (withinCamera(powerUp)) {
                 batch.setProjectionMatrix(getCamera().combined);
-                sprite.setPosition(powerUp.getBody().getPosition().x - 5, powerUp.getBody().getPosition().y - 5);
+                sprite.setPosition(powerUp.getPosition().x - 5, powerUp.getPosition().y - 5);
                 sprite.draw(batch);
             }
         }
         batch.end();
     }
 
-    private boolean withinCamera(AbstractPowerUp powerUp) {
-        if (powerUp.getBody().getPosition().x > getCamera().position.x - getCamera().viewportWidth) {
-            return powerUp.getBody().getPosition().x < getCamera().position.x + getCamera().viewportWidth;
+    private boolean withinCamera(IPowerUp powerUp) {
+        if (powerUp.getPosition().x > getCamera().position.x - getCamera().viewportWidth) {
+            return powerUp.getPosition().x < getCamera().position.x + getCamera().viewportWidth;
         }
         return false;
     }
