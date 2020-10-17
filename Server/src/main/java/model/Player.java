@@ -25,10 +25,20 @@ public class Player {
         this.name = name;
     }
 
+    /**
+     * Setup Player's UDP address and port for sending them packets.
+     *
+     * @param address The InetAddress.
+     * @param port The port.
+     */
     public void setUDPAddress(InetAddress address, int port) {
         UDPAddress = new Address(address, port);
     }
 
+    /**
+     * Returns wether the Player's UDP Address is set or not.
+     * @return True if the Player's UDP Address is set.
+     */
     public boolean hasUDPAddress() {
         return (UDPAddress != null);
     }

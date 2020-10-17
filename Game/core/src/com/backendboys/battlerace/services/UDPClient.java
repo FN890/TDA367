@@ -54,7 +54,7 @@ public class UDPClient implements Runnable {
 
             DatagramPacket packet = new DatagramPacket(byteMsg, 0, byteMsg.length, InetAddress.getByName(hostname), port);
             socket.send(packet);
-            System.out.println("Sent packet from: " + socket.getInetAddress() + ":" + socket.getPort());
+
         } catch (Exception e) {
             notifyErrorOccurred(e.getMessage());
         }

@@ -234,13 +234,8 @@ public class ClientController implements Runnable, GameListener, PacketListener 
     public void gotPacket(InetAddress address, int port, String message) {
         if (game == null) return;
 
-        System.out.println("Got packet for: " + player.getName());
-        System.out.println("From: " + address + ":" + port);
-
         if (!player.hasUDPAddress()) {
             player.setUDPAddress(address, port);
-            System.out.println("Set address for " + player.getName());
-            System.out.println("Address: " + address + " Port: " + port);
         }
 
         try {

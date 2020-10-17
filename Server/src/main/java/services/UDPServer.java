@@ -91,9 +91,7 @@ public class UDPServer implements Runnable {
      */
     public void sendPacket(String message, InetAddress address, int port) throws IOException {
         byte[] byteMsg = message.getBytes();
-        System.out.println("Sending packet to: " + address);
-        System.out.println("Port: " + port);
-        System.out.println("Message: " + message);
+
         DatagramPacket packet = new DatagramPacket(byteMsg, 0, byteMsg.length, address, port);
         socket.send(packet);
     }

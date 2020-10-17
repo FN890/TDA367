@@ -2,6 +2,9 @@ package data;
 
 import java.net.InetAddress;
 
+/**
+ * Hold an InetAddress and Port.
+ */
 public class Address {
 
     private final InetAddress address;
@@ -18,6 +21,11 @@ public class Address {
 
     public int getPort() {
         return port;
+    }
+
+    @Override
+    public String toString() {
+        return address + ":" + port;
     }
 
     @Override

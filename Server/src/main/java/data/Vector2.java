@@ -1,5 +1,8 @@
 package data;
 
+/**
+ * Holds two float values, x and y.
+ */
 public class Vector2 {
 
     public final float x;

@@ -28,6 +28,7 @@ class CommandManager {
     }
 
     private void setupHandlers() {
+        ICommandHandler udpPortHandler = new UDPPortHandler();
         ICommandHandler getHandler = new GetHandler();
         ICommandHandler createHandler = new CreateHandler();
         ICommandHandler joinHandler = new JoinHandler();
@@ -35,13 +36,14 @@ class CommandManager {
         ICommandHandler startHandler = new StartHandler();
         ICommandHandler positionHandler = new PositionHandler();
 
+        udpPortHandler.setNext(getHandler);
         getHandler.setNext(createHandler);
         createHandler.setNext(joinHandler);
         joinHandler.setNext(leaveHandler);
         leaveHandler.setNext(startHandler);
         startHandler.setNext(positionHandler);
 
-        firstHandler = getHandler;
+        firstHandler = udpPortHandler;
     }
 
     /**
