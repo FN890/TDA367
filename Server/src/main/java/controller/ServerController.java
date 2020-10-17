@@ -47,11 +47,9 @@ public class ServerController implements TCPListener {
         synchronized (connections) {
             for (Socket s : connections.keySet()) {
                 if (s.equals(client)) {
-                    System.out.println("Removing connection...");
                     connections.get(s).disconnect();
                 }
             }
-            System.out.println("Creating new client...");
             ClientController newConnection = new ClientController(client);
             connections.put(client, newConnection);
             new Thread(newConnection).start();
