@@ -45,13 +45,15 @@ public interface IServerProtocol {
 
     /**
      * Writes a missile on the form: missile:x,y,rotation,playerSpeed
+     *
      * @param x The x spawn position of the missile.
      * @param y The y spawn position of the missile.
      * @param rotation The rotation of the missile.
-     * @param playerSpeed The player's speed sending the missile.
+     * @param playerXSpeed The player's speed in x-axis, sending the missile.
+     * @param playerYSpeed The player's speed in y-axis, sending the missile.
      * @return The missile on the form: missile:x,y,rotation,playerSpeed
      */
-    String writeMissile(float x, float y, float rotation, float playerSpeed);
+    String writeMissile(float x, float y, float rotation, float playerXSpeed, float playerYSpeed);
 
     /**
      * Writes info about the game on the form: response:id,isRunning,name1,name2...

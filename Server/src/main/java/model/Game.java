@@ -121,18 +121,19 @@ public class Game implements Runnable {
     }
 
     /**
-     * Sends a missile to the other players.
+     * Sends a missile to the players in this game.
      *
+     * @param player The player sending the missile.
      * @param x The spawn x position of the missile.
      * @param y The spawn y position of the missile.
      * @param rotation The rotation of the missile.
-     * @param playerSpeed The player's speed sending the missile.
-     * @param player The player sending the missile.
+     * @param playerXSpeed The player's speed in x-axis, sending the missile.
+     * @param playerYSpeed The player's speed in y-axis, sending the missile.
      */
-    public synchronized void sendMissile(Player player, float x, float y, float rotation, float playerSpeed) {
+    public synchronized void sendMissile(Player player, float x, float y, float rotation, float playerXSpeed, float playerYSpeed) {
         synchronized (listeners) {
             for (GameListener l : listeners) {
-                l.gotMissile(player, x, y, rotation, playerSpeed);
+                l.gotMissile(player, x, y, rotation, playerXSpeed, playerYSpeed);
             }
         }
     }

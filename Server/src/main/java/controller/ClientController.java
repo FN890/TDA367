@@ -193,11 +193,12 @@ public class ClientController implements Runnable, GameListener, PacketListener 
      * @param x The spawn x position of the missile.
      * @param y The spawn y position of the missile.
      * @param rotation The rotation of the missile.
-     * @param playerSpeed The player's speed sending the missile.
+     * @param playerXSpeed The player's speed in x-axis, sending the missile.
+     * @param playerYSpeed The player's speed in y-axis, sending the missile.
      */
-    public void sendGameMissile(float x, float y, float rotation, float playerSpeed) {
+    public void sendGameMissile(float x, float y, float rotation, float playerXSpeed, float playerYSpeed) {
         if (game == null) return;
-        game.sendMissile(player, x, y, rotation, playerSpeed);
+        game.sendMissile(player, x, y, rotation, playerXSpeed, playerYSpeed);
     }
 
     /**
@@ -244,12 +245,12 @@ public class ClientController implements Runnable, GameListener, PacketListener 
     }
 
     @Override
-    public void gotMissile(Player player, float x, float y, float rotation, float playerSpeed) {
+    public void gotMissile(Player player, float x, float y, float rotation, float playerXSpeed, float playerYSpeed) {
         if (player.equals(this.player)) {
             return;
         }
         
-        sendTCP(protocol.writeMissile(x, y, rotation, playerSpeed));
+        sendTCP(protocol.writeMissile(x, y, rotation, playerXSpeed, playerYSpeed));
     }
 
     @Override
