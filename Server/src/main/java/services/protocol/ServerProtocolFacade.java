@@ -37,6 +37,11 @@ class ServerProtocolFacade implements IServerProtocol {
     }
 
     @Override
+    public String writeMissile(float x, float y, float rotation, float playerSpeed) {
+        return writerProtocol.writeMissile(x, y, rotation, playerSpeed);
+    }
+
+    @Override
     public synchronized String writeGameInfo(Game game) {
         return writerProtocol.writeGameInfo(game);
     }

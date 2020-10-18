@@ -18,6 +18,10 @@ class ServerProtocolWriter {
         return "pos:" + name + "," + pos.x + "," + pos.y + "," + rotation;
     }
 
+    String writeMissile(float x, float y, float rotation, float playerSpeed) {
+        return "missile:" + x + "," + y + "," + rotation + "," + playerSpeed;
+    }
+
     String writeGameInfo(Game game) {
         StringBuilder sb = new StringBuilder();
 

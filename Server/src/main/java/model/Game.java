@@ -102,7 +102,7 @@ public class Game implements Runnable {
     }
 
     /**
-     * Updates player position and rotation by its InetAddress.
+     * Updates player position and rotation.
      *
      * @param player  The Player.
      * @param x        The x position.
@@ -116,6 +116,23 @@ public class Game implements Runnable {
                     p.setPosition(new Vector2(x, y));
                     p.setRotation(rotation);
                 }
+            }
+        }
+    }
+
+    /**
+     * Sends a missile to the other players.
+     *
+     * @param x The spawn x position of the missile.
+     * @param y The spawn y position of the missile.
+     * @param rotation The rotation of the missile.
+     * @param playerSpeed The player's speed sending the missile.
+     * @param player The player sending the missile.
+     */
+    public synchronized void sendMissile(Player player, float x, float y, float rotation, float playerSpeed) {
+        synchronized (listeners) {
+            for (GameListener l : listeners) {
+                l.gotMissile(player, x, y, rotation, playerSpeed);
             }
         }
     }

@@ -30,4 +30,15 @@ public interface GameListener {
      * Called when the game has ended.
      */
     void gameEnded();
+
+    /**
+     * Called whenever someone sends a missile to the game.
+     *
+     * @param x The x spawn position of the missile.
+     * @param y The y spawn position of the missile.
+     * @param rotation The rotation of the missile.
+     * @param playerSpeed The player's speed sending the missile.
+     * @param player The player sending the missile.
+     */
+    void gotMissile(Player player, float x, float y, float rotation, float playerSpeed);
 }
