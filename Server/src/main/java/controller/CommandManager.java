@@ -35,6 +35,7 @@ class CommandManager {
         ICommandHandler leaveHandler = new LeaveHandler();
         ICommandHandler startHandler = new StartHandler();
         ICommandHandler positionHandler = new PositionHandler();
+        ICommandHandler missileHandler = new MissileHandler();
 
         udpPortHandler.setNext(getHandler);
         getHandler.setNext(createHandler);
@@ -42,6 +43,7 @@ class CommandManager {
         joinHandler.setNext(leaveHandler);
         leaveHandler.setNext(startHandler);
         startHandler.setNext(positionHandler);
+        positionHandler.setNext(missileHandler);
 
         firstHandler = udpPortHandler;
     }
