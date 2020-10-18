@@ -90,6 +90,17 @@ public class ServerController implements ITCPListener, IPacketListener {
                     gameController.handleAddOpponent(new OpponentPlayer(playerName, new Vector2(50, 100), 0));
                 }
             }
+        } else if (command.getCmd().equals("missile")) {
+            String[] args = command.getArgs();
+
+            float x = Float.parseFloat(args[0]);
+            float y = Float.parseFloat(args[1]);
+            float rotation = Float.parseFloat(args[2]);
+            float playerXSpeed = Float.parseFloat(args[3]);
+            float playerYSpeed = Float.parseFloat(args[4]);
+
+            gameController.getGameModel().spawnMissile(x, y, rotation, playerXSpeed, playerYSpeed);
+
         } else if (command.getCmd().equals("game")) {
             if (command.getArgs().length > 1) {
                 if (command.getArgs()[0].equals("joined")) {
@@ -132,6 +143,12 @@ public class ServerController implements ITCPListener, IPacketListener {
     public void joinGame(String name, String id) {
         if (isConnected) {
             sendMessage("join:" + id + "," + name);
+        }
+    }
+
+    public void sendMissile(float x, float y, float rotation, float playerXSpeed, float playerYSpeed) {
+        if (isConnected) {
+            sendMessage("missile:" + x + "," + y + "," + rotation + "," + playerXSpeed + "," + playerYSpeed);
         }
     }
 }

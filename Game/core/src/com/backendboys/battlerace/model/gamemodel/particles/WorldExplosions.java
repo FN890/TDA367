@@ -1,5 +1,6 @@
 package com.backendboys.battlerace.model.gamemodel.particles;
 
+import com.backendboys.battlerace.model.gamemodel.GameModel;
 import com.backendboys.battlerace.model.gamemodel.world.GameWorldListener;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -22,6 +23,12 @@ public class WorldExplosions implements GameWorldListener {
     private final ArrayList<OnImpactMissile> missiles = new ArrayList<>();
 
     public WorldExplosions() {
+    }
+
+    //TODO: TEMP PARAMETER!
+    private GameModel gameModel;
+    public WorldExplosions(GameModel gameModel) {
+        this.gameModel = gameModel;
     }
 
     /**
@@ -104,7 +111,11 @@ public class WorldExplosions implements GameWorldListener {
      * @param world The world where the missile spawns
      * @param pos   the position of the missile
      */
+    // TODO: TEMP EDIT HERE!
     public void addMissile(Vector2 pos, World world, float rotation, Vector2 initialVelocity) {
+        if (gameModel != null) {
+            gameModel.missileShot(pos.x, pos.y, rotation, initialVelocity.x, initialVelocity.y);
+        }
         missiles.add(new OnImpactMissile(world, pos, rotation, initialVelocity));
     }
 

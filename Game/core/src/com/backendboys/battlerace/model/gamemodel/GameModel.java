@@ -1,5 +1,6 @@
 package com.backendboys.battlerace.model.gamemodel;
 
+import com.backendboys.battlerace.controller.ServerController;
 import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
 import com.backendboys.battlerace.model.gamemodel.particles.IParticle;
 import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
@@ -33,7 +34,7 @@ public class GameModel {
      */
     public GameModel() {
         this.gameWorld = new GameWorld(GroundStrategyFactory.getSinCosStrategy(5000, 60, 5), 1);
-        worldExplosions = new WorldExplosions();
+        worldExplosions = new WorldExplosions(this);
         generateObjects();
         gameWorld.addListener(worldExplosions);
         Vector2 startPosition = gameWorld.getGroundVertices().get(50);
@@ -162,6 +163,19 @@ public class GameModel {
     }
 
     /**
+     * Spawns a missile in the world at a given position and rotation.
+     *
+     * @param x The spawn x position.
+     * @param y The spawn y position.
+     * @param rotation The rotation.
+     * @param playerXSpeed The x-axis speed of the player spawning the missile.
+     * @param playerYSpeed The y-axis speed of the player spawning the missile.
+     */
+    public void spawnMissile(float x, float y, float rotation, float playerXSpeed, float playerYSpeed) {
+        worldExplosions.addMissile(new Vector2(x, y), gameWorld.getWorld(), rotation, new Vector2(playerXSpeed, playerYSpeed));
+    }
+
+    /**
      * Returns the list of PowerUps.
      *
      * @return The PowerUps list.
@@ -172,6 +186,18 @@ public class GameModel {
 
     public List<Vector2> getFinishLineVertices() {
         return finishLineGenerator.getFinishLineVertices();
+    }
+
+
+    //TODO: TEMP PARAMETER AND SETTER! TO BE REMOVED!
+    private ServerController serverController;
+    public void setServerController(ServerController serverController) {
+        this.serverController = serverController;
+    }
+
+    public void missileShot(float x, float y, float rotation, float playerXSpeed, float playerYSpeed) {
+        if (serverController == null) return;
+        serverController.sendMissile(x, y, rotation, playerXSpeed, playerYSpeed);
     }
 
 }
