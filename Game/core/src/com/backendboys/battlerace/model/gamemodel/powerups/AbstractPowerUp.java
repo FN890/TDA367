@@ -9,7 +9,7 @@ import java.util.Stack;
 /**
  * Abstract class that has properties of the powerups.
  */
-public abstract class AbstractPowerUp implements IPowerUp{
+abstract class AbstractPowerUp implements IPowerUp{
 
     private final static float HEIGHT = 4f;
     private final static float WIDTH = 4f;
@@ -83,15 +83,6 @@ public abstract class AbstractPowerUp implements IPowerUp{
      */
     @Override
     public abstract String toString();
-
-    /**
-     * Returns the body of the PowerUp.
-     *
-     * @return The body of PowerUp.
-     */
-    public Body getBody() {
-        return body;
-    }
 
     public Vector2 getPosition() {
         return body.getPosition();
