@@ -8,7 +8,7 @@ import services.protocol.IServerProtocol;
  * Handles Create Game Command.
  * Form: create:name
  */
-public class CreateHandler extends AbstractHandler {
+public class CreateHandler extends AbstractCommandHandler {
 
     public CreateHandler() {
         super("create");

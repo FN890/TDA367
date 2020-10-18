@@ -4,7 +4,7 @@ import controller.ClientController;
 import services.protocol.ICommand;
 import services.protocol.IServerProtocol;
 
-public class UDPPortHandler extends AbstractHandler {
+public class UDPPortHandler extends AbstractCommandHandler {
 
     public UDPPortHandler() {
         super("port");

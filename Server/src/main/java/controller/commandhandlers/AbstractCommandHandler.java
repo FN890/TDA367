@@ -8,12 +8,12 @@ import services.protocol.IServerProtocol;
  * AbstractHandler handles the next in Chain of Responsibility pattern,
  * and the check for each command.
  */
-abstract class AbstractHandler implements ICommandHandler {
+abstract class AbstractCommandHandler implements ICommandHandler {
 
     private ICommandHandler next;
     private String command;
 
-    protected AbstractHandler(String command) {
+    protected AbstractCommandHandler(String command) {
         this.command = command;
     }
 

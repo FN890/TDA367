@@ -8,7 +8,7 @@ import services.protocol.IServerProtocol;
  * Handles Leave Game Command.
  * Form: leave
  */
-public class LeaveHandler extends AbstractHandler {
+public class LeaveHandler extends AbstractCommandHandler {
 
     public LeaveHandler() {
         super("leave");

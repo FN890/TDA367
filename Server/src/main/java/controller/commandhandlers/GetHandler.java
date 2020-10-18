@@ -10,7 +10,7 @@ import services.protocol.IServerProtocol;
  * Form: get:command.
  * Sends a response to the client. Either response: or error:
  */
-public class GetHandler extends AbstractHandler {
+public class GetHandler extends AbstractCommandHandler {
 
     public GetHandler() {
         super("get");

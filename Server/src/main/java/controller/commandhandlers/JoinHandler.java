@@ -8,7 +8,7 @@ import services.protocol.IServerProtocol;
  * Handles Join Game Command.
  * Form: join:id,name
  */
-public class JoinHandler extends AbstractHandler {
+public class JoinHandler extends AbstractCommandHandler {
 
     public JoinHandler() {
         super("join");

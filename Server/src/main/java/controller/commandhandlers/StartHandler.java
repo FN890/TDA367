@@ -8,7 +8,7 @@ import services.protocol.IServerProtocol;
  * Handles Start Game Command.
  * Form: start
  */
-public class StartHandler extends AbstractHandler {
+public class StartHandler extends AbstractCommandHandler {
 
     public StartHandler() {
         super("start");
