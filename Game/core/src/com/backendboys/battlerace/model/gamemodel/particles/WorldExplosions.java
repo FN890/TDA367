@@ -113,7 +113,6 @@ public class WorldExplosions implements GameWorldListener {
      * @param world The world where the missile spawns
      * @param pos   the position of the missile
      */
-    // TODO: TEMP EDIT HERE!
     public void addMissile(Vector2 pos, World world, float rotation, Vector2 initialVelocity) {
         missiles.add(new OnImpactMissile(world, pos, rotation, initialVelocity));
         notifyMissileListeners(pos, initialVelocity, rotation);
