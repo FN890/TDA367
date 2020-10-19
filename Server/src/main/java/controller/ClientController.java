@@ -1,6 +1,5 @@
 package controller;
 
-import data.Address;
 import model.*;
 import services.PacketListener;
 import services.protocol.ICommand;
@@ -22,7 +21,7 @@ import java.net.Socket;
 public class ClientController implements Runnable, GameListener, PacketListener {
 
     private final Socket socket;
-    private Address UDPAddress;
+    private final String clientID;
 
     private BufferedReader reader;
     private PrintWriter writer;
@@ -37,9 +36,9 @@ public class ClientController implements Runnable, GameListener, PacketListener 
      *
      * @param socket The socket which the client is connected to.
      */
-    public ClientController(Socket socket) {
+    public ClientController(Socket socket, String clientID) {
         this.socket = socket;
-        UDPAddress = new Address(socket.getInetAddress(), socket.getPort());
+        this.clientID = clientID;
     }
 
     @Override
@@ -51,7 +50,9 @@ public class ClientController implements Runnable, GameListener, PacketListener 
             this.protocol = ServerProtocolFactory.getServerProtocol();
             this.cmdManager = new CommandManager(this);
 
-            writer.println("connected");
+            ServerController.getInstance().addPacketListener(clientID, this);
+
+            writer.println("connected:" + clientID);
 
             String input;
             while ((input = reader.readLine()) != null) {
@@ -75,17 +76,6 @@ public class ClientController implements Runnable, GameListener, PacketListener 
         }
 
 
-    }
-
-    /**
-     * Associates this ClientController with UDP packets received
-     * from this port.
-     * @param port The port.
-     */
-    public void listenForUDPFromPort(int port) {
-        Address address = new Address(socket.getInetAddress(), port);
-        ServerController.getInstance().addPacketListener(address, this);
-        UDPAddress = address;
     }
 
     /**
@@ -215,7 +205,7 @@ public class ClientController implements Runnable, GameListener, PacketListener 
     public void disconnect() {
         try {
             System.out.println("Client disconnected from server: " + socket.getInetAddress().getHostAddress());
-            ServerController.getInstance().removePacketListener(UDPAddress);
+            ServerController.getInstance().removePacketListener(clientID);
             ServerController.getInstance().removeConnection(socket);
             leaveGame();
             socket.close();
@@ -246,7 +236,7 @@ public class ClientController implements Runnable, GameListener, PacketListener 
 
     @Override
     public void gotMissile(Player player, float x, float y, float rotation, float playerXSpeed, float playerYSpeed) {
-        if (player.equals(this.player)) {
+        if (player.getName().equalsIgnoreCase(this.player.getName())) {
             return;
         }
         
@@ -259,13 +249,13 @@ public class ClientController implements Runnable, GameListener, PacketListener 
 
         if (!player.hasUDPAddress()) {
             player.setUDPAddress(address, port);
+            System.out.println(address + " " + port);
         }
 
         try {
             ICommand cmd = protocol.parseMessage(message);
             cmdManager.handleCommand(cmd);
-        } catch (ProtocolException ignored) {
-        }
+        } catch (ProtocolException ignored) { }
 
     }
 

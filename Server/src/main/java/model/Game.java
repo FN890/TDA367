@@ -18,7 +18,7 @@ public class Game implements Runnable {
     /**
      * How often packets will be sent to clients. Unit: Times/Second
      */
-    private static final int UPDATE_RATE = 80;
+    private static final int UPDATE_RATE = 1;
 
     private final String id;
     private final List<Player> players = Collections.synchronizedList(new ArrayList<>());

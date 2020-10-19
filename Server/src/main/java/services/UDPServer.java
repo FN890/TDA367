@@ -1,6 +1,9 @@
 package services;
 
 import data.Address;
+import services.protocol.ICommand;
+import services.protocol.ProtocolException;
+import services.protocol.ServerProtocolFactory;
 
 import java.io.IOException;
 import java.net.*;
@@ -15,26 +18,26 @@ public class UDPServer implements Runnable {
 
     private final DatagramSocket socket;
 
-    private final Map<Address, PacketListener> listeners = Collections.synchronizedMap(new HashMap<>());
+    private final Map<String, PacketListener> listeners = Collections.synchronizedMap(new HashMap<>());
 
     /**
      * Adds a PacketListener class associated with a client InetAddress
      * for listening on incoming packets from this address.
      *
-     * @param address  The Address on which will be associated with the PacketListener.
+     * @param clientID  The client ID on which will be associated with the PacketListener.
      * @param listener The PacketListener class.
      */
-    public void addListener(Address address, PacketListener listener) {
-        listeners.put(address, listener);
+    public void addListener(String clientID, PacketListener listener) {
+        listeners.put(clientID, listener);
     }
 
     /**
      * Removes a PacketListener with the InetAddress.
      *
-     * @param address The Address.
+     * @param clientID The Client ID.
      */
-    public void removeListener(Address address) {
-        listeners.remove(address);
+    public void removeListener(String clientID) {
+        listeners.remove(clientID);
     }
 
     /**
@@ -65,17 +68,22 @@ public class UDPServer implements Runnable {
     }
 
     /**
-     * Sends a packet message to the listener specified by address.
+     * Sends a packet message to the listener specified by client ID.
+     * The client ID is specified before the command, it's specified by id-(command...)
      *
-     * @param address The address associated with a PacketListener.
+     * @param address The address associated with the packet.
+     * @param port The port associated with the packet.
      * @param message The message.
      */
     private void sendToListener(InetAddress address, int port, String message) {
-        Address addr = new Address(address, port);
+        int index = message.indexOf('-');
+        String clientID = message.substring(0, index);
+        String command = message.substring(index + 1);
+
         synchronized (listeners) {
-            for (Address a : listeners.keySet()) {
-                if (a.equals(addr)) {
-                    listeners.get(a).gotPacket(address, port, message);
+            for (String id : listeners.keySet()) {
+                if (id.equals(clientID)) {
+                    listeners.get(id).gotPacket(address, port, command);
                 }
             }
         }

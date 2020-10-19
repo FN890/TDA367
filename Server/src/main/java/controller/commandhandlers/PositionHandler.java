@@ -18,7 +18,7 @@ public class PositionHandler extends AbstractCommandHandler {
     protected void concreteHandle(ICommand cmd, ClientController clientController, IServerProtocol protocol) {
         String[] args = cmd.getArgs();
 
-        if (args.length < 3) {
+        if (args.length < 4) {
             clientController.sendTCP(protocol.writeError("Invalid arguments."));
             return;
         }

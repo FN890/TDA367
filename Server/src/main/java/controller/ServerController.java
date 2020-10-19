@@ -1,6 +1,5 @@
 package controller;
 
-import data.Address;
 import services.PacketListener;
 import services.TCPListener;
 import services.TCPServer;
@@ -24,6 +23,7 @@ public class ServerController implements TCPListener {
     private UDPServer udpServer;
 
     private final Map<Socket, ClientController> connections;
+    private int currentClientID = 0;
 
     private ServerController() {
         connections = Collections.synchronizedMap(new HashMap<>());
@@ -50,10 +50,15 @@ public class ServerController implements TCPListener {
                     connections.get(s).disconnect();
                 }
             }
-            ClientController newConnection = new ClientController(client);
+            ClientController newConnection = new ClientController(client, createClientID());
             connections.put(client, newConnection);
             new Thread(newConnection).start();
         }
+    }
+
+    private String createClientID() {
+        currentClientID += 1;
+        return String.valueOf(currentClientID);
     }
 
     /**
@@ -70,20 +75,20 @@ public class ServerController implements TCPListener {
      * Adds a PacketListener to the running UDPServer.
      * Used for listening to incoming packets from specific clients.
      *
-     * @param address  Client Address.
+     * @param clientID  Client identifier.
      * @param listener The PacketListener.
      */
-    public synchronized void addPacketListener(Address address, PacketListener listener) {
-        udpServer.addListener(address, listener);
+    public synchronized void addPacketListener(String clientID, PacketListener listener) {
+        udpServer.addListener(clientID, listener);
     }
 
     /**
      * Removes a PacketListener from the running UDPServer.
      *
-     * @param address The client Address to remove.
+     * @param clientID The client identifier to remove.
      */
-    public synchronized void removePacketListener(Address address) {
-        udpServer.removeListener(address);
+    public synchronized void removePacketListener(String clientID) {
+        udpServer.removeListener(clientID);
     }
 
     /**
