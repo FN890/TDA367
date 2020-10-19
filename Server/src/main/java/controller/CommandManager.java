@@ -51,7 +51,7 @@ class CommandManager {
      *
      * @param cmd The command to handle.
      */
-    void handleCommand(ICommand cmd) {
+    synchronized void handleCommand(ICommand cmd) {
         firstHandler.handle(cmd, clientController, protocol);
     }
 

@@ -249,7 +249,6 @@ public class ClientController implements Runnable, GameListener, PacketListener 
 
         if (!player.hasUDPAddress()) {
             player.setUDPAddress(address, port);
-            System.out.println(address + " " + port);
         }
 
         try {
