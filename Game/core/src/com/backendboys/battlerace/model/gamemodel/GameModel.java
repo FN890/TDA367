@@ -148,6 +148,10 @@ public class GameModel {
         return worldExplosions.getParticles();
     }
 
+    public WorldExplosions getWorldExplosions() {
+        return worldExplosions;
+    }
+
     /**
      * Method that tells the player to use a powerup
      */

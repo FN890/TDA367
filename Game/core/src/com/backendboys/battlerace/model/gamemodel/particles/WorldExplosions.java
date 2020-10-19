@@ -21,12 +21,14 @@ public class WorldExplosions implements GameWorldListener {
 
     private final ArrayList<Explosion> explosions = new ArrayList<>();
     private final ArrayList<OnImpactMissile> missiles = new ArrayList<>();
+    private final ArrayList<IMissileListener> missileListeners = new ArrayList<>();
 
     public WorldExplosions() {
     }
 
     //TODO: TEMP PARAMETER!
     private GameModel gameModel;
+
     public WorldExplosions(GameModel gameModel) {
         this.gameModel = gameModel;
     }
@@ -117,6 +119,7 @@ public class WorldExplosions implements GameWorldListener {
             gameModel.missileShot(pos.x, pos.y, rotation, initialVelocity.x, initialVelocity.y);
         }
         missiles.add(new OnImpactMissile(world, pos, rotation, initialVelocity));
+        notifyMissileListeners(pos, initialVelocity, rotation);
     }
 
     public ArrayList<IParticle> getMissiles() {
@@ -130,6 +133,20 @@ public class WorldExplosions implements GameWorldListener {
             iExplosionParticles.addAll(explosion.getExplosionParticles());
         }
         return iExplosionParticles;
+    }
+
+    private void notifyMissileListeners(Vector2 position, Vector2 velocity, float rotation) {
+        for (IMissileListener missileListener : missileListeners) {
+            missileListener.onMissileShot(position, velocity, rotation);
+        }
+    }
+
+    public void addMissileListener(IMissileListener missileListener) {
+        missileListeners.add(missileListener);
+    }
+
+    public void removeMissileListener(IMissileListener missileListener) {
+        missileListeners.add(missileListener);
     }
 
     @Override
