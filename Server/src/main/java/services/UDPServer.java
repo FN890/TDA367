@@ -76,17 +76,20 @@ public class UDPServer implements Runnable {
      * @param message The message.
      */
     private void sendToListener(InetAddress address, int port, String message) {
-        int index = message.indexOf('-');
-        String clientID = message.substring(0, index);
-        String command = message.substring(index + 1);
+        try {
+            int index = message.indexOf('-');
+            String clientID = message.substring(0, index);
+            String command = message.substring(index + 1);
 
-        synchronized (listeners) {
-            for (String id : listeners.keySet()) {
-                if (id.equals(clientID)) {
-                    listeners.get(id).gotPacket(address, port, command);
+            synchronized (listeners) {
+                for (String id : listeners.keySet()) {
+                    if (id.equals(clientID)) {
+                        listeners.get(id).gotPacket(address, port, command);
+                    }
                 }
             }
-        }
+        } catch (Exception ignored) {}
+
     }
 
     /**
