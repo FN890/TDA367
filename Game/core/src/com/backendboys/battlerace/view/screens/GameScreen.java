@@ -33,7 +33,7 @@ class GameScreen extends AbstractScreen implements IScreen {
     private final PowerUpsRender powerUpsRender;
     private final MissileRender missileRender;
     private final ExplosionParticleRender explosionParticleRender;
-    private final Box2DDebugRenderer debugRenderer;
+    //private final Box2DDebugRenderer debugRenderer;
     private final FinishLineRender finishLineRender;
     private final CurrentPowerUpRender currentPowerUpRender;
 
@@ -48,7 +48,7 @@ class GameScreen extends AbstractScreen implements IScreen {
 
         backgroundRender = new BackgroundRender(camera, gameWorld.getGroundVertices());
         vehicleRender = new VehicleRender(camera);
-        debugRenderer = new Box2DDebugRenderer();
+        //debugRenderer = new Box2DDebugRenderer();
         opponentRender = new OpponentRender(camera);
         missileRender = new MissileRender(camera);
         explosionParticleRender = new ExplosionParticleRender(camera);
@@ -76,7 +76,7 @@ class GameScreen extends AbstractScreen implements IScreen {
         backgroundRender.render(batch, null);
         vehicleRender.render(batch, gameModel.getPlayer().getVehicle());
         opponentRender.render(batch, gameModel.getOpponents());
-        debugRenderer.render(gameWorld.getWorld(), camera.combined);
+        //debugRenderer.render(gameWorld.getWorld(), camera.combined);
         missileRender.render(batch, gameModel.getMissiles());
         explosionParticleRender.render(batch, gameModel.getExplosionParticles());
         powerUpsRender.render(batch, null);
@@ -98,7 +98,7 @@ class GameScreen extends AbstractScreen implements IScreen {
     public void dispose() {
         gameController.getGameWorld().dispose();
         backgroundRender.dispose();
-        debugRenderer.dispose();
+        //debugRenderer.dispose();
         opponentRender.dispose();
         vehicleRender.dispose();
         missileRender.dispose();
