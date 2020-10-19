@@ -4,7 +4,7 @@ import com.backendboys.battlerace.BattleRace;
 import com.backendboys.battlerace.model.gamemodel.GameModel;
 import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
 import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
-import com.backendboys.battlerace.view.screens.IScreen;
+import com.backendboys.battlerace.view.screens.IGameScreen;
 import com.backendboys.battlerace.view.screens.ScreenFactory;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -26,7 +26,7 @@ public class GameController implements InputProcessor {
 
     private boolean usedPowerUp = false;
 
-    private IScreen gameScreen;
+    private IGameScreen gameScreen;
 
     private ServerController serverController;
 

@@ -15,7 +15,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 /**
  * Class that handles rendering for the game
  */
-class GameScreen extends AbstractScreen implements IScreen {
+class GameScreen extends AbstractScreen implements IGameScreen {
 
     private final GameWorld gameWorld;
     private final GameModel gameModel;

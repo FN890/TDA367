@@ -17,7 +17,7 @@ public class ScreenFactory {
         return new OptionsMenu(menuController);
     }
 
-    public static IScreen createGameScreen(GameController gameController) {
+    public static IGameScreen createGameScreen(GameController gameController) {
         return new GameScreen(gameController);
     }
 

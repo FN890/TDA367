@@ -12,7 +12,6 @@ import com.badlogic.gdx.Gdx;
  */
 public class BattleRace extends Game {
 
-    private ServerController serverController;
     private GameController gameController;
 
     @Override

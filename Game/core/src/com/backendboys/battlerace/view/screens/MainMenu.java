@@ -122,8 +122,4 @@ class MainMenu extends AbstractMenuScreen implements IScreen {
         stage.dispose();
     }
 
-    @Override
-    public void setServerController(ServerController serverController) {
-
-    }
 }
