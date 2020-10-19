@@ -1,6 +1,5 @@
 package com.backendboys.battlerace.model.gamemodel.particles;
 
-import com.backendboys.battlerace.model.gamemodel.GameModel;
 import com.backendboys.battlerace.model.gamemodel.world.GameWorldListener;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -26,12 +25,7 @@ public class WorldExplosions implements GameWorldListener {
     public WorldExplosions() {
     }
 
-    //TODO: TEMP PARAMETER!
-    private GameModel gameModel;
 
-    public WorldExplosions(GameModel gameModel) {
-        this.gameModel = gameModel;
-    }
 
     /**
      * Adds an explosion to the world at a set position

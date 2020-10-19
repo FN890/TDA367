@@ -34,7 +34,7 @@ public class GameModel {
      */
     public GameModel() {
         this.gameWorld = new GameWorld(GroundStrategyFactory.getSinCosStrategy(5000, 60, 5), 1);
-        worldExplosions = new WorldExplosions(this);
+        worldExplosions = new WorldExplosions();
         generateObjects();
         gameWorld.addListener(worldExplosions);
         Vector2 startPosition = gameWorld.getGroundVertices().get(50);
