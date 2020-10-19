@@ -22,6 +22,7 @@ class PlayerTest {
     public PlayerTest() {
         player = new Player(testName);
         world = new World(new Vector2(0, -10), true);
+        player.addVehicle(world, 0, 0);
         this.random = new Random();
     }
 
@@ -64,10 +65,21 @@ class PlayerTest {
 
     @Test
     public void PlayerUsePowerUp() {
-        //player.usePowerUp();
-        //player.usePowerUp();
+        int amountPowerUp1 = random.nextInt(100);
+        int amountPowerUp2 = random.nextInt(100);
 
-        //assertTrue(player.getListPowerUp().size() == 0);
+        for (int i = 0; i < amountPowerUp1; i++) {
+            player.addPowerUp(new MissilePowerUp(world, 1, 1, worldExplosions));
+        }
+        for (int i = 0; i < amountPowerUp2; i++) {
+            player.addPowerUp(new NitroPowerUp(world, 1, 1));
+        }
+
+        for (int i = 0; i < amountPowerUp2+amountPowerUp1; i++) {
+            player.usePowerUp();
+        }
+
+        assertEquals(0, player.getListPowerUp().size());
     }
 
 }
