@@ -22,15 +22,16 @@ public class CurrentPowerUpRender extends AbstractRender<IPowerUp> {
     public CurrentPowerUpRender(OrthographicCamera camera) {
         super(camera);
 
-        nitroSprite = new Sprite(new Texture("newredcar.png"));
+        nitroSprite = new Sprite(new Texture("nitro.png"));
         nitroSprite.setSize(SPRITE_SIZE, SPRITE_SIZE);
         nitroSprite.setOriginCenter();
 
-        missileSprite = new Sprite(new Texture("wheel.png"));
+        missileSprite = new Sprite(new Texture("missile.png"));
         missileSprite.setSize(SPRITE_SIZE, SPRITE_SIZE);
         missileSprite.setOriginCenter();
+        missileSprite.setRotation(45);
 
-        noPowerUpSprite = new Sprite(new Texture("badlogic.jpg"));
+        noPowerUpSprite = new Sprite(new Texture("powerp.jpg"));
         noPowerUpSprite.setSize(SPRITE_SIZE, SPRITE_SIZE);
         noPowerUpSprite.setOriginCenter();
     }
