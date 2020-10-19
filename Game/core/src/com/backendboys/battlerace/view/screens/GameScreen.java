@@ -35,6 +35,7 @@ class GameScreen extends AbstractScreen implements IScreen {
     private final ExplosionParticleRender explosionParticleRender;
     private final Box2DDebugRenderer debugRenderer;
     private final FinishLineRender finishLineRender;
+    private final CurrentPowerUpRender currentPowerUpRender;
 
     GameScreen(GameController gameController) {
 
@@ -53,6 +54,7 @@ class GameScreen extends AbstractScreen implements IScreen {
         explosionParticleRender = new ExplosionParticleRender(camera);
         powerUpsRender = new PowerUpsRender(camera, gameModel.getPowerUps());
         finishLineRender = new FinishLineRender(camera, gameModel.getFinishLineVertices());
+        currentPowerUpRender = new CurrentPowerUpRender(camera);
 
         batch = new SpriteBatch();
     }
@@ -79,6 +81,11 @@ class GameScreen extends AbstractScreen implements IScreen {
         explosionParticleRender.render(batch, gameModel.getExplosionParticles());
         powerUpsRender.render(batch, null);
         finishLineRender.render(batch, null);
+        try {
+            currentPowerUpRender.render(batch, gameModel.getPlayer().getListPowerUp().get(0));
+        }catch (Exception e) {
+            currentPowerUpRender.render(batch, null);
+        }
     }
 
     @Override
@@ -98,6 +105,7 @@ class GameScreen extends AbstractScreen implements IScreen {
         explosionParticleRender.dispose();
         powerUpsRender.dispose();
         finishLineRender.dispose();
+        currentPowerUpRender.dispose();
     }
 
     @Override
