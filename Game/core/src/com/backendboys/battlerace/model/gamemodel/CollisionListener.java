@@ -73,7 +73,7 @@ class CollisionListener implements ContactListener {
 
     private void checkFinishLineContact(Fixture fixtureA, Fixture fixtureB) {
         if (fixtureA.getUserData() instanceof FinishLineGenerator && fixtureB.getUserData() instanceof IVehicle) {
-            System.out.println("LOL");
+            System.out.println("Finish!");
         }
     }
 
