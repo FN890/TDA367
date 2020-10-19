@@ -115,9 +115,6 @@ public class WorldExplosions implements GameWorldListener {
      */
     // TODO: TEMP EDIT HERE!
     public void addMissile(Vector2 pos, World world, float rotation, Vector2 initialVelocity) {
-        if (gameModel != null) {
-            gameModel.missileShot(pos.x, pos.y, rotation, initialVelocity.x, initialVelocity.y);
-        }
         missiles.add(new OnImpactMissile(world, pos, rotation, initialVelocity));
         notifyMissileListeners(pos, initialVelocity, rotation);
     }

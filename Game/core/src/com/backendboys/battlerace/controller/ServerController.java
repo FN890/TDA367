@@ -152,12 +152,6 @@ public class ServerController implements ITCPListener, IPacketListener, IMissile
         }
     }
 
-    public void sendMissile(float x, float y, float rotation, float playerXSpeed, float playerYSpeed) {
-        if (isConnected) {
-            sendMessage("missile:" + x + "," + y + "," + rotation + "," + playerXSpeed + "," + playerYSpeed);
-        }
-    }
-
     @Override
     public void onMissileShot(Vector2 position, Vector2 velocity, float rotation) {
         if (isConnected) {

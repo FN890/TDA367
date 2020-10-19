@@ -192,16 +192,4 @@ public class GameModel {
         return finishLineGenerator.getFinishLineVertices();
     }
 
-
-    //TODO: TEMP PARAMETER AND SETTER! TO BE REMOVED!
-    private ServerController serverController;
-    public void setServerController(ServerController serverController) {
-        this.serverController = serverController;
-    }
-
-    public void missileShot(float x, float y, float rotation, float playerXSpeed, float playerYSpeed) {
-        if (serverController == null) return;
-        serverController.sendMissile(x, y, rotation, playerXSpeed, playerYSpeed);
-    }
-
 }
