@@ -19,6 +19,7 @@ public class ServerController implements ITCPListener, IPacketListener {
 
     private final TCPClient tcpClient;
     private final UDPClient udpClient;
+    private String clientID;
 
     private final BattleRace game;
 
@@ -47,7 +48,7 @@ public class ServerController implements ITCPListener, IPacketListener {
                 String.valueOf(player.getPosition().x),
                 String.valueOf(player.getPosition().y), String.valueOf(player.getRotation()));
 
-        udpClient.sendPacket(commandConverter.toMessage(command));
+        udpClient.sendPacket(clientID + "-" + commandConverter.toMessage(command));
     }
 
     @Override
@@ -78,8 +79,10 @@ public class ServerController implements ITCPListener, IPacketListener {
     public void gotMessage(String message) {
         ICommand command = commandConverter.toCommand(message);
 
-        System.out.println(message);
-        if (command.getCmd().equals("response")) {
+        if (command.getCmd().equals("connected")) {
+            clientID = command.getArgs()[0];
+
+        } else if (command.getCmd().equals("response")) {
             if (command.getArgs().length > 2) {
                 int id = Integer.parseInt(command.getArgs()[0]);
                 System.out.println("Server ID: " + id);
