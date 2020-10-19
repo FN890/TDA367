@@ -16,16 +16,18 @@ public class CurrentPowerUpRender extends AbstractRender<IPowerUp> {
     private final Sprite noPowerUpSprite;
 
     private static final int SPRITE_SIZE = 50;
+    private static final int CAMERA_OFFSET_X = 240;
+    private static final int CAMERA_OFFSET_Y = 130;
 
     public CurrentPowerUpRender(OrthographicCamera camera) {
         super(camera);
 
         nitroSprite = new Sprite(new Texture("newredcar.png"));
-        nitroSprite.setSize(150, 150);
+        nitroSprite.setSize(SPRITE_SIZE, SPRITE_SIZE);
         nitroSprite.setOriginCenter();
 
         missileSprite = new Sprite(new Texture("wheel.png"));
-        missileSprite.setSize(150, 150);
+        missileSprite.setSize(SPRITE_SIZE, SPRITE_SIZE);
         missileSprite.setOriginCenter();
 
         noPowerUpSprite = new Sprite(new Texture("badlogic.jpg"));
@@ -43,15 +45,15 @@ public class CurrentPowerUpRender extends AbstractRender<IPowerUp> {
         batch.setProjectionMatrix(getCamera().combined);
 
         if (powerUp == null) {
-            noPowerUpSprite.setPosition(position.x + getCamera().viewportWidth / 4, position.y + getCamera().viewportHeight / 4);
+            noPowerUpSprite.setPosition(position.x + CAMERA_OFFSET_X, position.y + CAMERA_OFFSET_Y);
             noPowerUpSprite.draw(batch);
         }
         else if (powerUp instanceof NitroPowerUp) {
-            nitroSprite.setPosition(position.x + 150, position.y + 150);
+            nitroSprite.setPosition(position.x + CAMERA_OFFSET_X, position.y + CAMERA_OFFSET_Y);
             nitroSprite.draw(batch);
         }
         else if (powerUp instanceof MissilePowerUp) {
-            missileSprite.setPosition(position.x + 150, position.y+ 150);
+            missileSprite.setPosition(position.x + CAMERA_OFFSET_X, position.y+ CAMERA_OFFSET_Y);
             missileSprite.draw(batch);
         }
 

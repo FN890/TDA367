@@ -60,6 +60,10 @@ public class Player {
         return (List<IPowerUp>) powerUpStack.clone();
     }
 
+    public IPowerUp getNextPowerUp() {
+        return powerUpStack.peek();
+    }
+
     /**
      * @param powerUp Add a {@link IPowerUp()} to Player
      */

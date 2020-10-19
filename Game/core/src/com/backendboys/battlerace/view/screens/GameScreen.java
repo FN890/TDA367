@@ -82,7 +82,7 @@ class GameScreen extends AbstractScreen implements IScreen {
         powerUpsRender.render(batch, null);
         finishLineRender.render(batch, null);
         try {
-            currentPowerUpRender.render(batch, gameModel.getPlayer().getListPowerUp().get(0));
+            currentPowerUpRender.render(batch, gameModel.getPlayer().getNextPowerUp());
         }catch (Exception e) {
             currentPowerUpRender.render(batch, null);
         }
