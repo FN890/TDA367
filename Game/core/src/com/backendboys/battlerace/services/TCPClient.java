@@ -40,7 +40,6 @@ public class TCPClient implements Runnable {
             InputStream inputStream = socket.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
-            System.out.println("connected");
             notifyConnected();
 
             String line;
@@ -55,8 +54,8 @@ public class TCPClient implements Runnable {
         }
     }
 
-    public void sendCommand(String command) {
-        printWriter.println(command);
+    public void sendMessage(String message) {
+        printWriter.println(message);
     }
 
     private void notifyLostConnection(String msg) {

@@ -32,8 +32,6 @@ public class ServerController implements ITCPListener, IPacketListener, IMissile
     private String name;
     private String id;
 
-    private String connectionId;
-
     public ServerController(BattleRace game, GameController gameController) {
         this.game = game;
 
@@ -67,6 +65,10 @@ public class ServerController implements ITCPListener, IPacketListener, IMissile
         udpClient.sendPacket(clientID + "-" + commandConverter.toMessage(command));
     }
 
+    private void sendMessage(String message) {
+        tcpClient.sendMessage(message);
+    }
+
     @Override
     public void gotPacket(String message) {
         ICommand command = commandConverter.toCommand(message);
@@ -80,9 +82,7 @@ public class ServerController implements ITCPListener, IPacketListener, IMissile
 
                 gameController.handleUpdateOpponentPosition(playerName, playerXPos, playerYPos, playerRotation);
 
-            } catch (NumberFormatException e) {
-
-            }
+            } catch (NumberFormatException ignored) { }
         }
     }
 
@@ -95,52 +95,53 @@ public class ServerController implements ITCPListener, IPacketListener, IMissile
     public void gotMessage(String message) {
         ICommand command = commandConverter.toCommand(message);
 
-        if (command.getCmd().equals("connected")) {
-            clientID = command.getArgs()[0];
-            System.out.println("Got id" + clientID);
-        } else if (command.getCmd().equals("response")) {
-            if (command.getArgs().length > 2) {
-                int id = Integer.parseInt(command.getArgs()[0]);
-                System.out.println("Server ID: " + id);
+        switch (command.getCmd()) {
+            case "connected":
+                clientID = command.getArgs()[0];
+                System.out.println("Got id" + clientID);
+                break;
+            case "response":
+                if (command.getArgs().length > 2) {
+                    int id = Integer.parseInt(command.getArgs()[0]);
+                    System.out.println("Server ID: " + id);
 
-                // FIX THIS Hardocded name removal
-                for (int i = 2; i < command.getArgs().length - 1; i++) {
-                    String playerName = command.getArgs()[i];
-                    gameController.handleAddOpponent(new OpponentPlayer(playerName, new Vector2(50, 100), 0));
+                    // TODO: FIX THIS Hardcoded name removal
+                    for (int i = 2; i < command.getArgs().length - 1; i++) {
+                        String playerName = command.getArgs()[i];
+                        gameController.handleAddOpponent(new OpponentPlayer(playerName, new Vector2(50, 100), 0));
+                    }
                 }
-            }
-        } else if (command.getCmd().equals("missile")) {
-            String[] args = command.getArgs();
+                break;
+            case "missile":
+                String[] args = command.getArgs();
 
-            float x = Float.parseFloat(args[0]);
-            float y = Float.parseFloat(args[1]);
-            float rotation = Float.parseFloat(args[2]);
-            float playerXSpeed = Float.parseFloat(args[3]);
-            float playerYSpeed = Float.parseFloat(args[4]);
+                float x = Float.parseFloat(args[0]);
+                float y = Float.parseFloat(args[1]);
+                float rotation = Float.parseFloat(args[2]);
+                float playerXSpeed = Float.parseFloat(args[3]);
+                float playerYSpeed = Float.parseFloat(args[4]);
 
-            gameController.getGameModel().spawnMissile(x, y, rotation, playerXSpeed, playerYSpeed, false);
+                gameController.getGameModel().spawnMissile(x, y, rotation, playerXSpeed, playerYSpeed, false);
 
-        } else if (command.getCmd().equals("game")) {
-            if (command.getArgs().length > 1) {
-                if (command.getArgs()[0].equals("joined")) {
-                    String playerName = command.getArgs()[1];
-                    gameController.handleAddOpponent(new OpponentPlayer(playerName, new Vector2(50, 100), 0));
-                    System.out.println("Opponent created");
+                break;
+            case "game":
+                if (command.getArgs().length > 1) {
+                    if (command.getArgs()[0].equals("joined")) {
+                        String playerName = command.getArgs()[1];
+                        gameController.handleAddOpponent(new OpponentPlayer(playerName, new Vector2(50, 100), 0));
+                        System.out.println("Opponent created");
 
-                } else if (command.getArgs()[0].equals("left")) {
-
+                    } else if (command.getArgs()[0].equals("left")) {
+                        //TODO: Remove Opponent
+                    }
                 }
-            }
+                break;
         }
     }
 
     @Override
     public void lostConnection(String message) {
         isConnected = false;
-    }
-
-    public void sendMessage(String command) {
-        tcpClient.sendCommand(command);
     }
 
     @Override
