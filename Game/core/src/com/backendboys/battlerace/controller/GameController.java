@@ -111,9 +111,8 @@ public class GameController implements InputProcessor {
 
     @Override
     public boolean keyUp(int keycode) {
-        switch (keycode) {
-            case Input.Keys.SPACE:
-                usedPowerUp = false;
+        if (keycode == Input.Keys.SPACE) {
+            usedPowerUp = false;
         }
         keysDown.removeAll(Arrays.asList(keycode));
         return true;
