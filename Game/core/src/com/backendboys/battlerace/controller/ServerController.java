@@ -81,6 +81,7 @@ public class ServerController implements ITCPListener, IPacketListener {
 
         if (command.getCmd().equals("connected")) {
             clientID = command.getArgs()[0];
+            System.out.println("Got id" + clientID);
 
         } else if (command.getCmd().equals("response")) {
             if (command.getArgs().length > 2) {
@@ -130,8 +131,6 @@ public class ServerController implements ITCPListener, IPacketListener {
 
     @Override
     public void onConnection() {
-        System.out.println("Sending port: " + udpClient.getListeningPort());
-        sendMessage("port:" + udpClient.getListeningPort());
         isConnected = true;
         gameController.onConnection();
     }
