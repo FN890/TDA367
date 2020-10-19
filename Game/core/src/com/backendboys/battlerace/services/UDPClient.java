@@ -39,7 +39,9 @@ public class UDPClient implements Runnable {
                 DatagramPacket request = new DatagramPacket(buffer, buffer.length);
                 socket.receive(request);
 
+                System.out.println("message");
                 String message = new String(request.getData(), 0, request.getLength());
+                System.out.println(message);
                 notifyGotPacket(message);
             }
 

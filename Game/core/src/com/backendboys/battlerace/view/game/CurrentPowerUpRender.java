@@ -31,7 +31,7 @@ public class CurrentPowerUpRender extends AbstractRender<IPowerUp> {
         missileSprite.setOriginCenter();
         missileSprite.setRotation(45);
 
-        noPowerUpSprite = new Sprite(new Texture("powerp.jpg"));
+        noPowerUpSprite = new Sprite(new Texture("powerp.png"));
         noPowerUpSprite.setSize(SPRITE_SIZE, SPRITE_SIZE);
         noPowerUpSprite.setOriginCenter();
     }

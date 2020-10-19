@@ -9,12 +9,19 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.List;
 
+/**
+ * class that is used to render particles
+ */
 public class ExplosionParticleRender extends AbstractRender<List<IParticle>> {
 
     private final static int WIDTH = 5, HEIGHT = 5;
 
     private final Sprite sprite;
 
+    /**
+     * creates the renderer
+     * @param orthographicCamera The camera in which we view what we render
+     */
     public ExplosionParticleRender(OrthographicCamera orthographicCamera) {
         super(orthographicCamera);
 
@@ -24,6 +31,11 @@ public class ExplosionParticleRender extends AbstractRender<List<IParticle>> {
         sprite.setOrigin(WIDTH / 2f, HEIGHT / 2f);
     }
 
+    /**
+     * The method that needs to be called everytime you render the game
+     * @param batch batch used to draw on the screen
+     * @param object the particle object to be rendered
+     */
     @Override
     public void render(SpriteBatch batch, List<IParticle> object) {
         batch.begin();

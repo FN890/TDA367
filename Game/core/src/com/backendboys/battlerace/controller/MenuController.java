@@ -1,6 +1,7 @@
 package com.backendboys.battlerace.controller;
 
 import com.backendboys.battlerace.BattleRace;
+import com.backendboys.battlerace.view.screens.IScreen;
 import com.backendboys.battlerace.view.screens.ScreenFactory;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
@@ -11,34 +12,29 @@ import com.badlogic.gdx.audio.Music;
 public class MenuController {
 
     private final BattleRace game;
-    private final Music music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
+
+    private final IScreen optionsMenu = ScreenFactory.createOptionsMenu(this);
+    private final IScreen mainMenu = ScreenFactory.createMainMenu(this);
 
     /**
      * @param game Set Menu screen for game.
      */
     public MenuController(BattleRace game) {
         this.game = game;
-        game.setScreen(ScreenFactory.createMainMenu(this));
+        game.setScreen(mainMenu);
 
-        //music.play();
-        music.setLooping(true);
+
     }
 
     /**
      * Starts a single player game.
      */
     public void toSinglePlayer() {
-        music.stop();
+
 
         game.startSinglePlayer();
     }
 
-    /**
-     * Check if background music is playing.
-     */
-    public boolean isMusicPlaying() {
-        return music.isPlaying();
-    }
 
     /**
      * Starts a multiplayer game.
@@ -60,31 +56,15 @@ public class MenuController {
      * Open option screen.
      */
     public void toOptions() {
-        game.setScreen(ScreenFactory.createOptionsMenu(this));
+        game.setScreen(optionsMenu);
     }
 
     /**
      * Open menu screen.
      */
     public void toMainMenu() {
-        game.setScreen(ScreenFactory.createMainMenu(this));
+        game.setScreen(mainMenu);
     }
 
-    /**
-     * @param play Should background music be played or not.
-     */
-    public void playMenuMusic(boolean play) {
-        if (play) {
-            if (!music.isPlaying()) {
-                music.play();
-                music.setLooping(true);
-            }
-            return;
-        }
-
-        if (music.isPlaying()) {
-            music.stop();
-        }
-    }
 
 }

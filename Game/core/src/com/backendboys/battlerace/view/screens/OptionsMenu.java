@@ -4,6 +4,7 @@ package com.backendboys.battlerace.view.screens;
 import com.backendboys.battlerace.controller.MenuController;
 import com.backendboys.battlerace.controller.ServerController;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -18,6 +19,7 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
 
     private final SpriteBatch batch;
     private Stage stage;
+    private final static Music music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
 
     /**
      * Constructor
@@ -26,6 +28,9 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
      */
     OptionsMenu(MenuController menuController) {
         super(menuController);
+
+        music.play();
+        music.setLooping(true);
 
         batch = new SpriteBatch();
     }
@@ -50,7 +55,7 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
         optionsTable.center();
 
         final ImageButton soundButton = new ImageButton(getButtonStyleFromName("Soundon"));
-        if (getMenuController().isMusicPlaying()) {
+        if (music.isPlaying()) {
             soundButton.setStyle(getButtonStyleFromName("Soundon"));
         } else {
             soundButton.setStyle(getButtonStyleFromName("Soundoff"));
@@ -68,12 +73,12 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
         soundButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (getMenuController().isMusicPlaying()) {
-                    getMenuController().playMenuMusic(false);
+                if (music.isPlaying()) {
+                    playMenuMusic(false);
                     soundButton.setStyle(getButtonStyleFromName("Soundoff"));
 
                 } else {
-                    getMenuController().playMenuMusic(true);
+                    playMenuMusic(true);
                     soundButton.setStyle(getButtonStyleFromName("Soundon"));
                 }
 
@@ -85,6 +90,23 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
         optionsTable.add(backToMainMenuButton).row();
 
         return optionsTable;
+    }
+
+    /**
+     * @param play Should background music be played or not.
+     */
+    private void playMenuMusic(boolean play) {
+        if (play) {
+            if (!music.isPlaying()) {
+                music.play();
+                music.setLooping(true);
+            }
+            return;
+        }
+
+        if (music.isPlaying()) {
+            music.stop();
+        }
     }
 
     @Override
@@ -125,9 +147,9 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
         stage.dispose();
     }
 
-
     @Override
     public void setServerController(ServerController serverController) {
 
     }
+
 }

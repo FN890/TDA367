@@ -76,14 +76,6 @@ abstract class AbstractPowerUp implements IPowerUp{
         }
     }
 
-    /**
-     * Returns name of PowerUp, used for testing purposes.
-     *
-     * @return Name of PowerUp.
-     */
-    @Override
-    public abstract String toString();
-
     public Vector2 getPosition() {
         return body.getPosition();
     }

@@ -19,11 +19,6 @@ public class MissilePowerUp extends AbstractPowerUp {
     @Override
     public void use(Player player) {
         worldExplosions.addMissile(player.getPosition(), player.getWorld(), player.getRotation(), player.getLinearVelocity());
-        System.out.println("Used " + this.toString());
     }
 
-    @Override
-    public String toString() {
-        return "Missile PowerUp";
-    }
 }

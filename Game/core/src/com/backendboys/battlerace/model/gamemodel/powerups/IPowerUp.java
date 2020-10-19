@@ -12,6 +12,4 @@ public interface IPowerUp extends GameWorldListener {
 
     Vector2 getPosition();
 
-    String toString();
-
 }

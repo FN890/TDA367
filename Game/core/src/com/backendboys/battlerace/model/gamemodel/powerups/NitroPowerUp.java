@@ -15,11 +15,6 @@ public class NitroPowerUp extends AbstractPowerUp {
     @Override
     public void use(Player player) {
         player.getVehicle().setAcceleration(player.getVehicle().getAcceleration() * 1.5f);
-        System.out.println("Used " + this.toString());
     }
 
-    @Override
-    public String toString() {
-        return "Nitro PowerUp";
-    }
 }
