@@ -153,7 +153,6 @@ public class ServerController implements ITCPListener, IPacketListener, IMissile
         }else{
             joinGame(name, id);
         }
-        gameController.setGameScreen();
     }
 
     public void createGame(String name) {

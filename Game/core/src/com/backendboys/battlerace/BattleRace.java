@@ -51,4 +51,8 @@ public class BattleRace extends Game {
     public ServerController getServerController() {
         return gameController.getServerController();
     }
+
+    public GameController gameController() {
+        return gameController;
+    }
 }

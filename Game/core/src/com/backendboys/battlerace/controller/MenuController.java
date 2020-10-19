@@ -37,6 +37,10 @@ public class MenuController {
         return game.getServerController();
     }
 
+    public GameController getGameController() {
+        return game.gameController();
+    }
+
 
     /**
      * Starts a multiplayer game.
