@@ -5,8 +5,6 @@ import java.util.List;
 
 class ServerProtocolReader {
 
-    private static final String[] VALID_COMMANDS = {"create", "join", "leave", "pos", "get", "start", "port", "missile"};
-
     Command parseMessage(String msg) throws ProtocolException {
         String trimmed = msg.trim().toLowerCase();
         StringBuilder sb = new StringBuilder();
@@ -48,17 +46,6 @@ class ServerProtocolReader {
         }
 
         return new Command(command, args);
-    }
-
-    Command parseCommand(Command cmd) throws ProtocolException {
-
-        for (int i = 0; i < VALID_COMMANDS.length; i++) {
-            if (cmd.getCmd().equalsIgnoreCase(VALID_COMMANDS[i])) {
-                return cmd;
-            }
-        }
-
-        throw new ProtocolException(ProtocolError.INVALID_CMD);
     }
 
 

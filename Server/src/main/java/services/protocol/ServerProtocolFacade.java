@@ -17,8 +17,7 @@ class ServerProtocolFacade implements IServerProtocol {
 
     @Override
     public synchronized Command parseMessage(String msg) throws ProtocolException {
-        Command cmd = readerProtocol.parseMessage(msg);
-        return readerProtocol.parseCommand(cmd);
+        return readerProtocol.parseMessage(msg);
     }
 
     @Override
