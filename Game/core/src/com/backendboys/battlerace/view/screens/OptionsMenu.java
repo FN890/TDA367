@@ -6,12 +6,14 @@ import com.backendboys.battlerace.controller.ServerController;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 /**
@@ -22,7 +24,7 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
     private final SpriteBatch batch;
     private Stage stage;
     private final static Music music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
-
+    private boolean musicSliderUpdating = false;
     /**
      * Constructor
      *
@@ -81,7 +83,6 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
                 } else {
                     playMenuMusic(true);
                     soundButton.setStyle(getButtonStyleFromName("Soundon"));
-                    music.setVolume(0.075f);
                 }
 
 
@@ -89,13 +90,29 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
         });
 
         Skin uiSkin = new Skin(Gdx.files.internal("uiskin.json"));
-        Slider slider = new Slider(0,1,0.01f,false,uiSkin);
+        Slider musicSlider = new Slider(0,100,1f,false,uiSkin);
+        musicSlider.setValue(music.getVolume()*100);
+        addSliderListener(musicSlider);
         optionsTable.add(soundButton).row();
-        optionsTable.add(slider).row();
+        optionsTable.add(musicSlider).row();
         optionsTable.add(backToMainMenuButton).row();
 
         return optionsTable;
     }
+
+    private void addSliderListener(final Slider slider) {
+        slider.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                if(slider.isDragging() && !musicSliderUpdating){
+                    musicSliderUpdating = true;
+                    music.setVolume(slider.getPercent());
+                    musicSliderUpdating = false;
+                }
+            }
+        });
+    }
+
 
     /**
      * @param play Should background music be played or not.
