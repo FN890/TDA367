@@ -20,6 +20,7 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
     private final SpriteBatch batch;
     private Stage stage;
     private final static Music music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
+
     /**
      * Constructor
      *
@@ -90,10 +91,11 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
 
         return optionsTable;
     }
+
     /**
      * @param play Should background music be played or not.
      */
-    public void playMenuMusic(boolean play) {
+    private void playMenuMusic(boolean play) {
         if (play) {
             if (!music.isPlaying()) {
                 music.play();
@@ -144,7 +146,6 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
         batch.dispose();
         stage.dispose();
     }
-
 
     @Override
     public void setServerController(ServerController serverController) {
