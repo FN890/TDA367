@@ -30,6 +30,11 @@ public class ServerController implements ITCPListener, IPacketListener, IMissile
 
     private boolean isConnected = false;
 
+    private String name;
+    private String id;
+
+    private String connectionId;
+
     public ServerController(BattleRace game, GameController gameController) {
         this.game = game;
 
@@ -40,11 +45,19 @@ public class ServerController implements ITCPListener, IPacketListener, IMissile
 
         udpClient = new UDPClient(HOSTNAME, PORT);
         udpClient.addListener(this);
-        new Thread(udpClient).start();
 
         tcpClient = new TCPClient(HOSTNAME, PORT);
         tcpClient.addListener(this);
+    }
+
+    public void connect(){
+        new Thread(udpClient).start();
         new Thread(tcpClient).start();
+    }
+
+    public void setNameAndId(String name, String id){
+        this.name = name;
+        this.id = id;
     }
 
     public void sendPositionPacket(Player player) {
@@ -86,7 +99,6 @@ public class ServerController implements ITCPListener, IPacketListener, IMissile
         if (command.getCmd().equals("connected")) {
             clientID = command.getArgs()[0];
             System.out.println("Got id" + clientID);
-
         } else if (command.getCmd().equals("response")) {
             if (command.getArgs().length > 2) {
                 int id = Integer.parseInt(command.getArgs()[0]);
@@ -121,7 +133,6 @@ public class ServerController implements ITCPListener, IPacketListener, IMissile
                 }
             }
         }
-
     }
 
     @Override
@@ -136,19 +147,27 @@ public class ServerController implements ITCPListener, IPacketListener, IMissile
     @Override
     public void onConnection() {
         isConnected = true;
-        gameController.onConnection();
+
+        if(id.isEmpty()){
+            createGame(name);
+        }else{
+            joinGame(name, id);
+        }
+        gameController.setGameScreen();
     }
 
     public void createGame(String name) {
         if (isConnected) {
             sendMessage("create:" + name);
             sendMessage("start");
+            System.out.println("Game created");
         }
     }
 
     public void joinGame(String name, String id) {
         if (isConnected) {
             sendMessage("join:" + id + "," + name);
+            System.out.println("Game joined");
         }
     }
 

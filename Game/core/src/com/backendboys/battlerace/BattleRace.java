@@ -12,10 +12,12 @@ import com.badlogic.gdx.Gdx;
  */
 public class BattleRace extends Game {
 
-    public ServerController serverController;
+    private ServerController serverController;
+    private GameController gameController;
 
     @Override
     public void create() {
+        gameController = new GameController(this);
         new MenuController(this);
     }
 
@@ -26,11 +28,13 @@ public class BattleRace extends Game {
         new MenuController(this);
     }
 
+
     /**
      * Starts the game in singleplayer (Switches to GameScreen)
      */
     public void startSinglePlayer() {
-        Gdx.input.setInputProcessor(new GameController(this));
+        Gdx.input.setInputProcessor(gameController);
+        gameController.setGameScreen();
     }
 
 
@@ -44,4 +48,7 @@ public class BattleRace extends Game {
 
     }
 
+    public ServerController getServerController() {
+        return gameController.getServerController();
+    }
 }

@@ -6,12 +6,15 @@ import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
 import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
 import com.backendboys.battlerace.view.screens.IScreen;
 import com.backendboys.battlerace.view.screens.ScreenFactory;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
 /**
  * Class that handles inputs
@@ -27,7 +30,7 @@ public class GameController implements InputProcessor {
 
     private IScreen gameScreen;
 
-    ServerController serverController;
+    private ServerController serverController;
 
     /**
      * @param game Created GameModel and set GameScreen.
@@ -44,17 +47,8 @@ public class GameController implements InputProcessor {
         gameScreen.setServerController(serverController);
     }
 
-    public GameController(BattleRace game, ServerController serverController) {
-        gameModel = new GameModel();
-        this.game = game;
-        IScreen gameScreen = ScreenFactory.createGameScreen(this);
-        gameScreen.setServerController(serverController);
-        game.setScreen(gameScreen);
-
-        keysDown = new ArrayList<>();
-    }
-
     public void setGameScreen(){
+        Gdx.input.setInputProcessor(this);
         game.setScreen(gameScreen);
     }
 
@@ -189,5 +183,10 @@ public class GameController implements InputProcessor {
     }
 
     public void onConnection() {
+
+    }
+
+    public ServerController getServerController() {
+        return serverController;
     }
 }

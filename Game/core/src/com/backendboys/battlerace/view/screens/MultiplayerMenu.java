@@ -70,8 +70,12 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (!inputPlayerName.getText().isEmpty() && !inputGameId.getText().isEmpty()) {
-                    //serverController.joinGame(inputPlayerName.getText(), inputGameId.getText());
 
+                    //Set name and id so we can join game when we are connected.
+                    getMenuController().getServerController().setNameAndId(inputPlayerName.getText(), inputGameId.getText());
+
+                    //Starts TCPClient and UDPClient
+                    getMenuController().getServerController().connect();
                 }
             }
         });
@@ -80,7 +84,12 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (!inputPlayerName.getText().isEmpty()) {
-                    //serverController.createGame(inputPlayerName.getText());
+
+                    //Set name and id so we can create game when we are connected.
+                    getMenuController().getServerController().setNameAndId(inputPlayerName.getText(), "");
+
+                    //Starts TCPClient and UDPClient
+                    getMenuController().getServerController().connect();
                 }
             }
         });
@@ -148,7 +157,6 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
         batch.dispose();
         stage.dispose();
     }
-
 
     @Override
     public void setServerController(ServerController serverController) {

@@ -23,16 +23,18 @@ public class MenuController {
         this.game = game;
         game.setScreen(mainMenu);
 
-
     }
 
     /**
      * Starts a single player game.
      */
     public void toSinglePlayer() {
-
-
         game.startSinglePlayer();
+    }
+
+
+    public ServerController getServerController(){
+        return game.getServerController();
     }
 
 
@@ -42,7 +44,6 @@ public class MenuController {
     public void toMultiPlayer() {
         game.setScreen(ScreenFactory.createMultiplayerMenu(this));
     }
-
 
     /**
      * Exits the game.
