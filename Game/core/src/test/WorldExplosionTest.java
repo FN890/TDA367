@@ -49,10 +49,10 @@ public class WorldExplosionTest {
         int randomMissilesA = random.nextInt(100);
         int randomMissilesB = random.nextInt(100);
         for (int i = 0; i < randomMissilesA; i++) {
-            worldExplosions.addMissile(new Vector2(i, i), world, 1f, startVelocity);
+            worldExplosions.addMissile(new Vector2(i, i), world, 1f, startVelocity, false);
         }
         for (int i = 0; i < randomMissilesB; i++) {
-            worldExplosions.addMissile(new Vector2(i, i), world, 1f, startVelocity);
+            worldExplosions.addMissile(new Vector2(i, i), world, 1f, startVelocity, false);
         }
         assertTrue(worldExplosions.getMissiles().size() == randomMissilesA + randomMissilesB);
     }

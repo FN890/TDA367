@@ -159,12 +159,6 @@ public class GameModel {
         player.usePowerUp();
     }
 
-    /**
-     * Temp function for testing missiles
-     */
-    public void shootMissile() {
-        worldExplosions.addMissile(player.getPosition(), gameWorld.getWorld(), player.getRotation(), player.getLinearVelocity());
-    }
 
     /**
      * Spawns a missile in the world at a given position and rotation.
@@ -175,8 +169,8 @@ public class GameModel {
      * @param playerXSpeed The x-axis speed of the player spawning the missile.
      * @param playerYSpeed The y-axis speed of the player spawning the missile.
      */
-    public void spawnMissile(float x, float y, float rotation, float playerXSpeed, float playerYSpeed) {
-        worldExplosions.addMissile(new Vector2(x, y), gameWorld.getWorld(), rotation, new Vector2(playerXSpeed, playerYSpeed));
+    public void spawnMissile(float x, float y, float rotation, float playerXSpeed, float playerYSpeed, boolean notifyListeners) {
+        worldExplosions.addMissile(new Vector2(x, y), gameWorld.getWorld(), rotation, new Vector2(playerXSpeed, playerYSpeed), notifyListeners);
     }
 
     /**

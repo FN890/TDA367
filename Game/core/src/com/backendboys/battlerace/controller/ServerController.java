@@ -107,7 +107,7 @@ public class ServerController implements ITCPListener, IPacketListener, IMissile
             float playerXSpeed = Float.parseFloat(args[3]);
             float playerYSpeed = Float.parseFloat(args[4]);
 
-            gameController.getGameModel().spawnMissile(x, y, rotation, playerXSpeed, playerYSpeed);
+            gameController.getGameModel().spawnMissile(x, y, rotation, playerXSpeed, playerYSpeed, false);
 
         } else if (command.getCmd().equals("game")) {
             if (command.getArgs().length > 1) {
