@@ -22,7 +22,7 @@ public class ScreenFactory {
         return new GameScreen(gameController);
     }
 
-    public static IScreen createMultiplayerMenu(MenuController menuController, ServerController serverController) {
-        return new MultiplayerMenu(menuController, serverController);
+    public static IScreen createMultiplayerMenu(MenuController menuController) {
+        return new MultiplayerMenu(menuController);
     }
 }

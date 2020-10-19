@@ -25,6 +25,8 @@ public class GameController implements InputProcessor {
 
     private boolean usedPowerUp = false;
 
+    private IScreen gameScreen;
+
     ServerController serverController;
 
     /**
@@ -33,10 +35,10 @@ public class GameController implements InputProcessor {
     public GameController(BattleRace game) {
         gameModel = new GameModel();
         this.game = game;
-        IScreen gameScreen = ScreenFactory.createGameScreen(this);
-        game.setScreen(gameScreen);
 
         keysDown = new ArrayList<>();
+
+        gameScreen = ScreenFactory.createGameScreen(this);
 
         serverController = new ServerController(game, this);
         gameScreen.setServerController(serverController);
@@ -50,6 +52,10 @@ public class GameController implements InputProcessor {
         game.setScreen(gameScreen);
 
         keysDown = new ArrayList<>();
+    }
+
+    public void setGameScreen(){
+        game.setScreen(gameScreen);
     }
 
     public void handleAddOpponent(OpponentPlayer opponent) {
@@ -183,8 +189,5 @@ public class GameController implements InputProcessor {
     }
 
     public void onConnection() {
-        //System.out.println("create:gustav");
-        //serverController.startServer("gustav");
-        serverController.joinGame("FN", "1402");
     }
 }

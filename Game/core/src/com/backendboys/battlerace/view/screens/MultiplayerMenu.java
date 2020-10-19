@@ -11,12 +11,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+
 /**
  * The MultiplayerMenu, here you can chose between create game or join game.
  */
 class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
-
-    private final ServerController serverController;
 
     private final SpriteBatch batch;
     private Stage stage;
@@ -24,9 +24,8 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
     private TextField inputPlayerName;
     private TextField inputGameId;
 
-    MultiplayerMenu(MenuController menuController, ServerController serverController) {
+    MultiplayerMenu(MenuController menuController) {
         super(menuController);
-        this.serverController = serverController;
 
         batch = new SpriteBatch();
     }
@@ -64,14 +63,15 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
         inputGameId = new TextField("", uiSkin);
 
         final ImageButton btnJoinGame = new ImageButton(getButtonStyleFromName("Exit"));
-        final ImageButton btnCreateGame = new ImageButton(getButtonStyleFromName("Exit"));
+        final ImageButton btnCreateGame = new ImageButton(getButtonStyleFromName("Options"));
         final ImageButton btnBack = new ImageButton(getButtonStyleFromName("Back"));
 
         btnJoinGame.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (!inputPlayerName.getText().isEmpty() && !inputGameId.getText().isEmpty()) {
-                    serverController.joinGame(inputPlayerName.getText(), inputGameId.getText());
+                    //serverController.joinGame(inputPlayerName.getText(), inputGameId.getText());
+
                 }
             }
         });
@@ -80,7 +80,7 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (!inputPlayerName.getText().isEmpty()) {
-                    serverController.createGame(inputPlayerName.getText());
+                    //serverController.createGame(inputPlayerName.getText());
                 }
             }
         });
