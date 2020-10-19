@@ -42,7 +42,7 @@ class Explosion {
             if (explosionParticle.getToBeRemoved()) {
                 explosionBody.getWorld().destroyBody(explosionBody);
                 destroyedParticles.add(explosionParticle);
-            } else if (explosionParticle.getBody().getPosition().y <= 0) {
+            } else if (explosionParticle.getPosition().y <= 0) {
                 explosionBody.getWorld().destroyBody(explosionBody);
                 destroyedParticles.add(explosionParticle);
             }
