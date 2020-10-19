@@ -17,12 +17,13 @@ class PlayerTest {
     private final World world;
     private final Random random;
     private final WorldExplosions worldExplosions = new WorldExplosions();
-
+    private final int vehicleStartPosX = 10;
+    private final int vehicleStartPosY = 10;
 
     public PlayerTest() {
         player = new Player(testName);
         world = new World(new Vector2(0, -10), true);
-        player.addVehicle(world, 0, 0);
+        player.addVehicle(world, vehicleStartPosX, vehicleStartPosY);
         this.random = new Random();
     }
 
@@ -81,5 +82,6 @@ class PlayerTest {
 
         assertEquals(0, player.getListPowerUp().size());
     }
+
 
 }
