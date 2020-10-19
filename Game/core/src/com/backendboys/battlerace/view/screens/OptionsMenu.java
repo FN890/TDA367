@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
@@ -29,8 +31,7 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
     OptionsMenu(MenuController menuController) {
         super(menuController);
 
-        music.play();
-        music.setLooping(true);
+
 
         batch = new SpriteBatch();
     }
@@ -80,13 +81,17 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
                 } else {
                     playMenuMusic(true);
                     soundButton.setStyle(getButtonStyleFromName("Soundon"));
+                    music.setVolume(0.075f);
                 }
 
 
             }
         });
 
+        Skin uiSkin = new Skin(Gdx.files.internal("uiskin.json"));
+        Slider slider = new Slider(0,1,0.01f,false,uiSkin);
         optionsTable.add(soundButton).row();
+        optionsTable.add(slider).row();
         optionsTable.add(backToMainMenuButton).row();
 
         return optionsTable;
