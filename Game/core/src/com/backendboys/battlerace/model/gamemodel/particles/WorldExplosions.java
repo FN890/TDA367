@@ -127,7 +127,6 @@ public class WorldExplosions implements GameWorldListener {
     public ArrayList<IParticle> getParticles() {
         ArrayList<IParticle> iExplosionParticles = new ArrayList<>();
         for (Explosion explosion : explosions) {
-            System.out.println(explosion.getExplosionParticles().size());
             iExplosionParticles.addAll(explosion.getExplosionParticles());
         }
         return iExplosionParticles;
