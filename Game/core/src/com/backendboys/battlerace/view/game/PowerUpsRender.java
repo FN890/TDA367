@@ -23,7 +23,7 @@ public class PowerUpsRender extends AbstractRender<Object> {
         super(orthographicCamera);
         this.powerUps = powerUps;
 
-        Texture texture = new Texture(Gdx.files.internal("powerp.jpg"));
+        Texture texture = new Texture(Gdx.files.internal("powerp.png"));
         sprite = new Sprite(texture);
         sprite.setSize(WIDTH, HEIGHT);
     }
