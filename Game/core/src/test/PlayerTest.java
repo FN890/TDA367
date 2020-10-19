@@ -8,8 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
 
@@ -59,6 +58,7 @@ class PlayerTest {
         }
 
         assertEquals(amountPowerUp1 + amountPowerUp2, player.getListPowerUp().size());
+        assertTrue(player.getNextPowerUp() instanceof NitroPowerUp);
     }
 
 
