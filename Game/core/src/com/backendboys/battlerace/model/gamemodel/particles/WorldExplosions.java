@@ -137,7 +137,7 @@ public class WorldExplosions implements GameWorldListener {
     }
 
     public void removeMissileListener(IMissileListener missileListener) {
-        missileListeners.add(missileListener);
+        missileListeners.remove(missileListener);
     }
 
     @Override
