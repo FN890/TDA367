@@ -10,7 +10,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 /**
@@ -83,7 +82,7 @@ class GameScreen extends AbstractScreen implements IScreen {
         finishLineRender.render(batch, null);
         try {
             currentPowerUpRender.render(batch, gameModel.getPlayer().getNextPowerUp());
-        }catch (Exception e) {
+        } catch (Exception e) {
             currentPowerUpRender.render(batch, null);
         }
     }

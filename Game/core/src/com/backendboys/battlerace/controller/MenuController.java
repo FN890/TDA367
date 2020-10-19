@@ -3,8 +3,6 @@ package com.backendboys.battlerace.controller;
 import com.backendboys.battlerace.BattleRace;
 import com.backendboys.battlerace.view.screens.IScreen;
 import com.backendboys.battlerace.view.screens.ScreenFactory;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
 
 /**
  * Class that handles switching between screens in menu and logic for settings.
@@ -33,7 +31,7 @@ public class MenuController {
     }
 
 
-    public ServerController getServerController(){
+    public ServerController getServerController() {
         return game.getServerController();
     }
 

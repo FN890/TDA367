@@ -11,8 +11,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-
 /**
  * The MultiplayerMenu, here you can chose between create game or join game.
  */

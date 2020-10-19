@@ -48,13 +48,11 @@ public class CurrentPowerUpRender extends AbstractRender<IPowerUp> {
         if (powerUp == null) {
             noPowerUpSprite.setPosition(position.x + CAMERA_OFFSET_X, position.y + CAMERA_OFFSET_Y);
             noPowerUpSprite.draw(batch);
-        }
-        else if (powerUp instanceof NitroPowerUp) {
+        } else if (powerUp instanceof NitroPowerUp) {
             nitroSprite.setPosition(position.x + CAMERA_OFFSET_X, position.y + CAMERA_OFFSET_Y);
             nitroSprite.draw(batch);
-        }
-        else if (powerUp instanceof MissilePowerUp) {
-            missileSprite.setPosition(position.x + CAMERA_OFFSET_X, position.y+ CAMERA_OFFSET_Y);
+        } else if (powerUp instanceof MissilePowerUp) {
+            missileSprite.setPosition(position.x + CAMERA_OFFSET_X, position.y + CAMERA_OFFSET_Y);
             missileSprite.draw(batch);
         }
 

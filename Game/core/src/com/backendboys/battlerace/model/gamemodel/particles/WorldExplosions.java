@@ -26,7 +26,6 @@ public class WorldExplosions implements GameWorldListener {
     }
 
 
-
     /**
      * Adds an explosion to the world at a set position
      *

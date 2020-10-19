@@ -13,8 +13,6 @@ import com.badlogic.gdx.InputProcessor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
 
 /**
  * Class that handles inputs
@@ -47,7 +45,7 @@ public class GameController implements InputProcessor {
         gameScreen.setServerController(serverController);
     }
 
-    public void setGameScreen(){
+    public void setGameScreen() {
         Gdx.input.setInputProcessor(this);
         game.setScreen(gameScreen);
     }

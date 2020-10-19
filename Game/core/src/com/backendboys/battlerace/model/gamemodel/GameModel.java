@@ -1,6 +1,5 @@
 package com.backendboys.battlerace.model.gamemodel;
 
-import com.backendboys.battlerace.controller.ServerController;
 import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
 import com.backendboys.battlerace.model.gamemodel.particles.IParticle;
 import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
@@ -163,9 +162,9 @@ public class GameModel {
     /**
      * Spawns a missile in the world at a given position and rotation.
      *
-     * @param x The spawn x position.
-     * @param y The spawn y position.
-     * @param rotation The rotation.
+     * @param x            The spawn x position.
+     * @param y            The spawn y position.
+     * @param rotation     The rotation.
      * @param playerXSpeed The x-axis speed of the player spawning the missile.
      * @param playerYSpeed The y-axis speed of the player spawning the missile.
      */

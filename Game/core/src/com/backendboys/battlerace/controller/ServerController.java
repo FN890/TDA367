@@ -4,7 +4,6 @@ import com.backendboys.battlerace.BattleRace;
 import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
 import com.backendboys.battlerace.model.gamemodel.particles.IMissileListener;
 import com.backendboys.battlerace.model.gamemodel.player.Player;
-import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
 import com.backendboys.battlerace.services.IPacketListener;
 import com.backendboys.battlerace.services.ITCPListener;
 import com.backendboys.battlerace.services.TCPClient;
@@ -50,12 +49,12 @@ public class ServerController implements ITCPListener, IPacketListener, IMissile
         tcpClient.addListener(this);
     }
 
-    public void connect(){
+    public void connect() {
         new Thread(udpClient).start();
         new Thread(tcpClient).start();
     }
 
-    public void setNameAndId(String name, String id){
+    public void setNameAndId(String name, String id) {
         this.name = name;
         this.id = id;
     }
@@ -148,9 +147,9 @@ public class ServerController implements ITCPListener, IPacketListener, IMissile
     public void onConnection() {
         isConnected = true;
 
-        if(id.isEmpty()){
+        if (id.isEmpty()) {
             createGame(name);
-        }else{
+        } else {
             joinGame(name, id);
         }
     }

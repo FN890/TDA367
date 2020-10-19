@@ -20,6 +20,7 @@ public class ExplosionParticleRender extends AbstractRender<List<IParticle>> {
 
     /**
      * creates the renderer
+     *
      * @param orthographicCamera The camera in which we view what we render
      */
     public ExplosionParticleRender(OrthographicCamera orthographicCamera) {
@@ -33,7 +34,8 @@ public class ExplosionParticleRender extends AbstractRender<List<IParticle>> {
 
     /**
      * The method that needs to be called everytime you render the game
-     * @param batch batch used to draw on the screen
+     *
+     * @param batch  batch used to draw on the screen
      * @param object the particle object to be rendered
      */
     @Override

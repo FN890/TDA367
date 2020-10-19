@@ -25,6 +25,7 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
     private Stage stage;
     private final static Music music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
     private boolean musicSliderUpdating = false;
+
     /**
      * Constructor
      *
@@ -32,7 +33,6 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
      */
     OptionsMenu(MenuController menuController) {
         super(menuController);
-
 
 
         batch = new SpriteBatch();
@@ -90,8 +90,8 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
         });
 
         Skin uiSkin = new Skin(Gdx.files.internal("uiskin.json"));
-        Slider musicSlider = new Slider(0,100,1f,false,uiSkin);
-        musicSlider.setValue(music.getVolume()*100);
+        Slider musicSlider = new Slider(0, 100, 1f, false, uiSkin);
+        musicSlider.setValue(music.getVolume() * 100);
         addSliderListener(musicSlider);
         optionsTable.add(soundButton).row();
         optionsTable.add(musicSlider).row();
@@ -104,7 +104,7 @@ class OptionsMenu extends AbstractMenuScreen implements IScreen {
         slider.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                if(slider.isDragging() && !musicSliderUpdating){
+                if (slider.isDragging() && !musicSliderUpdating) {
                     musicSliderUpdating = true;
                     music.setVolume(slider.getPercent());
                     musicSliderUpdating = false;

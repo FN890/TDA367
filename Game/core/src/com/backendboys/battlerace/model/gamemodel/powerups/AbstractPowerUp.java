@@ -9,7 +9,7 @@ import java.util.Stack;
 /**
  * Abstract class that has properties of the powerups.
  */
-abstract class AbstractPowerUp implements IPowerUp{
+abstract class AbstractPowerUp implements IPowerUp {
 
     private final static float HEIGHT = 4f;
     private final static float WIDTH = 4f;
