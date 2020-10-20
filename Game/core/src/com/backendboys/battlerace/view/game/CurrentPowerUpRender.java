@@ -47,7 +47,7 @@ public class CurrentPowerUpRender extends AbstractRender<IPowerUp> {
     /**
      * Method that calls the rendering method, this method is called every step of the world.
      *
-     * @param batch Used to draw sprites in the world.
+     * @param batch   Used to draw sprites in the world.
      * @param powerUp The power up currently held by the player.
      */
     @Override
@@ -56,11 +56,11 @@ public class CurrentPowerUpRender extends AbstractRender<IPowerUp> {
     }
 
     /**
-     *  Renders the images for the power up.
-     *  Checks what power up player is holding, if any and renders correct sprite for that power up.
+     * Renders the images for the power up.
+     * Checks what power up player is holding, if any and renders correct sprite for that power up.
      *
-     * @param batch Used to draw the sprites.
-     * @param powerUp The power up the player is currently holding and is to be rendered.
+     * @param batch    Used to draw the sprites.
+     * @param powerUp  The power up the player is currently holding and is to be rendered.
      * @param position The position of the camera, so sprites stay at same place in the camera view.
      */
     private void renderPowerUp(SpriteBatch batch, IPowerUp powerUp, Vector3 position) {

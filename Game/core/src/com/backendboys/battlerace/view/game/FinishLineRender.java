@@ -18,18 +18,28 @@ public class FinishLineRender extends AbstractRender<Object> {
 
     private final static int WIDTH = 8, HEIGHT = 5;
 
+    /**
+     * @param orthographicCamera The camera the game is using.
+     * @param finishLineVerts    The positions of the finish line blocks.
+     */
     public FinishLineRender(OrthographicCamera orthographicCamera, List<Vector2> finishLineVerts) {
         super(orthographicCamera);
         this.finishLineVerts = finishLineVerts;
         this.shapeRenderer = new ShapeRenderer();
     }
 
+    /**
+     * Method that renders the blocks, called everytime the world steps.
+     */
     @Override
     public void render(SpriteBatch batch, Object object) {
-        render();
+        renderFinishLine();
     }
 
-    private void render() {
+    /**
+     * Renders the finish line if it is within the view of the camera.
+     */
+    private void renderFinishLine() {
         for (int i = 0; i < finishLineVerts.size(); i++) {
             if (withinCamera(finishLineVerts.get(i))) {
                 shapeRenderer.setProjectionMatrix(getCamera().combined);
