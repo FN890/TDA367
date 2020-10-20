@@ -9,6 +9,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 
+/**
+ * Class used for rendering the power up that the player is currently holding.
+ */
 public class CurrentPowerUpRender extends AbstractRender<IPowerUp> {
 
     private final Sprite nitroSprite;
@@ -19,6 +22,11 @@ public class CurrentPowerUpRender extends AbstractRender<IPowerUp> {
     private static final int CAMERA_OFFSET_X = 240;
     private static final int CAMERA_OFFSET_Y = 130;
 
+    /**
+     * Sets the images and sizes for the sprites.
+     *
+     * @param camera The camera the game uses
+     */
     public CurrentPowerUpRender(OrthographicCamera camera) {
         super(camera);
 
@@ -36,11 +44,25 @@ public class CurrentPowerUpRender extends AbstractRender<IPowerUp> {
         noPowerUpSprite.setOriginCenter();
     }
 
+    /**
+     * Method that calls the rendering method, this method is called every step of the world.
+     *
+     * @param batch Used to draw sprites in the world.
+     * @param powerUp The power up currently held by the player.
+     */
     @Override
     public void render(SpriteBatch batch, IPowerUp powerUp) {
         renderPowerUp(batch, powerUp, getCamera().position);
     }
 
+    /**
+     *  Renders the images for the power up.
+     *  Checks what power up player is holding, if any and renders correct sprite for that power up.
+     *
+     * @param batch Used to draw the sprites.
+     * @param powerUp The power up the player is currently holding and is to be rendered.
+     * @param position The position of the camera, so sprites stay at same place in the camera view.
+     */
     private void renderPowerUp(SpriteBatch batch, IPowerUp powerUp, Vector3 position) {
         batch.begin();
         batch.setProjectionMatrix(getCamera().combined);
