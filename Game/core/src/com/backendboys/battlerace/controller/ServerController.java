@@ -12,6 +12,10 @@ import com.backendboys.battlerace.services.protocol.ICommand;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * ServerController handles connection to Server.
+ * It creates a TCPClient and a UDPClient
+ */
 public class ServerController implements ITCPListener, IPacketListener {
 
     private final static String HOSTNAME = "167.172.34.88";
@@ -44,11 +48,18 @@ public class ServerController implements ITCPListener, IPacketListener {
         new Thread(tcpClient).start();
     }
 
+    /**
+     * Disconnects the UDP and TCP clients from server
+     */
     public void disconnect() {
         udpClient.close();
         tcpClient.disconnect();
     }
 
+    /**
+     * Sends the position of a player to the server via UDP.
+     * @param player
+     */
     public void sendPositionPacket(Player player) {
         ICommand command = CommandFactory.createCommand("pos",
                 String.valueOf(player.getPosition().x),
@@ -61,6 +72,10 @@ public class ServerController implements ITCPListener, IPacketListener {
         tcpClient.sendMessage(message);
     }
 
+    /**
+     *
+     * @param message The message received from UDP
+     */
     @Override
     public void gotPacket(String message) {
         ICommand command = commandConverter.toCommand(message);
@@ -84,6 +99,10 @@ public class ServerController implements ITCPListener, IPacketListener {
         System.out.println(message);
     }
 
+    /**
+     *
+     * @param message received from TCP
+     */
     @Override
     public void gotMessage(String message) {
         ICommand command = commandConverter.toCommand(message);
