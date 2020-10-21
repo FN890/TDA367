@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.World;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -25,6 +26,7 @@ public class GameWorld {
 
     private final World world;
     private final GroundGenerator groundGenerator;
+    private final FinishLineGenerator finishLineGenerator;
     private final static int BORDER_HEIGHT = 10000;
 
     private final Stack<Body> toRemove = new Stack<>();
@@ -38,6 +40,9 @@ public class GameWorld {
         gameWorldListeners = new ArrayList<>();
         groundGenerator.generateGround(world, iGroundStrategy, friction);
         BorderGenerator.generateBorders(world, getGroundVertices().get(0), getGroundVertices().get(getGroundVertices().size() - 1), BORDER_HEIGHT);
+        finishLineGenerator = new FinishLineGenerator(getGroundVertices());
+        finishLineGenerator.generateFinishLine(world);
+
     }
 
     public void destroyBody(Body body) {
@@ -90,6 +95,10 @@ public class GameWorld {
 
     public void removeListener(GameWorldListener gameWorldListener) {
         gameWorldListeners.remove(gameWorldListener);
+    }
+
+    public List<Vector2> getFinishLineVertices() {
+        return finishLineGenerator.getFinishLineVertices();
     }
 
     private void notifyGameWorldListeners() {
