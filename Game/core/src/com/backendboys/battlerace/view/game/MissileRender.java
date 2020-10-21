@@ -32,7 +32,7 @@ public class MissileRender extends AbstractRender<List<IParticle>> {
             if (withinCamera(missile)) {
                 sprite.setPosition(missile.getPosition().x - WIDTH / 2f, missile.getPosition().y - HEIGHT / 2f);
                 sprite.setRotation(MathUtils.radiansToDegrees * (missile.getRotation()));
-                batch.setProjectionMatrix(getCamera().combined);
+                batch.setProjectionMatrix(getProjectionMatrix());
                 sprite.draw(batch);
             }
         }
@@ -43,8 +43,8 @@ public class MissileRender extends AbstractRender<List<IParticle>> {
     }
 
     private boolean withinCamera(IParticle missile) {
-        if (missile.getPosition().x > getCamera().position.x - getCamera().viewportWidth) {
-            return missile.getPosition().x < getCamera().position.x + getCamera().viewportWidth;
+        if (missile.getPosition().x > getCameraPosition().x - getViewportWidth()) {
+            return missile.getPosition().x < getCameraPosition().x + getViewportWidth();
         }
         return true;
     }

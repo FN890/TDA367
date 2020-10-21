@@ -48,7 +48,7 @@ public class BackgroundRender extends AbstractRender<Object> {
         for (int i = 0; i < groundVertices.size(); i++) {
             if (i + 1 < groundVertices.size()) {
                 if (withinCameraView(groundVertices.get(i))) {
-                    shapeRenderer.setProjectionMatrix(getCamera().combined);
+                    shapeRenderer.setProjectionMatrix(getProjectionMatrix());
                     shapeRenderer.setColor(Color.GREEN);
                     shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
                     shapeRenderer.rectLine(groundVertices.get(i), groundVertices.get(i + 1), rectWidth);
@@ -62,7 +62,7 @@ public class BackgroundRender extends AbstractRender<Object> {
         for (int i = 0; i < groundVertices.size(); i++) {
             if (i + 1 < groundVertices.size()) {
                 if (withinCameraView(groundVertices.get(i))) {
-                    shapeRenderer.setProjectionMatrix(getCamera().combined);
+                    shapeRenderer.setProjectionMatrix(getProjectionMatrix());
                     shapeRenderer.setColor(Color.BROWN);
                     shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
                     shapeRenderer.box(groundVertices.get(i).x, groundVertices.get(i).y, 1, rectWidth, -groundVertices.get(i).y * 2, 1);
@@ -76,10 +76,10 @@ public class BackgroundRender extends AbstractRender<Object> {
         for (int i = 0; i < groundVertices.size(); i++) {
             if (i + 1 < groundVertices.size()) {
                 if (withinCameraView(groundVertices.get(i))) {
-                    shapeRenderer.setProjectionMatrix(getCamera().combined);
+                    shapeRenderer.setProjectionMatrix(getProjectionMatrix());
                     shapeRenderer.setColor(Color.SKY);
                     shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-                    shapeRenderer.box(groundVertices.get(i).x, groundVertices.get(i).y + rectWidth, 1, rectWidth, getCamera().viewportHeight * 2, 1);
+                    shapeRenderer.box(groundVertices.get(i).x, groundVertices.get(i).y + rectWidth, 1, rectWidth, getViewportHeight() * 2, 1);
                     shapeRenderer.end();
                 }
             }
@@ -87,8 +87,8 @@ public class BackgroundRender extends AbstractRender<Object> {
     }
 
     private boolean withinCameraView(Vector2 vec2) {
-        if (vec2.x > getCamera().position.x - getCamera().viewportWidth) {
-            return vec2.x < getCamera().position.x + getCamera().viewportWidth;
+        if (vec2.x > getCameraPosition().x - getViewportWidth()) {
+            return vec2.x < getCameraPosition().x + getViewportWidth();
         } else {
             return false;
         }

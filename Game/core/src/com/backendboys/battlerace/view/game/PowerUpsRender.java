@@ -37,7 +37,7 @@ public class PowerUpsRender extends AbstractRender<Object> {
         batch.begin();
         for (IPowerUp powerUp : powerUps) {
             if (withinCamera(powerUp)) {
-                batch.setProjectionMatrix(getCamera().combined);
+                batch.setProjectionMatrix(getProjectionMatrix());
                 sprite.setPosition(powerUp.getPosition().x - 5, powerUp.getPosition().y - 5);
                 sprite.draw(batch);
             }
@@ -46,8 +46,8 @@ public class PowerUpsRender extends AbstractRender<Object> {
     }
 
     private boolean withinCamera(IPowerUp powerUp) {
-        if (powerUp.getPosition().x > getCamera().position.x - getCamera().viewportWidth) {
-            return powerUp.getPosition().x < getCamera().position.x + getCamera().viewportWidth;
+        if (powerUp.getPosition().x > getCameraPosition().x - getViewportWidth()) {
+            return powerUp.getPosition().x < getCameraPosition().x + getViewportWidth();
         }
         return false;
     }
