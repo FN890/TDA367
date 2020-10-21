@@ -1,6 +1,5 @@
 package com.backendboys.battlerace.controller;
 
-import com.backendboys.battlerace.BattleRace;
 import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
 import com.backendboys.battlerace.model.gamemodel.player.Player;
 import com.backendboys.battlerace.services.IPacketListener;

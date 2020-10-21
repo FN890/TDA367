@@ -55,10 +55,18 @@ public class GameModel {
         finishLineGenerator.generateFinishLine(gameWorld.getWorld());
     }
 
+    /**
+     * Adds opponent to list of opponents
+     * @param opponent
+     */
     public void addOpponent(OpponentPlayer opponent) {
         opponentPlayers.add(opponent);
     }
 
+    /**
+     * Removes opponent from list of opponents
+     * @param name the name of opponent removed
+     */
     public void removeOpponent(String name) {
         synchronized (opponentPlayers) {
             for (OpponentPlayer p : opponentPlayers) {
@@ -69,6 +77,13 @@ public class GameModel {
         }
     }
 
+    /**
+     * Updates the opponent position
+     * @param name of opponent
+     * @param x x position
+     * @param y y position
+     * @param rotation rotation of opponent
+     */
     public void updateOpponentPosition(String name, float x, float y, float rotation) {
         for (OpponentPlayer o : opponentPlayers) {
             if (o.getPlayerName().equalsIgnoreCase(name)) {
