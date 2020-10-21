@@ -133,24 +133,7 @@ public class GameController implements InputProcessor, IMissileListener {
      */
     @Override
     public boolean keyTyped(char character) {
-        switch (character) {
-            case 'w':
-
-                break;
-            case 'a':
-
-                break;
-            case 's':
-
-                break;
-            case 'd':
-
-                break;
-            default:
-
-                break;
-        }
-        return false;
+        return true;
     }
 
     public GameWorld getGameWorld() {
