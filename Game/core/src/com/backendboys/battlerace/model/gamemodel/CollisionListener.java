@@ -3,6 +3,7 @@ package com.backendboys.battlerace.model.gamemodel;
 import com.backendboys.battlerace.model.gamemodel.particles.AbstractExplosive;
 import com.backendboys.battlerace.model.gamemodel.powerups.IPowerUp;
 import com.backendboys.battlerace.model.gamemodel.vehicle.IVehicle;
+import com.backendboys.battlerace.model.gamemodel.world.FinishLineGenerator;
 import com.badlogic.gdx.physics.box2d.*;
 
 /**

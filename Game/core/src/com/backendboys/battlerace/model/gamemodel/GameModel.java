@@ -23,10 +23,8 @@ public class GameModel {
     private final GameWorld gameWorld;
     private final Player player;
     private final List<OpponentPlayer> opponentPlayers = Collections.synchronizedList(new ArrayList<OpponentPlayer>());
-
     private final WorldExplosions worldExplosions;
     private List<IPowerUp> powerUps = new ArrayList<>();
-    private FinishLineGenerator finishLineGenerator;
 
     /**
      * Instantiates a GameModel, which creates a world and generates GameObjects, such as,
@@ -51,8 +49,7 @@ public class GameModel {
             gameWorld.addListener(powerUp);
         }
 
-        finishLineGenerator = new FinishLineGenerator(gameWorld.getGroundVertices());
-        finishLineGenerator.generateFinishLine(gameWorld.getWorld());
+
     }
 
     /**
@@ -204,7 +201,7 @@ public class GameModel {
     }
 
     public List<Vector2> getFinishLineVertices() {
-        return finishLineGenerator.getFinishLineVertices();
+        return gameWorld.getFinishLineVertices();
     }
 
 }
