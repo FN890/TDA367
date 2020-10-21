@@ -176,4 +176,12 @@ public class ServerController implements ITCPListener, IPacketListener, IMissile
             sendMessage("missile:" + position.x + "," + position.y + "," + rotation + "," + velocity.x + "," + velocity.y);
         }
     }
+
+    /**
+     *
+     * @return
+     */
+    public boolean isConnected(){
+        return isConnected;
+    }
 }

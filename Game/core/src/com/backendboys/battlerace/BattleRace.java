@@ -17,7 +17,6 @@ public class BattleRace extends Game {
     @Override
     public void create() {
         gameController = new GameController(this);
-        new MenuController(this);
     }
 
     /**
@@ -26,7 +25,6 @@ public class BattleRace extends Game {
     public void startMenu() {
         new MenuController(this);
     }
-
 
     /**
      * Starts the game in singleplayer (Switches to GameScreen)

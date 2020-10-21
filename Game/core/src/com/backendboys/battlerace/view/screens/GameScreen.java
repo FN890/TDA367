@@ -62,6 +62,7 @@ class GameScreen extends AbstractScreen implements IGameScreen {
     public void render(float delta) {
         super.render(delta);
         gameController.gameStepWorld();
+
         sendPositionPackets(gameModel.getPlayer());
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -114,7 +115,9 @@ class GameScreen extends AbstractScreen implements IGameScreen {
 
     private void sendPositionPackets(Player player) {
         if (serverController != null) {
-            serverController.sendPositionPacket(player);
+            if(serverController.isConnected()) {
+                serverController.sendPositionPacket(player);
+            }
         }
     }
 
