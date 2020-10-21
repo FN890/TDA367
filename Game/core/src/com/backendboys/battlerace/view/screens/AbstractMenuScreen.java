@@ -71,7 +71,7 @@ abstract class AbstractMenuScreen extends AbstractScreen {
     @Override
     public void resize(int width, int height) {
         super.resize(width, height);
-        batch.setProjectionMatrix(getCamera().combined);
+        batch.setProjectionMatrix(getProjectionMatrix());
     }
 
     @Override

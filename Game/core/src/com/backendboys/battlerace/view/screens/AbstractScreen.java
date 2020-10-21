@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -53,8 +54,8 @@ abstract class AbstractScreen implements Screen {
 
     }
 
-    protected OrthographicCamera getCamera() {
-        return this.camera;
+    protected Matrix4 getProjectionMatrix() {
+        return this.camera.combined;
     }
 
     protected Viewport getViewport() {
