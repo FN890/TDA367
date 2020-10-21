@@ -62,6 +62,7 @@ class GameScreen extends AbstractScreen implements IGameScreen {
     public void render(float delta) {
         super.render(delta);
         gameController.gameStepWorld();
+
         sendPositionPackets(gameModel.getPlayer());
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -114,12 +115,12 @@ class GameScreen extends AbstractScreen implements IGameScreen {
 
     private void sendPositionPackets(Player player) {
         if (serverController != null) {
-            serverController.sendPositionPacket(player);
+            if(serverController.isConnected()) {
+                serverController.sendPositionPacket(player);
+            }
         }
     }
 
-    // TODO: 2020-09-20 Make camera follow y-axis properly
-    // TODO: 2020-09-20 Improve camera movement
     private void updateCameraPosition(float x, float y) {
         camera.position.set(x + 200, camera.position.y, camera.position.z);
         camera.update();

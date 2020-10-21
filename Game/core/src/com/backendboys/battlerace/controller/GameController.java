@@ -3,12 +3,15 @@ package com.backendboys.battlerace.controller;
 import com.backendboys.battlerace.BattleRace;
 import com.backendboys.battlerace.model.gamemodel.GameModel;
 import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
+import com.backendboys.battlerace.model.gamemodel.particles.IMissileListener;
+import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
 import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
 import com.backendboys.battlerace.view.screens.IGameScreen;
 import com.backendboys.battlerace.view.screens.ScreenFactory;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +20,7 @@ import java.util.List;
 /**
  * Class that handles inputs
  */
-public class GameController implements InputProcessor {
+public class GameController implements InputProcessor, IMissileListener {
 
     private final GameModel gameModel;
     private final BattleRace game;
@@ -35,6 +38,10 @@ public class GameController implements InputProcessor {
      */
     public GameController(BattleRace game, boolean isMultiPlayer) {
         gameModel = new GameModel();
+
+        WorldExplosions worldExplosions = gameModel.getWorldExplosions();
+        worldExplosions.addMissileListener(this);
+
         this.game = game;
         keysDown = new ArrayList<>();
 
@@ -130,24 +137,7 @@ public class GameController implements InputProcessor {
      */
     @Override
     public boolean keyTyped(char character) {
-        switch (character) {
-            case 'w':
-
-                break;
-            case 'a':
-
-                break;
-            case 's':
-
-                break;
-            case 'd':
-
-                break;
-            default:
-
-                break;
-        }
-        return false;
+        return true;
     }
 
     public GameWorld getGameWorld() {
@@ -187,4 +177,10 @@ public class GameController implements InputProcessor {
         return false;
     }
 
+    @Override
+    public void onMissileShot(Vector2 position, Vector2 velocity, float rotation) {
+        if (serverController != null) {
+            serverController.sendMissile(position, velocity, rotation);
+        }
+    }
 }

@@ -17,14 +17,8 @@ abstract class AbstractCar extends AbstractVehicle implements ICar {
     private final Motor motor;
     private final Wheels wheels;
 
-    private RevoluteJoint rearWheelRevJoint;
-    private RevoluteJoint frontWheelRevJoint;
-    private RevoluteJoint rearAxlePrisJoint;
-    private RevoluteJoint frontAxlePrisJoint;
-
     private Body rearWheel;
     private Body frontWheel;
-
 
     /**
      * @param world  GameWorld holding all game objects.
