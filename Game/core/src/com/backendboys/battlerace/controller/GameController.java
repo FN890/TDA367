@@ -48,7 +48,7 @@ public class GameController implements InputProcessor, IMissileListener {
         gameScreen = ScreenFactory.createGameScreen(this);
 
         if (isMultiPlayer) {
-            serverController = new ServerController(game, this);
+            serverController = new ServerController(this);
             gameScreen.setServerController(serverController);
         }
     }

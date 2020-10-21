@@ -22,16 +22,12 @@ public class ServerController implements ITCPListener, IPacketListener {
     private final UDPClient udpClient;
     private String clientID;
 
-    private final BattleRace game;
-
     private final GameController gameController;
     private final CommandConverter commandConverter;
 
     private boolean isConnected = false;
 
-    public ServerController(BattleRace game, GameController gameController) {
-        this.game = game;
-
+    public ServerController(GameController gameController) {
         this.gameController = gameController;
         commandConverter = new CommandConverter();
 
