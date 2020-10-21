@@ -156,6 +156,7 @@ public class ServerController implements ITCPListener, IPacketListener {
                     } else if (command.getArgs()[0].equals("winner")) {
                         String playerName = command.getArgs()[1];
                         //TODO: Render name at top of screen, or middle, idk.
+                        System.out.println("Winner! " + playerName);
                     }
                 }
                 break;
