@@ -1,11 +1,8 @@
 package com.backendboys.battlerace.view.screens;
 
 
-import com.backendboys.battlerace.BattleRace;
 import com.backendboys.battlerace.controller.GameController;
 import com.backendboys.battlerace.controller.MenuController;
-import com.backendboys.battlerace.controller.ServerController;
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
