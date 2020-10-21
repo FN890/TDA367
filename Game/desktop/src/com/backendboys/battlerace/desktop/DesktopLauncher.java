@@ -12,6 +12,7 @@ public class DesktopLauncher {
     private static final String TITLE = "BattleRace alpha 1.0";
     private static final int SCREEN_WIDTH = 1280;
     private static final int SCREEN_HEIGHT = 800;
+    private static final int MAX_FPS = 300;
 
     /**
      * The main function creates the BattleRace class which in turn launches the application
@@ -21,7 +22,8 @@ public class DesktopLauncher {
         config.title = TITLE;
         config.width = SCREEN_WIDTH;
         config.height = SCREEN_HEIGHT;
-
+        config.foregroundFPS = MAX_FPS;
+        config.backgroundFPS = MAX_FPS;
         new LwjglApplication(new BattleRace(), config);
     }
 }
