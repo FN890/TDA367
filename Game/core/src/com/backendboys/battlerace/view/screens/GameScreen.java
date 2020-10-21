@@ -118,8 +118,6 @@ class GameScreen extends AbstractScreen implements IGameScreen {
         }
     }
 
-    // TODO: 2020-09-20 Make camera follow y-axis properly
-    // TODO: 2020-09-20 Improve camera movement
     private void updateCameraPosition(float x, float y) {
         camera.position.set(x + 200, camera.position.y, camera.position.z);
         camera.update();
