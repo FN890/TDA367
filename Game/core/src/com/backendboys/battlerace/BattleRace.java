@@ -17,6 +17,7 @@ public class BattleRace extends Game {
     @Override
     public void create() {
         gameController = new GameController(this);
+        new MenuController(this);
     }
 
     /**
