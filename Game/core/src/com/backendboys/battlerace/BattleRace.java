@@ -3,6 +3,7 @@ package com.backendboys.battlerace;
 import com.backendboys.battlerace.controller.GameController;
 import com.backendboys.battlerace.controller.MenuController;
 import com.backendboys.battlerace.controller.ServerController;
+import com.backendboys.battlerace.view.screens.ScreenFactory;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
@@ -12,11 +13,8 @@ import com.badlogic.gdx.Gdx;
  */
 public class BattleRace extends Game {
 
-    private GameController gameController;
-
     @Override
     public void create() {
-        gameController = new GameController(this);
         new MenuController(this);
     }
 
@@ -27,15 +25,14 @@ public class BattleRace extends Game {
         new MenuController(this);
     }
 
-
     /**
      * Starts the game in singleplayer (Switches to GameScreen)
      */
     public void startSinglePlayer() {
+        GameController gameController = new GameController(this, false);
         Gdx.input.setInputProcessor(gameController);
-        gameController.setGameScreen();
+        setScreen(ScreenFactory.createGameScreen(gameController));
     }
-
 
     @Override
     public void render() {
@@ -47,11 +44,4 @@ public class BattleRace extends Game {
 
     }
 
-    public ServerController getServerController() {
-        return gameController.getServerController();
-    }
-
-    public GameController gameController() {
-        return gameController;
-    }
 }

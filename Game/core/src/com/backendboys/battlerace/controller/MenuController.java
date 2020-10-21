@@ -20,7 +20,6 @@ public class MenuController {
     public MenuController(BattleRace game) {
         this.game = game;
         game.setScreen(mainMenu);
-
     }
 
     /**
@@ -30,20 +29,10 @@ public class MenuController {
         game.startSinglePlayer();
     }
 
-
-    public ServerController getServerController() {
-        return game.getServerController();
-    }
-
-    public GameController getGameController() {
-        return game.gameController();
-    }
-
-
     /**
-     * Starts a multiplayer game.
+     * Starts a multiplayer screen.
      */
-    public void toMultiPlayer() {
+    public void toMultiPlayerScreen() {
         game.setScreen(ScreenFactory.createMultiplayerMenu(this));
     }
 
@@ -68,5 +57,8 @@ public class MenuController {
         game.setScreen(mainMenu);
     }
 
+    public BattleRace getGame() {
+        return game;
+    }
 
 }

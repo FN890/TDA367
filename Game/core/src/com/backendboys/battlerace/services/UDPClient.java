@@ -60,6 +60,10 @@ public class UDPClient implements Runnable {
         }
     }
 
+    public void close() {
+        socket.close();
+    }
+
     private void notifyGotPacket(String msg) {
         for (IPacketListener l : listeners) {
             l.gotPacket(msg);

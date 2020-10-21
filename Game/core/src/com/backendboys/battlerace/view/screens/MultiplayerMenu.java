@@ -1,8 +1,11 @@
 package com.backendboys.battlerace.view.screens;
 
 
+import com.backendboys.battlerace.BattleRace;
+import com.backendboys.battlerace.controller.GameController;
 import com.backendboys.battlerace.controller.MenuController;
 import com.backendboys.battlerace.controller.ServerController;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -22,10 +25,13 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
     private TextField inputPlayerName;
     private TextField inputGameId;
 
+    private GameController gameController;
+
     MultiplayerMenu(MenuController menuController) {
         super(menuController);
-
         batch = new SpriteBatch();
+
+        this.gameController = new GameController(getMenuController().getGame(), true);
     }
 
     /**
@@ -39,7 +45,6 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
         stage.addActor(createMultiplayerTable());
 
         Gdx.input.setInputProcessor(stage);
-
     }
 
     private Table createMultiplayerTable() {
@@ -69,12 +74,7 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
             public void clicked(InputEvent event, float x, float y) {
                 if (!inputPlayerName.getText().isEmpty() && !inputGameId.getText().isEmpty()) {
 
-                    getMenuController().getGameController().setGameScreen();
-                    //Set name and id so we can join game when we are connected.
-                    getMenuController().getServerController().setNameAndId(inputPlayerName.getText(), inputGameId.getText());
-
-                    //Starts TCPClient and UDPClient
-                    getMenuController().getServerController().connect();
+                    gameController.getServerController().joinGame(inputPlayerName.getText(), inputGameId.getText());
                 }
             }
         });
@@ -83,13 +83,7 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (!inputPlayerName.getText().isEmpty()) {
-
-                    getMenuController().getGameController().setGameScreen();
-                    //Set name and id so we can create game when we are connected.
-                    getMenuController().getServerController().setNameAndId(inputPlayerName.getText(), "");
-
-                    //Starts TCPClient and UDPClient
-                    getMenuController().getServerController().connect();
+                    gameController.getServerController().createGame(inputPlayerName.getText());
                 }
             }
         });

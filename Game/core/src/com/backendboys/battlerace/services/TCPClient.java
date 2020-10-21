@@ -1,10 +1,7 @@
 package com.backendboys.battlerace.services;
 
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +10,8 @@ public class TCPClient implements Runnable {
 
     private final String hostname;
     private final int port;
+
+    private Socket socket;
 
     private PrintWriter printWriter;
 
@@ -33,8 +32,8 @@ public class TCPClient implements Runnable {
 
     @Override
     public void run() {
-        try (Socket socket = new Socket(hostname, port)) {
-
+        try {
+            socket = new Socket(hostname, port);
             printWriter = new PrintWriter(socket.getOutputStream(), true);
 
             InputStream inputStream = socket.getInputStream();
@@ -56,6 +55,12 @@ public class TCPClient implements Runnable {
 
     public void sendMessage(String message) {
         printWriter.println(message);
+    }
+
+    public void disconnect() {
+        try {
+            socket.close();
+        } catch (IOException ignored) {}
     }
 
     private void notifyLostConnection(String msg) {

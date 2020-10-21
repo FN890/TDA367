@@ -26,26 +26,27 @@ public class GameController implements InputProcessor {
 
     private boolean usedPowerUp = false;
 
-    private IGameScreen gameScreen;
-
     private ServerController serverController;
+
+    private final IGameScreen gameScreen;
 
     /**
      * @param game Created GameModel and set GameScreen.
      */
-    public GameController(BattleRace game) {
+    public GameController(BattleRace game, boolean isMultiPlayer) {
         gameModel = new GameModel();
         this.game = game;
-
         keysDown = new ArrayList<>();
 
         gameScreen = ScreenFactory.createGameScreen(this);
 
-        serverController = new ServerController(game, this);
-        gameScreen.setServerController(serverController);
+        if (isMultiPlayer) {
+            serverController = new ServerController(game, this);
+            gameScreen.setServerController(serverController);
+        }
     }
 
-    public void setGameScreen() {
+    public void showScreen() {
         Gdx.input.setInputProcessor(this);
         game.setScreen(gameScreen);
     }
@@ -86,7 +87,7 @@ public class GameController implements InputProcessor {
                     gameModel.rotateRight();
                     break;
                 case Input.Keys.ESCAPE:
-                    toggleMenu();
+                    exitGame();
                     break;
                 case Input.Keys.SPACE:
                     if (!usedPowerUp) {
@@ -99,7 +100,10 @@ public class GameController implements InputProcessor {
         }
     }
 
-    private void toggleMenu() {
+    private void exitGame() {
+        if (serverController != null) {
+            serverController.disconnect();
+        }
         game.startMenu();
     }
 
@@ -154,6 +158,10 @@ public class GameController implements InputProcessor {
         return gameModel;
     }
 
+    public ServerController getServerController() {
+        return serverController;
+    }
+
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         return false;
@@ -179,11 +187,4 @@ public class GameController implements InputProcessor {
         return false;
     }
 
-    public void onConnection() {
-
-    }
-
-    public ServerController getServerController() {
-        return serverController;
-    }
 }
