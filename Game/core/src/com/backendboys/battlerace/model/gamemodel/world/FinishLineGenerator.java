@@ -11,6 +11,11 @@ import java.util.ArrayList;
  */
 public class FinishLineGenerator {
 
+    private static final int SPACE_BETWEEN_BLOCKS_X = 8;
+    private static final int SPACE_BETWEEN_BLOCKS_Y = 4;
+    private static final int ROWS = 5;
+    private static final int COLUMNS = 20;
+
     private final ArrayList<Vector2> groundVertices;
     private ArrayList<Vector2> finishLineVertices;
 
@@ -60,16 +65,16 @@ public class FinishLineGenerator {
 
         float xPos, yPos;
 
-        xPos = groundVertices.get(groundVertices.size() - groundVertices.size() / 100).x;
-        yPos = groundVertices.get((int) (xPos / 5)).y + 4;
+        xPos = groundVertices.get(groundVertices.size() - SPACE_BETWEEN_BLOCKS_X).x;
+        yPos = groundVertices.get((int) (xPos / 5) - 1).y + SPACE_BETWEEN_BLOCKS_Y;
 
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 20; j++) {
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLUMNS; j++) {
                 vertices.add(new Vector2(xPos, yPos));
                 yPos += 4;
             }
-            xPos += 8;
-            yPos = groundVertices.get((int) (xPos / 5)).y + 4;
+            xPos -= SPACE_BETWEEN_BLOCKS_X;
+            yPos = groundVertices.get((int) (xPos / 5)).y + SPACE_BETWEEN_BLOCKS_Y;
         }
         return vertices;
     }
