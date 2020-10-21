@@ -11,6 +11,7 @@ import com.backendboys.battlerace.model.gamemodel.world.ground.GroundStrategyFac
 import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -21,7 +22,7 @@ public class GameModel {
 
     private final GameWorld gameWorld;
     private final Player player;
-    private final List<OpponentPlayer> opponentPlayers = new ArrayList<>();
+    private final List<OpponentPlayer> opponentPlayers = Collections.synchronizedList(new ArrayList<OpponentPlayer>());
 
     private final WorldExplosions worldExplosions;
     private List<IPowerUp> powerUps = new ArrayList<>();
@@ -58,8 +59,14 @@ public class GameModel {
         opponentPlayers.add(opponent);
     }
 
-    public void removeOpponent(OpponentPlayer opponent) {
-        opponentPlayers.remove(opponent);
+    public void removeOpponent(String name) {
+        synchronized (opponentPlayers) {
+            for (OpponentPlayer p : opponentPlayers) {
+                if (p.getPlayerName().equals(name)) {
+                    opponentPlayers.remove(p);
+                }
+            }
+        }
     }
 
     public void updateOpponentPosition(String name, float x, float y, float rotation) {

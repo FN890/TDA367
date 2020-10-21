@@ -62,8 +62,8 @@ public class GameController implements InputProcessor, IMissileListener {
         gameModel.addOpponent(opponent);
     }
 
-    public void handleRemoveOpponent(OpponentPlayer opponent) {
-        gameModel.removeOpponent(opponent);
+    public void handleRemoveOpponent(String name) {
+        gameModel.removeOpponent(name);
     }
 
     public void handleUpdateOpponentPosition(String name, float x, float y, float rotation) {

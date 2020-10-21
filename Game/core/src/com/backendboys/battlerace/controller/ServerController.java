@@ -137,7 +137,8 @@ public class ServerController implements ITCPListener, IPacketListener {
                         gameController.handleAddOpponent(new OpponentPlayer(playerName, new Vector2(50, 100), 0));
 
                     } else if (command.getArgs()[0].equals("left")) {
-
+                        String playerName = command.getArgs()[1];
+                        gameController.handleRemoveOpponent(playerName);
                     }
                 }
                 break;
