@@ -18,41 +18,29 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlacementRender extends AbstractRender<Player> {
+public class PlayerPlacementRender extends AbstractRender<Player> {
 
     private static final int VEHCILE_WIDTH_ICON = 30;
     private static final int VEHCILE_HEIGHT_ICON = 15;
 
     private final Sprite spritePlayerVehicle;
-    private final Sprite spriteOpponentVehicle;
     private final Label lblPlayerName;
     private final ShapeRenderer shapeRenderer;
 
     private final float sizeOfWorld;
-    private final float lineStartX;
-    private final float lineEndX;
-    private final float lineYPos;
 
-    public PlacementRender(OrthographicCamera orthographicCamera, ArrayList<Vector2> groundVertices) {
+    public PlayerPlacementRender(OrthographicCamera orthographicCamera, ArrayList<Vector2> groundVertices) {
         super(orthographicCamera);
 
         spritePlayerVehicle = new Sprite(new Texture("newredcar.png"));
         spritePlayerVehicle.setSize(VEHCILE_WIDTH_ICON, VEHCILE_HEIGHT_ICON);
         spritePlayerVehicle.setOriginCenter();
 
-        spriteOpponentVehicle = new Sprite(new Texture("BlueCar.png"));
-        spriteOpponentVehicle.setSize(VEHCILE_WIDTH_ICON, VEHCILE_HEIGHT_ICON);
-        spriteOpponentVehicle.setOriginCenter();
-
         sizeOfWorld = groundVertices.size();
-        lineStartX = 0.2f * orthographicCamera.viewportWidth;
-        lineEndX = 0.8f * orthographicCamera.viewportWidth;
-        lineYPos = 0.9f * orthographicCamera.viewportHeight;
 
         shapeRenderer = new ShapeRenderer();
         shapeRenderer.setColor(Color.BLACK);
         shapeRenderer.setProjectionMatrix(orthographicCamera.combined);
-        //shapeRenderer.setAutoShapeType(true);
 
         Skin uiSkin = new Skin(Gdx.files.internal("uiskin.json"));
 
@@ -90,21 +78,6 @@ public class PlacementRender extends AbstractRender<Player> {
     private float getScaledPosition(float carPosition){
         return carPosition/sizeOfWorld;
     }
-
-    private void renderOpponent(SpriteBatch batch, OpponentPlayer opponent) {
-        spritePlayerVehicle.setPosition(opponent.getPlayerPosition().x - VEHCILE_WIDTH_ICON / 2f, opponent.getPlayerPosition().y - VEHCILE_HEIGHT_ICON / 2f);
-        spritePlayerVehicle.setRotation((float) Math.toDegrees(opponent.getPlayerRotation()));
-
-        spritePlayerVehicle.draw(batch);
-    }
-
-    private void renderOpponentName(SpriteBatch batch, OpponentPlayer opponent) {
-        lblPlayerName.setText(opponent.getPlayerName());
-        lblPlayerName.setPosition(opponent.getPlayerPosition().x - VEHCILE_WIDTH_ICON / 2f, opponent.getPlayerPosition().y + 25);
-
-        lblPlayerName.draw(batch, 1);
-    }
-
 
     public void dispose() {
     }

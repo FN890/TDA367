@@ -17,7 +17,7 @@ import java.util.UUID;
 public class Player {
 
     private final UUID playerId;
-    private final String name;
+    private String name;
     private final Stack<IPowerUp> powerUpStack = new Stack<>();
 
     private IVehicle vehicle;
@@ -129,5 +129,9 @@ public class Player {
 
     public Vector2 getLinearVelocity() {
         return vehicle.getLinearVelocity();
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

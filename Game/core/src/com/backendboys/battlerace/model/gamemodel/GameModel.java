@@ -38,7 +38,7 @@ public class GameModel {
         generateObjects();
         gameWorld.addListener(worldExplosions);
         Vector2 startPosition = gameWorld.getGroundVertices().get(50);
-        player = new Player("gustav");
+        player = new Player("You");
         player.addVehicle(gameWorld.getWorld(), startPosition.x, startPosition.y + 25);
         gameWorld.setCollisionListener(new CollisionListener(this));
     }

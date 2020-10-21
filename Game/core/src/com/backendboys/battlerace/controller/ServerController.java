@@ -175,6 +175,7 @@ public class ServerController implements ITCPListener, IPacketListener {
 
     public void createGame(String name) {
         if (isConnected) {
+            gameController.getGameModel().getPlayer().setName(name);
             sendMessage("create:" + name);
             sendMessage("start");
         }
@@ -182,6 +183,7 @@ public class ServerController implements ITCPListener, IPacketListener {
 
     public void joinGame(String name, String id) {
         if (isConnected) {
+            gameController.getGameModel().getPlayer().setName(name);
             sendMessage("join:" + id + "," + name);
         }
     }

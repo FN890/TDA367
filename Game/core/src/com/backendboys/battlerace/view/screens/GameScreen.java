@@ -35,6 +35,8 @@ class GameScreen extends AbstractScreen implements IGameScreen {
     //private final Box2DDebugRenderer debugRenderer;
     private final FinishLineRender finishLineRender;
     private final CurrentPowerUpRender currentPowerUpRender;
+    private final PlayerPlacementRender playerPlacementRender;
+    private final OpponentPlacementRender opponentPlacementRender;
 
     GameScreen(GameController gameController) {
 
@@ -54,6 +56,8 @@ class GameScreen extends AbstractScreen implements IGameScreen {
         powerUpsRender = new PowerUpsRender(camera, gameModel.getPowerUps());
         finishLineRender = new FinishLineRender(camera, gameModel.getFinishLineVertices());
         currentPowerUpRender = new CurrentPowerUpRender(camera);
+        playerPlacementRender = new PlayerPlacementRender(camera, gameWorld.getGroundVertices());
+        opponentPlacementRender = new OpponentPlacementRender(camera, gameWorld.getGroundVertices());
 
         batch = new SpriteBatch();
     }
@@ -81,6 +85,8 @@ class GameScreen extends AbstractScreen implements IGameScreen {
         explosionParticleRender.render(batch, gameModel.getExplosionParticles());
         powerUpsRender.render(batch, null);
         finishLineRender.render(batch, null);
+        playerPlacementRender.render(batch, gameModel.getPlayer());
+        opponentPlacementRender.render(batch, gameModel.getOpponents());
         try {
             currentPowerUpRender.render(batch, gameModel.getPlayer().getNextPowerUp());
         } catch (Exception e) {
@@ -106,6 +112,8 @@ class GameScreen extends AbstractScreen implements IGameScreen {
         powerUpsRender.dispose();
         finishLineRender.dispose();
         currentPowerUpRender.dispose();
+        playerPlacementRender.dispose();
+        opponentPlacementRender.dispose();
     }
 
     @Override
