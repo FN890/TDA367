@@ -13,7 +13,7 @@ import com.backendboys.battlerace.services.protocol.CommandFactory;
 import com.backendboys.battlerace.services.protocol.ICommand;
 import com.badlogic.gdx.math.Vector2;
 
-public class ServerController implements ITCPListener, IPacketListener, IMissileListener {
+public class ServerController implements ITCPListener, IPacketListener {
 
     private final static String HOSTNAME = "167.172.34.88";
     private final static int PORT = 26000;
@@ -34,8 +34,6 @@ public class ServerController implements ITCPListener, IPacketListener, IMissile
 
     public ServerController(BattleRace game, GameController gameController) {
         this.game = game;
-
-        gameController.getGameModel().getWorldExplosions().addMissileListener(this);
 
         this.gameController = gameController;
         commandConverter = new CommandConverter();
@@ -82,7 +80,8 @@ public class ServerController implements ITCPListener, IPacketListener, IMissile
 
                 gameController.handleUpdateOpponentPosition(playerName, playerXPos, playerYPos, playerRotation);
 
-            } catch (NumberFormatException ignored) { }
+            } catch (NumberFormatException ignored) {
+            }
         }
     }
 
@@ -170,8 +169,7 @@ public class ServerController implements ITCPListener, IPacketListener, IMissile
         }
     }
 
-    @Override
-    public void onMissileShot(Vector2 position, Vector2 velocity, float rotation) {
+    public void sendMissile(Vector2 position, Vector2 velocity, float rotation) {
         if (isConnected) {
             sendMessage("missile:" + position.x + "," + position.y + "," + rotation + "," + velocity.x + "," + velocity.y);
         }
