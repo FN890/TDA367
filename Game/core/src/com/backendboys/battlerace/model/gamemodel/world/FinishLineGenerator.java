@@ -15,6 +15,7 @@ public class FinishLineGenerator {
     private static final int SPACE_BETWEEN_BLOCKS_Y = 4;
     private static final int ROWS = 5;
     private static final int COLUMNS = 20;
+    private static final int STEP = 5;
 
     private final ArrayList<Vector2> groundVertices;
     private ArrayList<Vector2> finishLineVertices;
@@ -74,7 +75,7 @@ public class FinishLineGenerator {
                 yPos += 4;
             }
             xPos -= SPACE_BETWEEN_BLOCKS_X;
-            yPos = groundVertices.get((int) (xPos / 5)).y + SPACE_BETWEEN_BLOCKS_Y;
+            yPos = groundVertices.get((int) (xPos / STEP)).y + SPACE_BETWEEN_BLOCKS_Y;
         }
         return vertices;
     }

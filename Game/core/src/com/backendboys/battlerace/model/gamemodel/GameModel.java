@@ -20,6 +20,8 @@ import java.util.List;
  */
 public class GameModel {
 
+    private static final int SPACE_BETWEEN_POWERUPS = 300;
+
     private final GameWorld gameWorld;
     private final Player player;
     private final List<OpponentPlayer> opponentPlayers = Collections.synchronizedList(new ArrayList<OpponentPlayer>());
@@ -43,13 +45,23 @@ public class GameModel {
 
     private void generateObjects() {
         PowerUpGenerator powerUpGenerator = new PowerUpGenerator(gameWorld.getGroundVertices(), gameWorld.getWorld(), worldExplosions);
-        powerUps = powerUpGenerator.generatePowerups(30);
+        powerUps = powerUpGenerator.generatePowerups(amountOfPowerUps());
 
         for (IPowerUp powerUp : powerUps) {
             gameWorld.addListener(powerUp);
         }
 
 
+    }
+
+    private int amountOfPowerUps() {
+        int numberOfPowerUps = 0;
+        int i = gameWorld.getGroundVertices().size();
+        while (i > SPACE_BETWEEN_POWERUPS) {
+            i -= SPACE_BETWEEN_POWERUPS;
+            numberOfPowerUps++;
+        }
+        return numberOfPowerUps;
     }
 
     /**

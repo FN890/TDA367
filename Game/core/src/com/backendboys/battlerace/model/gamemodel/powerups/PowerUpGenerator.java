@@ -13,6 +13,8 @@ import java.util.Random;
 
 public class PowerUpGenerator {
 
+    private static final int BASE_HEIGHT = 20;
+
     private final ArrayList<Vector2> vertices;
     private final World world;
 
@@ -41,6 +43,10 @@ public class PowerUpGenerator {
 
         ArrayList<IPowerUp> powerUps = new ArrayList<>();
 
+        if (numberPowerups <= 0) {
+            return powerUps;
+        }
+
         final int space = vertices.size() / numberPowerups;
         int positionX = space * 2;
 
@@ -53,7 +59,7 @@ public class PowerUpGenerator {
             }
 
             Vector2 tempVector = vertices.get(positionX / STEP);
-            int positionY = (int) tempVector.y + 20;
+            int positionY = (int) tempVector.y + BASE_HEIGHT + random.nextInt(BASE_HEIGHT);
 
             if (random.nextBoolean()) {
                 NitroPowerUp nitroPowerUp = new NitroPowerUp(world, positionX, positionY);
