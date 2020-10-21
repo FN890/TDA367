@@ -139,6 +139,21 @@ public class Game implements Runnable {
     }
 
     /**
+     * Sets the games winner, and notifies other clients in this game.
+     *
+     * @param player The winning player.
+     */
+    public synchronized void setWinner(Player player) {
+        synchronized (players) {
+            for (Player p : players) {
+                if (p.equals(player)) {
+                    notifyListenersPlayerWon(p);
+                }
+            }
+        }
+    }
+
+    /**
      * Tells the game whether to keep sending packets or not. With other words, if the game should run.
      *
      * @param send The boolean specifying if packets should be sent.
@@ -197,24 +212,6 @@ public class Game implements Runnable {
     }
 
     /**
-     * Get a player by it's InetAddress
-     *
-     * @param address The players InetAddress.
-     * @return The Player.
-     */
-    public synchronized Player getPlayerByAddress(InetAddress address) {
-        synchronized (players) {
-            for (Player p : players) {
-                if (p.getAddress().equals(address)) {
-                    return p;
-                }
-            }
-        }
-
-        return null;
-    }
-
-    /**
      * Returns a list of players in the game.
      *
      * @return The list of players.
@@ -234,6 +231,7 @@ public class Game implements Runnable {
     /**
      * Returns whether the game is running or not.
      * If the game is running, the game sends packets to clients.
+     *
      * @return True if the game is running.
      */
     public synchronized boolean isRunning() {
@@ -256,6 +254,14 @@ public class Game implements Runnable {
         }
     }
 
+    private void notifyListenersPlayerWon(Player player) {
+        synchronized (listeners) {
+            for (GameListener l : listeners) {
+                l.playerWon(player);
+            }
+        }
+    }
+
     private void notifyListenersStateChanged(boolean started) {
         synchronized (listeners) {
             for (GameListener l : listeners) {
@@ -271,5 +277,7 @@ public class Game implements Runnable {
             }
         }
     }
+
+
 
 }

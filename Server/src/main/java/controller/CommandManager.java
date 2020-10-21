@@ -35,6 +35,7 @@ class CommandManager {
         ICommandHandler startHandler = new StartHandler();
         ICommandHandler positionHandler = new PositionHandler();
         ICommandHandler missileHandler = new MissileHandler();
+        ICommandHandler winHandler = new WinHandler();
 
         getHandler.setNext(createHandler);
         createHandler.setNext(joinHandler);
@@ -42,6 +43,7 @@ class CommandManager {
         leaveHandler.setNext(startHandler);
         startHandler.setNext(positionHandler);
         positionHandler.setNext(missileHandler);
+        missileHandler.setNext(winHandler);
 
         firstHandler = getHandler;
     }

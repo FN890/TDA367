@@ -73,6 +73,14 @@ public interface IServerProtocol {
     String writeGamePlayerUpdate(String name, boolean joined);
 
     /**
+     * Writes game winner.
+     *
+     * @param name The winner's name.
+     * @return The winner on the form: game:winner,name
+     */
+    String writeGamePlayerWinner(String name);
+
+    /**
      * Writes game status updates.
      *
      * @param started Specifies weather the game is running or not.

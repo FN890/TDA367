@@ -192,6 +192,14 @@ public class ClientController implements Runnable, GameListener, PacketListener 
     }
 
     /**
+     * Sets this client's player to the winner in the current game.
+     */
+    public void sendWin() {
+        if (game == null) return;
+        game.setWinner(player);
+    }
+
+    /**
      * @return The current game.
      */
     public Game getGame() {
@@ -222,6 +230,11 @@ public class ClientController implements Runnable, GameListener, PacketListener 
     @Override
     public void playerLeft(Player player) {
         sendTCP(protocol.writeGamePlayerUpdate(player.getName(), false));
+    }
+
+    @Override
+    public void playerWon(Player player) {
+        sendTCP(protocol.writeGamePlayerWinner(player.getName()));
     }
 
     @Override

@@ -43,6 +43,10 @@ class ServerProtocolWriter {
         return "game:left," + name;
     }
 
+    String writeGamePlayerWinner(String name) {
+        return "game:winner," + name;
+    }
+
     String writeGameStatusUpdate(boolean started) {
         if (started) {
             return "game:started";

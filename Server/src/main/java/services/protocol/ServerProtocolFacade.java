@@ -36,7 +36,7 @@ class ServerProtocolFacade implements IServerProtocol {
     }
 
     @Override
-    public String writeMissile(float x, float y, float rotation, float playerXSpeed, float playerYSpeed) {
+    public synchronized String writeMissile(float x, float y, float rotation, float playerXSpeed, float playerYSpeed) {
         return writerProtocol.writeMissile(x, y, rotation, playerXSpeed, playerYSpeed);
     }
 
@@ -46,17 +46,22 @@ class ServerProtocolFacade implements IServerProtocol {
     }
 
     @Override
-    public String writeGamePlayerUpdate(String name, boolean joined) {
+    public synchronized String writeGamePlayerUpdate(String name, boolean joined) {
         return writerProtocol.writeGamePlayerUpdate(name, joined);
     }
 
     @Override
-    public String writeGameStatusUpdated(boolean started) {
+    public synchronized String writeGamePlayerWinner(String name) {
+        return writerProtocol.writeGamePlayerWinner(name);
+    }
+
+    @Override
+    public synchronized String writeGameStatusUpdated(boolean started) {
         return writerProtocol.writeGameStatusUpdate(started);
     }
 
     @Override
-    public String writeGameEndedUpdate() {
+    public synchronized String writeGameEndedUpdate() {
         return writerProtocol.writeGameEndedUpdate();
     }
 

@@ -20,6 +20,13 @@ public interface GameListener {
     void playerLeft(Player player);
 
     /**
+     * Called when a player has won the game.
+     *
+     * @param player The player that won the game.
+     */
+    void playerWon(Player player);
+
+    /**
      * Called whenever the game state changes. Can be started, or paused.
      *
      * @param started Specifies if the game is running or is paused.
