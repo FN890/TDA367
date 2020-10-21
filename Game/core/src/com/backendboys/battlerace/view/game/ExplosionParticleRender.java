@@ -44,7 +44,7 @@ public class ExplosionParticleRender extends AbstractRender<List<IParticle>> {
         for (IParticle particle : object) {
             if (withinCamera(particle)) {
                 sprite.setPosition(particle.getPosition().x - 2.5f, particle.getPosition().y - 2.5f);
-                batch.setProjectionMatrix(getCamera().combined);
+                batch.setProjectionMatrix(getProjectionMatrix());
                 sprite.draw(batch);
             }
         }
@@ -52,8 +52,8 @@ public class ExplosionParticleRender extends AbstractRender<List<IParticle>> {
     }
 
     private boolean withinCamera(IParticle particle) {
-        if (particle.getPosition().x > getCamera().position.x - getCamera().viewportWidth) {
-            return particle.getPosition().x < getCamera().position.x + getCamera().viewportWidth;
+        if (particle.getPosition().x > getCameraPosition().x - getViewportWidth()) {
+            return particle.getPosition().x < getCameraPosition().x + getViewportWidth();
         }
         return true;
     }

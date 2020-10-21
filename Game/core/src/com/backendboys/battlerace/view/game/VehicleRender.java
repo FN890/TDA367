@@ -52,7 +52,7 @@ public class VehicleRender extends AbstractRender<IVehicle> {
             spriteVehicleRearWheel.setPosition(car.getRearWheelPosition().x - 6f, car.getRearWheelPosition().y - 5.5f);
             spriteVehicleRearWheel.setRotation((float) Math.toDegrees(car.getRearWheelRotation()));
 
-            batch.setProjectionMatrix(getCamera().combined);
+            batch.setProjectionMatrix(getProjectionMatrix());
             spritePlayerVehicle.draw(batch);
             spriteVehicleRearWheel.draw(batch);
             spriteVehicleFrontWheel.draw(batch);

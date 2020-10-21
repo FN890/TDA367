@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
 /**
@@ -52,7 +53,7 @@ public class CurrentPowerUpRender extends AbstractRender<IPowerUp> {
      */
     @Override
     public void render(SpriteBatch batch, IPowerUp powerUp) {
-        renderPowerUp(batch, powerUp, getCamera().position);
+        renderPowerUp(batch, powerUp, getCameraPosition());
     }
 
     /**
@@ -63,9 +64,9 @@ public class CurrentPowerUpRender extends AbstractRender<IPowerUp> {
      * @param powerUp  The power up the player is currently holding and is to be rendered.
      * @param position The position of the camera, so sprites stay at same place in the camera view.
      */
-    private void renderPowerUp(SpriteBatch batch, IPowerUp powerUp, Vector3 position) {
+    private void renderPowerUp(SpriteBatch batch, IPowerUp powerUp, Vector2 position) {
         batch.begin();
-        batch.setProjectionMatrix(getCamera().combined);
+        batch.setProjectionMatrix(getProjectionMatrix());
 
         if (powerUp == null) {
             noPowerUpSprite.setPosition(position.x + CAMERA_OFFSET_X, position.y + CAMERA_OFFSET_Y);

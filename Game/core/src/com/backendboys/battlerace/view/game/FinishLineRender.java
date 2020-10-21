@@ -42,7 +42,7 @@ public class FinishLineRender extends AbstractRender<Object> {
     private void renderFinishLine() {
         for (int i = 0; i < finishLineVerts.size(); i++) {
             if (withinCamera(finishLineVerts.get(i))) {
-                shapeRenderer.setProjectionMatrix(getCamera().combined);
+                shapeRenderer.setProjectionMatrix(getProjectionMatrix());
 
                 if ((int) finishLineVerts.get(i).y % 3 == 0) {
                     shapeRenderer.setColor(Color.BLACK);
@@ -65,8 +65,8 @@ public class FinishLineRender extends AbstractRender<Object> {
     }
 
     private boolean withinCamera(Vector2 vector2) {
-        if (vector2.x > getCamera().position.x - getCamera().viewportWidth) {
-            return vector2.x < getCamera().position.x + getCamera().viewportWidth;
+        if (vector2.x > getCameraPosition().x - getViewportWidth()) {
+            return vector2.x < getCameraPosition().x + getViewportWidth();
         }
         return false;
     }
