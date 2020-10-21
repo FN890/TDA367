@@ -1,6 +1,7 @@
 package com.backendboys.battlerace.model.gamemodel.player;
 
 import com.backendboys.battlerace.model.gamemodel.powerups.IPowerUp;
+import com.backendboys.battlerace.model.gamemodel.powerups.MissilePowerUp;
 import com.backendboys.battlerace.model.gamemodel.vehicle.IVehicle;
 import com.backendboys.battlerace.model.gamemodel.vehicle.VehicleFactory;
 import com.badlogic.gdx.math.Vector2;

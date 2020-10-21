@@ -23,10 +23,8 @@ public class GameModel {
     private final GameWorld gameWorld;
     private final Player player;
     private final List<OpponentPlayer> opponentPlayers = Collections.synchronizedList(new ArrayList<OpponentPlayer>());
-
     private final WorldExplosions worldExplosions;
     private List<IPowerUp> powerUps = new ArrayList<>();
-    private FinishLineGenerator finishLineGenerator;
 
     /**
      * Instantiates a GameModel, which creates a world and generates GameObjects, such as,
@@ -51,14 +49,21 @@ public class GameModel {
             gameWorld.addListener(powerUp);
         }
 
-        finishLineGenerator = new FinishLineGenerator(gameWorld.getGroundVertices());
-        finishLineGenerator.generateFinishLine(gameWorld.getWorld());
+
     }
 
+    /**
+     * Adds opponent to list of opponents
+     * @param opponent
+     */
     public void addOpponent(OpponentPlayer opponent) {
         opponentPlayers.add(opponent);
     }
 
+    /**
+     * Removes opponent from list of opponents
+     * @param name the name of opponent removed
+     */
     public void removeOpponent(String name) {
         synchronized (opponentPlayers) {
             for (OpponentPlayer p : opponentPlayers) {
@@ -69,6 +74,13 @@ public class GameModel {
         }
     }
 
+    /**
+     * Updates the opponent position
+     * @param name of opponent
+     * @param x x position
+     * @param y y position
+     * @param rotation rotation of opponent
+     */
     public void updateOpponentPosition(String name, float x, float y, float rotation) {
         for (OpponentPlayer o : opponentPlayers) {
             if (o.getPlayerName().equalsIgnoreCase(name)) {
@@ -189,7 +201,7 @@ public class GameModel {
     }
 
     public List<Vector2> getFinishLineVertices() {
-        return finishLineGenerator.getFinishLineVertices();
+        return gameWorld.getFinishLineVertices();
     }
 
 }

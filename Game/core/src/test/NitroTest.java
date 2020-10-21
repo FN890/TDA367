@@ -29,7 +29,7 @@ public class NitroTest {
 
         player.usePowerUp();
 
-        assertEquals(oldAcceleration * 1.5f, player.getVehicle().getAcceleration());
+        assertEquals(oldAcceleration * 1.2f, player.getVehicle().getAcceleration());
 
     }
 
