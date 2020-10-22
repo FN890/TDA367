@@ -37,6 +37,7 @@ class GameScreen extends AbstractScreen implements IGameScreen {
     private final CurrentPowerUpRender currentPowerUpRender;
     private final PlayerPlacementRender playerPlacementRender;
     private final OpponentPlacementRender opponentPlacementRender;
+    private final IdRender idRender;
 
     GameScreen(GameController gameController) {
 
@@ -58,6 +59,7 @@ class GameScreen extends AbstractScreen implements IGameScreen {
         currentPowerUpRender = new CurrentPowerUpRender(camera);
         playerPlacementRender = new PlayerPlacementRender(camera, gameWorld.getGroundVertices());
         opponentPlacementRender = new OpponentPlacementRender(camera, gameWorld.getGroundVertices());
+        idRender = new IdRender(camera, gameController);
 
         batch = new SpriteBatch();
     }
@@ -87,6 +89,7 @@ class GameScreen extends AbstractScreen implements IGameScreen {
         finishLineRender.render(batch, null);
         playerPlacementRender.render(batch, gameModel.getPlayer());
         opponentPlacementRender.render(batch, gameModel.getOpponents());
+        idRender.render(batch, null);
         try {
             currentPowerUpRender.render(batch, gameModel.getPlayer().getNextPowerUp());
         } catch (Exception e) {
@@ -114,6 +117,7 @@ class GameScreen extends AbstractScreen implements IGameScreen {
         currentPowerUpRender.dispose();
         playerPlacementRender.dispose();
         opponentPlacementRender.dispose();
+        idRender.dispose();
     }
 
     @Override

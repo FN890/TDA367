@@ -24,6 +24,7 @@ public class ServerController implements ITCPListener, IPacketListener {
     private final TCPClient tcpClient;
     private final UDPClient udpClient;
     private String clientID;
+    private int gameId;
 
     private final GameController gameController;
     private final CommandConverter commandConverter;
@@ -116,6 +117,7 @@ public class ServerController implements ITCPListener, IPacketListener {
                 if (command.getArgs().length > 2) {
                     int id = Integer.parseInt(command.getArgs()[0]);
                     System.out.println("Server ID: " + id);
+                    gameId = id;
 
                     for (int i = 2; i < command.getArgs().length - 1; i++) {
                         String playerName = command.getArgs()[i];
@@ -196,5 +198,9 @@ public class ServerController implements ITCPListener, IPacketListener {
 
     public boolean isConnected() {
         return isConnected;
+    }
+
+    public int getGameId(){
+        return gameId;
     }
 }

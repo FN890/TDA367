@@ -1,6 +1,6 @@
 package com.backendboys.battlerace.view.game;
 
-import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
+import com.backendboys.battlerace.controller.GameController;
 import com.backendboys.battlerace.model.gamemodel.player.Player;
 import com.backendboys.battlerace.model.gamemodel.vehicle.ICar;
 import com.backendboys.battlerace.model.gamemodel.vehicle.IVehicle;
@@ -16,67 +16,41 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class PlayerPlacementRender extends AbstractRender<Player> {
 
-    private static final int VEHCILE_WIDTH_ICON = 30;
-    private static final int VEHCILE_HEIGHT_ICON = 15;
 
-    private final Sprite spritePlayerVehicle;
-    private final Label lblPlayerName;
-    private final ShapeRenderer shapeRenderer;
+public class IdRender extends AbstractRender<Object> {
 
-    private final float sizeOfWorld;
 
-    public PlayerPlacementRender(OrthographicCamera orthographicCamera, ArrayList<Vector2> groundVertices) {
+    private static final int CAMERA_OFFSET_X = 240;
+    private static final int CAMERA_OFFSET_Y = 130;
+
+    private final Label lblGameId;
+    private final GameController gameController;
+
+    public IdRender(OrthographicCamera orthographicCamera, GameController gameController) {
         super(orthographicCamera);
-
-        spritePlayerVehicle = new Sprite(new Texture("newredcar.png"));
-        spritePlayerVehicle.setSize(VEHCILE_WIDTH_ICON, VEHCILE_HEIGHT_ICON);
-        spritePlayerVehicle.setOriginCenter();
-
-        sizeOfWorld = groundVertices.size();
-
-        shapeRenderer = new ShapeRenderer();
-        shapeRenderer.setColor(Color.BLACK);
-        shapeRenderer.setProjectionMatrix(orthographicCamera.combined);
-
         Skin uiSkin = new Skin(Gdx.files.internal("uiskin.json"));
 
-        lblPlayerName = new Label("Opponent", uiSkin);
-        lblPlayerName.setFontScale(0.5f);
+        this.gameController = gameController;
+        lblGameId = new Label("Game Id: 1400", uiSkin);
+        lblGameId.setFontScale(0.5f);
     }
 
     @Override
-    public void render(SpriteBatch batch, Player player) {
-
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.rectLine(-0.7f, 0.85f, 0.7f, 0.85f, 0.01f);
-        shapeRenderer.end();
-
+    public void render(SpriteBatch batch, Object object) {
         batch.begin();
         batch.setProjectionMatrix(getProjectionMatrix());
 
-        IVehicle vehicle = player.getVehicle();
-        if (vehicle instanceof ICar) {
-            ICar car = (ICar) vehicle;
-            spritePlayerVehicle.setPosition((getCameraPosition().x - getViewportWidth()/2.8f)+(getViewportWidth()/7.3f*getScaledPosition(car.getPosition().x)), getCameraPosition().y + getViewportHeight()/2.4f);
-            spritePlayerVehicle.setRotation((float) Math.toDegrees(car.getRotation()));
-
-            spritePlayerVehicle.draw(batch);
-
-            lblPlayerName.setText(player.getName());
-            lblPlayerName.setPosition((getCameraPosition().x - getViewportWidth()/2.8f)+(getViewportWidth()/7.3f*getScaledPosition(car.getPosition().x)), getCameraPosition().y + getViewportHeight()/2.3f);
-
-            lblPlayerName.draw(batch, 1);
+        if(gameController.getServerController() != null) {
+            if (gameController.getServerController().isConnected()) {
+                lblGameId.setPosition((getCameraPosition().x - getViewportWidth()/2.01f), getCameraPosition().y + getViewportHeight()/2.25f);
+                lblGameId.setText("Game id: " + gameController.getServerController().getGameId());
+                lblGameId.draw(batch, 1);
+            }
         }
 
         batch.end();
-    }
-
-    private float getScaledPosition(float carPosition){
-        return carPosition/sizeOfWorld;
     }
 
     public void dispose() {
