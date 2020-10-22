@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * This is the class that creates the explosions in the world
  * and the class that is exposed outside the particles package
  */
-public class WorldExplosions implements GameWorldListener {
+public class ParticleHandler implements GameWorldListener {
 
 
     /**
@@ -21,7 +21,7 @@ public class WorldExplosions implements GameWorldListener {
     private final ArrayList<OnImpactMissile> missiles = new ArrayList<>();
     private final ArrayList<IMissileListener> missileListeners = new ArrayList<>();
 
-    public WorldExplosions() {
+    public ParticleHandler() {
     }
 
 

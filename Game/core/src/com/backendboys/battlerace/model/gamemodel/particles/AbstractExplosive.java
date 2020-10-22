@@ -8,7 +8,7 @@ package com.backendboys.battlerace.model.gamemodel.particles;
 public abstract class AbstractExplosive {
     /**
      * When this boolean is true it's allowed to be removed from the world -
-     * and the the Class WorldExplosions
+     * and the the Class ParticleHandler
      */
     private boolean toBeRemoved;
 

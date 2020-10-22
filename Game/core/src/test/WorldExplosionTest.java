@@ -1,4 +1,4 @@
-import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
+import com.backendboys.battlerace.model.gamemodel.particles.ParticleHandler;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import org.junit.jupiter.api.Test;
@@ -9,19 +9,19 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class WorldExplosionTest {
-    final WorldExplosions worldExplosions;
+    final ParticleHandler particleHandler;
     final World world;
     final Random random;
 
     public WorldExplosionTest() {
-        worldExplosions = new WorldExplosions();
+        particleHandler = new ParticleHandler();
         world = new World(new Vector2(0, -10), true);
         this.random = new Random();
     }
 
     @Test
     public void createExplosionTest() {
-        assertNotNull(worldExplosions);
+        assertNotNull(particleHandler);
     }
 
     /**
@@ -33,14 +33,14 @@ public class WorldExplosionTest {
         int randomExplosionsA = random.nextInt(100);
         int randomExplosionsB = random.nextInt(100);
         for (int i = 0; i < randomExplosionsA; i++) {
-            worldExplosions.addExplosion(new Vector2(i, i), numParticles, world);
+            particleHandler.addExplosion(new Vector2(i, i), numParticles, world);
         }
         for (int i = 0; i < randomExplosionsB; i++) {
-            worldExplosions.addExplosion(new Vector2(i, i), numParticles, world);
+            particleHandler.addExplosion(new Vector2(i, i), numParticles, world);
         }
 
-        assertTrue(worldExplosions.getNumberOffExplosions() == randomExplosionsA + randomExplosionsB
-                && worldExplosions.getTotalExplosionParticles() == numParticles * (randomExplosionsA + randomExplosionsB));
+        assertTrue(particleHandler.getNumberOffExplosions() == randomExplosionsA + randomExplosionsB
+                && particleHandler.getTotalExplosionParticles() == numParticles * (randomExplosionsA + randomExplosionsB));
     }
 
     @Test
@@ -49,12 +49,12 @@ public class WorldExplosionTest {
         int randomMissilesA = random.nextInt(100);
         int randomMissilesB = random.nextInt(100);
         for (int i = 0; i < randomMissilesA; i++) {
-            worldExplosions.addMissile(new Vector2(i, i), world, 1f, startVelocity, false);
+            particleHandler.addMissile(new Vector2(i, i), world, 1f, startVelocity, false);
         }
         for (int i = 0; i < randomMissilesB; i++) {
-            worldExplosions.addMissile(new Vector2(i, i), world, 1f, startVelocity, false);
+            particleHandler.addMissile(new Vector2(i, i), world, 1f, startVelocity, false);
         }
-        assertTrue(worldExplosions.getMissiles().size() == randomMissilesA + randomMissilesB);
+        assertTrue(particleHandler.getMissiles().size() == randomMissilesA + randomMissilesB);
     }
 
 

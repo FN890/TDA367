@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
 /**
- * A Missile that explodes on impact created in WorldExplosions
+ * A Missile that explodes on impact created in ParticleHandler
  */
 class OnImpactMissile extends AbstractExplosive implements IParticle {
 
@@ -76,7 +76,7 @@ class OnImpactMissile extends AbstractExplosive implements IParticle {
 
     /**
      * After the Missile collides we give it permission to be removed -
-     * from the world and the WorldExplosions class
+     * from the world and the ParticleHandler class
      */
     @Override
     public void explosiveCollided() {

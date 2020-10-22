@@ -6,7 +6,7 @@ import com.backendboys.battlerace.model.gamemodel.collisions.CollisionHandler;
 import com.backendboys.battlerace.model.gamemodel.collisions.IFinishLineListener;
 import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
 import com.backendboys.battlerace.model.gamemodel.particles.IMissileListener;
-import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
+import com.backendboys.battlerace.model.gamemodel.particles.ParticleHandler;
 import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
 import com.backendboys.battlerace.view.screens.IGameScreen;
 import com.backendboys.battlerace.view.screens.ScreenFactory;
@@ -41,8 +41,8 @@ public class GameController implements InputProcessor, IMissileListener, IFinish
     public GameController(BattleRace game, boolean isMultiPlayer) {
         gameModel = new GameModel();
 
-        WorldExplosions worldExplosions = gameModel.getWorldExplosions();
-        worldExplosions.addMissileListener(this);
+        ParticleHandler particleHandler = gameModel.getWorldExplosions();
+        particleHandler.addMissileListener(this);
 
         CollisionHandler collisionHandler = gameModel.getCollisionHandler();
         collisionHandler.addFinishLineListener(this);

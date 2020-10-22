@@ -1,4 +1,4 @@
-import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
+import com.backendboys.battlerace.model.gamemodel.particles.ParticleHandler;
 import com.backendboys.battlerace.model.gamemodel.player.Player;
 import com.backendboys.battlerace.model.gamemodel.powerups.MissilePowerUp;
 import com.backendboys.battlerace.model.gamemodel.powerups.NitroPowerUp;
@@ -16,7 +16,7 @@ class PlayerTest {
     private final String testName = "Dummy";
     private final World world;
     private final Random random;
-    private final WorldExplosions worldExplosions = new WorldExplosions();
+    private final ParticleHandler particleHandler = new ParticleHandler();
     private final int vehicleStartPosX = 10;
     private final int vehicleStartPosY = 10;
 
@@ -53,7 +53,7 @@ class PlayerTest {
         int amountPowerUp2 = random.nextInt(100);
 
         for (int i = 0; i < amountPowerUp1; i++) {
-            player.addPowerUp(new MissilePowerUp(world, 1, 1, worldExplosions));
+            player.addPowerUp(new MissilePowerUp(world, 1, 1, particleHandler));
         }
         for (int i = 0; i < amountPowerUp2; i++) {
             player.addPowerUp(new NitroPowerUp(world, 1, 1));
@@ -70,7 +70,7 @@ class PlayerTest {
         int amountPowerUp2 = random.nextInt(100);
 
         for (int i = 0; i < amountPowerUp1; i++) {
-            player.addPowerUp(new MissilePowerUp(world, 1, 1, worldExplosions));
+            player.addPowerUp(new MissilePowerUp(world, 1, 1, particleHandler));
         }
         for (int i = 0; i < amountPowerUp2; i++) {
             player.addPowerUp(new NitroPowerUp(world, 1, 1));

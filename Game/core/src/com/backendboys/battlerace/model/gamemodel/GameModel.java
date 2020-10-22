@@ -3,7 +3,7 @@ package com.backendboys.battlerace.model.gamemodel;
 import com.backendboys.battlerace.model.gamemodel.collisions.CollisionHandler;
 import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
 import com.backendboys.battlerace.model.gamemodel.particles.IParticle;
-import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
+import com.backendboys.battlerace.model.gamemodel.particles.ParticleHandler;
 import com.backendboys.battlerace.model.gamemodel.player.Player;
 import com.backendboys.battlerace.model.gamemodel.powerups.IPowerUp;
 import com.backendboys.battlerace.model.gamemodel.powerups.PowerUpGenerator;
@@ -29,7 +29,7 @@ public class GameModel {
     private final GameWorld gameWorld;
     private final Player player;
     private final List<OpponentPlayer> opponentPlayers = Collections.synchronizedList(new ArrayList<OpponentPlayer>());
-    private final WorldExplosions worldExplosions;
+    private final ParticleHandler particleHandler;
     private final CollisionHandler collisionHandler;
     private List<IPowerUp> powerUps = new ArrayList<>();
 
@@ -39,9 +39,9 @@ public class GameModel {
      */
     public GameModel() {
         this.gameWorld = new GameWorld(GroundStrategyFactory.getSinCosStrategy(5000, 60, 5), 1);
-        worldExplosions = new WorldExplosions();
+        particleHandler = new ParticleHandler();
         generateObjects();
-        gameWorld.addListener(worldExplosions);
+        gameWorld.addListener(particleHandler);
         Vector2 startPosition = gameWorld.getGroundVertices().get(50);
         player = new Player("You");
         player.addVehicle(gameWorld.getWorld(), startPosition.x, startPosition.y + 25);
@@ -50,7 +50,7 @@ public class GameModel {
     }
 
     private void generateObjects() {
-        PowerUpGenerator powerUpGenerator = new PowerUpGenerator(gameWorld.getGroundVertices(), gameWorld.getWorld(), worldExplosions);
+        PowerUpGenerator powerUpGenerator = new PowerUpGenerator(gameWorld.getGroundVertices(), gameWorld.getWorld(), particleHandler);
         powerUps = powerUpGenerator.generatePowerups(amountOfPowerUps());
 
         for (IPowerUp powerUp : powerUps) {
@@ -180,15 +180,15 @@ public class GameModel {
     }
 
     public ArrayList<IParticle> getMissiles() {
-        return worldExplosions.getMissiles();
+        return particleHandler.getMissiles();
     }
 
     public ArrayList<IParticle> getExplosionParticles() {
-        return worldExplosions.getParticles();
+        return particleHandler.getParticles();
     }
 
-    public WorldExplosions getWorldExplosions() {
-        return worldExplosions;
+    public ParticleHandler getWorldExplosions() {
+        return particleHandler;
     }
 
     /**
@@ -209,7 +209,7 @@ public class GameModel {
      * @param playerYSpeed The y-axis speed of the player spawning the missile.
      */
     public void spawnMissile(float x, float y, float rotation, float playerXSpeed, float playerYSpeed, boolean notifyListeners) {
-        worldExplosions.addMissile(new Vector2(x, y), gameWorld.getWorld(), rotation, new Vector2(playerXSpeed, playerYSpeed), notifyListeners);
+        particleHandler.addMissile(new Vector2(x, y), gameWorld.getWorld(), rotation, new Vector2(playerXSpeed, playerYSpeed), notifyListeners);
     }
 
     /**

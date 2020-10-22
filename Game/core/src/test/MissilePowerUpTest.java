@@ -1,4 +1,4 @@
-import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
+import com.backendboys.battlerace.model.gamemodel.particles.ParticleHandler;
 import com.backendboys.battlerace.model.gamemodel.player.Player;
 import com.backendboys.battlerace.model.gamemodel.powerups.MissilePowerUp;
 import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
@@ -12,13 +12,13 @@ public class MissilePowerUpTest {
     private final MissilePowerUp missilePowerUp;
     private final Player player;
     private final GameWorld gameWorld;
-    private final WorldExplosions worldExplosions;
+    private final ParticleHandler particleHandler;
 
     public MissilePowerUpTest() {
         player = new Player("player");
         gameWorld = new GameWorld(GroundStrategyFactory.getSinCosStrategy(1000, 40, 5), 1);
-        worldExplosions = new WorldExplosions();
-        missilePowerUp = new MissilePowerUp(gameWorld.getWorld(), 1, 1, worldExplosions);
+        particleHandler = new ParticleHandler();
+        missilePowerUp = new MissilePowerUp(gameWorld.getWorld(), 1, 1, particleHandler);
     }
 
     @Test
