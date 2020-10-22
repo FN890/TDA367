@@ -158,17 +158,24 @@ public class ServerController implements ITCPListener, IPacketListener {
 
             case "game":
                 if (command.getArgs().length > 1) {
-                    if (command.getArgs()[0].equals("joined")) {
-                        String playerName = command.getArgs()[1];
-                        gameController.handleAddOpponent(new OpponentPlayer(playerName, new Vector2(50, 100), 0));
+                    switch (command.getArgs()[0]) {
+                        case "joined": {
+                            String playerName = command.getArgs()[1];
+                            gameController.handleAddOpponent(new OpponentPlayer(playerName, new Vector2(50, 100), 0));
 
-                    } else if (command.getArgs()[0].equals("left")) {
-                        String playerName = command.getArgs()[1];
-                        gameController.handleRemoveOpponent(playerName);
-                    } else if (command.getArgs()[0].equals("winner")) {
-                        String playerName = command.getArgs()[1];
-                        gameController.setWinnerName(playerName);
-                        gameController.setGameWon(true);
+                            break;
+                        }
+                        case "left": {
+                            String playerName = command.getArgs()[1];
+                            gameController.handleRemoveOpponent(playerName);
+                            break;
+                        }
+                        case "winner": {
+                            String playerName = command.getArgs()[1];
+                            gameController.setWinnerName(playerName);
+                            gameController.setGameWon(true);
+                            break;
+                        }
                     }
                 }
                 break;
