@@ -8,7 +8,7 @@ import com.badlogic.gdx.physics.box2d.*;
  */
 class ExplosionParticle extends AbstractExplosive implements IParticle {
 
-    private final Body body;
+    private Body body;
     private static final int MOVEMENT_POWER = 200;
 
     /**
@@ -20,6 +20,11 @@ class ExplosionParticle extends AbstractExplosive implements IParticle {
      * @param rayDir Used to determine which direction the particle is travelling
      */
     ExplosionParticle(World world, Vector2 pos, Vector2 rayDir) {
+        createBody(world, pos, rayDir);
+
+    }
+
+    private void createBody(World world, Vector2 pos, Vector2 rayDir) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.fixedRotation = true;
@@ -45,7 +50,6 @@ class ExplosionParticle extends AbstractExplosive implements IParticle {
         fixtureDef.filter.groupIndex = -1; // makes particles unable to collide with one another
         body.createFixture(fixtureDef).setUserData(this);
         circleShape.dispose();
-
     }
 
     Body getBody() {

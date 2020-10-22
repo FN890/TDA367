@@ -25,10 +25,10 @@ class OnImpactMissile extends AbstractExplosive implements IParticle {
      * @param pos   spawn point of the missile
      */
     OnImpactMissile(World world, Vector2 pos, float rotation, Vector2 initialVelocity) {
-        createBody(world,pos,rotation,initialVelocity);
+        createBody(world, pos, rotation, initialVelocity);
     }
 
-   private void createBody(World world, Vector2 pos, float rotation, Vector2 initialVelocity){
+    private void createBody(World world, Vector2 pos, float rotation, Vector2 initialVelocity) {
         rotation = (float) (rotation + Math.PI / 2);
         DIRECTION.x = MathUtils.sin(rotation);
         DIRECTION.y = -MathUtils.cos(rotation);
