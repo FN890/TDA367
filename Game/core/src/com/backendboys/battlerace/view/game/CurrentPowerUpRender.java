@@ -12,7 +12,7 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * Class used for rendering the power up that the player is currently holding.
  */
-public class CurrentPowerUpRender extends AbstractRender<IPowerUp> {
+public class CurrentPowerUpRender extends AbstractRender{
 
     private final Sprite nitroSprite;
     private final Sprite missileSprite;
@@ -50,7 +50,6 @@ public class CurrentPowerUpRender extends AbstractRender<IPowerUp> {
      * @param batch   Used to draw sprites in the world.
      * @param powerUp The power up currently held by the player.
      */
-    @Override
     public void render(SpriteBatch batch, IPowerUp powerUp) {
         renderPowerUp(batch, powerUp, getCameraPosition());
     }

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 /**
  * Class used for rendering the game background.
  */
-public class BackgroundRender extends AbstractRender<Object> {
+public class BackgroundRender extends AbstractRender{
 
     private final float rectWidth;
     private final ArrayList<Vector2> groundVertices;
@@ -29,8 +29,7 @@ public class BackgroundRender extends AbstractRender<Object> {
         rectWidth = calculateDX(groundVertices.get(1), groundVertices.get(0));
     }
 
-    @Override
-    public void render(SpriteBatch batch, Object object) {
+    public void render(SpriteBatch batch) {
         renderBackground();
     }
 

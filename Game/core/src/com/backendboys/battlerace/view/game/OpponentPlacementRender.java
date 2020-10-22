@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OpponentPlacementRender extends AbstractRender<List<OpponentPlayer>> {
+public class OpponentPlacementRender extends AbstractRender {
 
     private static final int VEHCILE_WIDTH_ICON = 30;
     private static final int VEHCILE_HEIGHT_ICON = 15;
@@ -38,7 +38,6 @@ public class OpponentPlacementRender extends AbstractRender<List<OpponentPlayer>
         lblPlayerName.setFontScale(0.5f);
     }
 
-    @Override
     public void render(SpriteBatch batch, List<OpponentPlayer> opponents) {
 
         batch.begin();

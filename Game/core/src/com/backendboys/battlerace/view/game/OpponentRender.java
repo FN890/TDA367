@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 import java.util.List;
 
-public class OpponentRender extends AbstractRender<List<OpponentPlayer>> {
+public class OpponentRender extends AbstractRender {
 
     private static final int VEHCILE_WIDTH = 60;
     private static final int VEHCILE_HEIGHT = 25;
@@ -30,7 +30,6 @@ public class OpponentRender extends AbstractRender<List<OpponentPlayer>> {
         lblPlayerName = new Label("Opponent", uiSkin);
     }
 
-    @Override
     public void render(SpriteBatch batch, List<OpponentPlayer> object) {
         batch.begin();
         for (OpponentPlayer o : object) {

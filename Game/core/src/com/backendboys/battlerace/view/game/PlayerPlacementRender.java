@@ -18,7 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayerPlacementRender extends AbstractRender<Player> {
+public class PlayerPlacementRender extends AbstractRender {
 
     private static final int VEHCILE_WIDTH_ICON = 30;
     private static final int VEHCILE_HEIGHT_ICON = 15;
@@ -48,7 +48,6 @@ public class PlayerPlacementRender extends AbstractRender<Player> {
         lblPlayerName.setFontScale(0.5f);
     }
 
-    @Override
     public void render(SpriteBatch batch, Player player) {
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);

@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Class that handles rendering of the finish line.
  */
-public class FinishLineRender extends AbstractRender<Object> {
+public class FinishLineRender extends AbstractRender{
 
     private final List<Vector2> finishLineVerts;
     private final ShapeRenderer shapeRenderer;
@@ -31,8 +31,7 @@ public class FinishLineRender extends AbstractRender<Object> {
     /**
      * Method that renders the blocks, called everytime the world steps.
      */
-    @Override
-    public void render(SpriteBatch batch, Object object) {
+    public void render(SpriteBatch batch) {
         renderFinishLine();
     }
 

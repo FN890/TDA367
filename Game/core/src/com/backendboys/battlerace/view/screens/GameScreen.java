@@ -81,18 +81,18 @@ class GameScreen extends AbstractScreen implements IGameScreen {
     }
 
     private void renderData() {
-        backgroundRender.render(batch, null);
+        backgroundRender.render(batch);
         vehicleRender.render(batch, gameModel.getPlayer().getVehicle());
         opponentRender.render(batch, gameModel.getOpponents());
         //debugRenderer.render(gameWorld.getWorld(), camera.combined);
         missileRender.render(batch, gameModel.getMissiles());
         explosionParticleRender.render(batch, gameModel.getExplosionParticles());
-        powerUpsRender.render(batch, null);
-        finishLineRender.render(batch, null);
+        powerUpsRender.render(batch);
+        finishLineRender.render(batch);
         playerPlacementRender.render(batch, gameModel.getPlayer());
         opponentPlacementRender.render(batch, gameModel.getOpponents());
-        idRender.render(batch, null);
-        winnerRender.render(batch, null);
+        idRender.render(batch);
+        winnerRender.render(batch);
         try {
             currentPowerUpRender.render(batch, gameModel.getPlayer().getNextPowerUp());
         } catch (Exception e) {

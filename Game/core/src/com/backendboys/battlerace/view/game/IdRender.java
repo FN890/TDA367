@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 
 
-public class IdRender extends AbstractRender<Object> {
+public class IdRender extends AbstractRender {
 
 
     private final Label lblGameId;
@@ -39,7 +39,7 @@ public class IdRender extends AbstractRender<Object> {
         Label.LabelStyle style = new Label.LabelStyle();
         style.font = defaultFont;
         style.fontColor = Color.RED;
-        generator.dispose(); // don't forget to dispose to avoid memory leaks!
+        generator.dispose();
 
         Skin uiSkin = new Skin(Gdx.files.internal("uiskin.json"));
 
@@ -50,8 +50,7 @@ public class IdRender extends AbstractRender<Object> {
 
     }
 
-    @Override
-    public void render(SpriteBatch batch, Object object) {
+    public void render(SpriteBatch batch) {
         batch.begin();
         batch.setProjectionMatrix(getProjectionMatrix());
 

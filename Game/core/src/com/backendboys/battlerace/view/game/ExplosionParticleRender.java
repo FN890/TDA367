@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * class that is used to render particles
  */
-public class ExplosionParticleRender extends AbstractRender<List<IParticle>> {
+public class ExplosionParticleRender extends AbstractRender {
 
     private final static int WIDTH = 5, HEIGHT = 5;
 
@@ -38,7 +38,6 @@ public class ExplosionParticleRender extends AbstractRender<List<IParticle>> {
      * @param batch  batch used to draw on the screen
      * @param object the particle object to be rendered
      */
-    @Override
     public void render(SpriteBatch batch, List<IParticle> object) {
         batch.begin();
         for (IParticle particle : object) {

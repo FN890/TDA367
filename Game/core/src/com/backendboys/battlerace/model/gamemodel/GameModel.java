@@ -40,11 +40,14 @@ public class GameModel {
     public GameModel() {
         this.gameWorld = new GameWorld(GroundStrategyFactory.getSinCosStrategy(5000, 60, 5), 1);
         particleHandler = new ParticleHandler();
+
         generateObjects();
         gameWorld.addListener(particleHandler);
         Vector2 startPosition = gameWorld.getGroundVertices().get(50);
+
         player = new Player("You");
         player.addVehicle(gameWorld.getWorld(), startPosition.x, startPosition.y + 25);
+
         collisionHandler = new CollisionHandler(this);
         gameWorld.setCollisionListener(collisionHandler);
     }
@@ -56,8 +59,6 @@ public class GameModel {
         for (IPowerUp powerUp : powerUps) {
             gameWorld.addListener(powerUp);
         }
-
-
     }
 
     private int amountOfPowerUps() {
@@ -197,7 +198,6 @@ public class GameModel {
     public void usePowerUp() {
         player.usePowerUp();
     }
-
 
     /**
      * Spawns a missile in the world at a given position and rotation.
