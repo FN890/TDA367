@@ -9,7 +9,7 @@ import com.badlogic.gdx.physics.box2d.*;
  */
 class OnImpactMissile extends AbstractExplosive implements IParticle {
 
-    private final Body body;
+    private Body body;
     private static final Vector2 DIRECTION = new Vector2(10, 4);
     private static final float MOVEMENT_POWER = 100;
     private static final float MISSILE_LENGTH = 10f;
@@ -25,6 +25,10 @@ class OnImpactMissile extends AbstractExplosive implements IParticle {
      * @param pos   spawn point of the missile
      */
     OnImpactMissile(World world, Vector2 pos, float rotation, Vector2 initialVelocity) {
+        createBody(world,pos,rotation,initialVelocity);
+    }
+
+   private void createBody(World world, Vector2 pos, float rotation, Vector2 initialVelocity){
         rotation = (float) (rotation + Math.PI / 2);
         DIRECTION.x = MathUtils.sin(rotation);
         DIRECTION.y = -MathUtils.cos(rotation);
@@ -33,7 +37,7 @@ class OnImpactMissile extends AbstractExplosive implements IParticle {
         bodyDef.fixedRotation = false;
         bodyDef.bullet = false;
         bodyDef.linearDamping = 0;
-        bodyDef.gravityScale = 0.33f;
+        bodyDef.gravityScale = 1f;
 
         if (DIRECTION.x < 0) {
             bodyDef.position.x = pos.x - LAUNCH_OFFSET_X;

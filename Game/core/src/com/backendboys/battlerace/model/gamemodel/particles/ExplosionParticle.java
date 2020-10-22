@@ -24,8 +24,8 @@ class ExplosionParticle extends AbstractExplosive implements IParticle {
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.fixedRotation = true;
         bodyDef.bullet = true;
-        bodyDef.linearDamping = 0.3f; //air resistance
-        bodyDef.gravityScale = 0.33f;
+        bodyDef.linearDamping = 0.3f;
+        bodyDef.gravityScale = 1;
         bodyDef.position.x = pos.x;
         bodyDef.position.y = pos.y;
         rayDir.scl(MOVEMENT_POWER);
