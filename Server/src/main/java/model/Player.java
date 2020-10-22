@@ -10,7 +10,7 @@ import java.net.InetAddress;
  */
 public class Player {
 
-    private String name;
+    private final String name;
     private Vector2 position = null;
     private float rotation;
 
