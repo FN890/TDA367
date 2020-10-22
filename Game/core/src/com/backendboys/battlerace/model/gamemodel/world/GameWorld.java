@@ -29,8 +29,6 @@ public class GameWorld {
     private final FinishLineGenerator finishLineGenerator;
     private final static int BORDER_HEIGHT = 10000;
 
-    private final Stack<Body> toRemove = new Stack<>();
-
     private final ArrayList<GameWorldListener> gameWorldListeners;
 
     public GameWorld(IGroundStrategy iGroundStrategy, int friction) {
@@ -43,10 +41,6 @@ public class GameWorld {
         finishLineGenerator = new FinishLineGenerator(getGroundVertices());
         finishLineGenerator.generateFinishLine(world);
 
-    }
-
-    public void destroyBody(Body body) {
-        toRemove.add(body);
     }
 
     public void setCollisionListener(ContactListener contactListener) {
@@ -64,17 +58,10 @@ public class GameWorld {
                 accumulator -= STEP_TIME;
                 world.step(STEP_TIME, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
                 notifyGameWorldListeners();
-                destroyBodies();
             }
         }
 
 
-    }
-
-    private void destroyBodies() {
-        for (int i = 0; i < toRemove.size(); i++) {
-            world.destroyBody(toRemove.pop());
-        }
     }
 
     public void dispose() {
