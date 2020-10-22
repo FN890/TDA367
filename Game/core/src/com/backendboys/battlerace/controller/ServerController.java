@@ -12,7 +12,7 @@ import com.backendboys.battlerace.services.protocol.ICommand;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 
-/**wd
+/**
  * ServerController handles connection to Server.
  * It creates a TCPClient and a UDPClient
  */
