@@ -9,6 +9,9 @@ import com.backendboys.battlerace.controller.MenuController;
  */
 public class ScreenFactory {
 
+    private ScreenFactory() {
+    }
+
     public static IScreen createMainMenu(MenuController menuController) {
         return new MainMenu(menuController);
     }

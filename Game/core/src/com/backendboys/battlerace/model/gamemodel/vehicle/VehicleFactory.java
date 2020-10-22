@@ -8,6 +8,10 @@ import com.badlogic.gdx.physics.box2d.World;
  */
 public class VehicleFactory {
 
+    private VehicleFactory() {
+
+    }
+
     /**
      * @param world the gameWorld, used for creating the physics body of vehicle and adding it to the world.
      * @param posX  x position the vehicle should be placed in world
