@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Class that handles rendering the power-ups.
  */
-public class PowerUpsRender extends AbstractRender<Object> {
+public class PowerUpsRender extends AbstractRender {
 
     private final List<IPowerUp> powerUps;
     private final Sprite sprite;
@@ -28,12 +28,7 @@ public class PowerUpsRender extends AbstractRender<Object> {
         sprite.setSize(WIDTH, HEIGHT);
     }
 
-    @Override
-    public void render(SpriteBatch batch, Object object) {
-        render(batch);
-    }
-
-    private void render(SpriteBatch batch) {
+    public void render(SpriteBatch batch) {
         batch.begin();
         for (IPowerUp powerUp : powerUps) {
             if (withinCamera(powerUp)) {

@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 
-public abstract class AbstractRender<T> {
+public abstract class AbstractRender{
 
     private final OrthographicCamera camera;
 
@@ -14,8 +14,6 @@ public abstract class AbstractRender<T> {
     protected AbstractRender(OrthographicCamera camera) {
         this.camera = camera;
     }
-
-    public abstract void render(SpriteBatch batch, T object);
 
     protected float getViewportWidth() {
         return camera.viewportWidth;

@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 /**
  * Class for render Vehicle
  */
-public class VehicleRender extends AbstractRender<IVehicle> {
+public class VehicleRender extends AbstractRender {
 
     private static final int VEHICLE_WIDTH = 60;
     private static final int VEHICLE_HEIGHT = 25;
@@ -38,7 +38,6 @@ public class VehicleRender extends AbstractRender<IVehicle> {
         spriteVehicleRearWheel.setOriginCenter();
     }
 
-    @Override
     public void render(SpriteBatch batch, IVehicle object) {
         batch.begin();
         if (object instanceof ICar) {

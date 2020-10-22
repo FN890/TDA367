@@ -16,8 +16,7 @@ public class WinnerRender extends AbstractRender {
         this.gameController = gameController;
     }
 
-    @Override
-    public void render(SpriteBatch batch, Object object) {
+    public void render(SpriteBatch batch) {
         if (gameController.getWinnerName() != null) {
             if (!gameController.getWinnerName().isEmpty()) {
                 batch.setProjectionMatrix(getProjectionMatrix());

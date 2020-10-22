@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.MathUtils;
 
 import java.util.List;
 
-public class MissileRender extends AbstractRender<List<IParticle>> {
+public class MissileRender extends AbstractRender {
 
     private final static int WIDTH = 40, HEIGHT = 20;
 
@@ -25,7 +25,6 @@ public class MissileRender extends AbstractRender<List<IParticle>> {
         sprite.setOrigin(WIDTH / 2f, HEIGHT / 2f);
     }
 
-    @Override
     public void render(SpriteBatch batch, List<IParticle> object) {
         batch.begin();
         for (IParticle missile : object) {
