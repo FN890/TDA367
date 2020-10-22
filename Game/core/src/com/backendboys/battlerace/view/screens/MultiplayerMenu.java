@@ -22,7 +22,7 @@ class MultiplayerMenu extends AbstractMenuScreen implements IScreen {
     private TextField inputPlayerName;
     private TextField inputGameId;
 
-    private GameController gameController;
+    private final GameController gameController;
 
     MultiplayerMenu(MenuController menuController) {
         super(menuController);
