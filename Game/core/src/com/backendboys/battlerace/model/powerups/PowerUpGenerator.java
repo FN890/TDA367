@@ -34,25 +34,25 @@ public class PowerUpGenerator {
     }
 
     /**
-     * Generates the powerups and spawns them in the world.
+     * Generates the power ups and spawns them in the world.
      *
-     * @param numberPowerups The number of powerups to create.
+     * @param numberPowerUps The number of powerups to create.
      * @return Returns a list of all powerups in world, needed for collision checking.
      */
-    public ArrayList<IPowerUp> generatePowerups(int numberPowerups) {
+    public ArrayList<IPowerUp> generatePowerUps(int numberPowerUps) {
 
         ArrayList<IPowerUp> powerUps = new ArrayList<>();
 
-        if (numberPowerups <= 0) {
+        if (numberPowerUps <= 0) {
             return powerUps;
         }
 
-        final int space = vertices.size() / numberPowerups;
+        final int space = vertices.size() / numberPowerUps;
         int positionX = space * 2;
 
         Random random = new Random();
 
-        for (int i = 0; i < numberPowerups; i++) {
+        for (int i = 0; i < numberPowerUps; i++) {
 
             if ((positionX / 5) > vertices.size() - 1) {
                 return powerUps;

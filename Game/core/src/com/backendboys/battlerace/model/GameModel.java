@@ -54,7 +54,7 @@ public class GameModel {
 
     private void generateObjects() {
         PowerUpGenerator powerUpGenerator = new PowerUpGenerator(gameWorld.getGroundVertices(), gameWorld.getWorld(), particleHandler);
-        powerUps = powerUpGenerator.generatePowerups(amountOfPowerUps());
+        powerUps = powerUpGenerator.generatePowerUps(amountOfPowerUps());
 
         for (IPowerUp powerUp : powerUps) {
             gameWorld.addListener(powerUp);
