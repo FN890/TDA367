@@ -23,7 +23,9 @@ public class GameModel {
 
     private static final int SPACE_BETWEEN_POWER_UPS = 300;
 
-    private String winnerName;
+    private String winnerName = "";
+    private boolean gameWon = false;
+
     private final GameWorld gameWorld;
     private final Player player;
     private final List<OpponentPlayer> opponentPlayers = Collections.synchronizedList(new ArrayList<OpponentPlayer>());
@@ -237,5 +239,13 @@ public class GameModel {
 
     public void setWinnerName(String winnerName) {
         this.winnerName = winnerName;
+    }
+
+    public boolean isGameWon() {
+        return gameWon;
+    }
+
+    public void setGameWon(boolean gameWon) {
+        this.gameWon = gameWon;
     }
 }

@@ -191,16 +191,27 @@ public class GameController implements InputProcessor, IMissileListener, IFinish
 
     @Override
     public void onTouchedFinishLine() {
-        if (serverController != null) {
-            serverController.sendMessage("win");
+        if (!gameModel.isGameWon()) {
+            gameModel.setGameWon(true);
+            if (serverController != null) {
+                serverController.sendMessage("win");
+            }
         }
     }
 
-    public String getWinnerName(){
+    public boolean isGameWon() {
+        return gameModel.isGameWon();
+    }
+
+    public void setGameWon(boolean gameWon) {
+        gameModel.setGameWon(gameWon);
+    }
+
+    public String getWinnerName() {
         return gameModel.getWinnerName();
     }
 
-    void setWinnerName(String name){
+    void setWinnerName(String name) {
         gameModel.setWinnerName(name);
     }
 
