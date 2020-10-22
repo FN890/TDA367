@@ -48,7 +48,6 @@ class OnImpactMissile extends AbstractExplosive implements IParticle {
         body = world.createBody(bodyDef);
         body.setTransform(body.getPosition(), rotation - (MathUtils.PI / 2));
 
-
         body.getMassData().center.x = 8f;
         PolygonShape polygonShape = new PolygonShape();
         polygonShape.setAsBox(MISSILE_LENGTH, MISSILE_HEIGHT);

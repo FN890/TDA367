@@ -8,8 +8,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -30,11 +33,24 @@ public class IdRender extends AbstractRender<Object> {
 
     public IdRender(OrthographicCamera orthographicCamera, GameController gameController) {
         super(orthographicCamera);
+
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("decima.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 10;
+        BitmapFont defaultFont = generator.generateFont(parameter);
+
+        Label.LabelStyle style = new Label.LabelStyle();
+        style.font = defaultFont;
+        style.fontColor = Color.RED;
+        generator.dispose(); // don't forget to dispose to avoid memory leaks!
+
         Skin uiSkin = new Skin(Gdx.files.internal("uiskin.json"));
 
         this.gameController = gameController;
         lblGameId = new Label("Game Id: 1400", uiSkin);
-        lblGameId.setFontScale(0.5f);
+        lblGameId.setStyle(style);
+        lblGameId.setFontScale(1f);
+
     }
 
     @Override
