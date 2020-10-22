@@ -5,11 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 
-<<<<<<< HEAD
 public abstract class AbstractRender{
-=======
-abstract class AbstractRender<T> {
->>>>>>> 7dcae5330c4c9ea7adc3bc924b659d14171a7bc0
 
     private final OrthographicCamera camera;
 
