@@ -151,6 +151,30 @@ public class GameModel {
     }
 
     /**
+     * Method that tells the player to use a powerup
+     */
+    public void usePowerUp() {
+        player.usePowerUp();
+    }
+
+    /**
+     * Spawns a missile in the world at a given position and rotation.
+     *
+     * @param x            The spawn x position.
+     * @param y            The spawn y position.
+     * @param rotation     The rotation.
+     * @param playerXSpeed The x-axis speed of the player spawning the missile.
+     * @param playerYSpeed The y-axis speed of the player spawning the missile.
+     */
+    public void spawnMissile(float x, float y, float rotation, float playerXSpeed, float playerYSpeed, boolean notifyListeners) {
+        particleHandler.addMissile(new Vector2(x, y), gameWorld.getWorld(), rotation, new Vector2(playerXSpeed, playerYSpeed), notifyListeners);
+    }
+
+    public boolean isGameWon() {
+        return gameWon;
+    }
+
+    /**
      * Returns the GameWorld.
      *
      * @return The GameWorld object.
@@ -193,26 +217,6 @@ public class GameModel {
     }
 
     /**
-     * Method that tells the player to use a powerup
-     */
-    public void usePowerUp() {
-        player.usePowerUp();
-    }
-
-    /**
-     * Spawns a missile in the world at a given position and rotation.
-     *
-     * @param x            The spawn x position.
-     * @param y            The spawn y position.
-     * @param rotation     The rotation.
-     * @param playerXSpeed The x-axis speed of the player spawning the missile.
-     * @param playerYSpeed The y-axis speed of the player spawning the missile.
-     */
-    public void spawnMissile(float x, float y, float rotation, float playerXSpeed, float playerYSpeed, boolean notifyListeners) {
-        particleHandler.addMissile(new Vector2(x, y), gameWorld.getWorld(), rotation, new Vector2(playerXSpeed, playerYSpeed), notifyListeners);
-    }
-
-    /**
      * Returns the list of PowerUps.
      *
      * @return The PowerUps list.
@@ -239,10 +243,6 @@ public class GameModel {
 
     public void setWinnerName(String winnerName) {
         this.winnerName = winnerName;
-    }
-
-    public boolean isGameWon() {
-        return gameWon;
     }
 
     public void setGameWon(boolean gameWon) {
