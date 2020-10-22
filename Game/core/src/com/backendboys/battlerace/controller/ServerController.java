@@ -167,6 +167,7 @@ public class ServerController implements ITCPListener, IPacketListener {
                         gameController.handleRemoveOpponent(playerName);
                     } else if (command.getArgs()[0].equals("winner")) {
                         String playerName = command.getArgs()[1];
+                        gameController.setWinnerName(playerName);
                         //TODO: Render name at top of screen, or middle, idk.
                         System.out.println("Winner! " + playerName);
                     }

@@ -23,6 +23,7 @@ public class GameModel {
 
     private static final int SPACE_BETWEEN_POWER_UPS = 300;
 
+    private String winnerName;
     private final GameWorld gameWorld;
     private final Player player;
     private final List<OpponentPlayer> opponentPlayers = Collections.synchronizedList(new ArrayList<OpponentPlayer>());
@@ -35,7 +36,7 @@ public class GameModel {
      * player, ground, powerUps, and finishLine.
      */
     public GameModel() {
-        this.gameWorld = new GameWorld(GroundStrategyFactory.getSinCosStrategy(5000, 60, 5), 1);
+        this.gameWorld = new GameWorld(GroundStrategyFactory.getSinCosStrategy(500, 60, 5), 1);
         worldExplosions = new WorldExplosions();
         generateObjects();
         gameWorld.addListener(worldExplosions);
@@ -230,4 +231,11 @@ public class GameModel {
         return player.getName();
     }
 
+    public String getWinnerName() {
+        return winnerName;
+    }
+
+    public void setWinnerName(String winnerName) {
+        this.winnerName = winnerName;
+    }
 }

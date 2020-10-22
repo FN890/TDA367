@@ -38,6 +38,7 @@ class GameScreen extends AbstractScreen implements IGameScreen {
     private final PlayerPlacementRender playerPlacementRender;
     private final OpponentPlacementRender opponentPlacementRender;
     private final IdRender idRender;
+    private final WinnerRender winnerRender;
 
     GameScreen(GameController gameController) {
 
@@ -60,6 +61,7 @@ class GameScreen extends AbstractScreen implements IGameScreen {
         playerPlacementRender = new PlayerPlacementRender(camera, gameWorld.getGroundVertices());
         opponentPlacementRender = new OpponentPlacementRender(camera, gameWorld.getGroundVertices());
         idRender = new IdRender(camera, gameController);
+        winnerRender = new WinnerRender(camera, gameController);
 
         batch = new SpriteBatch();
     }
@@ -90,6 +92,7 @@ class GameScreen extends AbstractScreen implements IGameScreen {
         playerPlacementRender.render(batch, gameModel.getPlayer());
         opponentPlacementRender.render(batch, gameModel.getOpponents());
         idRender.render(batch, null);
+        winnerRender.render(batch, null);
         try {
             currentPowerUpRender.render(batch, gameModel.getPlayer().getNextPowerUp());
         } catch (Exception e) {
@@ -127,7 +130,7 @@ class GameScreen extends AbstractScreen implements IGameScreen {
 
     private void sendPositionPackets(Player player) {
         if (serverController != null) {
-            if(serverController.isConnected()) {
+            if (serverController.isConnected()) {
                 serverController.sendPositionPacket(player);
             }
         }

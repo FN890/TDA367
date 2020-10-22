@@ -195,4 +195,14 @@ public class GameController implements InputProcessor, IMissileListener, IFinish
             serverController.sendMessage("win");
         }
     }
+
+    public String getWinnerName(){
+        return gameModel.getWinnerName();
+    }
+
+    void setWinnerName(String name){
+        gameModel.setWinnerName(name);
+    }
+
+
 }
