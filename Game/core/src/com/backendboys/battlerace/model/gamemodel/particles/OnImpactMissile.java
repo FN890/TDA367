@@ -33,7 +33,7 @@ class OnImpactMissile extends AbstractExplosive implements IParticle {
         bodyDef.fixedRotation = false;
         bodyDef.bullet = false;
         bodyDef.linearDamping = 0;
-        bodyDef.gravityScale = 0.5f;
+        bodyDef.gravityScale = 0.33f;
 
         if (DIRECTION.x < 0) {
             bodyDef.position.x = pos.x - LAUNCH_OFFSET_X;
