@@ -53,9 +53,7 @@ class Explosion {
     }
 
     public ArrayList<IParticle> getExplosionParticles() {
-        ArrayList<IParticle> iParticles = new ArrayList<>();
-        iParticles.addAll(explosionParticles);
-        return iParticles;
+        return new ArrayList<IParticle>(explosionParticles);
     }
 
     int getNParticles() {
