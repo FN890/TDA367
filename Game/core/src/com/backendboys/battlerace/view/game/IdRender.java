@@ -25,9 +25,6 @@ import java.util.ArrayList;
 public class IdRender extends AbstractRender<Object> {
 
 
-    private static final int CAMERA_OFFSET_X = 240;
-    private static final int CAMERA_OFFSET_Y = 130;
-
     private final Label lblGameId;
     private final GameController gameController;
 

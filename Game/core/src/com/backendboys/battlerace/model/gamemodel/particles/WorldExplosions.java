@@ -17,7 +17,6 @@ public class WorldExplosions implements GameWorldListener {
     /**
      * A list of all the explosions that have been created in the world
      */
-
     private final ArrayList<Explosion> explosions = new ArrayList<>();
     private final ArrayList<OnImpactMissile> missiles = new ArrayList<>();
     private final ArrayList<IMissileListener> missileListeners = new ArrayList<>();

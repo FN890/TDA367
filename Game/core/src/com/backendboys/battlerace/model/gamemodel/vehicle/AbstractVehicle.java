@@ -18,7 +18,6 @@ abstract class AbstractVehicle implements IVehicle {
     private final float spawnPosY;
 
     private Body body;
-    private List<Body> parts;
 
     private final float topSpeed;
     private float acceleration;
@@ -35,7 +34,7 @@ abstract class AbstractVehicle implements IVehicle {
 
     protected void build(World world) {
         instantiateBody(world, mass, spawnPosX, spawnPosY);
-        parts = initParts(body, world);
+        List<Body> parts = initParts(body, world);
     }
 
     private void instantiateBody(World world, float mass, float posX, float posY) {

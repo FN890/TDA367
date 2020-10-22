@@ -10,7 +10,6 @@ import java.util.Random;
 /**
  * Class that handles creation of powerups.
  */
-
 public class PowerUpGenerator {
 
     private static final int BASE_HEIGHT = 20;
@@ -25,7 +24,6 @@ public class PowerUpGenerator {
      * @param vertices List of vertices in world to measure spawnpoints of powerups.
      * @param world    The world, needed to spawn the powerups in the world.
      */
-
     public PowerUpGenerator(ArrayList<Vector2> vertices, World world, WorldExplosions worldExplosions) {
         this.vertices = vertices;
         this.world = world;
@@ -38,7 +36,6 @@ public class PowerUpGenerator {
      * @param numberPowerups The number of powerups to create.
      * @return Returns a list of all powerups in world, needed for collision checking.
      */
-
     public ArrayList<IPowerUp> generatePowerups(int numberPowerups) {
 
         ArrayList<IPowerUp> powerUps = new ArrayList<>();
