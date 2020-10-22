@@ -5,7 +5,6 @@ import data.Vector2;
 import services.protocol.IServerProtocol;
 import services.protocol.ServerProtocolFactory;
 
-import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

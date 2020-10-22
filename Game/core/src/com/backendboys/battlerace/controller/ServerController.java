@@ -12,7 +12,7 @@ import com.backendboys.battlerace.services.protocol.ICommand;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 
-/**wd
+/**
  * ServerController handles connection to Server.
  * It creates a TCPClient and a UDPClient
  */
@@ -69,7 +69,11 @@ public class ServerController implements ITCPListener, IPacketListener {
         udpClient.sendPacket(clientID + "-" + commandConverter.toMessage(command));
     }
 
-    private void sendMessage(String message) {
+    /**
+     * Sends message to the server via TCP.
+     * @param message Message to be sent.
+     */
+    void sendMessage(String message) {
         tcpClient.sendMessage(message);
     }
 
@@ -163,6 +167,8 @@ public class ServerController implements ITCPListener, IPacketListener {
                         gameController.handleRemoveOpponent(playerName);
                     } else if (command.getArgs()[0].equals("winner")) {
                         String playerName = command.getArgs()[1];
+                        gameController.setWinnerName(playerName);
+                        gameController.setGameWon(true);
                         //TODO: Render name at top of screen, or middle, idk.
                         System.out.println("Winner! " + playerName);
                     }

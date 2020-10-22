@@ -2,6 +2,8 @@ package com.backendboys.battlerace.controller;
 
 import com.backendboys.battlerace.BattleRace;
 import com.backendboys.battlerace.model.gamemodel.GameModel;
+import com.backendboys.battlerace.model.gamemodel.collisions.CollisionHandler;
+import com.backendboys.battlerace.model.gamemodel.collisions.IFinishLineListener;
 import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
 import com.backendboys.battlerace.model.gamemodel.particles.IMissileListener;
 import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
@@ -20,7 +22,7 @@ import java.util.List;
 /**
  * Class that handles inputs
  */
-public class GameController implements InputProcessor, IMissileListener {
+public class GameController implements InputProcessor, IMissileListener, IFinishLineListener {
 
     private final GameModel gameModel;
     private final BattleRace game;
@@ -41,6 +43,9 @@ public class GameController implements InputProcessor, IMissileListener {
 
         WorldExplosions worldExplosions = gameModel.getWorldExplosions();
         worldExplosions.addMissileListener(this);
+
+        CollisionHandler collisionHandler = gameModel.getCollisionHandler();
+        collisionHandler.addFinishLineListener(this);
 
         this.game = game;
         keysDown = new ArrayList<>();
@@ -183,4 +188,32 @@ public class GameController implements InputProcessor, IMissileListener {
             serverController.sendMissile(position, velocity, rotation);
         }
     }
+
+    @Override
+    public void onTouchedFinishLine() {
+        if (!gameModel.isGameWon()) {
+            gameModel.setGameWon(true);
+            if (serverController != null) {
+                serverController.sendMessage("win");
+            }
+        }
+    }
+
+    public boolean isGameWon() {
+        return gameModel.isGameWon();
+    }
+
+    public void setGameWon(boolean gameWon) {
+        gameModel.setGameWon(gameWon);
+    }
+
+    public String getWinnerName() {
+        return gameModel.getWinnerName();
+    }
+
+    void setWinnerName(String name) {
+        gameModel.setWinnerName(name);
+    }
+
+
 }
