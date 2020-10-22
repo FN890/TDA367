@@ -2,9 +2,9 @@ package com.backendboys.battlerace.view.screens;
 
 import com.backendboys.battlerace.controller.GameController;
 import com.backendboys.battlerace.controller.ServerController;
-import com.backendboys.battlerace.model.gamemodel.GameModel;
-import com.backendboys.battlerace.model.gamemodel.player.Player;
-import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
+import com.backendboys.battlerace.model.GameModel;
+import com.backendboys.battlerace.model.player.Player;
+import com.backendboys.battlerace.model.world.GameWorld;
 import com.backendboys.battlerace.view.game.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;

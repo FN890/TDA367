@@ -1,25 +1,14 @@
 package com.backendboys.battlerace.view.game;
 
 import com.backendboys.battlerace.controller.GameController;
-import com.backendboys.battlerace.model.gamemodel.player.Player;
-import com.backendboys.battlerace.model.gamemodel.vehicle.ICar;
-import com.backendboys.battlerace.model.gamemodel.vehicle.IVehicle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-
-import java.util.ArrayList;
-
 
 
 public class IdRender extends AbstractRender {

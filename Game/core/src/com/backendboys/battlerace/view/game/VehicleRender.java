@@ -1,7 +1,7 @@
 package com.backendboys.battlerace.view.game;
 
-import com.backendboys.battlerace.model.gamemodel.vehicle.ICar;
-import com.backendboys.battlerace.model.gamemodel.vehicle.IVehicle;
+import com.backendboys.battlerace.model.vehicle.ICar;
+import com.backendboys.battlerace.model.vehicle.IVehicle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;

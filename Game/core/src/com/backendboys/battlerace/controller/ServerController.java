@@ -1,7 +1,7 @@
 package com.backendboys.battlerace.controller;
 
-import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
-import com.backendboys.battlerace.model.gamemodel.player.Player;
+import com.backendboys.battlerace.model.opponent.OpponentPlayer;
+import com.backendboys.battlerace.model.player.Player;
 import com.backendboys.battlerace.services.IPacketListener;
 import com.backendboys.battlerace.services.ITCPListener;
 import com.backendboys.battlerace.services.TCPClient;

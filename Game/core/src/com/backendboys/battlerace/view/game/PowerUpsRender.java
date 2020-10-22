@@ -1,6 +1,6 @@
 package com.backendboys.battlerace.view.game;
 
-import com.backendboys.battlerace.model.gamemodel.powerups.IPowerUp;
+import com.backendboys.battlerace.model.powerups.IPowerUp;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;

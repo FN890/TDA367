@@ -1,6 +1,6 @@
-import com.backendboys.battlerace.model.gamemodel.GameModel;
-import com.backendboys.battlerace.model.gamemodel.player.Player;
-import com.backendboys.battlerace.model.gamemodel.powerups.NitroPowerUp;
+import com.backendboys.battlerace.model.GameModel;
+import com.backendboys.battlerace.model.player.Player;
+import com.backendboys.battlerace.model.powerups.NitroPowerUp;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

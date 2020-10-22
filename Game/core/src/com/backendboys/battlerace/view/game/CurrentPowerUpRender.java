@@ -1,8 +1,8 @@
 package com.backendboys.battlerace.view.game;
 
-import com.backendboys.battlerace.model.gamemodel.powerups.IPowerUp;
-import com.backendboys.battlerace.model.gamemodel.powerups.MissilePowerUp;
-import com.backendboys.battlerace.model.gamemodel.powerups.NitroPowerUp;
+import com.backendboys.battlerace.model.powerups.IPowerUp;
+import com.backendboys.battlerace.model.powerups.MissilePowerUp;
+import com.backendboys.battlerace.model.powerups.NitroPowerUp;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;

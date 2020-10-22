@@ -1,9 +1,8 @@
 package com.backendboys.battlerace.view.game;
 
-import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
-import com.backendboys.battlerace.model.gamemodel.player.Player;
-import com.backendboys.battlerace.model.gamemodel.vehicle.ICar;
-import com.backendboys.battlerace.model.gamemodel.vehicle.IVehicle;
+import com.backendboys.battlerace.model.player.Player;
+import com.backendboys.battlerace.model.vehicle.ICar;
+import com.backendboys.battlerace.model.vehicle.IVehicle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -16,7 +15,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PlayerPlacementRender extends AbstractRender {
 

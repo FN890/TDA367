@@ -1,8 +1,8 @@
-import com.backendboys.battlerace.model.gamemodel.particles.ParticleHandler;
-import com.backendboys.battlerace.model.gamemodel.player.Player;
-import com.backendboys.battlerace.model.gamemodel.powerups.MissilePowerUp;
-import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
-import com.backendboys.battlerace.model.gamemodel.world.ground.GroundStrategyFactory;
+import com.backendboys.battlerace.model.particles.ParticleHandler;
+import com.backendboys.battlerace.model.player.Player;
+import com.backendboys.battlerace.model.powerups.MissilePowerUp;
+import com.backendboys.battlerace.model.world.GameWorld;
+import com.backendboys.battlerace.model.world.ground.GroundStrategyFactory;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

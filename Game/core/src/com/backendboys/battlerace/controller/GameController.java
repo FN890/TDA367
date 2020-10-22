@@ -1,13 +1,13 @@
 package com.backendboys.battlerace.controller;
 
 import com.backendboys.battlerace.BattleRace;
-import com.backendboys.battlerace.model.gamemodel.GameModel;
-import com.backendboys.battlerace.model.gamemodel.collisions.CollisionHandler;
-import com.backendboys.battlerace.model.gamemodel.collisions.IFinishLineListener;
-import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
-import com.backendboys.battlerace.model.gamemodel.particles.IMissileListener;
-import com.backendboys.battlerace.model.gamemodel.particles.ParticleHandler;
-import com.backendboys.battlerace.model.gamemodel.world.GameWorld;
+import com.backendboys.battlerace.model.GameModel;
+import com.backendboys.battlerace.model.collisions.CollisionHandler;
+import com.backendboys.battlerace.model.collisions.IFinishLineListener;
+import com.backendboys.battlerace.model.opponent.OpponentPlayer;
+import com.backendboys.battlerace.model.particles.IMissileListener;
+import com.backendboys.battlerace.model.particles.ParticleHandler;
+import com.backendboys.battlerace.model.world.GameWorld;
 import com.backendboys.battlerace.view.screens.IGameScreen;
 import com.backendboys.battlerace.view.screens.ScreenFactory;
 import com.badlogic.gdx.Gdx;
