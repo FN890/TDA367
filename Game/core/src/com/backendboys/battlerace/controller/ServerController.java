@@ -12,7 +12,7 @@ import com.backendboys.battlerace.services.protocol.ICommand;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 
-/**
+/**wd
  * ServerController handles connection to Server.
  * It creates a TCPClient and a UDPClient
  */
@@ -136,13 +136,19 @@ public class ServerController implements ITCPListener, IPacketListener {
             case "missile":
                 String[] args = command.getArgs();
 
-                float x = Float.parseFloat(args[0]);
-                float y = Float.parseFloat(args[1]);
-                float rotation = Float.parseFloat(args[2]);
-                float playerXSpeed = Float.parseFloat(args[3]);
-                float playerYSpeed = Float.parseFloat(args[4]);
+                final float x = Float.parseFloat(args[0]);
+                final float y = Float.parseFloat(args[1]);
+                final float rotation = Float.parseFloat(args[2]);
+                final float playerXSpeed = Float.parseFloat(args[3]);
+                final float playerYSpeed = Float.parseFloat(args[4]);
 
-                gameController.getGameModel().spawnMissile(x, y, rotation, playerXSpeed, playerYSpeed, false);
+                Gdx.app.postRunnable(new Runnable() {
+                    @Override
+                    public void run() {
+                        gameController.getGameModel().spawnMissile(x, y, rotation, playerXSpeed, playerYSpeed, false);
+                    }
+                });
+
 
                 break;
 
