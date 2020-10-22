@@ -36,6 +36,7 @@ abstract class AbstractCommandHandler implements ICommandHandler {
 
     /**
      * Specifies a concrete implementation of a command handler method.
+     *
      * @param cmd The command to handle.
      * @param clientController The ClientController issuing the command.
      * @param protocol The protocol used for handling the command.
