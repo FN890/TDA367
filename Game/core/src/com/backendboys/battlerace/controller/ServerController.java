@@ -69,7 +69,11 @@ public class ServerController implements ITCPListener, IPacketListener {
         udpClient.sendPacket(clientID + "-" + commandConverter.toMessage(command));
     }
 
-    private void sendMessage(String message) {
+    /**
+     * Sends message to the server via TCP.
+     * @param message Message to be sent.
+     */
+    void sendMessage(String message) {
         tcpClient.sendMessage(message);
     }
 

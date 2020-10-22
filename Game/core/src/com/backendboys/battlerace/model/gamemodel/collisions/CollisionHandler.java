@@ -1,20 +1,25 @@
-package com.backendboys.battlerace.model.gamemodel;
+package com.backendboys.battlerace.model.gamemodel.collisions;
 
+import com.backendboys.battlerace.model.gamemodel.GameModel;
 import com.backendboys.battlerace.model.gamemodel.particles.AbstractExplosive;
 import com.backendboys.battlerace.model.gamemodel.powerups.IPowerUp;
 import com.backendboys.battlerace.model.gamemodel.vehicle.IVehicle;
 import com.backendboys.battlerace.model.gamemodel.world.FinishLineGenerator;
 import com.badlogic.gdx.physics.box2d.*;
 
+import java.util.ArrayList;
+
 /**
  * A class that handles the logic for what happens when bodies collide in the world
  */
-class CollisionListener implements ContactListener {
+public class CollisionHandler implements ContactListener {
 
     private final GameModel model;
+    private final ArrayList<IFinishLineListener> finishLineListeners;
 
-    CollisionListener(GameModel model) {
+    public CollisionHandler(GameModel model) {
         this.model = model;
+        finishLineListeners = new ArrayList<>();
     }
 
     /**
@@ -73,8 +78,23 @@ class CollisionListener implements ContactListener {
 
     private void checkFinishLineContact(Fixture fixtureA, Fixture fixtureB) {
         if (fixtureA.getUserData() instanceof FinishLineGenerator && fixtureB.getUserData() instanceof IVehicle) {
-            System.out.println("Finish!");
+            notifyFinishLineListeners();
         }
     }
+
+    private void notifyFinishLineListeners() {
+        for (IFinishLineListener finishLineListener : finishLineListeners) {
+            finishLineListener.onTouchedFinishLine();
+        }
+    }
+
+    public void addFinishLineListener(IFinishLineListener finishLineListener) {
+        finishLineListeners.add(finishLineListener);
+    }
+
+    public void removeFinishLineListener(IFinishLineListener finishLineListener) {
+        finishLineListeners.remove(finishLineListener);
+    }
+
 
 }

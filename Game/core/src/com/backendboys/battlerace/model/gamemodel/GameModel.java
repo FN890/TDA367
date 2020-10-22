@@ -1,5 +1,6 @@
 package com.backendboys.battlerace.model.gamemodel;
 
+import com.backendboys.battlerace.model.gamemodel.collisions.CollisionHandler;
 import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
 import com.backendboys.battlerace.model.gamemodel.particles.IParticle;
 import com.backendboys.battlerace.model.gamemodel.particles.WorldExplosions;
@@ -20,17 +21,18 @@ import java.util.List;
  */
 public class GameModel {
 
-    private static final int SPACE_BETWEEN_POWERUPS = 300;
+    private static final int SPACE_BETWEEN_POWER_UPS = 300;
 
     private final GameWorld gameWorld;
     private final Player player;
     private final List<OpponentPlayer> opponentPlayers = Collections.synchronizedList(new ArrayList<OpponentPlayer>());
     private final WorldExplosions worldExplosions;
+    private final CollisionHandler collisionHandler;
     private List<IPowerUp> powerUps = new ArrayList<>();
 
     /**
      * Instantiates a GameModel, which creates a world and generates GameObjects, such as,
-     * player, ground, powerups, and finishline.
+     * player, ground, powerUps, and finishLine.
      */
     public GameModel() {
         this.gameWorld = new GameWorld(GroundStrategyFactory.getSinCosStrategy(5000, 60, 5), 1);
@@ -40,7 +42,8 @@ public class GameModel {
         Vector2 startPosition = gameWorld.getGroundVertices().get(50);
         player = new Player("You");
         player.addVehicle(gameWorld.getWorld(), startPosition.x, startPosition.y + 25);
-        gameWorld.setCollisionListener(new CollisionListener(this));
+        collisionHandler = new CollisionHandler(this);
+        gameWorld.setCollisionListener(collisionHandler);
     }
 
     private void generateObjects() {
@@ -57,8 +60,8 @@ public class GameModel {
     private int amountOfPowerUps() {
         int numberOfPowerUps = 0;
         int i = gameWorld.getGroundVertices().size();
-        while (i > SPACE_BETWEEN_POWERUPS) {
-            i -= SPACE_BETWEEN_POWERUPS;
+        while (i > SPACE_BETWEEN_POWER_UPS) {
+            i -= SPACE_BETWEEN_POWER_UPS;
             numberOfPowerUps++;
         }
         return numberOfPowerUps;
@@ -66,6 +69,7 @@ public class GameModel {
 
     /**
      * Adds opponent to list of opponents
+     *
      * @param opponent
      */
     public void addOpponent(OpponentPlayer opponent) {
@@ -74,6 +78,7 @@ public class GameModel {
 
     /**
      * Removes opponent from list of opponents
+     *
      * @param name the name of opponent removed
      */
     public void removeOpponent(String name) {
@@ -88,9 +93,10 @@ public class GameModel {
 
     /**
      * Updates the opponent position
-     * @param name of opponent
-     * @param x x position
-     * @param y y position
+     *
+     * @param name     of opponent
+     * @param x        x position
+     * @param y        y position
      * @param rotation rotation of opponent
      */
     public void updateOpponentPosition(String name, float x, float y, float rotation) {
@@ -214,6 +220,14 @@ public class GameModel {
 
     public List<Vector2> getFinishLineVertices() {
         return gameWorld.getFinishLineVertices();
+    }
+
+    public CollisionHandler getCollisionHandler() {
+        return collisionHandler;
+    }
+
+    public String getPlayerName() {
+        return player.getName();
     }
 
 }
