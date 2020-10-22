@@ -87,7 +87,7 @@ public class GameModel {
     public void removeOpponent(String name) {
         synchronized (opponentPlayers) {
             for (OpponentPlayer p : opponentPlayers) {
-                if (p.getPlayerName().equals(name)) {
+                if (p.getName().equals(name)) {
                     opponentPlayers.remove(p);
                 }
             }
@@ -104,7 +104,7 @@ public class GameModel {
      */
     public void updateOpponentPosition(String name, float x, float y, float rotation) {
         for (OpponentPlayer o : opponentPlayers) {
-            if (o.getPlayerName().equalsIgnoreCase(name)) {
+            if (o.getName().equalsIgnoreCase(name)) {
                 o.setVectorPosition(new Vector2(x, y), rotation);
             }
         }

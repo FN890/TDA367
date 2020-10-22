@@ -1,16 +1,11 @@
 package com.backendboys.battlerace.view.game;
 
 import com.backendboys.battlerace.model.gamemodel.opponent.OpponentPlayer;
-import com.backendboys.battlerace.model.gamemodel.player.Player;
-import com.backendboys.battlerace.model.gamemodel.vehicle.ICar;
-import com.backendboys.battlerace.model.gamemodel.vehicle.IVehicle;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -60,15 +55,15 @@ public class OpponentPlacementRender extends AbstractRender<List<OpponentPlayer>
     }
 
     private void renderOpponent(SpriteBatch batch, OpponentPlayer opponent) {
-        spriteOpponentVehicle.setPosition((getCameraPosition().x - getViewportWidth()/2.8f)+(getViewportWidth()/7.3f*getScaledPosition(opponent.getPlayerPosition().x)), getCameraPosition().y + getViewportHeight()/2.4f);
-        spriteOpponentVehicle.setRotation((float) Math.toDegrees(opponent.getPlayerRotation()));
+        spriteOpponentVehicle.setPosition((getCameraPosition().x - getViewportWidth()/2.8f)+(getViewportWidth()/7.3f*getScaledPosition(opponent.getPosition().x)), getCameraPosition().y + getViewportHeight()/2.4f);
+        spriteOpponentVehicle.setRotation((float) Math.toDegrees(opponent.getRotation()));
 
         spriteOpponentVehicle.draw(batch);
     }
 
     private void renderOpponentName(SpriteBatch batch, OpponentPlayer opponent) {
-        lblPlayerName.setText(opponent.getPlayerName());
-        lblPlayerName.setPosition((getCameraPosition().x - getViewportWidth()/2.8f)+(getViewportWidth()/7.3f*getScaledPosition(opponent.getPlayerPosition().x)), getCameraPosition().y + getViewportHeight()/2.4f);
+        lblPlayerName.setText(opponent.getName());
+        lblPlayerName.setPosition((getCameraPosition().x - getViewportWidth()/2.8f)+(getViewportWidth()/7.3f*getScaledPosition(opponent.getPosition().x)), getCameraPosition().y + getViewportHeight()/2.4f);
 
         lblPlayerName.draw(batch, 1);
     }

@@ -41,15 +41,15 @@ public class OpponentRender extends AbstractRender<List<OpponentPlayer>> {
     }
 
     private void renderOpponent(SpriteBatch batch, OpponentPlayer opponent) {
-        spritePlayerVehicle.setPosition(opponent.getPlayerPosition().x - VEHCILE_WIDTH / 2f, opponent.getPlayerPosition().y - VEHCILE_HEIGHT / 2f);
-        spritePlayerVehicle.setRotation((float) Math.toDegrees(opponent.getPlayerRotation()));
+        spritePlayerVehicle.setPosition(opponent.getPosition().x - VEHCILE_WIDTH / 2f, opponent.getPosition().y - VEHCILE_HEIGHT / 2f);
+        spritePlayerVehicle.setRotation((float) Math.toDegrees(opponent.getRotation()));
 
         spritePlayerVehicle.draw(batch);
     }
 
     private void renderOpponentName(SpriteBatch batch, OpponentPlayer opponent) {
-        lblPlayerName.setText(opponent.getPlayerName());
-        lblPlayerName.setPosition(opponent.getPlayerPosition().x - VEHCILE_WIDTH / 2f, opponent.getPlayerPosition().y + 25);
+        lblPlayerName.setText(opponent.getName());
+        lblPlayerName.setPosition(opponent.getPosition().x - VEHCILE_WIDTH / 2f, opponent.getPosition().y + 25);
 
         lblPlayerName.draw(batch, 1);
     }

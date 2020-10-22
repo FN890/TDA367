@@ -4,30 +4,30 @@ import com.badlogic.gdx.math.Vector2;
 
 public class OpponentPlayer {
 
-    private final String playerName;
-    private Vector2 playerPosition;
-    private float playerRotation;
+    private final String name;
+    private Vector2 position;
+    private float rotation;
 
-    public OpponentPlayer(String playerName, Vector2 playerPosition, float playerRotation) {
-        this.playerName = playerName;
-        this.playerPosition = playerPosition;
-        this.playerRotation = playerRotation;
+    public OpponentPlayer(String name, Vector2 position, float rotation) {
+        this.name = name;
+        this.position = position;
+        this.rotation = rotation;
     }
 
     public void setVectorPosition(Vector2 position, float rotation) {
-        this.playerPosition = position;
-        this.playerRotation = rotation;
+        this.position = position;
+        this.rotation = rotation;
     }
 
-    public String getPlayerName() {
-        return playerName;
+    public String getName() {
+        return name;
     }
 
-    public Vector2 getPlayerPosition() {
-        return playerPosition;
+    public Vector2 getPosition() {
+        return position;
     }
 
-    public float getPlayerRotation() {
-        return playerRotation;
+    public float getRotation() {
+        return rotation;
     }
 }
