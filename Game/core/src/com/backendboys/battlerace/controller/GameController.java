@@ -199,10 +199,6 @@ public class GameController implements InputProcessor, IMissileListener, IFinish
         }
     }
 
-    public boolean isGameWon() {
-        return gameModel.isGameWon();
-    }
-
     public void setGameWon(boolean gameWon) {
         gameModel.setGameWon(gameWon);
     }
