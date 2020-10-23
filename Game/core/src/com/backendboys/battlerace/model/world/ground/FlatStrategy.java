@@ -6,6 +6,9 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 
+/**
+ * Strategy: Flat.
+ */
 public class FlatStrategy extends AbstractGroundStrategy{
 
     FlatStrategy(int numberVertices, int minHeight, double step) {
