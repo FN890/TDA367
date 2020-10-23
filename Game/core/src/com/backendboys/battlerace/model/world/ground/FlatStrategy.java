@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Strategy: Flat.
  */
-public class FlatStrategy extends AbstractGroundStrategy{
+class FlatStrategy extends AbstractGroundStrategy{
 
     FlatStrategy(int numberVertices, int minHeight, double step) {
         super(numberVertices, minHeight, step);
