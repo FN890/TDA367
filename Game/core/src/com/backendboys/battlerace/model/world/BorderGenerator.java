@@ -39,5 +39,7 @@ class BorderGenerator {
         chainShape.createChain(borderVertices);
         Body border = world.createBody(bodyDef);
         border.createFixture(fixtureDef);
+
+        chainShape.dispose();
     }
 }
