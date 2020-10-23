@@ -12,5 +12,10 @@ public interface IPacketListener {
      */
     void gotPacket(String message);
 
+    /**
+     * Called when an error has occurred.
+     *
+     * @param message The error message.
+     */
     void UDPErrorOccurred(String message);
 }
