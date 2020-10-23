@@ -38,11 +38,6 @@ public class ParticleHandler implements GameWorldListener {
         }
     }
 
-    public int getNumberOffExplosions() {
-        return explosions.size();
-    }
-
-
     /**
      * Removes particles and Explodes collided Missiles
      */
