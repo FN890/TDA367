@@ -40,7 +40,7 @@ public class WorldExplosionTest {
         }
 
         assertTrue(particleHandler.getNumberOffExplosions() == randomExplosionsA + randomExplosionsB
-                && particleHandler.getTotalExplosionParticles() == numParticles * (randomExplosionsA + randomExplosionsB));
+                && particleHandler.getParticles().size() == numParticles * (randomExplosionsA + randomExplosionsB));
     }
 
     @Test
