@@ -4,5 +4,7 @@
 
 TDA367 / DIT212 Objektorienterat programmeringsprojekt 
 
+[Link to gihub repository](https://github.com/FN890/TDA367) 
+
 <h2>23/10 - 2020</h2>
 <img src="https://i.imgur.com/OGK1Jzh.png"/>
