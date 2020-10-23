@@ -3,4 +3,4 @@ language: java
 before_install: cd Game
 
 script:
-    - ./gradlew check
+  - ./gradlew check

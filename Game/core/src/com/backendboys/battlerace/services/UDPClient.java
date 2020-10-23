@@ -25,6 +25,7 @@ public class UDPClient implements Runnable {
 
     /**
      * Adds a listener, which can be notified
+     *
      * @param listener
      */
     public void addListener(IPacketListener listener) {
@@ -33,6 +34,7 @@ public class UDPClient implements Runnable {
 
     /**
      * Removes a listener
+     *
      * @param listener
      */
     public void removeListener(IPacketListener listener) {
@@ -64,6 +66,7 @@ public class UDPClient implements Runnable {
 
     /**
      * Sends UDP DatagramPacket to server
+     *
      * @param message
      */
     public void sendPacket(String message) {
@@ -86,7 +89,6 @@ public class UDPClient implements Runnable {
     }
 
     /**
-     *
      * @param msg Sends got packet msg to listeners
      */
     private void notifyGotPacket(String msg) {
@@ -96,7 +98,6 @@ public class UDPClient implements Runnable {
     }
 
     /**
-     *
      * @param msg Sends error occurred msg to listeners
      */
     private void notifyErrorOccurred(String msg) {

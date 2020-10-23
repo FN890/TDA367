@@ -104,7 +104,6 @@ public class ServerController implements ITCPListener, IPacketListener {
     }
 
     /**
-     *
      * @param message error if udp failed
      */
     @Override
@@ -188,7 +187,6 @@ public class ServerController implements ITCPListener, IPacketListener {
     }
 
     /**
-     *
      * @param message is lost connection to server
      */
     @Override
@@ -206,6 +204,7 @@ public class ServerController implements ITCPListener, IPacketListener {
 
     /**
      * Sends createGame command to server if connected
+     *
      * @param name player name
      */
     public void createGame(String name) {
@@ -218,8 +217,9 @@ public class ServerController implements ITCPListener, IPacketListener {
 
     /**
      * Sends join command to server if connected
+     *
      * @param name player name
-     * @param id game id
+     * @param id   game id
      */
     public void joinGame(String name, String id) {
         if (isConnected) {
@@ -230,6 +230,7 @@ public class ServerController implements ITCPListener, IPacketListener {
 
     /**
      * Send sendMissle command to server
+     *
      * @param position missle postion
      * @param velocity missle velocity
      * @param rotation missle rotation
@@ -241,7 +242,6 @@ public class ServerController implements ITCPListener, IPacketListener {
     }
 
     /**
-     *
      * @return if connected to server
      */
     public boolean isConnected() {
@@ -249,7 +249,6 @@ public class ServerController implements ITCPListener, IPacketListener {
     }
 
     /**
-     *
      * @return game id of connected game
      */
     public int getGameId() {

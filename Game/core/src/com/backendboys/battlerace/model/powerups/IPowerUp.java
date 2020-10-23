@@ -31,6 +31,7 @@ public interface IPowerUp extends GameWorldListener {
 
     /**
      * Return the specific type of the power up.
+     *
      * @return the type.
      */
     PowerUpType getPowerUpType();

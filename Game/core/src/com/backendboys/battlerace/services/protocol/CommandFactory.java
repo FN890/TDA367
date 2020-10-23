@@ -8,7 +8,7 @@ public class CommandFactory {
     /**
      * Creates a new command with the given string and arguments.
      *
-     * @param cmd The command.
+     * @param cmd  The command.
      * @param args The arguments.
      * @return The new ICommand.
      */

@@ -27,6 +27,7 @@ public class TCPClient implements Runnable {
 
     /**
      * Adds a listener, which can be notified
+     *
      * @param listener
      */
     public void addListener(ITCPListener listener) {
@@ -35,6 +36,7 @@ public class TCPClient implements Runnable {
 
     /**
      * Removes a listener
+     *
      * @param listener
      */
     public void removeListener(ITCPListener listener) {
@@ -68,7 +70,6 @@ public class TCPClient implements Runnable {
     }
 
     /**
-     *
      * @param message Send message to server
      */
     public void sendMessage(String message) {
@@ -86,7 +87,6 @@ public class TCPClient implements Runnable {
     }
 
     /**
-     *
      * @param msg Sends lost connection msg to listener
      */
     private void notifyLostConnection(String msg) {
@@ -96,7 +96,6 @@ public class TCPClient implements Runnable {
     }
 
     /**
-     *
      * @param msg Sends got msg to listener
      */
     private void notifyGotMessage(String msg) {
@@ -106,7 +105,6 @@ public class TCPClient implements Runnable {
     }
 
     /**
-     *
      * Sends connected msg to listener
      */
     private void notifyConnected() {
