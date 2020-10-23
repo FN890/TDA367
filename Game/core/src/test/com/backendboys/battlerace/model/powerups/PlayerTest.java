@@ -1,3 +1,5 @@
+package com.backendboys.battlerace.model.powerups;
+
 import com.backendboys.battlerace.model.particles.ParticleHandler;
 import com.backendboys.battlerace.model.player.Player;
 import com.backendboys.battlerace.model.powerups.MissilePowerUp;

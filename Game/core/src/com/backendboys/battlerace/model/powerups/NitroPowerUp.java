@@ -6,7 +6,7 @@ import com.badlogic.gdx.physics.box2d.World;
 /**
  * Class that handles properties of nitro powerups.
  */
-public class NitroPowerUp extends AbstractPowerUp {
+class NitroPowerUp extends AbstractPowerUp {
 
     public NitroPowerUp(World world, float spawnPosX, float spawnPosY) {
         super(world, spawnPosX, spawnPosY);

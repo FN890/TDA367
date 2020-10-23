@@ -7,7 +7,7 @@ import com.badlogic.gdx.physics.box2d.World;
 /**
  * Class that handles the properties of the missile powerup.
  */
-public class MissilePowerUp extends AbstractPowerUp {
+class MissilePowerUp extends AbstractPowerUp {
 
     private final ParticleHandler particleHandler;
 
