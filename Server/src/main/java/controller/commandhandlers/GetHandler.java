@@ -36,6 +36,8 @@ public class GetHandler extends AbstractCommandHandler {
             case "game":
                 clientController.sendTCP(protocol.writeGameInfo(game));
                 break;
+            default:
+                break;
 
         }
     }
