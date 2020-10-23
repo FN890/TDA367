@@ -19,7 +19,7 @@ public class UDPServer implements Runnable {
      * Adds a PacketListener class associated with a client InetAddress
      * for listening on incoming packets from this address.
      *
-     * @param clientID  The client ID on which will be associated with the PacketListener.
+     * @param clientID The client ID on which will be associated with the PacketListener.
      * @param listener The PacketListener class.
      */
     public void addListener(String clientID, PacketListener listener) {
@@ -67,7 +67,7 @@ public class UDPServer implements Runnable {
      * The client ID is specified before the command, it's specified by id-(command...)
      *
      * @param address The address associated with the packet.
-     * @param port The port associated with the packet.
+     * @param port    The port associated with the packet.
      * @param message The message.
      */
     private void sendToListener(InetAddress address, int port, String message) {
@@ -83,7 +83,8 @@ public class UDPServer implements Runnable {
                     }
                 }
             }
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
 
     }
 

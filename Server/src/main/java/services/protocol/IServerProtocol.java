@@ -46,9 +46,9 @@ public interface IServerProtocol {
     /**
      * Writes a missile on the form: missile:x,y,rotation,playerSpeed
      *
-     * @param x The x spawn position of the missile.
-     * @param y The y spawn position of the missile.
-     * @param rotation The rotation of the missile.
+     * @param x            The x spawn position of the missile.
+     * @param y            The y spawn position of the missile.
+     * @param rotation     The rotation of the missile.
      * @param playerXSpeed The player's speed in x-axis, sending the missile.
      * @param playerYSpeed The player's speed in y-axis, sending the missile.
      * @return The missile on the form: missile:x,y,rotation,playerSpeed

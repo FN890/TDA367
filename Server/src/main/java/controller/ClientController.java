@@ -180,9 +180,9 @@ public class ClientController implements Runnable, GameListener, PacketListener 
     /**
      * Sends a missile to a game using the given parameters.
      *
-     * @param x The spawn x position of the missile.
-     * @param y The spawn y position of the missile.
-     * @param rotation The rotation of the missile.
+     * @param x            The spawn x position of the missile.
+     * @param y            The spawn y position of the missile.
+     * @param rotation     The rotation of the missile.
      * @param playerXSpeed The player's speed in x-axis, sending the missile.
      * @param playerYSpeed The player's speed in y-axis, sending the missile.
      */
@@ -252,7 +252,7 @@ public class ClientController implements Runnable, GameListener, PacketListener 
         if (player.getName().equalsIgnoreCase(this.player.getName())) {
             return;
         }
-        
+
         sendTCP(protocol.writeMissile(x, y, rotation, playerXSpeed, playerYSpeed));
     }
 
@@ -267,7 +267,8 @@ public class ClientController implements Runnable, GameListener, PacketListener 
         try {
             ICommand cmd = protocol.parseMessage(message);
             cmdManager.handleCommand(cmd);
-        } catch (ProtocolException ignored) { }
+        } catch (ProtocolException ignored) {
+        }
 
     }
 

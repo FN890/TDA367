@@ -35,6 +35,5 @@ public class PositionHandler extends AbstractCommandHandler {
         }
 
 
-
     }
 }

@@ -103,7 +103,7 @@ public class Game implements Runnable {
     /**
      * Updates player position and rotation.
      *
-     * @param player  The Player.
+     * @param player   The Player.
      * @param x        The x position.
      * @param y        The y position.
      * @param rotation The rotation.
@@ -122,10 +122,10 @@ public class Game implements Runnable {
     /**
      * Sends a missile to the players in this game.
      *
-     * @param player The player sending the missile.
-     * @param x The spawn x position of the missile.
-     * @param y The spawn y position of the missile.
-     * @param rotation The rotation of the missile.
+     * @param player       The player sending the missile.
+     * @param x            The spawn x position of the missile.
+     * @param y            The spawn y position of the missile.
+     * @param rotation     The rotation of the missile.
      * @param playerXSpeed The player's speed in x-axis, sending the missile.
      * @param playerYSpeed The player's speed in y-axis, sending the missile.
      */
@@ -193,14 +193,21 @@ public class Game implements Runnable {
      * Only sending if the started flag is set to true.
      */
     private void sendPositionPackets() {
-        if (!started) { ;return; }
+        if (!started) {
+            ;
+            return;
+        }
         IServerProtocol protocol = ServerProtocolFactory.getServerProtocol();
 
         synchronized (players) {
             for (Player p1 : players) {
-                if (p1.getPosition() == null) { continue; }
+                if (p1.getPosition() == null) {
+                    continue;
+                }
                 for (Player p2 : players) {
-                    if (!p2.hasUDPAddress()) { continue; }
+                    if (!p2.hasUDPAddress()) {
+                        continue;
+                    }
                     if (!p1.equals(p2)) {
                         ServerController.getInstance().sendUDPPacket(protocol.writePosition(p1.getName(), p1.getPosition(), p1.getRotation()), p2.getAddress().getAddress(), p2.getAddress().getPort());
                     }
@@ -221,6 +228,7 @@ public class Game implements Runnable {
 
     /**
      * Returns the game id.
+     *
      * @return The game id.
      */
     public synchronized String getId() {
@@ -276,7 +284,6 @@ public class Game implements Runnable {
             }
         }
     }
-
 
 
 }

@@ -19,7 +19,7 @@ public class Player {
     /**
      * Initializes a Player.
      *
-     * @param name    The player name.
+     * @param name The player name.
      */
     public Player(String name) {
         this.name = name;
@@ -29,7 +29,7 @@ public class Player {
      * Setup Player's UDP address and port for sending them packets.
      *
      * @param address The InetAddress.
-     * @param port The port.
+     * @param port    The port.
      */
     public void setUDPAddress(InetAddress address, int port) {
         UDPAddress = new Address(address, port);
@@ -37,6 +37,7 @@ public class Player {
 
     /**
      * Returns wether the Player's UDP Address is set or not.
+     *
      * @return True if the Player's UDP Address is set.
      */
     public boolean hasUDPAddress() {

@@ -63,6 +63,7 @@ public class ServerController implements TCPListener {
 
     /**
      * Removes a connection from the list of connections.
+     *
      * @param client The socket to remove.
      */
     public void removeConnection(Socket client) {
@@ -75,7 +76,7 @@ public class ServerController implements TCPListener {
      * Adds a PacketListener to the running UDPServer.
      * Used for listening to incoming packets from specific clients.
      *
-     * @param clientID  Client identifier.
+     * @param clientID Client identifier.
      * @param listener The PacketListener.
      */
     public synchronized void addPacketListener(String clientID, PacketListener listener) {
