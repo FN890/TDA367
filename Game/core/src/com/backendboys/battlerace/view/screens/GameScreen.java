@@ -121,7 +121,6 @@ class GameScreen extends AbstractScreen implements IGameScreen {
     public void dispose() {
         gameController.getGameWorld().dispose();
         backgroundRender.dispose();
-        //debugRenderer.dispose();
         opponentRender.dispose();
         vehicleRender.dispose();
         missileRender.dispose();
@@ -132,6 +131,9 @@ class GameScreen extends AbstractScreen implements IGameScreen {
         playerPlacementRender.dispose();
         opponentPlacementRender.dispose();
         idRender.dispose();
+        if (debugMode) {
+            debugRenderer.dispose();
+        }
     }
 
     @Override
