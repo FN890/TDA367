@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Class that handles rendering of the finish line.
  */
-public class FinishLineRender extends AbstractRender{
+public class FinishLineRender extends AbstractRender {
 
     private final List<Vector2> finishLineVerts;
     private final ShapeRenderer shapeRenderer;

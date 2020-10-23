@@ -76,7 +76,7 @@ class PlayerTest {
             player.addPowerUp(new NitroPowerUp(world, 1, 1));
         }
 
-        for (int i = 0; i < amountPowerUp2+amountPowerUp1; i++) {
+        for (int i = 0; i < amountPowerUp2 + amountPowerUp1; i++) {
             player.usePowerUp();
         }
 

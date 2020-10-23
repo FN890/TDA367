@@ -11,7 +11,7 @@ import java.util.ArrayList;
 /**
  * Class used for rendering the game background.
  */
-public class BackgroundRender extends AbstractRender{
+public class BackgroundRender extends AbstractRender {
 
     private final float rectWidth;
     private final ArrayList<Vector2> groundVertices;

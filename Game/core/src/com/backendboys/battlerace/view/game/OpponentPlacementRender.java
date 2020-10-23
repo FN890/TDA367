@@ -49,12 +49,12 @@ public class OpponentPlacementRender extends AbstractRender {
         batch.end();
     }
 
-    private float getScaledPosition(float carPosition){
-        return carPosition/sizeOfWorld;
+    private float getScaledPosition(float carPosition) {
+        return carPosition / sizeOfWorld;
     }
 
     private void renderOpponent(SpriteBatch batch, OpponentPlayer opponent) {
-        spriteOpponentVehicle.setPosition((getCameraPosition().x - getViewportWidth()/2.8f)+(getViewportWidth()/7.3f*getScaledPosition(opponent.getPosition().x)), getCameraPosition().y + getViewportHeight()/2.4f);
+        spriteOpponentVehicle.setPosition((getCameraPosition().x - getViewportWidth() / 2.8f) + (getViewportWidth() / 7.3f * getScaledPosition(opponent.getPosition().x)), getCameraPosition().y + getViewportHeight() / 2.4f);
         spriteOpponentVehicle.setRotation((float) Math.toDegrees(opponent.getRotation()));
 
         spriteOpponentVehicle.draw(batch);
@@ -62,7 +62,7 @@ public class OpponentPlacementRender extends AbstractRender {
 
     private void renderOpponentName(SpriteBatch batch, OpponentPlayer opponent) {
         lblPlayerName.setText(opponent.getName());
-        lblPlayerName.setPosition((getCameraPosition().x - getViewportWidth()/2.8f)+(getViewportWidth()/7.3f*getScaledPosition(opponent.getPosition().x)), getCameraPosition().y + getViewportHeight()/2.4f);
+        lblPlayerName.setPosition((getCameraPosition().x - getViewportWidth() / 2.8f) + (getViewportWidth() / 7.3f * getScaledPosition(opponent.getPosition().x)), getCameraPosition().y + getViewportHeight() / 2.4f);
 
         lblPlayerName.draw(batch, 1);
     }

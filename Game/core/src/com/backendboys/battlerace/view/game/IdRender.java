@@ -43,9 +43,9 @@ public class IdRender extends AbstractRender {
         batch.begin();
         batch.setProjectionMatrix(getProjectionMatrix());
 
-        if(gameController.getServerController() != null) {
+        if (gameController.getServerController() != null) {
             if (gameController.getServerController().isConnected()) {
-                lblGameId.setPosition((getCameraPosition().x - getViewportWidth()/2.01f), getCameraPosition().y + getViewportHeight()/2.25f);
+                lblGameId.setPosition((getCameraPosition().x - getViewportWidth() / 2.01f), getCameraPosition().y + getViewportHeight() / 2.25f);
                 lblGameId.setText("Game id: " + gameController.getServerController().getGameId());
                 lblGameId.draw(batch, 1);
             }

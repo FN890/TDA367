@@ -58,13 +58,13 @@ public class PlayerPlacementRender extends AbstractRender {
         IVehicle vehicle = player.getVehicle();
         if (vehicle instanceof ICar) {
             ICar car = (ICar) vehicle;
-            spritePlayerVehicle.setPosition((getCameraPosition().x - getViewportWidth()/2.8f)+(getViewportWidth()/7.3f*getScaledPosition(car.getPosition().x)), getCameraPosition().y + getViewportHeight()/2.4f);
+            spritePlayerVehicle.setPosition((getCameraPosition().x - getViewportWidth() / 2.8f) + (getViewportWidth() / 7.3f * getScaledPosition(car.getPosition().x)), getCameraPosition().y + getViewportHeight() / 2.4f);
             spritePlayerVehicle.setRotation((float) Math.toDegrees(car.getRotation()));
 
             spritePlayerVehicle.draw(batch);
 
             lblPlayerName.setText(player.getName());
-            lblPlayerName.setPosition((getCameraPosition().x - getViewportWidth()/2.8f)+(getViewportWidth()/7.3f*getScaledPosition(car.getPosition().x)), getCameraPosition().y + getViewportHeight()/2.3f);
+            lblPlayerName.setPosition((getCameraPosition().x - getViewportWidth() / 2.8f) + (getViewportWidth() / 7.3f * getScaledPosition(car.getPosition().x)), getCameraPosition().y + getViewportHeight() / 2.3f);
 
             lblPlayerName.draw(batch, 1);
         }
@@ -72,8 +72,8 @@ public class PlayerPlacementRender extends AbstractRender {
         batch.end();
     }
 
-    private float getScaledPosition(float carPosition){
-        return carPosition/sizeOfWorld;
+    private float getScaledPosition(float carPosition) {
+        return carPosition / sizeOfWorld;
     }
 
     public void dispose() {

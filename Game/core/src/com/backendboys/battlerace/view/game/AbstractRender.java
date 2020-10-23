@@ -1,11 +1,10 @@
 package com.backendboys.battlerace.view.game;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 
-public abstract class AbstractRender{
+public abstract class AbstractRender {
 
     private final OrthographicCamera camera;
 

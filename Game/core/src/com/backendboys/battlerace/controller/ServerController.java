@@ -59,6 +59,7 @@ public class ServerController implements ITCPListener, IPacketListener {
 
     /**
      * Sends the position of a player to the server via UDP.
+     *
      * @param player
      */
     public void sendPositionPacket(Player player) {
@@ -71,6 +72,7 @@ public class ServerController implements ITCPListener, IPacketListener {
 
     /**
      * Sends message to the server via TCP.
+     *
      * @param message Message to be sent.
      */
     void sendMessage(String message) {
@@ -78,7 +80,6 @@ public class ServerController implements ITCPListener, IPacketListener {
     }
 
     /**
-     *
      * @param message The message received from UDP
      */
     @Override
@@ -105,7 +106,6 @@ public class ServerController implements ITCPListener, IPacketListener {
     }
 
     /**
-     *
      * @param message received from TCP
      */
     @Override
@@ -215,7 +215,7 @@ public class ServerController implements ITCPListener, IPacketListener {
         return isConnected;
     }
 
-    public int getGameId(){
+    public int getGameId() {
         return gameId;
     }
 }

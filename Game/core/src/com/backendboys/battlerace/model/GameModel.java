@@ -160,11 +160,11 @@ public class GameModel {
     /**
      * Spawns a missile in the world at a given position and rotation.
      *
-     * @param x            The spawn x position.
-     * @param y            The spawn y position.
-     * @param rotation     The rotation.
-     * @param playerXSpeed The x-axis speed of the player spawning the missile.
-     * @param playerYSpeed The y-axis speed of the player spawning the missile.
+     * @param x               The spawn x position.
+     * @param y               The spawn y position.
+     * @param rotation        The rotation.
+     * @param playerXSpeed    The x-axis speed of the player spawning the missile.
+     * @param playerYSpeed    The y-axis speed of the player spawning the missile.
      * @param notifyListeners Notify the IMissileListeners.
      */
     public void spawnMissile(float x, float y, float rotation, float playerXSpeed, float playerYSpeed, boolean notifyListeners) {

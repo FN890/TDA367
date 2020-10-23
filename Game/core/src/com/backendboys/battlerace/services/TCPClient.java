@@ -60,7 +60,8 @@ public class TCPClient implements Runnable {
     public void disconnect() {
         try {
             socket.close();
-        } catch (IOException ignored) {}
+        } catch (IOException ignored) {
+        }
     }
 
     private void notifyLostConnection(String msg) {

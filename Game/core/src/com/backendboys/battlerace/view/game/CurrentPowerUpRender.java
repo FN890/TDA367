@@ -12,7 +12,7 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * Class used for rendering the power up that the player is currently holding.
  */
-public class CurrentPowerUpRender extends AbstractRender{
+public class CurrentPowerUpRender extends AbstractRender {
 
     private final Sprite nitroSprite;
     private final Sprite missileSprite;

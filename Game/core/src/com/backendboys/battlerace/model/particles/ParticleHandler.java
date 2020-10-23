@@ -102,8 +102,8 @@ public class ParticleHandler implements GameWorldListener {
     /**
      * Adds a missile to the world
      *
-     * @param world The world where the missile spawns
-     * @param pos   the position of the missile
+     * @param world           The world where the missile spawns
+     * @param pos             the position of the missile
      * @param notifyListeners Notify IMissileListeners that a missile have been added to the world.
      */
     public void addMissile(Vector2 pos, World world, float rotation, Vector2 initialVelocity, boolean notifyListeners) {

@@ -11,7 +11,7 @@ public class OpponentPlayer {
     /**
      * Constructor for the class, sets the start values.
      *
-     * @param name Name of the opponent
+     * @param name     Name of the opponent
      * @param position Position of the oppponent in the world.
      * @param rotation The rotation of the players vehicle in the world.
      */
