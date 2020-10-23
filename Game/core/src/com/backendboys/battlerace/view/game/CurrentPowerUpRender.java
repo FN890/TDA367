@@ -1,8 +1,7 @@
 package com.backendboys.battlerace.view.game;
 
 import com.backendboys.battlerace.model.powerups.IPowerUp;
-import com.backendboys.battlerace.model.powerups.MissilePowerUp;
-import com.backendboys.battlerace.model.powerups.NitroPowerUp;
+import com.backendboys.battlerace.model.powerups.PowerUpType;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -69,10 +68,10 @@ public class CurrentPowerUpRender extends AbstractRender {
         if (powerUp == null) {
             noPowerUpSprite.setPosition(position.x + CAMERA_OFFSET_X, position.y + CAMERA_OFFSET_Y);
             noPowerUpSprite.draw(batch);
-        } else if (powerUp instanceof NitroPowerUp) {
+        } else if (powerUp.getPowerUpType() == PowerUpType.NITRO) {
             nitroSprite.setPosition(position.x + CAMERA_OFFSET_X, position.y + CAMERA_OFFSET_Y);
             nitroSprite.draw(batch);
-        } else if (powerUp instanceof MissilePowerUp) {
+        } else if (powerUp.getPowerUpType() == PowerUpType.MISSILE) {
             missileSprite.setPosition(position.x + CAMERA_OFFSET_X, position.y + CAMERA_OFFSET_Y);
             missileSprite.draw(batch);
         }
