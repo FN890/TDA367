@@ -44,6 +44,9 @@ public class ServerController implements ITCPListener, IPacketListener {
         connect();
     }
 
+    /**
+     * Starts the UDP and TCP threads
+     */
     private void connect() {
         new Thread(udpClient).start();
         new Thread(tcpClient).start();
@@ -100,6 +103,10 @@ public class ServerController implements ITCPListener, IPacketListener {
         }
     }
 
+    /**
+     *
+     * @param message error if udp failed
+     */
     @Override
     public void UDPErrorOccurred(String message) {
         System.out.println(message);
@@ -180,16 +187,27 @@ public class ServerController implements ITCPListener, IPacketListener {
         }
     }
 
+    /**
+     *
+     * @param message is lost connection to server
+     */
     @Override
     public void lostConnection(String message) {
         isConnected = false;
     }
 
+    /**
+     * Callback from TCP client telling serverController that it is connect
+     */
     @Override
     public void onConnection() {
         isConnected = true;
     }
 
+    /**
+     * Sends createGame command to server if connected
+     * @param name player name
+     */
     public void createGame(String name) {
         if (isConnected) {
             gameController.getGameModel().getPlayer().setName(name);
@@ -198,6 +216,11 @@ public class ServerController implements ITCPListener, IPacketListener {
         }
     }
 
+    /**
+     * Sends join command to server if connected
+     * @param name player name
+     * @param id game id
+     */
     public void joinGame(String name, String id) {
         if (isConnected) {
             gameController.getGameModel().getPlayer().setName(name);
@@ -205,16 +228,30 @@ public class ServerController implements ITCPListener, IPacketListener {
         }
     }
 
+    /**
+     * Send sendMissle command to server
+     * @param position missle postion
+     * @param velocity missle velocity
+     * @param rotation missle rotation
+     */
     public void sendMissile(Vector2 position, Vector2 velocity, float rotation) {
         if (isConnected) {
             sendMessage("missile:" + position.x + "," + position.y + "," + rotation + "," + velocity.x + "," + velocity.y);
         }
     }
 
+    /**
+     *
+     * @return if connected to server
+     */
     public boolean isConnected() {
         return isConnected;
     }
 
+    /**
+     *
+     * @return game id of connected game
+     */
     public int getGameId() {
         return gameId;
     }
