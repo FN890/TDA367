@@ -1,5 +1,5 @@
-menusprites.png
-size: 917, 428
+MenuTPK.png
+size: 1879, 284
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -24,6 +24,27 @@ Back3
   orig: 132, 71
   offset: 0, 0
   index: -1
+create1
+  rotate: false
+  xy: 0, 214
+  size: 330, 70
+  orig: 330, 70
+  offset: 0, 0
+  index: -1
+create2
+  rotate: false
+  xy: 330, 214
+  size: 330, 69
+  orig: 330, 69
+  offset: 0, 0
+  index: -1
+create3
+  rotate: false
+  xy: 660, 214
+  size: 330, 70
+  orig: 330, 70
+  offset: 0, 0
+  index: -1
 Exit1
   rotate: false
   xy: 0, 0
@@ -45,107 +66,128 @@ Exit3
   orig: 109, 71
   offset: 0, 0
   index: -1
+join1
+  rotate: false
+  xy: 1051, 71
+  size: 276, 71
+  orig: 276, 71
+  offset: 0, 0
+  index: -1
+join2
+  rotate: false
+  xy: 1327, 71
+  size: 276, 71
+  orig: 276, 71
+  offset: 0, 0
+  index: -1
+join3
+  rotate: false
+  xy: 1603, 71
+  size: 276, 71
+  orig: 276, 71
+  offset: 0, 0
+  index: -1
 Multiplayer1
   rotate: false
-  xy: 530, 214
+  xy: 0, 143
   size: 296, 71
   orig: 296, 71
   offset: 0, 0
   index: -1
 Multiplayer2
   rotate: false
-  xy: 0, 286
+  xy: 296, 143
   size: 296, 71
   orig: 296, 71
   offset: 0, 0
   index: -1
 Multiplayer3
   rotate: false
-  xy: 296, 286
+  xy: 592, 143
   size: 296, 71
   orig: 296, 71
   offset: 0, 0
   index: -1
 Options1
   rotate: false
-  xy: 0, 71
+  xy: 722, 0
   size: 211, 71
   orig: 211, 71
   offset: 0, 0
   index: -1
 Options2
   rotate: false
-  xy: 211, 71
+  xy: 933, 0
   size: 211, 71
   orig: 211, 71
   offset: 0, 0
   index: -1
 Options3
   rotate: false
-  xy: 422, 71
+  xy: 1144, 0
   size: 211, 71
   orig: 211, 71
   offset: 0, 0
   index: -1
 Singleplayer1
   rotate: false
-  xy: 592, 286
+  xy: 888, 143
   size: 325, 71
   orig: 325, 71
   offset: 0, 0
   index: -1
 Singleplayer2
   rotate: false
-  xy: 0, 357
+  xy: 1213, 143
   size: 325, 71
   orig: 325, 71
   offset: 0, 0
   index: -1
 Singleplayer3
   rotate: false
-  xy: 325, 357
+  xy: 1538, 143
   size: 325, 71
   orig: 325, 71
   offset: 0, 0
   index: -1
 Soundoff1
   rotate: false
-  xy: 514, 142
+  xy: 257, 71
   size: 264, 72
   orig: 264, 72
   offset: 0, 0
   index: -1
 Soundoff2
   rotate: false
-  xy: 0, 214
+  xy: 521, 71
   size: 265, 72
   orig: 265, 72
   offset: 0, 0
   index: -1
 Soundoff3
   rotate: false
-  xy: 265, 214
+  xy: 786, 71
   size: 265, 72
   orig: 265, 72
   offset: 0, 0
   index: -1
 Soundon1
   rotate: false
-  xy: 0, 142
+  xy: 1611, 0
   size: 257, 71
   orig: 257, 71
   offset: 0, 0
   index: -1
 Soundon2
   rotate: false
-  xy: 257, 142
+  xy: 0, 71
   size: 257, 71
   orig: 257, 71
   offset: 0, 0
   index: -1
 Soundon3
   rotate: false
-  xy: 633, 71
+  xy: 1355, 0
   size: 256, 71
   orig: 256, 71
   offset: 0, 0

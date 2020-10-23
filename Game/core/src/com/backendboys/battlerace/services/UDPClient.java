@@ -7,6 +7,9 @@ import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * UDPClient, used to send packets to UDPServer.
+ */
 public class UDPClient implements Runnable {
 
     private final String hostname;
@@ -20,14 +23,25 @@ public class UDPClient implements Runnable {
         this.port = port;
     }
 
+    /**
+     * Adds a listener, which can be notified
+     * @param listener
+     */
     public void addListener(IPacketListener listener) {
         listeners.add(listener);
     }
 
+    /**
+     * Removes a listener
+     * @param listener
+     */
     public void removeListener(IPacketListener listener) {
         listeners.remove(listener);
     }
 
+    /**
+     * Running forever and get received packets
+     */
     @Override
     public void run() {
         byte[] buffer = new byte[548];
@@ -48,6 +62,10 @@ public class UDPClient implements Runnable {
         }
     }
 
+    /**
+     * Sends UDP DatagramPacket to server
+     * @param message
+     */
     public void sendPacket(String message) {
         try {
             byte[] byteMsg = message.getBytes();
@@ -60,16 +78,27 @@ public class UDPClient implements Runnable {
         }
     }
 
+    /**
+     * Closes the socket
+     */
     public void close() {
         socket.close();
     }
 
+    /**
+     *
+     * @param msg Sends got packet msg to listeners
+     */
     private void notifyGotPacket(String msg) {
         for (IPacketListener l : listeners) {
             l.gotPacket(msg);
         }
     }
 
+    /**
+     *
+     * @param msg Sends error occurred msg to listeners
+     */
     private void notifyErrorOccurred(String msg) {
         for (IPacketListener l : listeners) {
             l.UDPErrorOccurred(msg);
