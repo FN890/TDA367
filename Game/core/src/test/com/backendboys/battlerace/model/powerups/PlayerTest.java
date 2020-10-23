@@ -30,17 +30,17 @@ class PlayerTest {
     }
 
     @Test
-    public void PlayerCreated() {
+    public void playerCreated() {
         assertNotNull(player);
     }
 
     @Test
-    public void PlayerCheckName() {
+    public void playerCheckName() {
         assertEquals(testName, player.getName());
     }
 
     @Test
-    public void PlayerAddVehicle() {
+    public void playerAddVehicle() {
         player.addVehicle(world, 10, 10);
         assertNotNull(player.getVehicle());
     }
