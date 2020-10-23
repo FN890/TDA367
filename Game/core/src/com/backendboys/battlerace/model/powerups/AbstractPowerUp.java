@@ -14,8 +14,9 @@ abstract class AbstractPowerUp implements IPowerUp {
     private final static float HEIGHT = 4f;
     private final static float WIDTH = 4f;
 
-    private final Body body;
+    protected PowerUpType powerUpType;
 
+    private final Body body;
     private final Stack<Body> bodiesToRemove;
 
     /**
@@ -79,4 +80,10 @@ abstract class AbstractPowerUp implements IPowerUp {
     public Vector2 getPosition() {
         return body.getPosition();
     }
+
+    public PowerUpType getPowerUpType() {
+        return powerUpType;
+    }
+
+
 }

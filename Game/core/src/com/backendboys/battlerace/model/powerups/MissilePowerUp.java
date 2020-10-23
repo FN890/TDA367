@@ -14,6 +14,7 @@ public class MissilePowerUp extends AbstractPowerUp {
     public MissilePowerUp(World world, float spawnPosX, float spawnPosY, ParticleHandler particleHandler) {
         super(world, spawnPosX, spawnPosY);
         this.particleHandler = particleHandler;
+        this.powerUpType = PowerUpType.MISSILE;
     }
 
     @Override

@@ -29,4 +29,10 @@ public interface IPowerUp extends GameWorldListener {
      */
     Vector2 getPosition();
 
+    /**
+     * Return the specific type of the power up.
+     * @return the type.
+     */
+    PowerUpType getPowerUpType();
+
 }

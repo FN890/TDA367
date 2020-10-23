@@ -10,6 +10,7 @@ public class NitroPowerUp extends AbstractPowerUp {
 
     public NitroPowerUp(World world, float spawnPosX, float spawnPosY) {
         super(world, spawnPosX, spawnPosY);
+        this.powerUpType = PowerUpType.NITRO;
     }
 
     @Override
