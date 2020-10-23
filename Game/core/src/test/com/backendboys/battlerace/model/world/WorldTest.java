@@ -26,7 +26,6 @@ public class WorldTest {
         World world = new World(new Vector2(0, -10), true);
         GroundGenerator groundGenerator = new GroundGenerator();
         groundGenerator.generateGround(world, GroundStrategyFactory.getSinCosStrategy(verticesAmount, 1000, 5), 1);
+        assertEquals(groundGenerator.getVertices().size(), verticesAmount);
     }
-
-
 }
