@@ -20,8 +20,8 @@ public class ScreenFactory {
         return new OptionsMenu(menuController);
     }
 
-    public static IGameScreen createGameScreen(GameController gameController) {
-        return new GameScreen(gameController);
+    public static IGameScreen createGameScreen(GameController gameController, boolean debugMode) {
+        return new GameScreen(gameController, debugMode);
     }
 
     public static IScreen createMultiplayerMenu(MenuController menuController) {

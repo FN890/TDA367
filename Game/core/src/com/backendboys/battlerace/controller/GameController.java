@@ -50,7 +50,7 @@ public class GameController implements InputProcessor, IMissileListener, IFinish
         this.game = game;
         keysDown = new ArrayList<>();
 
-        gameScreen = ScreenFactory.createGameScreen(this);
+        gameScreen = ScreenFactory.createGameScreen(this, false);
 
         if (isMultiPlayer) {
             serverController = new ServerController(this);

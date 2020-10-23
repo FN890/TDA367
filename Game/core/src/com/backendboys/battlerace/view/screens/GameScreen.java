@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 /**
@@ -18,6 +19,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
  */
 class GameScreen extends AbstractScreen implements IGameScreen {
 
+    private final boolean debugMode;
     private final GameWorld gameWorld;
     private final GameModel gameModel;
     private final GameController gameController;
@@ -27,13 +29,13 @@ class GameScreen extends AbstractScreen implements IGameScreen {
     private final ExtendViewport viewport;
     private final SpriteBatch batch;
 
+    private Box2DDebugRenderer debugRenderer;
     private final BackgroundRender backgroundRender;
     private final VehicleRender vehicleRender;
     private final OpponentRender opponentRender;
     private final PowerUpsRender powerUpsRender;
     private final MissileRender missileRender;
     private final ExplosionParticleRender explosionParticleRender;
-    //private final Box2DDebugRenderer debugRenderer;
     private final FinishLineRender finishLineRender;
     private final CurrentPowerUpRender currentPowerUpRender;
     private final PlayerPlacementRender playerPlacementRender;
@@ -41,18 +43,22 @@ class GameScreen extends AbstractScreen implements IGameScreen {
     private final IdRender idRender;
     private final WinnerRender winnerRender;
 
-    GameScreen(GameController gameController) {
+    GameScreen(GameController gameController, boolean debugMode) {
 
         this.gameController = gameController;
         gameModel = gameController.getGameModel();
         gameWorld = gameModel.getGameWorld();
+
+        this.debugMode = debugMode;
+        if (this.debugMode) {
+            debugRenderer = new Box2DDebugRenderer();
+        }
 
         camera = new OrthographicCamera();
         viewport = new ExtendViewport(600, 50, camera);
 
         backgroundRender = new BackgroundRender(camera, gameWorld.getGroundVertices());
         vehicleRender = new VehicleRender(camera);
-        //debugRenderer = new Box2DDebugRenderer();
         opponentRender = new OpponentRender(camera);
         missileRender = new MissileRender(camera);
         explosionParticleRender = new ExplosionParticleRender(camera);
@@ -88,7 +94,6 @@ class GameScreen extends AbstractScreen implements IGameScreen {
         backgroundRender.render(batch);
         vehicleRender.render(batch, gameModel.getPlayer().getVehicle());
         opponentRender.render(batch, gameModel.getOpponents());
-        //debugRenderer.render(gameWorld.getWorld(), camera.combined);
         missileRender.render(batch, gameModel.getMissiles());
         explosionParticleRender.render(batch, gameModel.getExplosionParticles());
         powerUpsRender.render(batch);
@@ -101,6 +106,9 @@ class GameScreen extends AbstractScreen implements IGameScreen {
             currentPowerUpRender.render(batch, gameModel.getPlayer().getNextPowerUp());
         } catch (Exception e) {
             currentPowerUpRender.render(batch, null);
+        }
+        if (debugMode) {
+            debugRenderer.render(gameWorld.getWorld(), camera.combined);
         }
     }
 

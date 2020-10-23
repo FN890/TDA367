@@ -30,7 +30,7 @@ public class BattleRace extends Game {
     public void startSinglePlayer() {
         GameController gameController = new GameController(this, false);
         Gdx.input.setInputProcessor(gameController);
-        setScreen(ScreenFactory.createGameScreen(gameController));
+        setScreen(ScreenFactory.createGameScreen(gameController, false));
     }
 
     @Override
