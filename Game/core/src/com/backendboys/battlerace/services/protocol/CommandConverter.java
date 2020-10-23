@@ -3,8 +3,18 @@ package com.backendboys.battlerace.services.protocol;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * CommandConverter converts messages to commands, and commands to messages.
+ */
 public class CommandConverter {
 
+    /**
+     * Converts a string, message, to a Command containing a number of arguments.
+     * Form: command:arg1,arg2,arg3...
+     *
+     * @param msg The message to convert.
+     * @return Returns the message as a Command.
+     */
     public Command toCommand(String msg) {
         String trimmed = msg.trim().toLowerCase();
         StringBuilder sb = new StringBuilder();
@@ -48,6 +58,12 @@ public class CommandConverter {
         return new Command(command, args);
     }
 
+    /**
+     * Converts a Command to a string, message.
+     *
+     * @param cmd The command to convert.
+     * @return Returns the command as a string on the form: command:arg1,arg2,arg3...
+     */
     public String toMessage(ICommand cmd) {
         String command = cmd.getCmd();
         StringBuilder sb = new StringBuilder();
