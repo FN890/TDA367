@@ -87,7 +87,6 @@ class GameScreen extends AbstractScreen implements IGameScreen {
         updateCameraPosition();
 
         renderData();
-        Gdx.graphics.setTitle("" + Gdx.graphics.getFramesPerSecond());
     }
 
     private void renderData() {
