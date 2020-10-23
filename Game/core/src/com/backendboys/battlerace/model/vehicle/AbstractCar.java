@@ -75,6 +75,7 @@ abstract class AbstractCar extends AbstractVehicle implements ICar {
 
         final PolygonShape shape = new PolygonShape();
         shape.setAsBox(chassi.getWidth(), chassi.getHeight());
+        shape.dispose();
 
         return shape;
     }
