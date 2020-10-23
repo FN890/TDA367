@@ -59,6 +59,7 @@ class GroundGenerator {
             chainShape.createChain(vector2s);
             Body ground = world.createBody(bodyDef);
             ground.createFixture(fixtureDef);
+            chainShape.dispose();
         }
     }
 
