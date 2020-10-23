@@ -8,7 +8,7 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class WorldExplosionTest {
+class WorldExplosionTest {
     final ParticleHandler particleHandler;
     final World world;
     final Random random;
