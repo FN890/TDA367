@@ -10,6 +10,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 /**
@@ -71,11 +72,14 @@ class GameScreen extends AbstractScreen implements IGameScreen {
         super.render(delta);
         gameController.gameStepWorld();
 
-        sendPositionPackets(gameModel.getPlayer());
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        updateCameraPosition(gameModel.getPlayerPosition().x, gameModel.getPlayerPosition().y);
+
+        sendPositionPackets(gameModel.getPlayer());
+
+        updateCameraPosition();
+
         renderData();
         Gdx.graphics.setTitle("" + Gdx.graphics.getFramesPerSecond());
     }
@@ -136,8 +140,9 @@ class GameScreen extends AbstractScreen implements IGameScreen {
         }
     }
 
-    private void updateCameraPosition(float x, float y) {
-        camera.position.set(x + 200, camera.position.y, camera.position.z);
+    private void updateCameraPosition() {
+        Vector2 playerPosition = gameModel.getPlayer().getPosition();
+        camera.position.set(playerPosition.x + 200, camera.position.y, camera.position.z);
         camera.update();
     }
 }

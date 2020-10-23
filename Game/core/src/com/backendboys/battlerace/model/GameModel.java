@@ -165,6 +165,7 @@ public class GameModel {
      * @param rotation     The rotation.
      * @param playerXSpeed The x-axis speed of the player spawning the missile.
      * @param playerYSpeed The y-axis speed of the player spawning the missile.
+     * @param notifyListeners Notify the IMissileListeners.
      */
     public void spawnMissile(float x, float y, float rotation, float playerXSpeed, float playerYSpeed, boolean notifyListeners) {
         particleHandler.addMissile(new Vector2(x, y), gameWorld.getWorld(), rotation, new Vector2(playerXSpeed, playerYSpeed), notifyListeners);
@@ -190,14 +191,6 @@ public class GameModel {
      */
     public Player getPlayer() {
         return player;
-    }
-
-    public Vector2 getPlayerPosition() {
-        return player.getPosition();
-    }
-
-    public float getPlayerRotation() {
-        return player.getRotation();
     }
 
     public List<OpponentPlayer> getOpponents() {
@@ -231,10 +224,6 @@ public class GameModel {
 
     public CollisionHandler getCollisionHandler() {
         return collisionHandler;
-    }
-
-    public String getPlayerName() {
-        return player.getName();
     }
 
     public String getWinnerName() {
