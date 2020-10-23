@@ -24,7 +24,7 @@ public class GroundStrategyFactory {
      * @param step           The difference between each vertex on the x-axis.
      * @return
      */
-    public static IGroundStrategy getSinCosStrategy(int numberVertices, int minHeight, double step) {
+    public static IGroundStrategy getSinCosATanStrategy(int numberVertices, int minHeight, double step) {
         return new SinCosATanStrategy(numberVertices, minHeight, step);
     }
 

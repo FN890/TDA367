@@ -1,7 +1,6 @@
 package com.backendboys.battlerace.model.powerups;
 
 import com.backendboys.battlerace.model.player.Player;
-import com.backendboys.battlerace.model.powerups.NitroPowerUp;
 import com.backendboys.battlerace.model.world.GameWorld;
 import com.backendboys.battlerace.model.world.ground.GroundStrategyFactory;
 import org.junit.jupiter.api.Test;
@@ -16,7 +15,7 @@ public class NitroTest {
 
     public NitroTest() {
         player = new Player("player");
-        gameWorld = new GameWorld(GroundStrategyFactory.getSinCosStrategy(1000, 40, 5), 1);
+        gameWorld = new GameWorld(GroundStrategyFactory.getSinCosATanStrategy(1000, 40, 5), 1);
         nitroPowerUp = new NitroPowerUp(gameWorld.getWorld(), 1, 1);
     }
 

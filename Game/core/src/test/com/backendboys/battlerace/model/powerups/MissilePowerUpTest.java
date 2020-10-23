@@ -2,7 +2,6 @@ package com.backendboys.battlerace.model.powerups;
 
 import com.backendboys.battlerace.model.particles.ParticleHandler;
 import com.backendboys.battlerace.model.player.Player;
-import com.backendboys.battlerace.model.powerups.MissilePowerUp;
 import com.backendboys.battlerace.model.world.GameWorld;
 import com.backendboys.battlerace.model.world.ground.GroundStrategyFactory;
 import org.junit.jupiter.api.Test;
@@ -18,7 +17,7 @@ public class MissilePowerUpTest {
 
     public MissilePowerUpTest() {
         player = new Player("player");
-        gameWorld = new GameWorld(GroundStrategyFactory.getSinCosStrategy(1000, 40, 5), 1);
+        gameWorld = new GameWorld(GroundStrategyFactory.getSinCosATanStrategy(1000, 40, 5), 1);
         particleHandler = new ParticleHandler();
         missilePowerUp = new MissilePowerUp(gameWorld.getWorld(), 1, 1, particleHandler);
     }
