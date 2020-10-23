@@ -38,7 +38,7 @@ public class GameModel {
      * player, ground, powerUps, and finishLine.
      */
     public GameModel() {
-        this.gameWorld = new GameWorld(GroundStrategyFactory.getSinCosStrategy(5000, 60, 5), 1);
+        this.gameWorld = new GameWorld(GroundStrategyFactory.getFlatStrategy(5000, 60, 5), 1);
         particleHandler = new ParticleHandler();
 
         generateObjects();
