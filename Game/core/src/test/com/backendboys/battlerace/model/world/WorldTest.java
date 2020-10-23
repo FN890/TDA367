@@ -15,7 +15,7 @@ public class WorldTest {
     public void verticesTest() {
         Random random = new Random();
         int verticesAmount = random.nextInt(1000);
-        GameWorld gameWorld = new GameWorld(GroundStrategyFactory.getSinCosStrategy(verticesAmount, 60, 5), 1);
+        GameWorld gameWorld = new GameWorld(GroundStrategyFactory.getSinCosATanStrategy(verticesAmount, 60, 5), 1);
         assertEquals(gameWorld.getGroundVertices().size(), verticesAmount);
     }
 
@@ -25,7 +25,7 @@ public class WorldTest {
         int verticesAmount = random.nextInt(1000);
         World world = new World(new Vector2(0, -10), true);
         GroundGenerator groundGenerator = new GroundGenerator();
-        groundGenerator.generateGround(world, GroundStrategyFactory.getSinCosStrategy(verticesAmount, 1000, 5), 1);
+        groundGenerator.generateGround(world, GroundStrategyFactory.getSinCosATanStrategy(verticesAmount, 1000, 5), 1);
         assertEquals(groundGenerator.getVertices().size(), verticesAmount);
     }
 }
