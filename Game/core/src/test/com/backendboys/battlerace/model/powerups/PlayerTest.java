@@ -2,8 +2,6 @@ package com.backendboys.battlerace.model.powerups;
 
 import com.backendboys.battlerace.model.particles.ParticleHandler;
 import com.backendboys.battlerace.model.player.Player;
-import com.backendboys.battlerace.model.powerups.MissilePowerUp;
-import com.backendboys.battlerace.model.powerups.NitroPowerUp;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import org.junit.jupiter.api.Test;
