@@ -106,6 +106,7 @@ public class GameController implements InputProcessor, IMissileListener, IFinish
                         usedPowerUp = true;
                         gameModel.usePowerUp();
                     }
+                    break;
                 default:
                     break;
             }
