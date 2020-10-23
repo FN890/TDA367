@@ -42,13 +42,6 @@ public class ParticleHandler implements GameWorldListener {
         return explosions.size();
     }
 
-    public int getTotalExplosionParticles() {
-        int particles = 0;
-        for (Explosion explosion : explosions) {
-            particles += explosion.getNParticles();
-        }
-        return particles;
-    }
 
     /**
      * Removes particles and Explodes collided Missiles
