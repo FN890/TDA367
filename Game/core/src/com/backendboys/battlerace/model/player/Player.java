@@ -8,7 +8,6 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import java.util.List;
 import java.util.Stack;
-import java.util.UUID;
 
 /**
  * Player is a class containing a vehicle and a list of powerups.
@@ -16,7 +15,6 @@ import java.util.UUID;
  */
 public class Player {
 
-    private final UUID playerId;
     private String name;
     private final Stack<IPowerUp> powerUpStack = new Stack<>();
 
@@ -27,7 +25,6 @@ public class Player {
      */
     public Player(String name) {
         this.name = name;
-        this.playerId = UUID.randomUUID();
     }
 
     /**
@@ -37,38 +34,6 @@ public class Player {
      */
     public void addVehicle(World world, float xPos, float yPos) {
         this.vehicle = VehicleFactory.createSportsCar(world, xPos, yPos);
-    }
-
-    /**
-     * @return Name of player
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @return Unique id of player
-     */
-    public UUID getPlayerId() {
-        return playerId;
-    }
-
-    /**
-     * @return list of {@link IPowerUp()} cloned
-     */
-    public List<IPowerUp> getListPowerUp() {
-        return (List<IPowerUp>) powerUpStack.clone();
-    }
-
-    public IPowerUp getNextPowerUp() {
-        return powerUpStack.peek();
-    }
-
-    /**
-     * @param powerUp Add a {@link IPowerUp()} to Player
-     */
-    public void addPowerUp(IPowerUp powerUp) {
-        powerUpStack.add(powerUp);
     }
 
     /**
@@ -106,6 +71,31 @@ public class Player {
      */
     public void rotateRight() {
         vehicle.rotateRight();
+    }
+
+    /**
+     * @return Name of player
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @return list of {@link IPowerUp()} cloned
+     */
+    public List<IPowerUp> getListPowerUp() {
+        return (List<IPowerUp>) powerUpStack.clone();
+    }
+
+    public IPowerUp getNextPowerUp() {
+        return powerUpStack.peek();
+    }
+
+    /**
+     * @param powerUp Add a {@link IPowerUp()} to Player
+     */
+    public void addPowerUp(IPowerUp powerUp) {
+        powerUpStack.add(powerUp);
     }
 
     /**
